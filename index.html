@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-Border Stablecoin Register (CBSR): what clears at every border</title>
+<meta name="description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass. Twelve jurisdictions, fifteen dimensions, cited to primary law.">
+<meta name="author" content="Yunjie Fan">
+<meta name="theme-color" content="#EDEFEB">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Social preview. Without these, pasting this link into email, LinkedIn, X, or Slack
+     renders a bare URL with no card, which is the first impression a reader gets before
+     they ever click.
+
+     Crawlers do not run JavaScript, so og:url, canonical and og:image have to be absolute
+     URLs baked into the HTML. The deploy workflow reads this site's real Pages URL and
+     stamps it into the four tags below, so they are correct on a user site or a project
+     site alike, and the build fails rather than shipping a half-stamped page. Deploying
+     some other way? See the README for the one-line substitution. The card is served from
+     this site, so it does not depend on any other repo being deployed. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cross-Border Stablecoin Register">
+<meta property="og:title" content="One stablecoin, twelve jurisdictions, a different verdict at every border.">
+<meta property="og:description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass. 152 records, 46 lawyer-citable, cited to primary law.">
+<meta property="og:url" content="__SITE_URL__">
+<meta property="og:image" content="__SITE_URL__og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="US to EU clears; EU to US is gated. Same border, opposite verdicts.">
+<meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="zh_CN">
+<link rel="canonical" href="__SITE_URL__">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One stablecoin, twelve jurisdictions, a different verdict at every border.">
+<meta name="twitter:description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass.">
+<meta name="twitter:image" content="__SITE_URL__og-card.png">
+<meta name="twitter:image:alt" content="US to EU clears; EU to US is gated. Same border, opposite verdicts.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFEB; --surface:#FBFBF9; --surface-2:#F5F6F2;
+    --ink:#191B17; --ink-2:#565A50; --muted:#8B8E84;
+    --line:#DBDDD4; --line-strong:#C6C8BF;
+    --accent:#1E3A5F; --accent-hover:#2C517F; --accent-soft:#E6EBF1;
+    --clear:#2E7D46; --gate:#B26B12; --block:#B23B36; --transition:#8B8E84;
+    --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --wrap:1000px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-hover)}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+  .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--muted);
+    text-transform:none;margin:0 0 18px}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+  section{padding:64px 0}
+  h1,h2,h3{font-weight:600;letter-spacing:-0.01em;margin:0}
+  a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:20;background:rgba(237,239,235,0.88);
+    backdrop-filter:saturate(1.1) blur(6px);border-bottom:1px solid var(--line)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:20px}
+  .brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+  .brand b{font-family:var(--mono);font-weight:500;font-size:16px;letter-spacing:0.02em;color:var(--ink)}
+  .brand span{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .nav{display:flex;align-items:center;gap:22px}
+  .nav a{font-size:14.5px;color:var(--ink-2)}
+  .nav a:hover{color:var(--accent)}
+  .nav .ver{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  .langtog{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden}
+  .langtog button{font-family:var(--mono);font-size:12px;padding:4px 9px;border:0;background:var(--surface);color:var(--ink-2);cursor:pointer;line-height:1.2}
+  .langtog button+button{border-left:1px solid var(--line-strong)}
+  .langtog button.on{background:var(--accent);color:#fff}
+  @media(max-width:720px){.brand span{display:none}.nav a.hideable{display:none}}
+
+  /* hero */
+  .hero{padding-top:66px;padding-bottom:40px}
+  .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.08;letter-spacing:-0.02em;max-width:15ch}
+  .hero .lede{font-size:clamp(17px,2.3vw,20px);color:var(--ink-2);max-width:60ch;margin:22px 0 0;line-height:1.5}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 20px}
+  .btn{font-family:var(--sans);font-size:15px;font-weight:500;padding:11px 20px;border-radius:7px;
+    cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+    transition:background .15s,border-color .15s}
+  .btn:hover{background:var(--surface-2);border-color:var(--ink-2)}
+  .btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.pri:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+  .meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);line-height:1.9}
+
+  /* corridor graph */
+  .graph{margin-top:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:22px 20px 16px}
+  .graph svg{display:block;width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;padding:0 4px;
+    font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:16px;height:3px;border-radius:2px;display:inline-block}
+  .swatch.dash{height:0;border-top:2px dashed var(--transition);width:16px}
+  .gcap{font-size:14.5px;color:var(--ink-2);margin:16px 4px 0;line-height:1.55;max-width:72ch}
+  .gcap b{color:var(--ink);font-weight:600}
+
+  /* picker */
+  .picker-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  @media(max-width:640px){.picker-wrap{grid-template-columns:1fr}}
+  .selrow{display:flex;flex-direction:column;gap:14px}
+  .field label{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin:0 0 6px}
+  select{width:100%;font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--surface);
+    border:1px solid var(--line-strong);border-radius:7px;padding:11px 12px;appearance:none;cursor:pointer}
+  select:hover{border-color:var(--ink-2)}
+  .verdict{background:var(--ink);color:#EDEFEB;border-radius:10px;padding:20px 22px;font-family:var(--mono);
+    min-height:150px}
+  .verdict .flow{font-size:19px;font-weight:500;letter-spacing:0.02em;display:flex;align-items:center;gap:10px}
+  .verdict .arrow{color:var(--muted)}
+  .verdict .line{height:1px;background:rgba(255,255,255,0.16);margin:15px 0}
+  .verdict .cls{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+  .dot{width:10px;height:10px;border-radius:50%;flex:none}
+  .verdict .note{font-size:13px;color:#B9BCB2;line-height:1.55;margin-top:10px;font-family:var(--sans)}
+  .clear{color:#7FD79A}.gate{color:#E7B667}.block{color:#E88A85}.transition{color:#B9BCB2}
+  .bg-clear{background:#2E7D46}.bg-gate{background:#B26B12}.bg-block{background:#B23B36}.bg-transition{background:#8B8E84}
+  .subcap{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+  /* Reduced motion. This was previously keyed on `no-preference`, i.e. it removed the
+     transition for readers who had NOT asked for less motion, and did nothing for those
+     who had. It also missed the page's one real vestibular trigger, the smooth scroll on
+     the in-page nav links. Both are corrected here. */
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:0.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.01ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+
+  /* thesis (USP) */
+  .thesis{border:1px solid var(--line-strong);border-left:3px solid var(--accent);border-radius:12px;
+    background:var(--surface);padding:26px 30px}
+  .thesis .big{font-size:clamp(19px,2.6vw,25px);line-height:1.42;font-weight:500;color:var(--ink);letter-spacing:-0.01em;margin:0}
+  .thesis .sub{font-size:16px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;max-width:72ch}
+  .thesis .sub b{color:var(--ink);font-weight:600}
+
+  /* use cases */
+  .uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:30px}
+  .use{background:var(--surface-2);border:0.5px solid var(--line);border-radius:12px;padding:16px 18px}
+  .ut{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 5px}
+  .ud{font-size:14px;color:var(--ink-2);line-height:1.55;margin:0}
+
+  /* embed (live map) */
+  .embed{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);margin-top:8px}
+  .embed-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:11px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+  .embed-label{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+  .embed-open{font-family:var(--mono);font-size:12.5px}
+  #mapframe{display:block;width:100%;height:min(78vh,760px);min-height:560px;border:0}
+  .embed-cap{font-family:var(--mono);font-size:12px;color:var(--muted);margin:12px 4px 0}
+  @media(max-width:640px){#mapframe{min-height:460px;height:70vh}}
+
+  /* prose + figures */
+  .lead{font-size:19px;line-height:1.6;color:var(--ink);max-width:66ch;margin:0 0 18px}
+  .body{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:66ch;margin:0}
+  .body b,.lead b{color:var(--ink);font-weight:600}
+  .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:34px}
+  .fig{background:var(--surface);padding:20px 18px}
+  .fig .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink);letter-spacing:-0.01em}
+  .fig .l{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+  /* layers (a real build sequence) */
+  .layers{margin-top:8px;border-top:1px solid var(--line)}
+  .layer{display:grid;grid-template-columns:44px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .layer .ix{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:3px}
+  .layer h3{font-size:17px;font-weight:600;margin:0 0 4px}
+  .layer p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.55;max-width:64ch}
+  .layer code{font-family:var(--mono);font-size:13.5px;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--accent)}
+
+  /* formula highlight */
+  .formula{background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;
+    padding:18px 20px;margin:24px 0;font-family:var(--mono);font-size:14px;line-height:1.9;
+    color:var(--ink);overflow-x:auto}
+  .formula .op{color:var(--muted)}.formula .val{color:var(--accent)}
+  .formula .res{color:var(--clear);font-weight:500}
+
+  /* papers */
+  .papers{margin-top:8px}
+  .paper{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:baseline;
+    padding:16px 0;border-top:1px solid var(--line)}
+  .paper:last-child{border-bottom:1px solid var(--line)}
+  .paper .t{font-size:16px;font-weight:500;color:var(--ink)}
+  .paper .d{font-size:14.5px;color:var(--ink-2);margin-top:3px;max-width:62ch}
+  .paper .v{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  a.paper{color:inherit;text-decoration:none}
+  a.paper:hover .t{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  a.paper:hover .v{color:var(--accent)}
+
+  /* status */
+  .status{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:26px 26px}
+  .status .body{color:var(--ink-2);max-width:70ch}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1fr;gap:18px;max-width:70ch}
+  .about .who{font-size:17px;color:var(--ink-2);line-height:1.6}
+  .about .who b{color:var(--ink);font-weight:600}
+  .idlinks{font-family:var(--mono);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:16px}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:34px 0 46px;background:var(--surface-2)}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
+    font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  footer a{color:var(--ink-2)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>CBSR</b><span>Cross-Border Stablecoin Register</span></div>
+    <nav class="nav">
+      <a href="#thesis" class="hideable">Thesis</a>
+      <a href="#why" class="hideable">Why</a>
+      <a href="#live" class="hideable">The map</a>
+      <a href="#method" class="hideable">Method</a>
+      <a href="#research" class="hideable">Research</a>
+      <a href="#data" class="hideable">Data</a>
+      <span class="ver">v0.10.1</span>
+      <span class="langtog" id="langtog" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="zh">中文</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <p class="kick">open data &nbsp;·&nbsp; machine-readable &nbsp;·&nbsp; sourced to primary law</p>
+    <h1>One stablecoin, twelve jurisdictions, a different verdict at every border.</h1>
+    <p class="lede">CBSR maps what actually clears, and what breaks, at each regulatory boundary a cross-border stablecoin flow has to pass. Every fact is pinned to a primary instrument, dated, version-stamped, and machine-checked, so a person or an agent can act on it and cite it.</p>
+    <div class="cta">
+      <a class="btn pri" href="#live">Open the map</a>
+      <a class="btn" href="#method">Read the method</a>
+    </div>
+    <p class="meta">CC-BY-4.0 (data) / Apache-2.0 (code) &nbsp;·&nbsp; archived to Zenodo for a DOI &nbsp;·&nbsp; twelve jurisdictions × fifteen dimensions &nbsp;·&nbsp; v0.10.1</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- MAP / GRAPH -->
+  <section id="map">
+    <p class="kick">the corridor layer &nbsp;·&nbsp; six of the twelve jurisdictions</p>
+    <div class="graph">
+      <svg viewBox="0 0 680 300" role="img" aria-label="A directed graph of six jurisdictions. US to EU clears; EU to US is gated; Japan to Hong Kong clears; Hong Kong to China is blocked; US to UK is in transition.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- edges (drawn first, nodes on top) -->
+        <line x1="232" y1="60" x2="448" y2="60" stroke="#2E7D46" stroke-width="2" marker-end="url(#ah)"/>
+        <line x1="448" y1="72" x2="232" y2="72" stroke="#B26B12" stroke-width="2" marker-end="url(#ah)"/>
+        <line x1="113" y1="192" x2="177" y2="252" stroke="#2E7D46" stroke-width="2" marker-end="url(#ah)"/>
+        <line x1="234" y1="274" x2="446" y2="274" stroke="#B23B36" stroke-width="2" marker-end="url(#ah)"/>
+        <line x1="231" y1="74" x2="569" y2="162" stroke="#8B8E84" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"/>
+        <!-- nodes -->
+        <g font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#191B17">
+          <rect x="172" y="51" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="200" y="66" text-anchor="middle" dominant-baseline="central">US</text>
+          <rect x="452" y="51" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="480" y="66" text-anchor="middle" dominant-baseline="central">EU</text>
+          <rect x="572" y="155" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="600" y="170" text-anchor="middle" dominant-baseline="central">UK</text>
+          <rect x="452" y="259" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="480" y="274" text-anchor="middle" dominant-baseline="central">CN</text>
+          <rect x="172" y="259" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="200" y="274" text-anchor="middle" dominant-baseline="central">HK</text>
+          <rect x="62" y="155" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="90" y="170" text-anchor="middle" dominant-baseline="central">JP</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><i class="swatch bg-clear"></i>clears (Cat I)</span>
+        <span><i class="swatch bg-gate"></i>gated (Cat II)</span>
+        <span><i class="swatch bg-block"></i>blocked</span>
+        <span><i class="swatch dash"></i>regime in transition</span>
+      </div>
+    </div>
+    <p class="gcap">Feasibility is <b>directional</b>: the binding rule is read at the destination's inbound gate, with a drag from the origin. <b>US → EU clears; EU → US is gated.</b> Same border, opposite verdicts. That asymmetry is the thing a flat compliance table cannot express, and it is what this register is built around. The interactive map below carries all <b>132 directed corridors</b> across the twelve.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- THESIS (USP) -->
+  <section id="thesis">
+    <p class="kick">the thesis</p>
+    <div class="thesis">
+      <p class="big">Software once split into a tool for HR, a tool for marketing, a tool for finance. AI is splitting the same way, by domain, and every domain that punishes a wrong answer will need a verified, current, machine-readable record its models can cite, not a fluent guess they hope is right.</p>
+      <p class="sub">Regulation is where that gap bites hardest. Ask a general model whether a given stablecoin flow is legal and it answers smoothly, because the primary text it is paraphrasing may have changed since it was trained and it has no way to know. Here a confident wrong answer is a licensing or enforcement problem, not a bad guess. <b>CBSR is the record underneath the answer</b>: not a chatbot and not a scrape, but a sourced, verified, versioned substrate, exposed to agents through typed tools, so a model reasons from a citation it can point to instead of a paraphrase it cannot defend.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- WHY IT MATTERS -->
+  <section id="why">
+    <p class="kick">why it matters</p>
+    <p class="lead">Stablecoins are becoming cross-border payment rails, and in 2026 the rules for them are landing fast: the US GENIUS Act, the EU's MiCA, Hong Kong's licensing regime, and more. Whether a given flow is actually permitted depends on how those regimes compose across a border, and that answer changes month to month. Getting it wrong is a licensing or enforcement problem.</p>
+    <p class="body">Today that answer lives in scattered law-firm memos and one-off analyses. CBSR makes it structured, sourced, and queryable, for a person or for the AI agents that will increasingly route these flows. The hard part is not listing rules; it is verifying them against the primary text, citing them, and keeping them honest as they change. That discipline is what this is built around, and what a scrape or a broad, shallow tracker cannot give you.</p>
+    <div class="uses">
+      <div class="use"><p class="ut">Entering a market</p><p class="ud">An issuer or fintech checking where a token can be offered, and through which gate.</p></div>
+      <div class="use"><p class="ut">Scoping a corridor</p><p class="ud">A payments team pricing the legal path between two jurisdictions before they build.</p></div>
+      <div class="use"><p class="ut">Anticipating a regime</p><p class="ud">A supervisor or policy team tracking what changes the day a pending law commences.</p></div>
+      <div class="use"><p class="ut">Grounding an agent</p><p class="ud">A team giving an AI system a sourced, machine-readable basis for acting on regulation.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- LIVE MAP -->
+  <section id="live">
+    <p class="kick">the live register · the full interactive map</p>
+
+    <div id="embed" class="embed" hidden>
+      <div class="embed-bar">
+        <span class="embed-label">Cross-Border Stablecoin Register · interactive</span>
+        <a id="embed-open" class="embed-open" href="#" target="_blank" rel="noopener">Open full-screen ↗</a>
+      </div>
+      <iframe id="mapframe" title="CBSR interactive map" loading="lazy" allow="clipboard-write; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="embed-cap" id="embed-cap" hidden>Runs on the v0.10.1 snapshot, as of 30 June 2026. Every corridor is recomputed from the register, not hard-coded.</p>
+
+    <div id="preview">
+      <div class="picker-wrap">
+        <div>
+          <div class="selrow">
+            <div class="field">
+              <label for="orig">origin</label>
+              <select id="orig">
+                <option value="US">United States</option>
+                <option value="EU">European Union</option>
+                <option value="UK">United Kingdom</option>
+                <option value="HK">Hong Kong</option>
+                <option value="JP">Japan</option>
+                <option value="CN">Mainland China</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="dest">destination</label>
+              <select id="dest">
+                <option value="EU">European Union</option>
+                <option value="US">United States</option>
+                <option value="UK">United Kingdom</option>
+                <option value="HK">Hong Kong</option>
+                <option value="JP">Japan</option>
+                <option value="CN">Mainland China</option>
+              </select>
+            </div>
+          </div>
+          <p class="subcap">Interactive preview over six jurisdictions. Add your deployed map's URL at the top of the page script to embed the full register here; until then, this stands in.</p>
+        </div>
+        <div class="verdict" id="verdict" aria-live="polite">
+          <div class="flow"><span id="v-o">US</span><span class="arrow">→</span><span id="v-d">EU</span></div>
+          <div class="line"></div>
+          <div class="cls"><span class="dot" id="v-dot"></span><span id="v-cls"></span></div>
+          <div class="note" id="v-note"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- WHAT IT IS -->
+  <section id="what">
+    <p class="kick">what it is</p>
+    <p class="lead">A dollar-referenced stablecoin at retail scale meets legally different instruments in different places: a transaction cap in one, a professional-investor gate in another, an outright prohibition in a third. Which one binds a given flow is decided at the destination's inbound gate, so cross-border feasibility is directional, and it moves as regimes take effect.</p>
+    <p class="body">CBSR is <b>not a two-hundred-country tracker and not a scrape.</b> It is a depth-first reference across twelve jurisdictions where the value is the judgment in the data: each record is one verified <code style="font-family:var(--mono);font-size:15px">(jurisdiction × instrument × dimension)</code> fact, pinned to a primary instrument with a pinpoint, dated, version-stamped, and machine-checked against a published schema.</p>
+    <div class="figs">
+      <div class="fig"><div class="n">12</div><div class="l">jurisdictions</div></div>
+      <div class="fig"><div class="n">15</div><div class="l">regulatory dimensions</div></div>
+      <div class="fig"><div class="n">2</div><div class="l">doctrinal spines</div></div>
+      <div class="fig"><div class="n">~132</div><div class="l">directed corridors</div></div>
+      <div class="fig"><div class="n">152</div><div class="l">sourced records</div></div>
+      <div class="fig"><div class="n">46</div><div class="l">lawyer-citable</div></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- LAYERS -->
+  <section id="layers">
+    <p class="kick">how it is built &nbsp;·&nbsp; each layer derives from the one before it</p>
+    <div class="layers">
+      <div class="layer"><div class="ix">01</div><div>
+        <h3>Obligation records</h3>
+        <p>The base facts. One sourced <code>(jurisdiction × instrument × dimension)</code> proposition of law per record, schema-validated.</p></div></div>
+      <div class="layer"><div class="ix">02</div><div>
+        <h3>Analysis layer</h3>
+        <p>The pairwise compatibility matrix and the six constraint-interaction sets: the composition analysis, turned from prose into queryable data.</p></div></div>
+      <div class="layer"><div class="ix">03</div><div>
+        <h3>Corridor layer</h3>
+        <p>Directed origin → destination edges, each read at the inbound gate, carrying its feasibility class and the mechanism that gates it.</p></div></div>
+      <div class="layer"><div class="ix">04</div><div>
+        <h3>Computed layer</h3>
+        <p><code>compose()</code> re-derives each corridor's class from a per-jurisdiction signal table and diffs it against the authored analysis. Disagreements are surfaced as findings, not silently fixed.</p></div></div>
+      <div class="layer"><div class="ix">05</div><div>
+        <h3>Time engine</h3>
+        <p><code>compose(as_of=…)</code> applies every scheduled change in law, so a corridor can read one class today and another once a regime is operative. US → UK flips to a clean Category I on 25 Oct 2027.</p></div></div>
+      <div class="layer"><div class="ix">06</div><div>
+        <h3>Constraint substrate</h3>
+        <p>The deepest layer: a corridor's class composed from each jurisdiction's stance on eight constraints (C1-C8), through the interaction-set rules rather than a single inbound gate.</p></div></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- METHOD -->
+  <section id="method">
+    <p class="kick">why you can trust it</p>
+    <p class="lead">A machine-readable legal reference is read by software that treats whatever a field says as fact. So the judgment a careful human reader keeps implicit is made explicit and enforced.</p>
+    <p class="body">Every record carries three orthogonal axes: what <b>kind</b> of claim it is (a proposition of law versus a market fact), how well it is <b>sourced</b>, and whether the instrument is actually <b>in force</b>. Their intersection is the subset a lawyer or supervisor can cite as current binding law:</p>
+    <div class="formula"><span class="val">claim_class = tier1_legal</span> <span class="op">∧</span> <span class="val">status = in_force</span> <span class="op">∧</span> <span class="val">evidence_tier = resolution_text</span> &nbsp;<span class="op">→</span>&nbsp; <span class="res">46 citable records</span></div>
+    <p class="body">The build enforces the discipline in CI: a record can't claim confirmation it has no source for, a market fact can't enter the instrument a lawyer is shown, and a statute that is written but not yet commenced can't be cited as current law. A rule engine re-derives the downstream conclusions and flags where it disagrees with the authored analysis. And the unverified backlog is published as queryable data, because the gates are defenses, not a cure. Only primary-source verification retires that liability, and it is never faked.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <p class="kick">the research behind it · six working papers</p>
+    <div class="papers">
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6788361" target="_blank" rel="noopener"><div><div class="t">The Multi-Jurisdiction Stablecoin Compliance Matrix</div><div class="d">The cross-jurisdictional reference the register is built on: six regimes across ten regulatory dimensions, each entry sourced to primary law.</div></div><div class="v">38 pages · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6724920" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition</div><div class="d">Behind one of the two doctrinal spines: five NAV-integrity conditions and four on-chain metrics that separate user-initiated routing from disguised yield under the US CLARITY Act's Section 404.</div></div><div class="v">28 pages · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6822878" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Architecture</div><div class="d">The constraint-interaction framework: eight constraints, six interaction sets, and a pairwise compatibility analysis that treats cross-border compliance as a composition problem.</div></div><div class="v">85 pages · SSRN ↗</div></a>
+      <div class="paper"><div><div class="t">Cross-Border Digital-Finance Corridor Atlas</div><div class="d">The directed-edge model and the six composite feasibility classes that turn the compatibility analysis into corridors.</div></div><div class="v">working draft</div></div>
+      <div class="paper"><div><div class="t">Cross-Border Stablecoin Feasibility Over Time</div><div class="d">A trigger-conditioned forward map: how a corridor's verdict changes on the date a pending law commences.</div></div><div class="v">working draft</div></div>
+      <div class="paper"><div><div class="t">Citable by Construction</div><div class="d">The evidence model underneath all of it: three orthogonal axes, a build-enforced citable subset, and computed-versus-authored reconciliation.</div></div><div class="v">working draft</div></div>
+    </div>
+    <p class="meta" style="margin-top:20px">Posted papers link to SSRN; drafts are in preparation. See all work by the author on <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>. Each register release is archived to Zenodo for a DOI; cite the version you used.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- DATA / MACHINES -->
+  <section id="data">
+    <p class="kick">for the software that reads regulation</p>
+    <p class="body" style="max-width:70ch">The register ships as a single <code style="font-family:var(--mono);font-size:15px">dataset.json</code> and an MCP server that exposes it to agents through roughly thirty typed tools: query a jurisdiction, compare a dimension, compose a corridor at a given date, or pull the lawyer-citable subset directly. Continuous integration runs the validation, the invariants, and the negative tests on every change, so an invalid record or a corridor that contradicts the matrix cannot be merged. A general-purpose model can call these tools and answer from the register, with a citation, instead of guessing.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register">Repository</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.20730358">Zenodo (DOI)</a>
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md">Agent access (MCP)</a>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- STATUS -->
+  <section id="status">
+    <p class="kick">status · early, and honest about it</p>
+    <div class="status">
+      <p class="body">The register is at v0.10.x, depth-first over twelve jurisdictions rather than broad, and maintained by one person. A set of records is confirmed at regime-status level but not yet against the official text; that backlog is published as a per-cell worklist, not hidden. Regulation moves: Taiwan's regime passed at third reading on the afternoon this was last built, so the register is versioned and dated rather than evergreen. What it offers is not coverage of everything, but a verified, citable, machine-queryable account of the corridors it does cover.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="kick">who made it</p>
+    <div class="about">
+      <p class="who"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. This is one person's work: six working papers, a schema-validated register with a build pipeline and CI, an evidence model that generalizes beyond stablecoins, and the live tool above. Open to roles, collaborations, and conversations with teams that want to build on, fund, or acquire it, across issuers, payment and settlement infrastructure, regulators and supervisors, and the groups building agentic tools on regulation.</p>
+      <div class="cta" style="margin:4px 0 0">
+        <a class="btn pri" href="mailto:yunjiefan.research@gmail.com">Get in touch</a>
+      </div>
+      <div class="idlinks">
+        <a href="https://orcid.org/0009-0005-6762-084X">ORCID 0009-0005-6762-084X</a>
+        <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068">SSRN author</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span>data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a></span>
+    <span>© 2026 Yunjie Fan</span>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================= *
+   *  CONFIG: your deployed mapper URL. The page shows the         *
+   *  corridor preview until this is set.                          *
+   * ============================================================= */
+  var MAPPER_URL = "https://yunjiefanresearch-hub.github.io/cbsr-mapper/";
+
+  (function(){
+    /* ---------- bilingual UI ----------
+       English is the text already in the HTML; ZH holds the Chinese
+       innerHTML for each element (or an array, applied in DOM order). */
+    var ZH = [
+      {sel:'.brand span', zh:'跨境稳定币登记册'},
+      {sel:'.nav a.hideable', zh:['定位','意义','地图','方法','研究','数据']},
+
+      {sel:'#top .kick', zh:'开放数据 · 机器可读 · 溯源至一手法律'},
+      {sel:'#top h1', zh:'同一枚稳定币，十二个法域，每一道边界给出不同的结论。'},
+      {sel:'#top .lede', zh:'CBSR 标出一笔跨境稳定币资金流在每一道监管边界上什么能清算、什么会断。每一条事实都锚定到一手法律文书，带日期、带版本、并经机器校验，因此无论是人还是 agent 都能据此行动、并能引用。'},
+      {sel:'#top .cta .btn.pri', zh:'打开地图'},
+      {sel:'#top .cta a.btn:not(.pri)', zh:'了解方法'},
+      {sel:'#top .meta', zh:'CC-BY-4.0（数据）/ Apache-2.0（代码） · 已存档至 Zenodo 获取 DOI · 十二个法域 × 十五个维度 · v0.10.1'},
+
+      {sel:'#map .kick', zh:'走廊层 &nbsp;·&nbsp; 十二个法域中的六个'},
+      {sel:'#map .legend span', zh:[
+        '<i class="swatch bg-clear"></i>可清算（类别 I）',
+        '<i class="swatch bg-gate"></i>需过闸（类别 II）',
+        '<i class="swatch bg-block"></i>受阻',
+        '<i class="swatch dash"></i>制度过渡中'
+      ]},
+      {sel:'#map .gcap', zh:'可行性是<b>有向的</b>：绑定规则读自目的地的入境关口，并叠加来自起点的拖拽。<b>美国 → 欧盟可清算；欧盟 → 美国需过闸。</b>同一道边界，结论相反。这种不对称是一张扁平的合规表无法表达的，也正是这个登记册围绕构建的东西。下方的交互地图涵盖十二个法域之间全部 <b>132 条有向走廊</b>。'},
+
+      {sel:'#thesis .kick', zh:'定位'},
+      {sel:'#thesis .big', zh:'软件曾经分化成一个做 HR 的工具、一个做营销的工具、一个做财务的工具。AI 正在以同样的方式按领域分化，而每一个「答错要付代价」的领域，都会需要一份经核验、时效在线、机器可读的记录供模型引用，而不是一个但愿正确的流利猜测。'},
+      {sel:'#thesis .sub', zh:'监管正是这道裂缝咬得最深的地方。问一个通用模型某笔稳定币资金流是否合法，它会答得很顺，因为它转述的那段一手条文，可能在它训练之后就已经变了，而它无从知道。在这里，一个自信的错误答案是牌照或执法问题，不是一次无伤大雅的猜测。<b>CBSR 就是答案底下的那份记录</b>：不是聊天机器人，也不是爬虫，而是一层有出处、经核验、带版本的基座，通过类型化工具向 agent 开放，让模型基于一条它能指出处的引用来推理，而不是一段它无法辩护的转述。'},
+
+      {sel:'#why .kick', zh:'为什么重要'},
+      {sel:'#why .lead', zh:'稳定币正在成为跨境支付轨道，而在 2026 年，针对它们的规则正密集落地：美国的 GENIUS Act、欧盟的 MiCA、香港的发牌制度，等等。某笔资金流究竟是否被允许，取决于这些制度在一道边界两侧如何组合，而这个答案每个月都在变。搞错了，就是牌照或执法问题。'},
+      {sel:'#why .body', zh:'今天，这个答案散落在各家律所的备忘录和一次性分析里。CBSR 把它变成结构化、有出处、可查询的，既服务于人，也服务于越来越多将要路由这些资金流的 AI agent。难的不是把规则列出来，而是对着一手条文核验、标注引用、并在它们变化时保持诚实。这套纪律正是本项目围绕构建的东西，也是爬虫或一个宽而浅的追踪器给不了你的。'},
+      {sel:'#why .use .ut', zh:['进入一个市场','评估一条走廊','预判一项制度','为 agent 提供地面真相']},
+      {sel:'#why .use .ud', zh:[
+        '发行方或金融科技公司确认某个代币可以在哪里发行、要过哪道关口。',
+        '支付团队在动工之前，先算清两个法域之间的合规路径。',
+        '监管或政策团队追踪某部待决法律生效当天会改变什么。',
+        '为 AI 系统提供一个有出处、机器可读的依据，用于就监管采取行动。'
+      ]},
+
+      {sel:'#live .kick', zh:'实时登记册 · 完整交互地图'},
+      {sel:'.embed-label', zh:'跨境稳定币登记册 · 交互版'},
+      {sel:'#embed-open', zh:'全屏打开 ↗'},
+      {sel:'#embed-cap', zh:'运行于 v0.10.1 快照，数据截至 2026 年 6 月 30 日。每一条走廊均由登记册推导得出，而非写死。'},
+      {sel:'label[for="orig"]', zh:'起点'},
+      {sel:'label[for="dest"]', zh:'目的地'},
+      {sel:'#orig option', zh:['美国','欧盟','英国','香港','日本','中国大陆']},
+      {sel:'#dest option', zh:['欧盟','美国','英国','香港','日本','中国大陆']},
+      {sel:'#preview .subcap', zh:'覆盖六个法域的交互预览。在页面脚本顶部填入你已部署的地图地址，即可在此内嵌完整登记册；在此之前，先用这个预览代替。'},
+
+      {sel:'#what .kick', zh:'它是什么'},
+      {sel:'#what .lead', zh:'一枚零售规模的美元锚定稳定币，在不同地方遇上法律性质不同的工具：一处是交易额上限，另一处是专业投资者门槛，第三处则是彻底禁止。哪一个约束绑定某笔资金流，由目的地的入境关口决定，所以跨境可行性是有向的，并且会随制度生效而移动。'},
+      {sel:'#what .body', zh:'CBSR <b>不是一个覆盖两百国的追踪器，也不是爬虫。</b>它是一份在十二个法域上深挖的参考资料，价值在于数据里的判断：每一条记录都是一条经核验的 <code style="font-family:var(--mono);font-size:15px">（法域 × 工具 × 维度）</code>事实，锚定到一手法律文书并带精确条款定位，带日期、带版本，并对着一份公开的 schema 做机器校验。'},
+      {sel:'#what .fig .l', zh:['法域','监管维度','学理主轴','有向走廊','有出处记录','律师可引用']},
+
+      {sel:'#layers .kick', zh:'它如何构建 · 每一层都从上一层推导而来'},
+      {sel:'#layers .layer h3', zh:['义务记录','分析层','走廊层','计算层','时间引擎','约束基底']},
+      {sel:'#layers .layer p', zh:[
+        '底层事实。每条记录是一条有出处的 <code>（法域 × 工具 × 维度）</code>法律命题，经 schema 校验。',
+        '两两兼容性矩阵和六个约束交互集：把组合分析从文字变成可查询的数据。',
+        '有向的 起点 → 目的地 边，每条都读自入境关口，携带它的可行性类别和把它过闸的机制。',
+        '<code>compose()</code> 从各法域的信号表重新推导每条走廊的类别，并与手写的分析做差异比对。不一致之处作为发现被呈现，而不是被悄悄抹平。',
+        '<code>compose(as_of=…)</code> 施加每一项已排定的法律变化，所以一条走廊今天读到一个类别、等某项制度生效后读到另一个。美国 → 英国 在 2027 年 10 月 25 日翻转为干净的类别 I。',
+        '最深的一层：一条走廊的类别，由每个法域在八个约束（C1-C8）上的立场、通过交互集规则组合而成，而不是只看单一的入境关口。'
+      ]},
+
+      {sel:'#method .kick', zh:'为什么可以信任它'},
+      {sel:'#method .lead', zh:'一份机器可读的法律参考，会被软件当作事实来读：字段里写什么，就是什么。所以，一个细心的人类读者默默在心里做的判断，在这里被显式化，并被强制执行。'},
+      {sel:'#method .body', zh:[
+        '每条记录都带三条正交的轴：它是哪一<b>类</b>断言（一条法律命题，还是一条市场事实）、它的<b>出处</b>有多硬、以及该文书是否真的<b>已生效</b>。三者的交集，就是律师或监管者可以作为现行有效法引用的子集：',
+        '构建流程在 CI 里强制执行这套纪律：一条记录不能声称它并无出处的核验，一条市场事实不能混进给律师看的那份工具，一部已写就但尚未生效的法规不能被当作现行法引用。一个规则引擎重新推导下游结论，并标出它与手写分析不一致的地方。而未核验的积压会作为可查询的数据公开，因为这些闸门是防线，不是解药。只有一手核验才能了结那份责任，而它从不作假。'
+      ]},
+      {sel:'#method .formula .res', zh:'46 条可引用记录'},
+
+      {sel:'#research .kick', zh:'背后的研究 · 六篇工作论文'},
+      {sel:'#research .paper .d', zh:[
+        '登记册所依据的跨法域参考：六个制度、十个监管维度，每一条都溯源至一手法律。',
+        '两条学理主轴之一的背后：五个 NAV 完整性条件和四个链上指标，在美国 CLARITY Act 第 404 条下区分「用户主动路由」与「变相付息」。',
+        '约束交互框架：八个约束、六个交互集，以及一套把跨境合规当作组合问题来处理的两两兼容性分析。',
+        '有向边模型，以及把兼容性分析变成走廊的六个复合可行性类别。',
+        '一张以触发为条件的前瞻地图：一条走廊的结论在某部待决法律生效当天会如何改变。',
+        '支撑这一切的证据模型：三条正交轴、一个构建期强制的可引用子集，以及计算与手写之间的对账。'
+      ]},
+      {sel:'#research .paper .v', zh:['38 页 · SSRN ↗','28 页 · SSRN ↗','85 页 · SSRN ↗','工作稿','工作稿','工作稿']},
+      {sel:'#research .meta', zh:'已发表的论文链接至 SSRN；其余为筹备中的草稿。作者的全部工作见 <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>。每个登记册版本都会存档至 Zenodo 以获取 DOI；请引用你所使用的版本。'},
+
+      {sel:'#data .kick', zh:'为读取监管的软件而设'},
+      {sel:'#data .body', zh:'登记册以单个 <code style="font-family:var(--mono);font-size:15px">dataset.json</code> 和一个 MCP server 的形式交付，后者通过约三十个类型化工具向 agent 开放：查询一个法域、比较一个维度、组合某个日期上的一条走廊，或直接拉取律师可引用子集。持续集成在每一次改动上运行校验、不变式与负向测试，因此一条非法记录、或一条与矩阵矛盾的走廊，都无法被合入。一个通用模型可以调用这些工具、基于登记册作答并附上引用，而不是靠猜。'},
+      {sel:'#data .cta .btn', zh:['代码仓库','Zenodo（DOI）','Agent 接入（MCP）']},
+
+      {sel:'#status .kick', zh:'状态 · 尚早，并对此坦诚'},
+      {sel:'#status .body', zh:'登记册目前处于 v0.10.x，在十二个法域上深挖而非求广，并由一个人维护。有一批记录已在制度状态层面确认，但尚未对着官方原文核验；这份积压作为逐格的工作清单公开，而不是被藏起来。监管在动：台湾的制度在本次构建当天下午三读通过，所以这个登记册是带版本、带日期的，而不是号称长青。它提供的不是对一切的覆盖，而是对它确实覆盖的那些走廊，给出一份经核验、可引用、机器可查询的说明。'},
+
+      {sel:'#about .kick', zh:'由谁制作'},
+      {sel:'#about .who', zh:'<b>Yunjie Fan</b>，一名研究跨法域数字资产监管的独立研究者。这是一个人的工作：六篇工作论文、一个经 schema 校验、带构建流水线与 CI 的登记册、一个可迁移到稳定币之外的证据模型，以及上方那个实时工具。欢迎就岗位、合作，以及在此基础上共建、投资或收购的洽谈，面向发行方、支付与结算基础设施、监管者，以及正在为监管构建 agent 工具的团队。'},
+      {sel:'#about .btn.pri', zh:'联系我'},
+
+      {sel:'footer .wrap span:nth-child(1)', zh:'跨境稳定币登记册 · v0.10.1'},
+      {sel:'footer .wrap span:nth-child(2)', zh:'数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">引用对应版本 DOI</a>'}
+    ];
+
+    var enCache = null, current = 'en', frame = null, openLink = null;
+
+    function cacheEN(){
+      enCache = ZH.map(function(entry){
+        if (Array.isArray(entry.zh)) {
+          var els = document.querySelectorAll(entry.sel);
+          return entry.zh.map(function(_,k){ return els[k] ? els[k].innerHTML : null; });
+        }
+        var el = document.querySelector(entry.sel);
+        return el ? el.innerHTML : null;
+      });
+    }
+    function paintText(lang){
+      if (!enCache) cacheEN();
+      ZH.forEach(function(entry, i){
+        if (Array.isArray(entry.zh)) {
+          var els = document.querySelectorAll(entry.sel);
+          entry.zh.forEach(function(zhv, k){
+            if (els[k]) els[k].innerHTML = (lang==='zh') ? zhv : enCache[i][k];
+          });
+        } else {
+          var el = document.querySelector(entry.sel);
+          if (el) el.innerHTML = (lang==='zh') ? entry.zh : enCache[i];
+        }
+      });
+      document.documentElement.lang = (lang==='zh') ? 'zh-Hans' : 'en';
+      document.title = (lang==='zh') ? '跨境稳定币登记册（CBSR）' : 'Cross-Border Stablecoin Register (CBSR)';
+    }
+
+    /* ---------- bilingual corridor preview ---------- */
+    var GATE = { US:'II', EU:'I', UK:'T', HK:'I', JP:'II', CN:'X' };
+    var META = {
+      en: {
+        'I':  {label:'Category I · clears',        note:'Dual authorization: each end is separately authorizable, no equivalence step required in this direction.', cls:'clear'},
+        'II': {label:'Category II · gated',        note:'Entry turns on a recognition, equivalence, or comparability determination that is not generically granted.', cls:'gate'},
+        'T':  {label:'Category T · in transition', note:'A comprehensive regime is adopted at the destination but not yet operative. It resolves on commencement.', cls:'transition'},
+        'III':{label:'Category III · unresolved',  note:'The origin has no exportable, authorizable token, so the corridor reduces to partnership or coordination options.', cls:'block'},
+        'X':  {label:'Blocked at destination',     note:'The destination prohibits issuance, so no positive trigger can complete an inbound corridor here.', cls:'block'}
+      },
+      zh: {
+        'I':  {label:'类别 I · 可清算',  note:'双授权：两端各自可被授权，此方向无需等效步骤。', cls:'clear'},
+        'II': {label:'类别 II · 需过闸', note:'入境取决于一项承认、等效或可比性认定，而这并非通例给予。', cls:'gate'},
+        'T':  {label:'类别 T · 过渡中',  note:'目的地已通过一套完整制度，但尚未生效。它在生效日消解。', cls:'transition'},
+        'III':{label:'类别 III · 未决',  note:'起点没有可出口、可授权的代币，所以这条走廊退化为合作或协调选项。', cls:'block'},
+        'X':  {label:'在目的地受阻',     note:'目的地禁止发行，因此没有任何正向触发能在此完成一条入境走廊。', cls:'block'}
+      }
+    };
+    var PICK = {
+      en: { same:'Same jurisdiction', hint:'Pick two different endpoints to read a corridor.' },
+      zh: { same:'同一法域', hint:'选择两个不同的端点来读一条走廊。' }
+    };
+    function classFor(o,d){ if(o===d) return null; if(d==='CN') return 'X'; if(o==='CN') return 'III'; return GATE[d]; }
+    var orig, dest, vO, vD, vCls, vNote, vDot;
+    function renderPicker(){
+      if(!orig) return;
+      var o=orig.value, d=dest.value;
+      vO.textContent=o; vD.textContent=d;
+      var c=classFor(o,d);
+      if(!c){ vCls.textContent=PICK[current].same; vCls.className=''; vDot.className='dot bg-transition'; vNote.textContent=PICK[current].hint; return; }
+      var m=META[current][c];
+      vCls.textContent=m.label; vCls.className=m.cls; vDot.className='dot bg-'+m.cls; vNote.textContent=m.note;
+    }
+
+    /* ---------- language control + two-way sync with the embedded mapper ----------
+       Messages are addressed to, and accepted only from, the mapper's own origin. The
+       payload is only a language string, so '*' was not a hole, but pinning the origin
+       is free and keeps a stray frame from driving this page's UI. */
+    var MAPPER_ORIGIN = '';
+    try { MAPPER_ORIGIN = MAPPER_URL ? new URL(MAPPER_URL, window.location.href).origin : ''; } catch(e){}
+
+    function langUrl(lang){ return MAPPER_URL + (MAPPER_URL.indexOf('?')>-1 ? '&' : '?') + 'lang=' + lang; }
+    function postToFrame(lang){
+      try {
+        if(frame && frame.contentWindow) frame.contentWindow.postMessage({type:'cbsr-lang', lang:lang}, MAPPER_ORIGIN || '*');
+      } catch(e){}
+    }
+    function setLang(lang, opts){
+      opts = opts || {};
+      if(lang!=='zh' && lang!=='en') lang='en';
+      current = lang;
+      paintText(lang);
+      renderPicker();
+      var btns = document.querySelectorAll('#langtog button');
+      for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('on', btns[i].getAttribute('data-lang')===lang); }
+      try { localStorage.setItem('cbsr-lang', lang); } catch(e){}
+      if(openLink && MAPPER_URL) openLink.href = langUrl(lang);
+      if(opts.notifyFrame !== false) postToFrame(lang);
+    }
+
+    var tog = document.getElementById('langtog');
+    if(tog){ tog.addEventListener('click', function(e){ var b=e.target.closest('button'); if(b) setLang(b.getAttribute('data-lang'), {notifyFrame:true}); }); }
+
+    /* Messages from the mapper. Two kinds:
+         cbsr-ready : the mapper has mounted and is listening. React registers its listener
+                      AFTER the iframe's `load` event fires, so a language posted on `load`
+                      can arrive before anyone is listening. Re-sending on `ready` closes
+                      that race, and is what keeps the frame from sitting in one language
+                      while this page shows another.
+         cbsr-lang  : the visitor switched language inside the frame. Follow it. */
+    window.addEventListener('message', function(e){
+      if(MAPPER_ORIGIN && e.origin !== MAPPER_ORIGIN) return;
+      var d = e.data; if(!d) return;
+      if(d.type === 'cbsr-ready'){ postToFrame(current); return; }
+      if(d.type === 'cbsr-lang' && (d.lang==='zh' || d.lang==='en')){
+        if(d.lang !== current) setLang(d.lang, {notifyFrame:false});
+      }
+    });
+
+    orig=document.getElementById('orig'); dest=document.getElementById('dest');
+    vO=document.getElementById('v-o'); vD=document.getElementById('v-d');
+    vCls=document.getElementById('v-cls'); vNote=document.getElementById('v-note'); vDot=document.getElementById('v-dot');
+    if(orig){ orig.addEventListener('change', renderPicker); dest.addEventListener('change', renderPicker); }
+
+    frame = document.getElementById('mapframe');
+    openLink = document.getElementById('embed-open');
+
+    /* initial language: ?lang on this page, else stored choice, else English */
+    var initial = 'en';
+    try {
+      var q = new URLSearchParams(window.location.search).get('lang');
+      if(q==='zh'||q==='en') initial=q;
+      else { var s=localStorage.getItem('cbsr-lang'); if(s==='zh'||s==='en') initial=s; }
+    } catch(e){}
+
+    if (MAPPER_URL) {
+      if(frame){ frame.src = langUrl(initial); frame.addEventListener('load', function(){ postToFrame(current); }); }
+      var box=document.getElementById('embed'), cap=document.getElementById('embed-cap'), prev=document.getElementById('preview');
+      if(box) box.hidden=false; if(cap) cap.hidden=false; if(prev) prev.hidden=true;
+    }
+
+    /* paint the page; the iframe reads ?lang on its own first load, so don't post yet */
+    setLang(initial, {notifyFrame:false});
+  })();
+</script>
+</body>
+</html>

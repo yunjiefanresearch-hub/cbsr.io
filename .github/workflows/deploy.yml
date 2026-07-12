@@ -1,0 +1,74 @@
+name: Deploy landing page to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Reports the real Pages URL for this repo, whether it is a user site
+      # (https://<user>.github.io/) or a project site (https://<user>.github.io/<repo>/).
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # Social cards need ABSOLUTE URLs; crawlers do not run JavaScript, so the URL cannot
+      # be filled in at runtime. Stamping it here means og:url, canonical and og:image are
+      # always right, and there is nothing to remember to edit by hand.
+      - name: Stamp the canonical URL into the page
+        run: |
+          set -euo pipefail
+          BASE="${{ steps.pages.outputs.base_url }}"
+          case "$BASE" in */) ;; *) BASE="$BASE/" ;; esac
+          echo "Stamping site URL: $BASE"
+          sed -i "s|__SITE_URL__|$BASE|g" index.html
+
+      # A half-stamped page ships a broken canonical and a broken card image, which is worse
+      # than shipping none. Fail the build instead.
+      - name: Fail if any placeholder survived
+        run: |
+          set -euo pipefail
+          if grep -q '__SITE_URL__' index.html; then
+            echo "::error::__SITE_URL__ placeholder was not replaced."
+            grep -n '__SITE_URL__' index.html
+            exit 1
+          fi
+          echo "OK: no placeholders remain."
+          grep -o 'property="og:url" content="[^"]*"' index.html
+          grep -o 'property="og:image" content="[^"]*"' index.html
+
+      # The card and the favicon must be reachable at the stamped URLs.
+      - name: Check the card and favicon are present
+        run: |
+          set -euo pipefail
+          test -f og-card.png || { echo "::error::og-card.png missing"; exit 1; }
+          test -f favicon.svg || { echo "::error::favicon.svg missing"; exit 1; }
+          echo "OK: og-card.png and favicon.svg present."
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
