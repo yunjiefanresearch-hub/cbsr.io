@@ -127,6 +127,35 @@
   .clear{color:#7FD79A}.gate{color:#E7B667}.block{color:#E88A85}.transition{color:#B9BCB2}
   .bg-clear{background:#2E7D46}.bg-gate{background:#B26B12}.bg-block{background:#B23B36}.bg-transition{background:#8B8E84}
   .subcap{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+
+  /* ---- the proof: two directions, one date control, all from the register ----
+     Reuses the existing dark verdict-card treatment, so this reads as the same
+     object the picker already speaks, doubled and put on a timeline. */
+  .proof{margin-top:24px}
+  .pcards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pcard{background:var(--ink);color:#EDEFEB;border-radius:10px;padding:20px 22px;font-family:var(--mono)}
+  .pcard .flow{font-size:19px;font-weight:500;letter-spacing:0.02em;display:flex;align-items:center;gap:10px}
+  .pcard .arrow{color:var(--muted)}
+  .pcard .line{height:1px;background:rgba(255,255,255,0.16);margin:15px 0}
+  .pcard .cls{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+  .pcard .note{font-size:13px;color:#B9BCB2;line-height:1.55;margin:10px 0 0;font-family:var(--sans);min-height:60px}
+  .pcard .stamp{font-size:11.5px;letter-spacing:0.02em;margin:14px 0 0;padding-top:12px;
+    border-top:1px solid rgba(255,255,255,0.12);min-height:17px;color:#8B8E84}
+  .pcard .stamp.fired{color:#E7B667}
+  .scrub{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px 14px}
+  .scrub-lab{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--muted)}
+  #asof{width:100%;margin:14px 0 0;accent-color:var(--accent);cursor:pointer;height:20px}
+  #asof:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+  .stops{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+  .stops div{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--muted)}
+  .stops div:nth-child(2){text-align:center}
+  .stops div:nth-child(3){text-align:right}
+  .stops b{display:block;font-weight:500;font-size:12.5px;color:var(--ink-2)}
+  .stops div.on b{color:var(--accent)}
+  .pcount{margin:14px 0 0;padding-top:13px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+  .pcount b{font-weight:500;color:var(--accent)}
+  @media(max-width:640px){.pcards{grid-template-columns:1fr}.pcard .note{min-height:0}}
   /* Reduced motion. This was previously keyed on `no-preference`, i.e. it removed the
      transition for readers who had NOT asked for less motion, and did nothing for those
      who had. It also missed the page's one real vestibular trigger, the smooth scroll on
@@ -257,22 +286,47 @@
   <hr class="rule">
 
   <!-- MAP / GRAPH -->
-  <section id="map">
-    <p class="kick">the corridor layer &nbsp;·&nbsp; six of the twelve jurisdictions</p>
+  <section id="proof">
+    <p class="kick">the proof &nbsp;·&nbsp; one border, two directions, two answers</p>
+
+    <div class="proof">
+      <div class="pcards">
+        <div class="pcard">
+          <div class="flow"><span>US</span><span class="arrow">→</span><span>EU</span></div>
+          <div class="line"></div>
+          <div class="cls"><span class="dot" id="f-dot"></span><span id="f-cls"></span></div>
+          <p class="note" id="f-note"></p>
+          <p class="stamp" id="f-stamp"></p>
+        </div>
+        <div class="pcard">
+          <div class="flow"><span>EU</span><span class="arrow">→</span><span>US</span></div>
+          <div class="line"></div>
+          <div class="cls"><span class="dot" id="r-dot"></span><span id="r-cls"></span></div>
+          <p class="note" id="r-note"></p>
+          <p class="stamp" id="r-stamp"></p>
+        </div>
+      </div>
+
+      <div class="scrub">
+        <label class="scrub-lab" for="asof">read the register as of</label>
+        <input type="range" id="asof" min="0" max="2" step="1" value="0" aria-describedby="pcount">
+        <div class="stops" id="stops"></div>
+        <p class="pcount" id="pcount"></p>
+      </div>
+    </div>
+
     <div class="graph">
-      <svg viewBox="0 0 680 300" role="img" aria-label="A directed graph of six jurisdictions. US to EU clears; EU to US is gated; Japan to Hong Kong clears; Hong Kong to China is blocked; US to UK is in transition.">
+      <svg viewBox="0 0 680 300" role="img" id="gsvg" aria-label="A directed graph of six of the twelve jurisdictions. US to EU clears. EU to US is in transition, and becomes gated on 18 January 2027. Japan to Hong Kong clears. Hong Kong to mainland China is blocked. US to UK is in transition, and clears on 25 October 2027.">
         <defs>
           <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
             <path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </marker>
         </defs>
-        <!-- edges (drawn first, nodes on top) -->
-        <line x1="232" y1="60" x2="448" y2="60" stroke="#2E7D46" stroke-width="2" marker-end="url(#ah)"/>
-        <line x1="448" y1="72" x2="232" y2="72" stroke="#B26B12" stroke-width="2" marker-end="url(#ah)"/>
+        <line id="e-us-eu" x1="232" y1="60" x2="448" y2="60" stroke="#2E7D46" stroke-width="2" marker-end="url(#ah)"/>
+        <line id="e-eu-us" x1="448" y1="72" x2="232" y2="72" stroke="#8B8E84" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"/>
         <line x1="113" y1="192" x2="177" y2="252" stroke="#2E7D46" stroke-width="2" marker-end="url(#ah)"/>
         <line x1="234" y1="274" x2="446" y2="274" stroke="#B23B36" stroke-width="2" marker-end="url(#ah)"/>
-        <line x1="231" y1="74" x2="569" y2="162" stroke="#8B8E84" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"/>
-        <!-- nodes -->
+        <line id="e-us-uk" x1="231" y1="74" x2="569" y2="162" stroke="#8B8E84" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ah)"/>
         <g font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#191B17">
           <rect x="172" y="51" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="200" y="66" text-anchor="middle" dominant-baseline="central">US</text>
           <rect x="452" y="51" width="56" height="30" rx="6" fill="#FBFBF9" stroke="#C6C8BF"/><text x="480" y="66" text-anchor="middle" dominant-baseline="central">EU</text>
@@ -289,7 +343,8 @@
         <span><i class="swatch dash"></i>regime in transition</span>
       </div>
     </div>
-    <p class="gcap">Feasibility is <b>directional</b>: the binding rule is read at the destination's inbound gate, with a drag from the origin. <b>US → EU clears; EU → US is gated.</b> Same border, opposite verdicts. That asymmetry is the thing a flat compliance table cannot express, and it is what this register is built around. The interactive map below carries all <b>132 directed corridors</b> across the twelve.</p>
+
+    <p class="gcap">Feasibility is <b>directional</b>: the binding rule is read at the destination's inbound gate, with a drag from the origin. Today <b>US &rarr; EU clears and EU &rarr; US does not</b>, and not because it is barred. The US regime is enacted and not yet commenced. Drag the date past <b>18 January 2027</b>, when the GENIUS Act &sect;18 comparability gate takes effect, and that edge hardens into Category II along with seven other edges into the US. <b>56 of the 66 jurisdiction pairs</b> in this register read differently depending on which way the money moves. A flat compliance table cannot express that. This one is built around it.</p>
   </section>
 
   <hr class="rule">
@@ -344,8 +399,14 @@
                 <option value="EU">European Union</option>
                 <option value="UK">United Kingdom</option>
                 <option value="HK">Hong Kong</option>
+                <option value="SG">Singapore</option>
                 <option value="JP">Japan</option>
+                <option value="KR">South Korea</option>
+                <option value="TW">Taiwan</option>
                 <option value="CN">Mainland China</option>
+                <option value="CH">Switzerland</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="BR">Brazil</option>
               </select>
             </div>
             <div class="field">
@@ -355,12 +416,18 @@
                 <option value="US">United States</option>
                 <option value="UK">United Kingdom</option>
                 <option value="HK">Hong Kong</option>
+                <option value="SG">Singapore</option>
                 <option value="JP">Japan</option>
+                <option value="KR">South Korea</option>
+                <option value="TW">Taiwan</option>
                 <option value="CN">Mainland China</option>
+                <option value="CH">Switzerland</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="BR">Brazil</option>
               </select>
             </div>
           </div>
-          <p class="subcap">Interactive preview over six jurisdictions. Add your deployed map's URL at the top of the page script to embed the full register here; until then, this stands in.</p>
+          <p class="subcap">All 132 directed corridors across the twelve jurisdictions, read at the date set above. Computed from the register, not hard-coded.</p>
         </div>
         <div class="verdict" id="verdict" aria-live="polite">
           <div class="flow"><span id="v-o">US</span><span class="arrow">→</span><span id="v-d">EU</span></div>
@@ -383,7 +450,7 @@
       <div class="fig"><div class="n">12</div><div class="l">jurisdictions</div></div>
       <div class="fig"><div class="n">15</div><div class="l">regulatory dimensions</div></div>
       <div class="fig"><div class="n">2</div><div class="l">doctrinal spines</div></div>
-      <div class="fig"><div class="n">~132</div><div class="l">directed corridors</div></div>
+      <div class="fig"><div class="n">132</div><div class="l">directed corridors</div></div>
       <div class="fig"><div class="n">152</div><div class="l">sourced records</div></div>
       <div class="fig"><div class="n">46</div><div class="l">lawyer-citable</div></div>
     </div>
@@ -515,14 +582,15 @@
       {sel:'#top .cta a.btn:not(.pri)', zh:'了解方法'},
       {sel:'#top .meta', zh:'CC-BY-4.0（数据）/ Apache-2.0（代码） · 已存档至 Zenodo 获取 DOI · 十二个法域 × 十五个维度 · v0.10.1'},
 
-      {sel:'#map .kick', zh:'走廊层 &nbsp;·&nbsp; 十二个法域中的六个'},
-      {sel:'#map .legend span', zh:[
+      {sel:'#proof .kick', zh:'实证 &nbsp;·&nbsp; 同一道边界，两个方向，两个结论'},
+      {sel:'#proof .scrub-lab', zh:'把登记册读到这一天'},
+      {sel:'#proof .legend span', zh:[
         '<i class="swatch bg-clear"></i>可清算（类别 I）',
         '<i class="swatch bg-gate"></i>需过闸（类别 II）',
         '<i class="swatch bg-block"></i>受阻',
         '<i class="swatch dash"></i>制度过渡中'
       ]},
-      {sel:'#map .gcap', zh:'可行性是<b>有向的</b>：绑定规则读自目的地的入境关口，并叠加来自起点的拖拽。<b>美国 → 欧盟可清算；欧盟 → 美国需过闸。</b>同一道边界，结论相反。这种不对称是一张扁平的合规表无法表达的，也正是这个登记册围绕构建的东西。下方的交互地图涵盖十二个法域之间全部 <b>132 条有向走廊</b>。'},
+      {sel:'#proof .gcap', zh:'可行性是<b>有向的</b>：绑定规则读自目的地的入境关口，并叠加来自起点的拖拽。今天 <b>美国 → 欧盟可清算，而欧盟 → 美国不行</b>，原因并不是它被禁止。美国的制度已经通过，但尚未生效。把日期拖过 <b>2027 年 1 月 18 日</b>，也就是 GENIUS 法案第 18 条的可比性关口生效之日，这条边就会硬化为类别 II，并与另外七条流入美国的走廊一同变更。本登记册的 66 对法域中，有 <b>56 对</b>会因资金流向不同而给出不同结论。一张扁平的合规表无法表达这一点。这一套正是围绕它建的。'},
 
       {sel:'#thesis .kick', zh:'定位'},
       {sel:'#thesis .big', zh:'软件曾经分化成一个做 HR 的工具、一个做营销的工具、一个做财务的工具。AI 正在以同样的方式按领域分化，而每一个「答错要付代价」的领域，都会需要一份经核验、时效在线、机器可读的记录供模型引用，而不是一个但愿正确的流利猜测。'},
@@ -545,9 +613,9 @@
       {sel:'#embed-cap', zh:'运行于 v0.10.1 快照，数据截至 2026 年 6 月 30 日。每一条走廊均由登记册推导得出，而非写死。'},
       {sel:'label[for="orig"]', zh:'起点'},
       {sel:'label[for="dest"]', zh:'目的地'},
-      {sel:'#orig option', zh:['美国','欧盟','英国','香港','日本','中国大陆']},
-      {sel:'#dest option', zh:['欧盟','美国','英国','香港','日本','中国大陆']},
-      {sel:'#preview .subcap', zh:'覆盖六个法域的交互预览。在页面脚本顶部填入你已部署的地图地址，即可在此内嵌完整登记册；在此之前，先用这个预览代替。'},
+      {sel:'#orig option', zh:['美国','欧盟','英国','香港','新加坡','日本','韩国','台湾','中国大陆','瑞士','阿联酋','巴西']},
+      {sel:'#dest option', zh:['欧盟','美国','英国','香港','新加坡','日本','韩国','台湾','中国大陆','瑞士','阿联酋','巴西']},
+      {sel:'#preview .subcap', zh:'十二个法域之间全部 132 条有向走廊，读在上方所设的日期。由登记册计算得出，不是写死的。'},
 
       {sel:'#what .kick', zh:'它是什么'},
       {sel:'#what .lead', zh:'一枚零售规模的美元锚定稳定币，在不同地方遇上法律性质不同的工具：一处是交易额上限，另一处是专业投资者门槛，第三处则是彻底禁止。哪一个约束绑定某笔资金流，由目的地的入境关口决定，所以跨境可行性是有向的，并且会随制度生效而移动。'},
@@ -629,29 +697,79 @@
       document.title = (lang==='zh') ? '跨境稳定币登记册（CBSR）' : 'Cross-Border Stablecoin Register (CBSR)';
     }
 
-    /* ---------- bilingual corridor preview ---------- */
-    var GATE = { US:'II', EU:'I', UK:'T', HK:'I', JP:'II', CN:'X' };
+    /* ---------- corridor verdicts, computed from the register ----------
+       The whole directed corridor layer of CBSR v0.10.1: 132 directed edges over the
+       twelve jurisdictions, and the 16 dated transitions that reclassify them. 2.3 KB.
+       This replaces a hand-typed six-entry lookup that was keyed only on the destination,
+       could not express time, and disagreed with the register on every edge into the US. */
+var EDGES={"AE>BR":"II","AE>CH":"I","AE>CN":"blocked","AE>EU":"I","AE>HK":"I","AE>JP":"II","AE>KR":"pre_regime","AE>SG":"I","AE>TW":"T","AE>UK":"T","AE>US":"T","BR>AE":"II","BR>CH":"I","BR>CN":"blocked","BR>EU":"I","BR>HK":"I","BR>JP":"II","BR>KR":"pre_regime","BR>SG":"I","BR>TW":"T","BR>UK":"T","BR>US":"T","CH>AE":"II","CH>BR":"II","CH>CN":"blocked","CH>EU":"I","CH>HK":"I","CH>JP":"II","CH>KR":"pre_regime","CH>SG":"I","CH>TW":"T","CH>UK":"T","CH>US":"T","CN>AE":"III","CN>BR":"III","CN>CH":"III","CN>EU":"III","CN>HK":"III","CN>JP":"III","CN>KR":"pre_regime","CN>SG":"III","CN>TW":"III","CN>UK":"III","CN>US":"III","EU>AE":"II","EU>BR":"II","EU>CH":"I","EU>CN":"blocked","EU>HK":"I","EU>JP":"II","EU>KR":"pre_regime","EU>SG":"I","EU>TW":"T","EU>UK":"T","EU>US":"T","HK>AE":"II","HK>BR":"II","HK>CH":"I","HK>CN":"blocked","HK>EU":"I","HK>JP":"II","HK>KR":"pre_regime","HK>SG":"I","HK>TW":"T","HK>UK":"T","HK>US":"T","JP>AE":"II","JP>BR":"II","JP>CH":"I","JP>CN":"blocked","JP>EU":"I","JP>HK":"I","JP>KR":"pre_regime","JP>SG":"I","JP>TW":"T","JP>UK":"T","JP>US":"T","KR>AE":"III","KR>BR":"III","KR>CH":"III","KR>CN":"blocked","KR>EU":"III","KR>HK":"III","KR>JP":"III","KR>SG":"III","KR>TW":"III","KR>UK":"III","KR>US":"III","SG>AE":"II","SG>BR":"II","SG>CH":"I","SG>CN":"blocked","SG>EU":"I","SG>HK":"I","SG>JP":"II","SG>KR":"pre_regime","SG>TW":"T","SG>UK":"T","SG>US":"T","TW>AE":"III","TW>BR":"III","TW>CH":"III","TW>CN":"blocked","TW>EU":"III","TW>HK":"III","TW>JP":"III","TW>KR":"pre_regime","TW>SG":"III","TW>UK":"III","TW>US":"III","UK>AE":"II","UK>BR":"II","UK>CH":"I","UK>CN":"blocked","UK>EU":"I","UK>HK":"I","UK>JP":"II","UK>KR":"pre_regime","UK>SG":"I","UK>TW":"T","UK>US":"T","US>AE":"II","US>BR":"II","US>CH":"I","US>CN":"blocked","US>EU":"I","US>HK":"I","US>JP":"II","US>KR":"pre_regime","US>SG":"I","US>TW":"T","US>UK":"T"};
+var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","2027-01-18","II"],["EU>US","2027-01-18","II"],["HK>US","2027-01-18","II"],["JP>US","2027-01-18","II"],["SG>US","2027-01-18","II"],["UK>US","2027-01-18","II"],["AE>UK","2027-10-25","I"],["BR>UK","2027-10-25","I"],["CH>UK","2027-10-25","I"],["EU>UK","2027-10-25","I"],["HK>UK","2027-10-25","I"],["JP>UK","2027-10-25","I"],["SG>UK","2027-10-25","I"],["US>UK","2027-10-25","I"]];
+
+    var HZ = [null, '2027-01-18', '2027-10-25'];
+    var STOPS = {
+      en: [ {t:'today',       s:'30 Jun 2026 snapshot'},
+            {t:'18 Jan 2027', s:'GENIUS Act \u00a718 commences'},
+            {t:'25 Oct 2027', s:'UK regime operative'} ],
+      zh: [ {t:'\u4eca\u5929',      s:'2026-06-30 \u5feb\u7167'},
+            {t:'2027-01-18', s:'GENIUS \u6cd5\u6848\u7b2c 18 \u6761\u751f\u6548'},
+            {t:'2027-10-25', s:'\u82f1\u56fd\u5236\u5ea6\u751f\u6548'} ]
+    };
+    var JUR = {
+      en:{AE:'United Arab Emirates',BR:'Brazil',CH:'Switzerland',CN:'Mainland China',EU:'European Union',
+          HK:'Hong Kong',JP:'Japan',KR:'South Korea',SG:'Singapore',TW:'Taiwan',UK:'United Kingdom',US:'United States'},
+      zh:{AE:'\u963f\u8054\u914b',BR:'\u5df4\u897f',CH:'\u745e\u58eb',CN:'\u4e2d\u56fd\u5185\u5730',EU:'\u6b27\u76df',
+          HK:'\u9999\u6e2f',JP:'\u65e5\u672c',KR:'\u97e9\u56fd',SG:'\u65b0\u52a0\u5761',TW:'\u53f0\u6e7e',UK:'\u82f1\u56fd',US:'\u7f8e\u56fd'}
+    };
     var META = {
       en: {
-        'I':  {label:'Category I · clears',        note:'Dual authorization: each end is separately authorizable, no equivalence step required in this direction.', cls:'clear'},
-        'II': {label:'Category II · gated',        note:'Entry turns on a recognition, equivalence, or comparability determination that is not generically granted.', cls:'gate'},
-        'T':  {label:'Category T · in transition', note:'A comprehensive regime is adopted at the destination but not yet operative. It resolves on commencement.', cls:'transition'},
-        'III':{label:'Category III · unresolved',  note:'The origin has no exportable, authorizable token, so the corridor reduces to partnership or coordination options.', cls:'block'},
-        'X':  {label:'Blocked at destination',     note:'The destination prohibits issuance, so no positive trigger can complete an inbound corridor here.', cls:'block'}
+        'I':  {label:'Category I \u00b7 clears',        note:'Dual authorization: each end is separately authorizable, and no equivalence step is required in this direction.', cls:'clear'},
+        'II': {label:'Category II \u00b7 gated',        note:'Entry turns on a recognition, equivalence, or comparability determination that is not generically granted.', cls:'gate'},
+        'T':  {label:'Category T \u00b7 in transition', note:'The destination has adopted a comprehensive regime that is not yet operative. Nothing is barred here. Nothing is settled either. It resolves on commencement.', cls:'transition'},
+        'III':{label:'Category III \u00b7 unresolved',  note:'The origin has no exportable, authorizable token, so the corridor reduces to partnership or coordination options.', cls:'block'},
+        'blocked':    {label:'Blocked at destination', note:'The destination prohibits issuance, so no positive trigger can complete an inbound corridor here.', cls:'block'},
+        'pre_regime': {label:'Pre-regime',             note:'The destination has no stablecoin regime in force, so there is no inbound authorization to obtain and no gate to clear.', cls:'transition'}
       },
       zh: {
-        'I':  {label:'类别 I · 可清算',  note:'双授权：两端各自可被授权，此方向无需等效步骤。', cls:'clear'},
-        'II': {label:'类别 II · 需过闸', note:'入境取决于一项承认、等效或可比性认定，而这并非通例给予。', cls:'gate'},
-        'T':  {label:'类别 T · 过渡中',  note:'目的地已通过一套完整制度，但尚未生效。它在生效日消解。', cls:'transition'},
-        'III':{label:'类别 III · 未决',  note:'起点没有可出口、可授权的代币，所以这条走廊退化为合作或协调选项。', cls:'block'},
-        'X':  {label:'在目的地受阻',     note:'目的地禁止发行，因此没有任何正向触发能在此完成一条入境走廊。', cls:'block'}
+        'I':  {label:'\u7c7b\u522b I \u00b7 \u53ef\u6e05\u7b97',  note:'\u53cc\u6388\u6743\uff1a\u4e24\u7aef\u5404\u81ea\u53ef\u88ab\u6388\u6743\uff0c\u6b64\u65b9\u5411\u65e0\u9700\u7b49\u6548\u6b65\u9aa4\u3002', cls:'clear'},
+        'II': {label:'\u7c7b\u522b II \u00b7 \u9700\u8fc7\u95f8', note:'\u5165\u5883\u53d6\u51b3\u4e8e\u4e00\u9879\u627f\u8ba4\u3001\u7b49\u6548\u6216\u53ef\u6bd4\u6027\u8ba4\u5b9a\uff0c\u800c\u8fd9\u5e76\u975e\u901a\u4f8b\u7ed9\u4e88\u3002', cls:'gate'},
+        'T':  {label:'\u7c7b\u522b T \u00b7 \u8fc7\u6e21\u4e2d',  note:'\u76ee\u7684\u5730\u5df2\u901a\u8fc7\u4e00\u5957\u5b8c\u6574\u5236\u5ea6\uff0c\u4f46\u5c1a\u672a\u751f\u6548\u3002\u8fd9\u91cc\u4e0d\u662f\u7981\u6b62\uff0c\u4e5f\u5c1a\u672a\u5b9a\u8bba\u3002\u5b83\u5728\u751f\u6548\u65e5\u6d88\u89e3\u3002', cls:'transition'},
+        'III':{label:'\u7c7b\u522b III \u00b7 \u672a\u51b3',  note:'\u8d77\u70b9\u6ca1\u6709\u53ef\u51fa\u53e3\u3001\u53ef\u6388\u6743\u7684\u4ee3\u5e01\uff0c\u6240\u4ee5\u8fd9\u6761\u8d70\u5eca\u9000\u5316\u4e3a\u5408\u4f5c\u6216\u534f\u8c03\u9009\u9879\u3002', cls:'block'},
+        'blocked':    {label:'\u5728\u76ee\u7684\u5730\u53d7\u963b', note:'\u76ee\u7684\u5730\u7981\u6b62\u53d1\u884c\uff0c\u56e0\u6b64\u6ca1\u6709\u4efb\u4f55\u6b63\u5411\u89e6\u53d1\u80fd\u5728\u6b64\u5b8c\u6210\u4e00\u6761\u5165\u5883\u8d70\u5eca\u3002', cls:'block'},
+        'pre_regime': {label:'\u524d\u5236\u5ea6\u671f',           note:'\u76ee\u7684\u5730\u5c1a\u65e0\u751f\u6548\u7684\u7a33\u5b9a\u5e01\u5236\u5ea6\uff0c\u56e0\u6b64\u65e0\u5165\u5883\u6388\u6743\u53ef\u53d6\u5f97\uff0c\u4e5f\u65e0\u95f8\u53e3\u53ef\u8fc7\u3002', cls:'transition'}
       }
     };
     var PICK = {
-      en: { same:'Same jurisdiction', hint:'Pick two different endpoints to read a corridor.' },
-      zh: { same:'同一法域', hint:'选择两个不同的端点来读一条走廊。' }
+      en: { same:'Same jurisdiction', hint:'Pick two different endpoints to read a corridor.',
+            pending:function(d){return '\u2192 changes on '+d;}, fired:function(d,w){return '\u2713 changed on '+d+' \u00b7 '+w;},
+            count:function(n){return '<b>'+n+'</b> of 132 directed corridors reclassified';},
+            trig:{'2027-01-18':'GENIUS Act \u00a718','2027-10-25':'UK SI 2026/102'} },
+      zh: { same:'\u540c\u4e00\u6cd5\u57df', hint:'\u9009\u62e9\u4e24\u4e2a\u4e0d\u540c\u7684\u7aef\u70b9\u6765\u8bfb\u4e00\u6761\u8d70\u5eca\u3002',
+            pending:function(d){return '\u2192 \u5c06\u4e8e '+d+' \u53d8\u66f4';}, fired:function(d,w){return '\u2713 \u5df2\u4e8e '+d+' \u53d8\u66f4 \u00b7 '+w;},
+            count:function(n){return '132 \u6761\u6709\u5411\u8d70\u5eca\u4e2d\uff0c<b>'+n+'</b> \u6761\u91cd\u65b0\u5206\u7c7b';},
+            trig:{'2027-01-18':'GENIUS \u6cd5\u6848\u7b2c 18 \u6761','2027-10-25':'\u82f1\u56fd SI 2026/102'} }
     };
-    function classFor(o,d){ if(o===d) return null; if(d==='CN') return 'X'; if(o==='CN') return 'III'; return GATE[d]; }
+
+    var asOfIdx = 0;
+    function asOf(){ return HZ[asOfIdx]; }
+    function classFor(o,d){
+      if(o===d) return null;
+      var k=o+'>'+d, c=EDGES[k];
+      if(!c) return null;
+      var a=asOf();
+      for(var i=0;i<TRANS.length;i++){ if(TRANS[i][0]===k && a && TRANS[i][1]<=a) c=TRANS[i][2]; }
+      return c;
+    }
+    /* the dated transition on this edge, if it has one, and whether it has fired yet */
+    function flipOn(o,d){
+      var k=o+'>'+d, a=asOf();
+      for(var i=0;i<TRANS.length;i++){ if(TRANS[i][0]===k) return {dt:TRANS[i][1], fired:!!(a && TRANS[i][1]<=a)}; }
+      return null;
+    }
+    function nReclassified(){
+      var a=asOf(), n=0;
+      for(var i=0;i<TRANS.length;i++){ if(a && TRANS[i][1]<=a) n++; }
+      return n;
+    }
     var orig, dest, vO, vD, vCls, vNote, vDot;
     function renderPicker(){
       if(!orig) return;
@@ -662,6 +780,47 @@
       var m=META[current][c];
       vCls.textContent=m.label; vCls.className=m.cls; vDot.className='dot bg-'+m.cls; vNote.textContent=m.note;
     }
+
+    /* ---------- the proof block ---------- */
+    var SVG_STYLE = { 'I':['#2E7D46',null], 'II':['#B26B12',null], 'T':['#8B8E84','5 5'],
+                      'III':['#B23B36',null], 'blocked':['#B23B36',null], 'pre_regime':['#8B8E84','5 5'] };
+    function paintEdge(id,o,d){
+      var el=document.getElementById(id); if(!el) return;
+      var s=SVG_STYLE[classFor(o,d)]; if(!s) return;
+      el.setAttribute('stroke', s[0]);
+      if(s[1]) el.setAttribute('stroke-dasharray', s[1]); else el.removeAttribute('stroke-dasharray');
+    }
+    function renderCard(pfx,o,d){
+      var c=classFor(o,d); if(!c) return;
+      var m=META[current][c], P=PICK[current];
+      var cls=document.getElementById(pfx+'-cls'), dot=document.getElementById(pfx+'-dot'),
+          note=document.getElementById(pfx+'-note'), st=document.getElementById(pfx+'-stamp');
+      if(!cls) return;
+      cls.textContent=m.label; cls.className=m.cls; dot.className='dot bg-'+m.cls; note.textContent=m.note;
+      var f=flipOn(o,d);
+      if(!f){ st.textContent=''; st.className='stamp'; }
+      else if(f.fired){ st.textContent=P.fired(f.dt, P.trig[f.dt]||''); st.className='stamp fired'; }
+      else { st.textContent=P.pending(f.dt); st.className='stamp'; }
+    }
+    function renderProof(){
+      renderCard('f','US','EU');
+      renderCard('r','EU','US');
+      paintEdge('e-eu-us','EU','US');
+      paintEdge('e-us-uk','US','UK');
+      var box=document.getElementById('stops');
+      if(box){
+        var s=STOPS[current], out='';
+        for(var i=0;i<3;i++) out += '<div class="'+(i===asOfIdx?'on':'')+'"><b>'+s[i].t+'</b>'+s[i].s+'</div>';
+        box.innerHTML=out;
+      }
+      var cnt=document.getElementById('pcount');
+      if(cnt) cnt.innerHTML=PICK[current].count(nReclassified());
+    }
+    var slider=document.getElementById('asof');
+    if(slider) slider.addEventListener('input', function(){
+      asOfIdx = parseInt(slider.value,10)||0;
+      renderProof(); renderPicker();
+    });
 
     /* ---------- language control + two-way sync with the embedded mapper ----------
        Messages are addressed to, and accepted only from, the mapper's own origin. The
@@ -682,6 +841,7 @@
       current = lang;
       paintText(lang);
       renderPicker();
+      renderProof();
       var btns = document.querySelectorAll('#langtog button');
       for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('on', btns[i].getAttribute('data-lang')===lang); }
       try { localStorage.setItem('cbsr-lang', lang); } catch(e){}
