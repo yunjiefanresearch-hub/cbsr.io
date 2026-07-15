@@ -28,7 +28,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="US to EU clears. EU to US is in transition and hardens to Category II on 18 January 2027. Same border, two answers.">
+<meta property="og:image:alt" content="US to EU clears. EU to US is in transition and resolves to Category II when the GENIUS Act commences, on the earlier of 18 January 2027 or 120 days after final rules. Same border, two answers.">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="zh_CN">
 <link rel="canonical" href="__SITE_URL__">
@@ -36,7 +36,7 @@
 <meta name="twitter:title" content="One stablecoin, twelve jurisdictions, a different verdict at every border.">
 <meta name="twitter:description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass.">
 <meta name="twitter:image" content="__SITE_URL__og-card.png">
-<meta name="twitter:image:alt" content="US to EU clears. EU to US is in transition and hardens to Category II on 18 January 2027. Same border, two answers.">
+<meta name="twitter:image:alt" content="US to EU clears. EU to US is in transition and resolves to Category II when the GENIUS Act commences, on the earlier of 18 January 2027 or 120 days after final rules. Same border, two answers.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -260,6 +260,7 @@
       <a href="#method" class="hideable">Method</a>
       <a href="#research" class="hideable">Research</a>
       <a href="#data" class="hideable">Data</a>
+      <a href="#pricing" class="hideable">Pricing</a>
       <span class="ver">v0.10.1</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
@@ -275,7 +276,7 @@
   <section class="hero" id="top">
     <p class="kick">open data &nbsp;·&nbsp; machine-readable &nbsp;·&nbsp; sourced to primary law</p>
     <h1>One stablecoin, twelve jurisdictions, a different verdict at every border.</h1>
-    <p class="lede">CBSR maps what actually clears, and what breaks, at each regulatory boundary a cross-border stablecoin flow has to pass. Every fact is pinned to a primary instrument, dated, version-stamped, and machine-checked, so a person or an agent can act on it and cite it.</p>
+    <p class="lede">CBSR records what clears, and what breaks, at every regulatory border a cross-border stablecoin flow has to cross. Each fact cites a provision of primary law, carries a date and a version, and is checked by the build. Your counsel can cite it. So can your software.</p>
     <div class="cta">
       <a class="btn pri" href="#live">Open the map</a>
       <a class="btn" href="#method">Read the method</a>
@@ -316,7 +317,7 @@
     </div>
 
     <div class="graph">
-      <svg viewBox="0 0 680 300" role="img" id="gsvg" aria-label="A directed graph of six of the twelve jurisdictions. US to EU clears. EU to US is in transition, and becomes gated on 18 January 2027. Japan to Hong Kong clears. Hong Kong to mainland China is blocked. US to UK is in transition, and clears on 25 October 2027.">
+      <svg viewBox="0 0 680 300" role="img" id="gsvg" aria-label="A directed graph of six of the twelve jurisdictions. US to EU clears. EU to US is in transition, and becomes gated when the GENIUS Act commences, on the earlier of 18 January 2027 or 120 days after final rules. Japan to Hong Kong clears. Hong Kong to mainland China is blocked. US to UK is in transition, and clears on 25 October 2027.">
         <defs>
           <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
             <path d="M2 1.5L8 5L2 8.5" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -344,7 +345,7 @@
       </div>
     </div>
 
-    <p class="gcap">Feasibility is <b>directional</b>: the binding rule is read at the destination's inbound gate, with a drag from the origin. Today <b>US &rarr; EU clears and EU &rarr; US does not</b>, and not because it is barred. The US regime is enacted and not yet commenced. Drag the date past <b>18 January 2027</b>, when the GENIUS Act &sect;18 comparability gate takes effect, and that edge hardens into Category II along with seven other edges into the US. <b>56 of the 66 jurisdiction pairs</b> in this register read differently depending on which way the money moves. A flat compliance table cannot express that. This one is built around it.</p>
+    <p class="gcap">Feasibility is <b>directional</b>. The binding rule sits at the destination's inbound gate, with a drag from the origin. Today <b>US &rarr; EU clears and EU &rarr; US does not</b>, though nothing bars it: the US regime is written and not yet in force. Move the date past <b>18 January 2027</b>, the outer cap on the GENIUS Act &sect;18 comparability gate (it commences on that date, or 120 days after final rules issue, whichever comes first), and that edge resolves to Category II along with seven others into the US. In this register <b>56 of the 66 jurisdiction pairs</b> read differently depending on which way the money moves. A flat compliance table has one cell per pair. That is the whole problem.</p>
   </section>
 
   <hr class="rule">
@@ -353,8 +354,8 @@
   <section id="thesis">
     <p class="kick">the thesis</p>
     <div class="thesis">
-      <p class="big">Software once split into a tool for HR, a tool for marketing, a tool for finance. AI is splitting the same way, by domain, and every domain that punishes a wrong answer will need a verified, current, machine-readable record its models can cite, not a fluent guess they hope is right.</p>
-      <p class="sub">Regulation is where that gap bites hardest. Ask a general model whether a given stablecoin flow is legal and it answers smoothly, because the primary text it is paraphrasing may have changed since it was trained and it has no way to know. Here a confident wrong answer is a licensing or enforcement problem, not a bad guess. <b>CBSR is the record underneath the answer</b>: not a chatbot and not a scrape, but a sourced, verified, versioned substrate, exposed to agents through typed tools, so a model reasons from a citation it can point to instead of a paraphrase it cannot defend.</p>
+      <p class="big">Software split by domain: one tool for HR, one for marketing, one for finance. AI is splitting the same way. Anywhere a wrong answer costs money, the model will need a record it can cite. Fluency is not evidence.</p>
+      <p class="sub">Regulation is where that gap bites hardest. Ask a general model whether a stablecoin flow is legal and it will answer smoothly. The text it is paraphrasing may have moved since it was trained, and it has no way to know. Here a confident wrong answer costs a licence. <b>CBSR is the record underneath the answer</b>: sourced, verified, versioned, and exposed to agents through typed tools, so a model reasons from a citation it can point at.</p>
     </div>
   </section>
 
@@ -363,8 +364,8 @@
   <!-- WHY IT MATTERS -->
   <section id="why">
     <p class="kick">why it matters</p>
-    <p class="lead">Stablecoins are becoming cross-border payment rails, and in 2026 the rules for them are landing fast: the US GENIUS Act, the EU's MiCA, Hong Kong's licensing regime, and more. Whether a given flow is actually permitted depends on how those regimes compose across a border, and that answer changes month to month. Getting it wrong is a licensing or enforcement problem.</p>
-    <p class="body">Today that answer lives in scattered law-firm memos and one-off analyses. CBSR makes it structured, sourced, and queryable, for a person or for the AI agents that will increasingly route these flows. The hard part is not listing rules; it is verifying them against the primary text, citing them, and keeping them honest as they change. That discipline is what this is built around, and what a scrape or a broad, shallow tracker cannot give you.</p>
+    <p class="lead">Stablecoins now move real cross-border volume, and in 2026 the rules arrived at once: the US GENIUS Act, the EU's MiCA, Hong Kong's licensing regime. Whether a given flow is permitted depends on how two regimes compose at a border, and the answer moves on the day a pending law commences.</p>
+    <p class="body">Today that answer lives in law-firm memos. A digital-assets partner in London or Hong Kong bills north of $1,000 an hour to write one. It arrives as prose, it is stale a quarter after you buy it, and no software can read it. Chain analytics goes the other way: it tells you where the money went, never whether it may go there. CBSR sits in that gap. The same judgment, written as data, with the citation still attached.</p>
     <div class="uses">
       <div class="use"><p class="ut">Entering a market</p><p class="ud">An issuer or fintech checking where a token can be offered, and through which gate.</p></div>
       <div class="use"><p class="ut">Scoping a corridor</p><p class="ud">A payments team pricing the legal path between two jurisdictions before they build.</p></div>
@@ -386,7 +387,7 @@
       </div>
       <iframe id="mapframe" title="CBSR interactive map" loading="lazy" allow="clipboard-write; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
-    <p class="embed-cap" id="embed-cap" hidden>Runs on the v0.10.1 snapshot, as of 30 June 2026. Every corridor is recomputed from the register, not hard-coded.</p>
+    <p class="embed-cap" id="embed-cap" hidden>Runs on the v0.10.1 snapshot, as of 30 June 2026. Every corridor is recomputed from the register.</p>
 
     <div id="preview">
       <div class="picker-wrap">
@@ -427,7 +428,7 @@
               </select>
             </div>
           </div>
-          <p class="subcap">All 132 directed corridors across the twelve jurisdictions, read at the date set above. Computed from the register, not hard-coded.</p>
+          <p class="subcap">All 132 directed corridors across the twelve jurisdictions, read at the date set above.</p>
         </div>
         <div class="verdict" id="verdict" aria-live="polite">
           <div class="flow"><span id="v-o">US</span><span class="arrow">→</span><span id="v-d">EU</span></div>
@@ -445,7 +446,7 @@
   <section id="what">
     <p class="kick">what it is</p>
     <p class="lead">A dollar-referenced stablecoin at retail scale meets legally different instruments in different places: a transaction cap in one, a professional-investor gate in another, an outright prohibition in a third. Which one binds a given flow is decided at the destination's inbound gate, so cross-border feasibility is directional, and it moves as regimes take effect.</p>
-    <p class="body">CBSR is <b>not a two-hundred-country tracker and not a scrape.</b> It is a depth-first reference across twelve jurisdictions where the value is the judgment in the data: each record is one verified <code style="font-family:var(--mono);font-size:15px">(jurisdiction × instrument × dimension)</code> fact, pinned to a primary instrument with a pinpoint, dated, version-stamped, and machine-checked against a published schema.</p>
+    <p class="body">Twelve jurisdictions, read deeply. Each record is one verified (jurisdiction × instrument × dimension) fact, pinned to a primary instrument with a pinpoint, dated, version-stamped, and carrying its own evidence grade. Two hundred countries would mean a scrape, and <b>a scrape cannot tell you which rule binds</b>. The value here is the judgment in the data.</p>
     <div class="figs">
       <div class="fig"><div class="n">12</div><div class="l">jurisdictions</div></div>
       <div class="fig"><div class="n">15</div><div class="l">regulatory dimensions</div></div>
@@ -488,7 +489,7 @@
   <!-- METHOD -->
   <section id="method">
     <p class="kick">why you can trust it</p>
-    <p class="lead">A machine-readable legal reference is read by software that treats whatever a field says as fact. So the judgment a careful human reader keeps implicit is made explicit and enforced.</p>
+    <p class="lead">Software reads a field and treats it as fact. It has no eyebrow to raise. So every judgment a careful human reader would keep to themselves has to be written down here, and enforced.</p>
     <p class="body">Every record carries three orthogonal axes: what <b>kind</b> of claim it is (a proposition of law versus a market fact), how well it is <b>sourced</b>, and whether the instrument is actually <b>in force</b>. Their intersection is the subset a lawyer or supervisor can cite as current binding law:</p>
     <div class="formula"><span class="val">claim_class = tier1_legal</span> <span class="op">∧</span> <span class="val">status = in_force</span> <span class="op">∧</span> <span class="val">evidence_tier = resolution_text</span> &nbsp;<span class="op">→</span>&nbsp; <span class="res">46 citable records</span></div>
     <p class="body">The build enforces the discipline in CI: a record can't claim confirmation it has no source for, a market fact can't enter the instrument a lawyer is shown, and a statute that is written but not yet commenced can't be cited as current law. A rule engine re-derives the downstream conclusions and flags where it disagrees with the authored analysis. And the unverified backlog is published as queryable data, because the gates are defenses, not a cure. Only primary-source verification retires that liability, and it is never faked.</p>
@@ -527,9 +528,27 @@
 
   <!-- STATUS -->
   <section id="status">
-    <p class="kick">status · early, and honest about it</p>
+    <p class="kick">status · what is not done yet</p>
     <div class="status">
       <p class="body">The register is at v0.10.x, depth-first over twelve jurisdictions rather than broad, and maintained by one person. A set of records is confirmed at regime-status level but not yet against the official text; that backlog is published as a per-cell worklist, not hidden. Regulation moves: Taiwan's regime passed at third reading on the afternoon this was last built, so the register is versioned and dated rather than evergreen. What it offers is not coverage of everything, but a verified, citable, machine-queryable account of the corridors it does cover.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <p class="kick">pricing</p>
+    <p class="lead">The register is open. What costs money is keeping it current, standing behind it, and reading it for you.</p>
+    <div class="uses">
+      <div class="use"><p class="ut">The register &nbsp;·&nbsp; free</p><p class="ud">Every record, CC-BY-4.0. Download <span class="gk">dataset.json</span>, run the MCP server yourself, cite the version DOI. The snapshot is yours to keep and to fork.</p></div>
+      <div class="use"><p class="ut">Hosted endpoint &nbsp;·&nbsp; $400 / month</p><p class="ud">The same typed tools, pointed at the current register instead of a snapshot you have to re-pull. For teams building on it. Best-effort freshness, fair-use limits.</p></div>
+      <div class="use"><p class="ut">Hosted with an SLA &nbsp;·&nbsp; $1,500 / month</p><p class="ud">Uptime and freshness you can put in a dependency list, a support address, and a person who answers it. For anything you would page someone about.</p></div>
+      <div class="use"><p class="ut">Corridor memo &nbsp;·&nbsp; $6,000</p><p class="ud">Your corridors, read at today's date and at each scheduled change, every line pinned to primary law. One page, two weeks. Decision-support research, not legal advice.</p></div>
+    </div>
+    <p class="meta" style="margin-top:20px">A law firm charges roughly this for a scoping memo that answers once. This answers on the date you ask, and again when the law moves. Point-in-time attestations for an audit file: ask.</p>
+    <div class="cta" style="margin:18px 0 0">
+      <a class="btn pri" href="mailto:yunjiefan.research@gmail.com?subject=CBSR%20API%20access">Get the API</a>
     </div>
   </section>
 
@@ -539,10 +558,8 @@
   <section id="about">
     <p class="kick">who made it</p>
     <div class="about">
-      <p class="who"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. This is one person's work: six working papers, a schema-validated register with a build pipeline and CI, an evidence model that generalizes beyond stablecoins, and the live tool above. Open to roles, collaborations, and conversations with teams that want to build on, fund, or acquire it, across issuers, payment and settlement infrastructure, regulators and supervisors, and the groups building agentic tools on regulation.</p>
-      <div class="cta" style="margin:4px 0 0">
-        <a class="btn pri" href="mailto:yunjiefan.research@gmail.com">Get in touch</a>
-      </div>
+      <p class="who">The map above is live and queryable today: twelve jurisdictions, 132 directed corridors, an MCP server your agents can call, and a version you can cite. Point your stack at it.</p>
+      <p class="sub"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. Six working papers. The register, its build pipeline, its evidence model, and the tool above are one person's work. Also open to roles, funding, and acquisition conversations: <a href="mailto:yunjiefan.research@gmail.com">email me</a>.</p>
       <div class="idlinks">
         <a href="https://orcid.org/0009-0005-6762-084X">ORCID 0009-0005-6762-084X</a>
         <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068">SSRN author</a>
@@ -708,10 +725,10 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
     var HZ = [null, '2027-01-18', '2027-10-25'];
     var STOPS = {
       en: [ {t:'today',       s:'30 Jun 2026 snapshot'},
-            {t:'18 Jan 2027', s:'GENIUS Act \u00a718 commences'},
+            {t:'18 Jan 2027', s:'GENIUS Act \u00a718 commences \u00b7 outer cap'},
             {t:'25 Oct 2027', s:'UK regime operative'} ],
       zh: [ {t:'\u4eca\u5929',      s:'2026-06-30 \u5feb\u7167'},
-            {t:'2027-01-18', s:'GENIUS \u6cd5\u6848\u7b2c 18 \u6761\u751f\u6548'},
+            {t:'2027-01-18', s:'GENIUS \u6cd5\u6848\u7b2c 18 \u6761\u751f\u6548 \u00b7 \u5916\u5c42\u515c\u5e95'},
             {t:'2027-10-25', s:'\u82f1\u56fd\u5236\u5ea6\u751f\u6548'} ]
     };
     var JUR = {
@@ -894,5 +911,9 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
     setLang(initial, {notifyFrame:false});
   })();
 </script>
+<!-- Cookieless, aggregate analytics. No cookies, no personal data, no consent banner.
+     Replace YOUR_CF_TOKEN with the token from Cloudflare > Web Analytics > add a site. -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"YOUR_CF_TOKEN"}'></script>
 </body>
 </html>
