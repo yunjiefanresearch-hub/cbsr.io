@@ -221,19 +221,24 @@
 
   /* papers */
   .papers{margin-top:8px}
-  .paper{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:baseline;
+  .paper,.rec{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:baseline;
     padding:16px 0;border-top:1px solid var(--line)}
-  .paper:last-child{border-bottom:1px solid var(--line)}
-  .paper .t{font-size:16px;font-weight:500;color:var(--ink)}
-  .paper .d{font-size:14.5px;color:var(--ink-2);margin-top:3px;max-width:62ch}
-  .paper .v{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
-  a.paper{color:inherit;text-decoration:none}
-  a.paper:hover .t{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-  a.paper:hover .v{color:var(--accent)}
+  .paper:last-child,.rec:last-child{border-bottom:1px solid var(--line)}
+  .paper .t,.rec .t{font-size:16px;font-weight:500;color:var(--ink)}
+  .paper .d,.rec .d{font-size:14.5px;color:var(--ink-2);margin-top:3px;max-width:62ch}
+  .paper .v,.rec .v{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  a.paper,a.rec{color:inherit;text-decoration:none}
+  a.paper:hover .t,a.rec:hover .t{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  a.paper:hover .v,a.rec:hover .v{color:var(--accent)}
 
   /* status */
   .status{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:26px 26px}
   .status .body{color:var(--ink-2);max-width:70ch}
+
+  /* inline code token used in the pricing copy; was referenced in markup but never defined,
+     so `dataset.json` rendered as plain body text instead of a monospace token */
+  .gk{font-family:var(--mono);font-size:13.5px;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--accent)}
 
   /* about */
   .about{display:grid;grid-template-columns:1fr;gap:18px;max-width:70ch}
@@ -385,7 +390,7 @@
         <span class="embed-label">Cross-Border Stablecoin Register · interactive</span>
         <a id="embed-open" class="embed-open" href="#" target="_blank" rel="noopener">Open full-screen ↗</a>
       </div>
-      <iframe id="mapframe" title="CBSR interactive map" loading="lazy" allow="clipboard-write; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <iframe id="mapframe" title="CBSR interactive map" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
     <p class="embed-cap" id="embed-cap" hidden>Runs on the v0.10.1 snapshot, as of 30 June 2026. Every corridor is recomputed from the register.</p>
 
@@ -499,16 +504,23 @@
 
   <!-- RESEARCH -->
   <section id="research">
-    <p class="kick">the research behind it · six working papers</p>
+    <p class="kick">the research behind it · six papers, five posted</p>
     <div class="papers">
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6788361" target="_blank" rel="noopener"><div><div class="t">The Multi-Jurisdiction Stablecoin Compliance Matrix</div><div class="d">The cross-jurisdictional reference the register is built on: six regimes across ten regulatory dimensions, each entry sourced to primary law.</div></div><div class="v">38 pages · SSRN ↗</div></a>
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6724920" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition</div><div class="d">Behind one of the two doctrinal spines: five NAV-integrity conditions and four on-chain metrics that separate user-initiated routing from disguised yield under the US CLARITY Act's Section 404.</div></div><div class="v">28 pages · SSRN ↗</div></a>
       <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6822878" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Architecture</div><div class="d">The constraint-interaction framework: eight constraints, six interaction sets, and a pairwise compatibility analysis that treats cross-border compliance as a composition problem.</div></div><div class="v">85 pages · SSRN ↗</div></a>
       <div class="paper"><div><div class="t">Cross-Border Digital-Finance Corridor Atlas</div><div class="d">The directed-edge model and the six composite feasibility classes that turn the compatibility analysis into corridors.</div></div><div class="v">working draft</div></div>
-      <div class="paper"><div><div class="t">Cross-Border Stablecoin Feasibility Over Time</div><div class="d">A trigger-conditioned forward map: how a corridor's verdict changes on the date a pending law commences.</div></div><div class="v">working draft</div></div>
-      <div class="paper"><div><div class="t">Citable by Construction</div><div class="d">The evidence model underneath all of it: three orthogonal axes, a build-enforced citable subset, and computed-versus-authored reconciliation.</div></div><div class="v">working draft</div></div>
+      <a class="paper" href="https://papers.ssrn.com/abstract=7055759" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Feasibility Over Time</div><div class="d">A trigger-conditioned forward map: how a corridor's verdict changes on the date a pending law commences, and a typology of triggers by the kind of certainty each carries.</div></div><div class="v">35 pages · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/abstract=7055678" target="_blank" rel="noopener"><div><div class="t">Citable by Construction</div><div class="d">The evidence model underneath all of it: three orthogonal axes, a build-enforced citable subset, and computed-versus-authored reconciliation.</div></div><div class="v">18 pages · SSRN ↗</div></a>
     </div>
-    <p class="meta" style="margin-top:20px">Posted papers link to SSRN; drafts are in preparation. See all work by the author on <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>. Each register release is archived to Zenodo for a DOI; cite the version you used.</p>
+
+    <p class="kick" style="margin-top:36px">in the public record</p>
+    <div class="papers">
+      <a class="rec" href="https://www.sec.gov/files/ctf-written-input-fan-050726.pdf" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition — written input to the SEC Crypto Task Force</div><div class="d">The same Section 404 framework, filed with the Commission and published on sec.gov: a threshold NAV test, four on-chain metrics, and proposed Committee Report language.</div></div><div class="v">28 pages · sec.gov ↗</div></a>
+      <a class="rec" href="https://sites.duke.edu/thefinregblog/2026/06/15/three-mechanisms-one-policy-monetary-sovereignty-in-cross-border-stablecoin-regulation/" target="_blank" rel="noopener"><div><div class="t">Three Mechanisms, One Policy: Monetary Sovereignty in Cross-Border Stablecoin Regulation</div><div class="d">The monetary-sovereignty dimension in short form: a transaction cap, a professional-investor gate and an outright prohibition read as three instruments serving one policy.</div></div><div class="v">15 Jun 2026 · Duke FinReg Blog ↗</div></a>
+    </div>
+
+    <p class="meta" style="margin-top:20px">Five of the six papers are posted to SSRN; the Corridor Atlas is in preparation. See all work by the author on <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>. Each register release is archived to Zenodo for a DOI; cite the version you used.</p>
   </section>
 
   <hr class="rule">
@@ -518,9 +530,10 @@
     <p class="kick">for the software that reads regulation</p>
     <p class="body" style="max-width:70ch">The register ships as a single <code style="font-family:var(--mono);font-size:15px">dataset.json</code> and an MCP server that exposes it to agents through roughly thirty typed tools: query a jurisdiction, compare a dimension, compose a corridor at a given date, or pull the lawyer-citable subset directly. Continuous integration runs the validation, the invariants, and the negative tests on every change, so an invalid record or a corridor that contradicts the matrix cannot be merged. A general-purpose model can call these tools and answer from the register, with a citation, instead of guessing.</p>
     <div class="cta">
-      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register">Repository</a>
-      <a class="btn" href="https://doi.org/10.5281/zenodo.20730358">Zenodo (DOI)</a>
-      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md">Agent access (MCP)</a>
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register" target="_blank" rel="noopener">Register repository</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.20730358" target="_blank" rel="noopener">Zenodo (DOI)</a>
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md" target="_blank" rel="noopener">Agent access (MCP)</a>
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cbsr-mapper" target="_blank" rel="noopener">Mapper source</a>
     </div>
   </section>
 
@@ -528,9 +541,9 @@
 
   <!-- STATUS -->
   <section id="status">
-    <p class="kick">status · what is not done yet</p>
+    <p class="kick">status · scope and versioning</p>
     <div class="status">
-      <p class="body">The register is at v0.10.x, depth-first over twelve jurisdictions rather than broad, and maintained by one person. A set of records is confirmed at regime-status level but not yet against the official text; that backlog is published as a per-cell worklist, not hidden. Regulation moves: Taiwan's regime passed at third reading on the afternoon this was last built, so the register is versioned and dated rather than evergreen. What it offers is not coverage of everything, but a verified, citable, machine-queryable account of the corridors it does cover.</p>
+      <p class="body">The register is at v0.10.x: depth-first over twelve jurisdictions rather than broad. Forty-six records meet the full citable bar — proposition of law, official text checked, in force — and the rest are confirmed at regime-status level with primary-source verification continuing; that queue is published as a per-cell worklist rather than left implicit. Regulation moves fast enough to require exactly this discipline: Taiwan's regime passed at third reading on the afternoon of the last build. So the register is versioned and dated, and every claim carries the date it was read. What it offers is not coverage of everything, but a verified, citable, machine-queryable account of the corridors it does cover.</p>
     </div>
   </section>
 
@@ -559,7 +572,7 @@
     <p class="kick">who made it</p>
     <div class="about">
       <p class="who">The map above is live and queryable today: twelve jurisdictions, 132 directed corridors, an MCP server your agents can call, and a version you can cite. Point your stack at it.</p>
-      <p class="sub"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. Six working papers. The register, its build pipeline, its evidence model, and the tool above are one person's work. Also open to roles, funding, and acquisition conversations: <a href="mailto:yunjiefan.research@gmail.com">email me</a>.</p>
+      <p class="sub"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. Six papers, five posted to SSRN, one filed with the SEC Crypto Task Force. The register, its build pipeline, its evidence model, and the tool above are one person's work. Also open to roles, funding, and acquisition conversations: <a href="mailto:yunjiefan.research@gmail.com">email me</a>.</p>
       <div class="idlinks">
         <a href="https://orcid.org/0009-0005-6762-084X">ORCID 0009-0005-6762-084X</a>
         <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068">SSRN author</a>
@@ -585,12 +598,29 @@
   var MAPPER_URL = "https://yunjiefanresearch-hub.github.io/cbsr-mapper/";
 
   (function(){
+    /* The deploy workflow stamps the real Pages URL into og:url, og:image and canonical,
+       and fails the build if any placeholder survives. But a copy opened straight from
+       disk — a demo laptop, a reviewer's download — never runs that workflow, and would
+       carry a literal "__SITE_URL__" in view-source. Crawlers do not run JS so this is not
+       a substitute for stamping; it is only so an unstamped copy is never seen holding a
+       placeholder. */
+    try {
+      var here = window.location.href.replace(/[?#].*$/, '').replace(/[^\/]*$/, '');
+      var tags = document.querySelectorAll('meta[content*="__SITE_URL__"], link[href*="__SITE_URL__"]');
+      for (var i=0;i<tags.length;i++){
+        var a = tags[i].hasAttribute('content') ? 'content' : 'href';
+        tags[i].setAttribute(a, tags[i].getAttribute(a).replace('__SITE_URL__', here));
+      }
+    } catch(e){}
+  })();
+
+  (function(){
     /* ---------- bilingual UI ----------
        English is the text already in the HTML; ZH holds the Chinese
        innerHTML for each element (or an array, applied in DOM order). */
     var ZH = [
       {sel:'.brand span', zh:'跨境稳定币登记册'},
-      {sel:'.nav a.hideable', zh:['定位','意义','地图','方法','研究','数据']},
+      {sel:'.nav a.hideable', zh:['定位','意义','地图','方法','研究','数据','定价']},
 
       {sel:'#top .kick', zh:'开放数据 · 机器可读 · 溯源至一手法律'},
       {sel:'#top h1', zh:'同一枚稳定币，十二个法域，每一道边界给出不同的结论。'},
@@ -658,28 +688,50 @@
       ]},
       {sel:'#method .formula .res', zh:'46 条可引用记录'},
 
-      {sel:'#research .kick', zh:'背后的研究 · 六篇工作论文'},
+      {sel:'#research .kick', zh:['背后的研究 · 六篇论文，五篇已发布','进入公共记录']},
       {sel:'#research .paper .d', zh:[
         '登记册所依据的跨法域参考：六个制度、十个监管维度，每一条都溯源至一手法律。',
         '两条学理主轴之一的背后：五个 NAV 完整性条件和四个链上指标，在美国 CLARITY Act 第 404 条下区分「用户主动路由」与「变相付息」。',
         '约束交互框架：八个约束、六个交互集，以及一套把跨境合规当作组合问题来处理的两两兼容性分析。',
         '有向边模型，以及把兼容性分析变成走廊的六个复合可行性类别。',
-        '一张以触发为条件的前瞻地图：一条走廊的结论在某部待决法律生效当天会如何改变。',
+        '一张以触发为条件的前瞻地图：一条走廊的结论在某部待决法律生效当天会如何改变，以及按确定性种类对触发事件的分类。',
         '支撑这一切的证据模型：三条正交轴、一个构建期强制的可引用子集，以及计算与手写之间的对账。'
       ]},
-      {sel:'#research .paper .v', zh:['38 页 · SSRN ↗','28 页 · SSRN ↗','85 页 · SSRN ↗','工作稿','工作稿','工作稿']},
-      {sel:'#research .meta', zh:'已发表的论文链接至 SSRN；其余为筹备中的草稿。作者的全部工作见 <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>。每个登记册版本都会存档至 Zenodo 以获取 DOI；请引用你所使用的版本。'},
+      {sel:'#research .paper .v', zh:['38 页 · SSRN ↗','28 页 · SSRN ↗','85 页 · SSRN ↗','工作稿','35 页 · SSRN ↗','18 页 · SSRN ↗']},
+      {sel:'#research .rec .d', zh:[
+        '同一套第 404 条框架，作为书面意见提交给美国证监会，并发布于 sec.gov：一个门槛性的 NAV 检验、四个链上指标，以及建议写入委员会报告的条文。',
+        '货币主权维度的短文版：把交易额上限、专业投资者门槛与彻底禁止，读作服务于同一项政策的三种工具。'
+      ]},
+      {sel:'#research .rec .v', zh:['28 页 · sec.gov ↗','2026-06-15 · Duke FinReg Blog ↗']},
+      {sel:'#research .meta', zh:'六篇论文中已有五篇发布于 SSRN；走廊图集仍在筹备中。作者的全部工作见 <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>。每个登记册版本都会存档至 Zenodo 以获取 DOI；请引用你所使用的版本。'},
 
       {sel:'#data .kick', zh:'为读取监管的软件而设'},
       {sel:'#data .body', zh:'登记册以单个 <code style="font-family:var(--mono);font-size:15px">dataset.json</code> 和一个 MCP server 的形式交付，后者通过约三十个类型化工具向 agent 开放：查询一个法域、比较一个维度、组合某个日期上的一条走廊，或直接拉取律师可引用子集。持续集成在每一次改动上运行校验、不变式与负向测试，因此一条非法记录、或一条与矩阵矛盾的走廊，都无法被合入。一个通用模型可以调用这些工具、基于登记册作答并附上引用，而不是靠猜。'},
-      {sel:'#data .cta .btn', zh:['代码仓库','Zenodo（DOI）','Agent 接入（MCP）']},
+      {sel:'#data .cta .btn', zh:['登记册代码仓库','Zenodo（DOI）','Agent 接入（MCP）','映射器源码']},
 
-      {sel:'#status .kick', zh:'状态 · 尚早，并对此坦诚'},
-      {sel:'#status .body', zh:'登记册目前处于 v0.10.x，在十二个法域上深挖而非求广，并由一个人维护。有一批记录已在制度状态层面确认，但尚未对着官方原文核验；这份积压作为逐格的工作清单公开，而不是被藏起来。监管在动：台湾的制度在本次构建当天下午三读通过，所以这个登记册是带版本、带日期的，而不是号称长青。它提供的不是对一切的覆盖，而是对它确实覆盖的那些走廊，给出一份经核验、可引用、机器可查询的说明。'},
+      {sel:'#status .kick', zh:'状态 · 覆盖范围与版本'},
+      {sel:'#status .body', zh:'登记册目前处于 v0.10.x：在十二个法域上深挖，而不是求广。其中 46 条满足完整的可引用标准（法律命题 · 官方文本已核 · 已生效）；其余已在制度状态层面确认，一手条文核验仍在推进，并以逐格工作清单的形式公开，而不是留作暗账。监管变动之快也要求这样做：台湾的制度就在本次构建当天下午三读通过。因此这个登记册是带版本、带日期的，每一条主张都标明它被读取的时点。它提供的不是对一切的覆盖，而是对它确实覆盖的那些走廊，给出一份经核验、可引用、机器可查询的说明。'},
+
+      {sel:'#pricing .kick', zh:'定价'},
+      {sel:'#pricing .lead', zh:'登记册本身是开放的。收费的是让它保持时效、为它背书，以及替你去读它。'},
+      {sel:'#pricing .use .ut', zh:[
+        '登记册 &nbsp;·&nbsp; 免费',
+        '托管接口 &nbsp;·&nbsp; $400 / 月',
+        '托管接口 + SLA &nbsp;·&nbsp; $1,500 / 月',
+        '走廊备忘录 &nbsp;·&nbsp; $6,000'
+      ]},
+      {sel:'#pricing .use .ud', zh:[
+        '全部记录，CC-BY-4.0。下载 <span class="gk">dataset.json</span>、自行运行 MCP server、引用版本 DOI。这份快照归你所有，可自由留存与 fork。',
+        '同样的类型化工具，指向当前的登记册，而不是一份你得自己重新拉取的快照。面向在其上构建的团队。尽力保证时效，公平使用限额。',
+        '可以写进依赖清单的可用性与时效承诺，一个支持邮箱，以及一个会回复它的人。适用于任何你会为之呼叫值班的场景。',
+        '你的走廊，读在今天以及每一个已排定的变更日上，每一行都锚定到一手法律。一页纸，两周交付。这是决策支持研究，不是法律意见。'
+      ]},
+      {sel:'#pricing .meta', zh:'一家律所收取大致相同的价格，给你一份只回答一次的范围备忘录。这一份在你提问的那个日期上回答，并在法律变动时再回答一次。审计留痕所需的时点证明：可以谈。'},
+      {sel:'#pricing .btn.pri', zh:'获取 API 访问'},
 
       {sel:'#about .kick', zh:'由谁制作'},
-      {sel:'#about .who', zh:'<b>Yunjie Fan</b>，一名研究跨法域数字资产监管的独立研究者。这是一个人的工作：六篇工作论文、一个经 schema 校验、带构建流水线与 CI 的登记册、一个可迁移到稳定币之外的证据模型，以及上方那个实时工具。欢迎就岗位、合作，以及在此基础上共建、投资或收购的洽谈，面向发行方、支付与结算基础设施、监管者，以及正在为监管构建 agent 工具的团队。'},
-      {sel:'#about .btn.pri', zh:'联系我'},
+      {sel:'#about .who', zh:'上面那张地图今天就是可查询的：十二个法域、132 条有向走廊、一个你的 agent 可以调用的 MCP server，以及一个你可以引用的版本。把你的技术栈指向它。'},
+      {sel:'#about .sub', zh:'<b>Yunjie Fan</b>，一名研究跨法域数字资产监管的独立研究者。六篇论文，其中五篇已发布于 SSRN，一篇作为书面意见提交给美国证监会 Crypto Task Force。这个登记册、它的构建流水线、它的证据模型，以及上方那个工具，都是一个人的工作。同时欢迎就岗位、投资与收购洽谈：<a href="mailto:yunjiefan.research@gmail.com">邮件联系</a>。'},
 
       {sel:'footer .wrap span:nth-child(1)', zh:'跨境稳定币登记册 · v0.10.1'},
       {sel:'footer .wrap span:nth-child(2)', zh:'数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">引用对应版本 DOI</a>'}
@@ -845,11 +897,26 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
        is free and keeps a stray frame from driving this page's UI. */
     var MAPPER_ORIGIN = '';
     try { MAPPER_ORIGIN = MAPPER_URL ? new URL(MAPPER_URL, window.location.href).origin : ''; } catch(e){}
+    /* Origin pinning is only meaningful where origins are. Under file:// every document
+       is an OPAQUE origin: the frame's messages arrive stamped "null" while URL().origin
+       reports "file://", so a strict pin rejects the frame's own cbsr-ready and the embed
+       never appears — the page silently falls back to the preview forever. Pin on http(s),
+       where the check does real work; skip it on file://, where there is nothing to pin to
+       and the only document that can be talking to us is the one we loaded ourselves. */
+    var PIN_ORIGIN = /^https?:$/.test(window.location.protocol) ? MAPPER_ORIGIN : '';
 
     function langUrl(lang){ return MAPPER_URL + (MAPPER_URL.indexOf('?')>-1 ? '&' : '?') + 'lang=' + lang; }
+    /* Swap the built-in preview for the live embed. Called only from the mapper's own
+       `cbsr-ready` message, and idempotent, because that message is re-sent on remount. */
+    var frameShown = false;
+    function revealFrame(){
+      if(frameShown) return; frameShown = true;
+      var box=document.getElementById('embed'), cap=document.getElementById('embed-cap'), prev=document.getElementById('preview');
+      if(box) box.hidden=false; if(cap) cap.hidden=false; if(prev) prev.hidden=true;
+    }
     function postToFrame(lang){
       try {
-        if(frame && frame.contentWindow) frame.contentWindow.postMessage({type:'cbsr-lang', lang:lang}, MAPPER_ORIGIN || '*');
+        if(frame && frame.contentWindow) frame.contentWindow.postMessage({type:'cbsr-lang', lang:lang}, PIN_ORIGIN || '*');
       } catch(e){}
     }
     function setLang(lang, opts){
@@ -874,12 +941,13 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
                       AFTER the iframe's `load` event fires, so a language posted on `load`
                       can arrive before anyone is listening. Re-sending on `ready` closes
                       that race, and is what keeps the frame from sitting in one language
-                      while this page shows another.
+                      while this page shows another. It is ALSO the only trustworthy signal
+                      that the embed is really alive, so it is what reveals the frame.
          cbsr-lang  : the visitor switched language inside the frame. Follow it. */
     window.addEventListener('message', function(e){
-      if(MAPPER_ORIGIN && e.origin !== MAPPER_ORIGIN) return;
+      if(PIN_ORIGIN && e.origin !== PIN_ORIGIN) return;
       var d = e.data; if(!d) return;
-      if(d.type === 'cbsr-ready'){ postToFrame(current); return; }
+      if(d.type === 'cbsr-ready'){ revealFrame(); postToFrame(current); return; }
       if(d.type === 'cbsr-lang' && (d.lang==='zh' || d.lang==='en')){
         if(d.lang !== current) setLang(d.lang, {notifyFrame:false});
       }
@@ -902,9 +970,15 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
     } catch(e){}
 
     if (MAPPER_URL) {
+      /* Load the frame, but do NOT swap the preview out for it yet. The old code revealed
+         the embed the moment MAPPER_URL was non-empty, so if the mapper was not deployed,
+         was a stale build, or 404'd, the page showed a blank rectangle where the product
+         is supposed to be. The mapper posts `cbsr-ready` on mount, which is the only
+         signal that it actually rendered — so that message, and nothing else, reveals it.
+         If it never arrives, the built-in corridor picker below stays, and it works: it
+         reads the same register data. Worst case is a smaller demo, never a broken one. */
       if(frame){ frame.src = langUrl(initial); frame.addEventListener('load', function(){ postToFrame(current); }); }
-      var box=document.getElementById('embed'), cap=document.getElementById('embed-cap'), prev=document.getElementById('preview');
-      if(box) box.hidden=false; if(cap) cap.hidden=false; if(prev) prev.hidden=true;
+      if(openLink) openLink.href = langUrl(initial);
     }
 
     /* paint the page; the iframe reads ?lang on its own first load, so don't post yet */
@@ -912,8 +986,11 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
   })();
 </script>
 <!-- Cookieless, aggregate analytics. No cookies, no personal data, no consent banner.
-     Replace YOUR_CF_TOKEN with the token from Cloudflare > Web Analytics > add a site. -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token":"YOUR_CF_TOKEN"}'></script>
+     DISABLED ON PURPOSE: shipped with an unreplaced token, this beacon fires a request that
+     fails on every single page load and fills the console with a network error that has
+     nothing to do with the page. To enable, paste your real token from
+     Cloudflare > Web Analytics > add a site, and uncomment the tag below. -->
+<!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"PASTE_YOUR_CLOUDFLARE_TOKEN"}'></script> -->
 </body>
 </html>
