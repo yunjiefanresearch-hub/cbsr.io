@@ -59,6 +59,24 @@ jobs:
           test -f favicon.svg || { echo "::error::favicon.svg missing"; exit 1; }
           echo "OK: og-card.png and favicon.svg present."
 
+      # The analysis index links to PDFs served from this repo. A missing file ships a
+      # dead link on the page that is meant to be the evidence, so the link set is checked
+      # against the filesystem here rather than discovered by a reader.
+      - name: Check every hosted paper the page links to exists
+        run: |
+          set -euo pipefail
+          missing=0
+          for f in $(grep -o 'href="papers/[^"]*"' index.html | sed 's/href="//;s/"$//' | sort -u); do
+            if [ -f "$f" ]; then
+              echo "  ok   $f"
+            else
+              echo "::error::linked paper missing from the repo: $f"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then exit 1; fi
+          echo "OK: every linked paper is present."
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

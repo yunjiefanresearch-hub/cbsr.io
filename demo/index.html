@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cross-Border Stablecoin Register (CBSR): what clears at every border</title>
-<meta name="description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass. Twelve jurisdictions, fifteen dimensions, cited to primary law.">
+<meta name="description" content="Open, sourced, versioned, machine-readable public data on what clears and what breaks at each regulatory border a cross-border stablecoin flow has to pass. Twelve jurisdictions, fifteen dimensions, cited to primary law. CC-BY-4.0.">
 <meta name="author" content="Yunjie Fan">
 <meta name="theme-color" content="#EDEFEB">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -31,16 +31,13 @@
 <meta property="og:image:alt" content="US to EU clears. EU to US is in transition and resolves to Category II when the GENIUS Act commences, on the earlier of 18 January 2027 or 120 days after final rules. Same border, two answers.">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="zh_CN">
-<link rel="canonical" href="__SITE_URL__">
+<meta name="robots" content="noindex">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="One stablecoin, twelve jurisdictions, a different verdict at every border.">
 <meta name="twitter:description" content="A sourced, versioned, machine-readable map of what clears, and what breaks, at each regulatory border a cross-border stablecoin flow has to pass.">
 <meta name="twitter:image" content="__SITE_URL__og-card.png">
 <meta name="twitter:image:alt" content="US to EU clears. EU to US is in transition and resolves to Category II when the GENIUS Act commences, on the earlier of 18 January 2027 or 120 days after final rules. Same border, two answers.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#EDEFEB; --surface:#FBFBF9; --surface-2:#F5F6F2;
@@ -48,6 +45,7 @@
     --line:#DBDDD4; --line-strong:#C6C8BF;
     --accent:#1E3A5F; --accent-hover:#2C517F; --accent-soft:#E6EBF1;
     --clear:#2E7D46; --gate:#B26B12; --block:#B23B36; --transition:#8B8E84;
+    --serif:'Source Serif 4',Georgia,'Songti SC','Noto Serif CJK SC',Cambria,'Times New Roman',serif;
     --sans:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
     --wrap:1000px;
@@ -59,11 +57,20 @@
   a{color:var(--accent);text-decoration:none}
   a:hover{color:var(--accent-hover)}
   .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
-  .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--muted);
-    text-transform:none;margin:0 0 18px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--ink-2);
+    text-transform:uppercase;margin:0 0 22px;padding-bottom:9px;border-bottom:1px solid var(--line);
+    display:block}
+  html[lang^="zh"] .kick{letter-spacing:0.08em}
+  /* A kicker directly above a section heading would stack two rules a few pixels apart.
+     The heading's own rule is the stronger one, so the kicker drops its hairline. */
+  .kick:has(+ .h-sec){border-bottom:0;padding-bottom:0;margin-bottom:14px}
   .rule{height:1px;background:var(--line);border:0;margin:0}
   section{padding:64px 0}
-  h1,h2,h3{font-weight:600;letter-spacing:-0.01em;margin:0}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-0.005em;margin:0}
+  /* Section headings for the publication index. A rule above and a wide-tracked label is the
+     oldest device in journal typography and it costs nothing. */
+  .h-sec{font-size:clamp(21px,2.6vw,27px);line-height:1.25;margin:0 0 14px;
+    padding-top:16px;border-top:2px solid var(--ink)}
   a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 
   /* header */
@@ -77,7 +84,7 @@
   .nav a{font-size:14.5px;color:var(--ink-2)}
   .nav a:hover{color:var(--accent)}
   .nav .ver{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
-  .langtog{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden}
+  .langtog{display:inline-flex;border:1px solid var(--line-strong);border-radius:2px;overflow:hidden}
   .langtog button{font-family:var(--mono);font-size:12px;padding:4px 9px;border:0;background:var(--surface);color:var(--ink-2);cursor:pointer;line-height:1.2}
   .langtog button+button{border-left:1px solid var(--line-strong)}
   .langtog button.on{background:var(--accent);color:#fff}
@@ -88,7 +95,7 @@
   .hero h1{font-size:clamp(30px,5.2vw,50px);line-height:1.08;letter-spacing:-0.02em;max-width:15ch}
   .hero .lede{font-size:clamp(17px,2.3vw,20px);color:var(--ink-2);max-width:60ch;margin:22px 0 0;line-height:1.5}
   .cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 20px}
-  .btn{font-family:var(--sans);font-size:15px;font-weight:500;padding:11px 20px;border-radius:7px;
+  .btn{font-family:var(--sans);font-size:15px;font-weight:500;padding:11px 20px;border-radius:2px;
     cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
     transition:background .15s,border-color .15s}
   .btn:hover{background:var(--surface-2);border-color:var(--ink-2)}
@@ -96,8 +103,36 @@
   .btn.pri:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
   .meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);line-height:1.9}
 
+  /* ---- hero: asymmetric, argument beside evidence ---- */
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:56px;align-items:start}
+  .hero-main .kick{border-bottom:0;padding-bottom:0;margin-bottom:20px}
+  @media(max-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:38px}}
+
+  .hero-panel{border-top:2px solid var(--ink);padding:14px 0 0;margin-top:6px}
+  .hp-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 16px}
+  .hp-title{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2)}
+  html[lang^="zh"] .hp-title{letter-spacing:0.06em}
+  .hp-ver{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .hp-stats{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  .hp-stats > div{background:var(--paper);padding:12px 2px 13px}
+  .hp-stats dt{font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;color:var(--muted);
+    text-transform:uppercase;margin:0 0 4px}
+  html[lang^="zh"] .hp-stats dt{letter-spacing:0.02em;text-transform:none;font-size:11.5px}
+  .hp-stats dd{font-family:var(--serif);font-size:29px;font-weight:600;line-height:1;color:var(--ink);margin:0}
+  .hp-bar{display:flex;height:7px;margin:20px 0 12px;gap:1px}
+  .hpb{display:block}
+  .hp-key{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;
+    gap:5px 14px;font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+  .hp-key li{display:flex;align-items:center;gap:6px}
+  .hp-key i{width:9px;height:9px;flex:none;display:inline-block}
+  [data-k="I"]{background:var(--clear)} [data-k="II"]{background:var(--gate)}
+  [data-k="III"]{background:#6B7A8F}   [data-k="T"]{background:var(--transition)}
+  [data-k="X"]{background:var(--block)} [data-k="P"]{background:#C6C8BF}
+  .hp-foot{font-size:12.5px;line-height:1.55;color:var(--muted);margin:16px 0 0;
+    padding-top:12px;border-top:1px solid var(--line)}
+
   /* corridor graph */
-  .graph{margin-top:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  .graph{margin-top:8px;background:var(--surface);border:1px solid var(--line);border-radius:2px;
     padding:22px 20px 16px}
   .graph svg{display:block;width:100%;height:auto}
   .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px;padding:0 4px;
@@ -114,9 +149,9 @@
   .selrow{display:flex;flex-direction:column;gap:14px}
   .field label{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin:0 0 6px}
   select{width:100%;font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--surface);
-    border:1px solid var(--line-strong);border-radius:7px;padding:11px 12px;appearance:none;cursor:pointer}
+    border:1px solid var(--line-strong);border-radius:2px;padding:11px 12px;appearance:none;cursor:pointer}
   select:hover{border-color:var(--ink-2)}
-  .verdict{background:var(--ink);color:#EDEFEB;border-radius:10px;padding:20px 22px;font-family:var(--mono);
+  .verdict{background:var(--ink);color:#EDEFEB;border-radius:2px;padding:20px 22px;font-family:var(--mono);
     min-height:150px}
   .verdict .flow{font-size:19px;font-weight:500;letter-spacing:0.02em;display:flex;align-items:center;gap:10px}
   .verdict .arrow{color:var(--muted)}
@@ -133,7 +168,7 @@
      object the picker already speaks, doubled and put on a timeline. */
   .proof{margin-top:24px}
   .pcards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .pcard{background:var(--ink);color:#EDEFEB;border-radius:10px;padding:20px 22px;font-family:var(--mono)}
+  .pcard{background:var(--ink);color:#EDEFEB;border-radius:2px;padding:20px 22px;font-family:var(--mono)}
   .pcard .flow{font-size:19px;font-weight:500;letter-spacing:0.02em;display:flex;align-items:center;gap:10px}
   .pcard .arrow{color:var(--muted)}
   .pcard .line{height:1px;background:rgba(255,255,255,0.16);margin:15px 0}
@@ -142,7 +177,7 @@
   .pcard .stamp{font-size:11.5px;letter-spacing:0.02em;margin:14px 0 0;padding-top:12px;
     border-top:1px solid rgba(255,255,255,0.12);min-height:17px;color:#8B8E84}
   .pcard .stamp.fired{color:#E7B667}
-  .scrub{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 20px 14px}
+  .scrub{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:16px 20px 14px}
   .scrub-lab{display:block;font-family:var(--mono);font-size:12px;letter-spacing:0.04em;color:var(--muted)}
   #asof{width:100%;margin:14px 0 0;accent-color:var(--accent);cursor:pointer;height:20px}
   #asof:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
@@ -171,20 +206,20 @@
   }
 
   /* thesis (USP) */
-  .thesis{border:1px solid var(--line-strong);border-left:3px solid var(--accent);border-radius:12px;
+  .thesis{border:1px solid var(--line-strong);border-left:3px solid var(--accent);border-radius:2px;
     background:var(--surface);padding:26px 30px}
   .thesis .big{font-size:clamp(19px,2.6vw,25px);line-height:1.42;font-weight:500;color:var(--ink);letter-spacing:-0.01em;margin:0}
   .thesis .sub{font-size:16px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;max-width:72ch}
   .thesis .sub b{color:var(--ink);font-weight:600}
 
   /* use cases */
-  .uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:30px}
-  .use{background:var(--surface-2);border:0.5px solid var(--line);border-radius:12px;padding:16px 18px}
+  .uses{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px 30px;margin-top:30px}
+  .use{background:none;border:0;border-top:2px solid var(--ink);padding:14px 0 0}
   .ut{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 5px}
   .ud{font-size:14px;color:var(--ink-2);line-height:1.55;margin:0}
 
   /* embed (live map) */
-  .embed{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);margin-top:8px}
+  .embed{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--surface);margin-top:8px}
   .embed-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
     padding:11px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
   .embed-label{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
@@ -194,11 +229,11 @@
   @media(max-width:640px){#mapframe{min-height:460px;height:70vh}}
 
   /* prose + figures */
-  .lead{font-size:19px;line-height:1.6;color:var(--ink);max-width:66ch;margin:0 0 18px}
+  .lead{font-family:var(--serif);font-size:19.5px;line-height:1.62;color:var(--ink-2);max-width:66ch;margin:0 0 18px}
   .body{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:66ch;margin:0}
   .body b,.lead b{color:var(--ink);font-weight:600}
   .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
-    background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:34px}
+    background:var(--line);border:1px solid var(--line);border-radius:2px;overflow:hidden;margin-top:34px}
   .fig{background:var(--surface);padding:20px 18px}
   .fig .n{font-family:var(--mono);font-size:26px;font-weight:500;color:var(--ink);letter-spacing:-0.01em}
   .fig .l{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.4}
@@ -213,18 +248,53 @@
     border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--accent)}
 
   /* formula highlight */
-  .formula{background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;
+  .formula{background:var(--surface);border:1px solid var(--line-strong);border-radius:2px;
     padding:18px 20px;margin:24px 0;font-family:var(--mono);font-size:14px;line-height:1.9;
     color:var(--ink);overflow-x:auto}
   .formula .op{color:var(--muted)}.formula .val{color:var(--accent)}
   .formula .res{color:var(--clear);font-weight:500}
+
+  /* ---- dated analysis index ----
+     Date in the margin, title, standfirst, extent on the right, hairline between. This is
+     how a research programme is scanned: by date and subject, not by browsing tiles. */
+  .idx{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line-strong)}
+  .idx-item{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:10px 26px;
+    align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+  .idx-date{font-family:var(--mono);font-size:12px;letter-spacing:0.02em;color:var(--muted);
+    white-space:nowrap;padding-top:3px}
+  .idx-t{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.32;margin:0;letter-spacing:0}
+  .idx-t a{color:var(--ink);text-decoration:none;
+    background-image:linear-gradient(var(--line-strong),var(--line-strong));
+    background-size:100% 1px;background-position:0 100%;background-repeat:no-repeat;
+    padding-bottom:1px;transition:color .15s,background-image .15s}
+  .idx-t a:hover{color:var(--accent);
+    background-image:linear-gradient(var(--accent),var(--accent))}
+  .idx-d{font-size:15.5px;line-height:1.62;color:var(--ink-2);margin:7px 0 0;max-width:64ch}
+  .idx-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap;padding-top:4px}
+  @media(max-width:720px){
+    .idx-item{grid-template-columns:minmax(0,1fr);gap:4px;padding:18px 0}
+    .idx-date{padding-top:0}
+    .idx-meta{padding-top:6px}
+  }
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .idx-filter{display:flex;align-items:center;gap:16px;margin:22px 0 0}
+  .idx-filter input{flex:1 1 auto;min-width:0;font-family:var(--sans);font-size:15px;color:var(--ink);
+    background:none;border:0;border-bottom:1px solid var(--line-strong);border-radius:0;
+    padding:9px 2px;outline:none}
+  .idx-filter input::placeholder{color:var(--muted)}
+  .idx-filter input:focus{border-bottom-color:var(--ink)}
+  .idx-count{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .idx-item[hidden]{display:none}
+  .idx-empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:22px 0;
+    border-bottom:1px solid var(--line);list-style:none}
 
   /* papers */
   .papers{margin-top:8px}
   .paper,.rec{display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:baseline;
     padding:16px 0;border-top:1px solid var(--line)}
   .paper:last-child,.rec:last-child{border-bottom:1px solid var(--line)}
-  .paper .t,.rec .t{font-size:16px;font-weight:500;color:var(--ink)}
+  .paper .t,.rec .t{font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.34;color:var(--ink)}
   .paper .d,.rec .d{font-size:14.5px;color:var(--ink-2);margin-top:3px;max-width:62ch}
   .paper .v,.rec .v{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
   a.paper,a.rec{color:inherit;text-decoration:none}
@@ -232,7 +302,9 @@
   a.paper:hover .v,a.rec:hover .v{color:var(--accent)}
 
   /* status */
-  .status{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:26px 26px}
+  .status{background:none;border:0;border-left:2px solid var(--ink);padding:2px 0 2px 26px}
+  /* .body is margin:0 because most sections carry exactly one; #sustain carries two. */
+  .body + .body{margin-top:16px}
   .status .body{color:var(--ink-2);max-width:70ch}
 
   /* inline code token used in the pricing copy; was referenced in markup but never defined,
@@ -265,7 +337,7 @@
       <a href="#method" class="hideable">Method</a>
       <a href="#research" class="hideable">Research</a>
       <a href="#data" class="hideable">Data</a>
-      <a href="#pricing" class="hideable">Pricing</a>
+      <a href="#use" class="hideable">Use it</a>
       <span class="ver">v0.10.1</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
@@ -278,15 +350,46 @@
 <div class="wrap">
 
   <!-- HERO -->
+  <!-- Asymmetric: argument on the left, the register's own counters on the right. The
+       reference design for this slot was a live "regulatory index" reading 84.2 / 100.
+       There is no such index, and inventing a headline number on a page whose entire
+       claim is that every figure traces to a provision would be the one unrecoverable
+       mistake. Every number in the panel below is read from the published dataset and
+       is reproducible from it. -->
   <section class="hero" id="top">
-    <p class="kick">open data &nbsp;·&nbsp; machine-readable &nbsp;·&nbsp; sourced to primary law</p>
-    <h1>One stablecoin, twelve jurisdictions, a different verdict at every border.</h1>
-    <p class="lede">CBSR records what clears, and what breaks, at every regulatory border a cross-border stablecoin flow has to cross. Each fact cites a provision of primary law, carries a date and a version, and is checked by the build. Your counsel can cite it. So can your software.</p>
-    <div class="cta">
-      <a class="btn pri" href="#live">Open the map</a>
-      <a class="btn" href="#method">Read the method</a>
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="kick">open data &nbsp;·&nbsp; machine-readable &nbsp;·&nbsp; sourced to primary law</p>
+        <h1>One stablecoin, twelve jurisdictions, a different verdict at every border.</h1>
+        <p class="lede">CBSR records what clears, and what breaks, at every regulatory border a cross-border stablecoin flow has to cross. Each fact cites a provision of primary law, carries a date and a version, and is checked by the build. Your counsel can cite it. So can your software.</p>
+        <div class="cta">
+          <a class="btn pri" href="#live">Open the map</a>
+          <a class="btn" href="#research">Read the research</a>
+        </div>
+        <p class="meta">CC-BY-4.0 (data) / Apache-2.0 (code) &nbsp;·&nbsp; archived to Zenodo for a DOI &nbsp;·&nbsp; twelve jurisdictions × fifteen dimensions &nbsp;·&nbsp; v0.10.1</p>
+      </div>
+
+      <aside class="hero-panel" aria-label="The register at a glance">
+        <div class="hp-head">
+          <span class="hp-title">The register at a glance</span>
+          <span class="hp-ver">v0.10.1</span>
+        </div>
+        <dl class="hp-stats">
+          <div><dt>Jurisdictions</dt><dd>12</dd></div>
+          <div><dt>Directed corridors</dt><dd>132</dd></div>
+          <div><dt>Sourced records</dt><dd>152</dd></div>
+          <div><dt>Citable as binding law</dt><dd>46</dd></div>
+        </dl>
+        <div class="hp-bar" role="img" aria-label="Of 132 directed corridors: 32 clear, 24 conditional, 29 partnership-only, 25 in transition, 11 blocked, 11 pre-regime.">
+          <span class="hpb" style="flex:32" data-k="I"></span><span class="hpb" style="flex:24" data-k="II"></span><span class="hpb" style="flex:29" data-k="III"></span><span class="hpb" style="flex:25" data-k="T"></span><span class="hpb" style="flex:11" data-k="X"></span><span class="hpb" style="flex:11" data-k="P"></span>
+        </div>
+        <ul class="hp-key">
+          <li><i data-k="I"></i>32 clear</li><li><i data-k="II"></i>24 conditional</li><li><i data-k="III"></i>29 partnership</li>
+          <li><i data-k="T"></i>25 in transition</li><li><i data-k="X"></i>11 blocked</li><li><i data-k="P"></i>11 pre-regime</li>
+        </ul>
+        <p class="hp-foot">Dateline 30 June 2026. Every figure is recomputed from <span class="gk">dataset.json</span> by the build; none is asserted by hand.</p>
+      </aside>
     </div>
-    <p class="meta">CC-BY-4.0 (data) / Apache-2.0 (code) &nbsp;·&nbsp; archived to Zenodo for a DOI &nbsp;·&nbsp; twelve jurisdictions × fifteen dimensions &nbsp;·&nbsp; v0.10.1</p>
   </section>
 
   <hr class="rule">
@@ -503,24 +606,107 @@
   <hr class="rule">
 
   <!-- RESEARCH -->
+  <!-- Two registers of output, kept visually distinct because they are read differently:
+       long-form papers that carry the framework, and a dated analysis index that tracks a
+       live legislative record. The index is reverse-chronological with the date in the
+       margin, which is how a reader scans a research programme rather than a product page. -->
   <section id="research">
-    <p class="kick">the research behind it · six papers, five posted</p>
+    <p class="kick">research</p>
+    <h2 class="h-sec">Working papers</h2>
+    <p class="lead">Six papers carry the framework the register is built on. Five are posted; the corridor atlas is in preparation.</p>
     <div class="papers">
-      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6788361" target="_blank" rel="noopener"><div><div class="t">The Multi-Jurisdiction Stablecoin Compliance Matrix</div><div class="d">The cross-jurisdictional reference the register is built on: six regimes across ten regulatory dimensions, each entry sourced to primary law.</div></div><div class="v">38 pages · SSRN ↗</div></a>
-      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6724920" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition</div><div class="d">Behind one of the two doctrinal spines: five NAV-integrity conditions and four on-chain metrics that separate user-initiated routing from disguised yield under the US CLARITY Act's Section 404.</div></div><div class="v">28 pages · SSRN ↗</div></a>
-      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6822878" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Architecture</div><div class="d">The constraint-interaction framework: eight constraints, six interaction sets, and a pairwise compatibility analysis that treats cross-border compliance as a composition problem.</div></div><div class="v">85 pages · SSRN ↗</div></a>
-      <div class="paper"><div><div class="t">Cross-Border Digital-Finance Corridor Atlas</div><div class="d">The directed-edge model and the six composite feasibility classes that turn the compatibility analysis into corridors.</div></div><div class="v">working draft</div></div>
-      <a class="paper" href="https://papers.ssrn.com/abstract=7055759" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Feasibility Over Time</div><div class="d">A trigger-conditioned forward map: how a corridor's verdict changes on the date a pending law commences, and a typology of triggers by the kind of certainty each carries.</div></div><div class="v">35 pages · SSRN ↗</div></a>
-      <a class="paper" href="https://papers.ssrn.com/abstract=7055678" target="_blank" rel="noopener"><div><div class="t">Citable by Construction</div><div class="d">The evidence model underneath all of it: three orthogonal axes, a build-enforced citable subset, and computed-versus-authored reconciliation.</div></div><div class="v">18 pages · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6788361" target="_blank" rel="noopener"><div><div class="t">The Multi-Jurisdiction Stablecoin Compliance Matrix</div><div class="d">The cross-jurisdictional reference the register is built on: six regimes across ten regulatory dimensions, each entry sourced to primary law.</div></div><div class="v">38 pp · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6724920" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition</div><div class="d">Behind one of the two doctrinal spines: five NAV-integrity conditions and four on-chain metrics that separate user-initiated routing from disguised yield under the US CLARITY Act's Section 404.</div></div><div class="v">28 pp · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6822878" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Architecture</div><div class="d">The constraint-interaction framework: eight constraints, six interaction sets, and a pairwise compatibility analysis that treats cross-border compliance as a composition problem.</div></div><div class="v">85 pp · SSRN ↗</div></a>
+      <div class="paper"><div><div class="t">Cross-Border Digital-Finance Corridor Atlas</div><div class="d">The directed-edge model and the six composite feasibility classes that turn the compatibility analysis into corridors.</div></div><div class="v">in preparation</div></div>
+      <a class="paper" href="https://papers.ssrn.com/abstract=7055759" target="_blank" rel="noopener"><div><div class="t">Cross-Border Stablecoin Feasibility Over Time</div><div class="d">A trigger-conditioned forward map: how a corridor's verdict changes on the date a pending law commences, and a typology of triggers by the kind of certainty each carries.</div></div><div class="v">35 pp · SSRN ↗</div></a>
+      <a class="paper" href="https://papers.ssrn.com/abstract=7055678" target="_blank" rel="noopener"><div><div class="t">Citable by Construction</div><div class="d">The evidence model underneath all of it: three orthogonal axes, a build-enforced citable subset, and computed-versus-authored reconciliation.</div></div><div class="v">18 pp · SSRN ↗</div></a>
     </div>
 
-    <p class="kick" style="margin-top:36px">in the public record</p>
-    <div class="papers">
-      <a class="rec" href="https://www.sec.gov/files/ctf-written-input-fan-050726.pdf" target="_blank" rel="noopener"><div><div class="t">Narrowing the Section 404 Prohibition — written input to the SEC Crypto Task Force</div><div class="d">The same Section 404 framework, filed with the Commission and published on sec.gov: a threshold NAV test, four on-chain metrics, and proposed Committee Report language.</div></div><div class="v">28 pages · sec.gov ↗</div></a>
-      <a class="rec" href="https://sites.duke.edu/thefinregblog/2026/06/15/three-mechanisms-one-policy-monetary-sovereignty-in-cross-border-stablecoin-regulation/" target="_blank" rel="noopener"><div><div class="t">Three Mechanisms, One Policy: Monetary Sovereignty in Cross-Border Stablecoin Regulation</div><div class="d">The monetary-sovereignty dimension in short form: a transaction cap, a professional-investor gate and an outright prohibition read as three instruments serving one policy.</div></div><div class="v">15 Jun 2026 · Duke FinReg Blog ↗</div></a>
+    <h2 class="h-sec" style="margin-top:52px">Analysis</h2>
+    <p class="lead">Short-form work on the legislative record as it moved. Most of the 2026 series tracks a single provision — Section 404 of the US CLARITY Act — through markup, a procedural ruling, and into a three-agency rulemaking.</p>
+    <div class="idx-filter">
+      <label for="idxq" class="sr">Filter the analysis index</label>
+      <input id="idxq" type="search" autocomplete="off" spellcheck="false" placeholder="Filter by title, subject or provision — e.g. Reves, Section 404, currency areas">
+      <span id="idxn" class="idx-count" aria-live="polite"></span>
     </div>
+    <ol class="idx">
 
-    <p class="meta" style="margin-top:20px">Five of the six papers are posted to SSRN; the Corridor Atlas is in preparation. See all work by the author on <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>. Each register release is archived to Zenodo for a DOI; cite the version you used.</p>
+      <li class="idx-item">
+        <span class="idx-date">15 Jun 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="https://sites.duke.edu/thefinregblog/2026/06/15/three-mechanisms-one-policy-monetary-sovereignty-in-cross-border-stablecoin-regulation/" target="_blank" rel="noopener">Three Mechanisms, One Policy: Monetary Sovereignty in Cross-Border Stablecoin Regulation</a></h3>
+          <p class="idx-d">A transaction cap, a professional-investor gate and an outright prohibition, read as three instruments serving one policy.</p>
+        </div>
+        <span class="idx-meta">Duke FinReg Blog ↗</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">27 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/reves-fourth-factor-six-jurisdictions.pdf" target="_blank" rel="noopener">Reves' Fourth Factor and Stablecoin Routing Across Six Jurisdictions</a></h3>
+          <p class="idx-d">Whether the fourth factor directs Section 404 to step back when the routing destination is a fund registered under the Investment Company Act — and whether the parallel-track architecture that reading preserves is a US idiosyncrasy or a structural feature of Reves-style regimes.</p>
+        </div>
+        <span class="idx-meta">8 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">23 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/stablecoin-yield-rule-three-agencies.pdf" target="_blank" rel="noopener">A Stablecoin Yield Rule Goes to Three Agencies</a></h3>
+          <p class="idx-d">With the comparator phrase fixed at the 14 May markup, the substantive negotiation ends and a joint SEC / CFTC / Treasury rulemaking begins. What the two prongs actually hand the agencies is harder than the public debate suggests.</p>
+        </div>
+        <span class="idx-meta">3 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">21 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/regulatory-discount-token-launches.pdf" target="_blank" rel="noopener">The Regulatory Discount on Token Launches Is Closing</a></h3>
+          <p class="idx-d">Of 118 tokens launched in 2025, 84.7 per cent trade below their listing valuation. Four frameworks now define a perimeter inside which one narrow class of launches can shed its implicit enforcement discount — and which side of it a token sits on decides what a high-FDV launch can defend.</p>
+        </div>
+        <span class="idx-meta">5 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">19 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/three-currency-areas.pdf" target="_blank" rel="noopener">Three Currency Areas Are Forcing Stablecoins to Split</a></h3>
+          <p class="idx-d">Why a single dollar-anchored rail cannot serve the European Union, Hong Kong and mainland China at scale. The yield prohibition leaks vertically; the architecture problem runs horizontally, and the horizontal version may matter more.</p>
+        </div>
+        <span class="idx-meta">7 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">15 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/reed-smith-ruling-section-404.pdf" target="_blank" rel="noopener">What the Reed–Smith Procedural Ruling Settled About Section 404</a></h3>
+          <p class="idx-d">The amendment that would have replaced the operative comparator phrase was ruled out of order. What survived is the word "solely" in the trigger clause — and the joint rulemaking now starts from a fixed comparator and a working "solely".</p>
+        </div>
+        <span class="idx-meta">5 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">11 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="papers/wallets-route-into-registered-funds.pdf" target="_blank" rel="noopener">When Wallets Route Into Registered Funds</a></h3>
+          <p class="idx-d">A user taps to route 500 USDC into a registered government money fund and signs. Is that signature a yield event the prohibition reaches, or a securities transaction it leaves alone? The question has a settled doctrinal home.</p>
+        </div>
+        <span class="idx-meta">5 pp · PDF</span>
+      </li>
+
+      <li class="idx-item">
+        <span class="idx-date">6 May 2026</span>
+        <div class="idx-main">
+          <h3 class="idx-t"><a href="https://www.sec.gov/files/ctf-written-input-fan-050726.pdf" target="_blank" rel="noopener">Narrowing the Section 404 Prohibition — written input to the SEC Crypto Task Force</a></h3>
+          <p class="idx-d">The threshold NAV test, four on-chain metrics, and proposed Committee Report language, filed with the Commission and published on sec.gov.</p>
+        </div>
+        <span class="idx-meta">28 pp · sec.gov ↗</span>
+      </li>
+
+    </ol>
+
+    <p class="meta" style="margin-top:26px">Working papers are posted to SSRN; see the <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">author page</a>. Each register release is archived to Zenodo for a DOI; cite the version you used. Analysis pieces are dated on the record they describe and are not revised afterwards.</p>
   </section>
 
   <hr class="rule">
@@ -549,19 +735,38 @@
 
   <hr class="rule">
 
-  <!-- PRICING -->
-  <section id="pricing">
-    <p class="kick">pricing</p>
-    <p class="lead">The register is open. What costs money is keeping it current, standing behind it, and reading it for you.</p>
+  <!-- USE IT -->
+  <!-- Replaces the former pricing block. Under an open-infrastructure posture the question a
+       visitor arrives with is not "what does it cost" but "how do I get it and what may I rely
+       on". Those are the two sections below. -->
+  <section id="use">
+    <p class="kick">use it</p>
+    <p class="lead">Open data, open code, no account, no key, no rate card. Four ways in, depending on what is doing the reading.</p>
     <div class="uses">
-      <div class="use"><p class="ut">The register &nbsp;·&nbsp; free</p><p class="ud">Every record, CC-BY-4.0. Download <span class="gk">dataset.json</span>, run the MCP server yourself, cite the version DOI. The snapshot is yours to keep and to fork.</p></div>
-      <div class="use"><p class="ut">Hosted endpoint &nbsp;·&nbsp; $400 / month</p><p class="ud">The same typed tools, pointed at the current register instead of a snapshot you have to re-pull. For teams building on it. Best-effort freshness, fair-use limits.</p></div>
-      <div class="use"><p class="ut">Hosted with an SLA &nbsp;·&nbsp; $1,500 / month</p><p class="ud">Uptime and freshness you can put in a dependency list, a support address, and a person who answers it. For anything you would page someone about.</p></div>
-      <div class="use"><p class="ut">Corridor memo &nbsp;·&nbsp; $6,000</p><p class="ud">Your corridors, read at today's date and at each scheduled change, every line pinned to primary law. One page, two weeks. Decision-support research, not legal advice.</p></div>
+      <div class="use"><p class="ut">A human reading &nbsp;·&nbsp; the map above</p><p class="ud">Pick an origin and a destination, move the date, read the verdict and the provision it rests on. Nothing to install. Everything on this page is computed from the same register.</p></div>
+      <div class="use"><p class="ut">A program reading &nbsp;·&nbsp; <span class="gk">dataset.json</span></p><p class="ud">One file: 152 sourced records, the compatibility matrix, the 132 directed corridors, the citable subset. Schema-validated, CC-BY-4.0. Fork it, vendor it, diff it against the next release.</p></div>
+      <div class="use"><p class="ut">An agent reading &nbsp;·&nbsp; the MCP server</p><p class="ud">Around thirty typed tools: query a jurisdiction, compare a dimension, compose a corridor at a date, pull the lawyer-citable subset. Apache-2.0, run it yourself. A general model answers from a citation instead of a paraphrase.</p></div>
+      <div class="use"><p class="ut">Citing it &nbsp;·&nbsp; the version DOI</p><p class="ud">Every release is archived to Zenodo. Cite the version you actually read, not "the website". The register is dated by construction, so a citation that omits the version is a citation to nothing in particular.</p></div>
     </div>
-    <p class="meta" style="margin-top:20px">A law firm charges roughly this for a scoping memo that answers once. This answers on the date you ask, and again when the law moves. Point-in-time attestations for an audit file: ask.</p>
-    <div class="cta" style="margin:18px 0 0">
-      <a class="btn pri" href="mailto:yunjiefan.research@gmail.com?subject=CBSR%20API%20access">Get the API</a>
+  </section>
+
+  <!-- WHAT YOU MAY RELY ON -->
+  <section id="commitment">
+    <p class="kick">what you may rely on</p>
+    <div class="status">
+      <p class="body">This is a <strong>dated snapshot, not a live feed</strong>, and the distinction is the whole contract. Each release is versioned, archived to a DOI, and true as of the date it carries. Between releases nothing is promised: law moves, and this register does not move with it until the next build. There is no uptime commitment, no support queue, and no undertaking that any corridor still reads today what it read at the dateline — <strong>verify against the primary source before you rely on it</strong>. What is promised instead is narrower and checkable: every claim carries the provision it rests on and the date it was read, the citable subset is enforced by the build rather than asserted in prose, and the unverified backlog is published as a per-cell worklist rather than left implicit. Treat it the way you would treat a dated legal memorandum, because that is what it is.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT IS SUSTAINED -->
+  <section id="sustain">
+    <p class="kick">how it is sustained</p>
+    <p class="lead">One person, no funding, no commercial relationship to anything it describes.</p>
+    <p class="body" style="max-width:70ch">The register takes no compensation, direct or contingent, from any issuer, exchange, or intermediary in it, and there is no advisory, consulting or employment relationship tied to it. That independence is why it can say a corridor is blocked. It is also why coverage is twelve jurisdictions rather than fifty, and why the verification backlog is real: primary-source checking is the slow, unglamorous half of the work, and it is done by hand.</p>
+    <p class="body" style="max-width:70ch">The useful contributions are, in order: <strong>a primary-source correction</strong> — a cell where the text says something other than what the record says, with the provision; <strong>a jurisdiction maintainer</strong> — one person who reads one legal system and keeps its cells honest; and <strong>an institutional home</strong> — a university centre, standards body or public-interest funder for whom a verified, machine-readable account of cross-border digital-asset law is worth keeping current. Corrections go to the issue tracker. Everything else: <a href="mailto:yunjiefan.research@gmail.com?subject=CBSR">email</a>.</p>
+    <div class="cta" style="margin:22px 0 0">
+      <a class="btn pri" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/issues" target="_blank" rel="noopener">Report a correction</a>
+      <a class="btn" href="mailto:yunjiefan.research@gmail.com?subject=CBSR%20maintainer">Maintain a jurisdiction</a>
     </div>
   </section>
 
@@ -571,8 +776,8 @@
   <section id="about">
     <p class="kick">who made it</p>
     <div class="about">
-      <p class="who">The map above is live and queryable today: twelve jurisdictions, 132 directed corridors, an MCP server your agents can call, and a version you can cite. Point your stack at it.</p>
-      <p class="sub"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. Six papers, five posted to SSRN, one filed with the SEC Crypto Task Force. The register, its build pipeline, its evidence model, and the tool above are one person's work. Also open to roles, funding, and acquisition conversations: <a href="mailto:yunjiefan.research@gmail.com">email me</a>.</p>
+      <p class="who">The map above is live and queryable today: twelve jurisdictions, 132 directed corridors, an MCP server your agents can call, and a version you can cite. It is free, and it stays free.</p>
+      <p class="sub"><b>Yunjie Fan</b>, an independent researcher on cross-jurisdictional digital-asset regulation. Six papers, five posted to SSRN, one filed with the SEC Crypto Task Force. The register, its build pipeline, its evidence model, and the tool above are one person's work, published as open data and open code rather than as a product. For corrections, collaboration, or an institutional home for the register: <a href="mailto:yunjiefan.research@gmail.com">email me</a>.</p>
       <div class="idlinks">
         <a href="https://orcid.org/0009-0005-6762-084X">ORCID 0009-0005-6762-084X</a>
         <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068">SSRN author</a>
@@ -585,7 +790,7 @@
 <footer>
   <div class="wrap">
     <span>Cross-Border Stablecoin Register · v0.10.1</span>
-    <span>data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a></span>
+    <span>data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
   </div>
 </footer>
@@ -595,7 +800,7 @@
    *  CONFIG: your deployed mapper URL. The page shows the         *
    *  corridor preview until this is set.                          *
    * ============================================================= */
-  var MAPPER_URL = "https://yunjiefanresearch-hub.github.io/cbsr-mapper/";
+  var MAPPER_URL = "./mapper.html";   // OFFLINE DEMO: the mapper sits next to this file
 
   (function(){
     /* The deploy workflow stamps the real Pages URL into og:url, og:image and canonical,
@@ -620,7 +825,13 @@
        innerHTML for each element (or an array, applied in DOM order). */
     var ZH = [
       {sel:'.brand span', zh:'跨境稳定币登记册'},
-      {sel:'.nav a.hideable', zh:['定位','意义','地图','方法','研究','数据','定价']},
+      {sel:'.hp-title', zh:'登记册概览'},
+      {sel:'.hp-stats dt', zh:['法域','有向通道','溯源记录','可作为约束性法律引用']},
+      {sel:'.hp-key li', zh:['32 通行','24 有条件','29 需合作','25 过渡中','11 禁止','11 无制度']},
+      {sel:'.hp-foot', zh:'截止 2026 年 6 月 30 日。以上每一个数字都由构建流程从 <span class="gk">dataset.json</span> 重新计算得出，没有一个是手写的。'},
+      {sel:'.idx-filter .sr', zh:'筛选分析索引'},
+      {sel:'#idxq', attr:'placeholder', zh:'按标题、主题或条款筛选——如 Reves、Section 404、currency areas'},
+      {sel:'.nav a.hideable', zh:['定位','意义','地图','方法','研究','数据','怎么用']},
 
       {sel:'#top .kick', zh:'开放数据 · 机器可读 · 溯源至一手法律'},
       {sel:'#top h1', zh:'同一枚稳定币，十二个法域，每一道边界给出不同的结论。'},
@@ -688,7 +899,12 @@
       ]},
       {sel:'#method .formula .res', zh:'46 条可引用记录'},
 
-      {sel:'#research .kick', zh:['背后的研究 · 六篇论文，五篇已发布','进入公共记录']},
+      {sel:'#research .kick', zh:'研究'},
+      {sel:'#research .h-sec', zh:['工作论文','分析']},
+      {sel:'#research .lead', zh:[
+        '六篇论文承载着这份登记册所依据的框架。其中五篇已发布，通道图集仍在筹备。',
+        '短文，写在立法记录推进的当口。2026 年这一组多数追踪同一个条款——美国 CLARITY 法案第 404 条——从委员会审议、一次程序性裁定，一直到三家机构的联合规则制定。'
+      ]},
       {sel:'#research .paper .d', zh:[
         '登记册所依据的跨法域参考：六个制度、十个监管维度，每一条都溯源至一手法律。',
         '两条学理主轴之一的背后：五个 NAV 完整性条件和四个链上指标，在美国 CLARITY Act 第 404 条下区分「用户主动路由」与「变相付息」。',
@@ -697,13 +913,23 @@
         '一张以触发为条件的前瞻地图：一条走廊的结论在某部待决法律生效当天会如何改变，以及按确定性种类对触发事件的分类。',
         '支撑这一切的证据模型：三条正交轴、一个构建期强制的可引用子集，以及计算与手写之间的对账。'
       ]},
-      {sel:'#research .paper .v', zh:['38 页 · SSRN ↗','28 页 · SSRN ↗','85 页 · SSRN ↗','工作稿','35 页 · SSRN ↗','18 页 · SSRN ↗']},
-      {sel:'#research .rec .d', zh:[
-        '同一套第 404 条框架，作为书面意见提交给美国证监会，并发布于 sec.gov：一个门槛性的 NAV 检验、四个链上指标，以及建议写入委员会报告的条文。',
-        '货币主权维度的短文版：把交易额上限、专业投资者门槛与彻底禁止，读作服务于同一项政策的三种工具。'
+      {sel:'#research .paper .v', zh:['38 页 · SSRN ↗','28 页 · SSRN ↗','85 页 · SSRN ↗','筹备中','35 页 · SSRN ↗','18 页 · SSRN ↗']},
+      /* Publication titles are deliberately NOT translated, here or in the working-paper
+         list above. A title is a citation handle: it is how the piece is searched for on
+         SSRN, on sec.gov and in a footnote, and a translated one retrieves nothing. The
+         standfirsts below carry the meaning instead. */
+      {sel:'#research .idx-d', zh:[
+        '一项交易额上限、一道专业投资者门槛、一条彻底禁止——读作服务于同一项政策的三种工具。',
+        '当路由的终点是一只依《投资公司法》注册的基金时，第四要素是否指示第 404 条退后一步；以及这一读法所保全的双轨架构，究竟是美国的特例，还是所有采用 Reves 式划分的制度共有的结构性特征。',
+        '比较基准的措辞在 5 月 14 日委员会审议中定稿，实质性谈判就此结束，接力棒交到 SEC、CFTC 与财政部的联合规则制定。这两个分句真正丢给三家机构的难题，比公开讨论所呈现的要棘手。',
+        '2025 年发行的 118 个代币中，84.7% 跌破发行估值。四套框架如今划出了一道边界，边界之内，某一类窄口径的发行可以摆脱其隐含的执法折价——而一个代币落在边界哪一侧，决定了一次高 FDV 发行还能守住什么。',
+        '为什么一条锚定美元的通道无法同时规模化服务欧盟、香港与中国内地。收益禁令在纵向上会渗漏；而架构问题是横向的，横向的那一面可能更要紧。',
+        '那项本会替换核心比较基准措辞的修正案被裁定不合程序。留存下来的是触发条款里的「solely」一词——联合规则制定如今从一个已固定的比较基准和一个仍在起作用的「solely」出发。',
+        '用户点一下，把 500 USDC 路由进一只注册的政府货币基金，然后签名。这个签名是禁令所及的收益事件，还是它不予干预的证券交易？这个问题有一个早已确定的学理归属。',
+        '门槛性的 NAV 检验、四个链上指标，以及建议写入委员会报告的条文，已提交美国证监会并发布于 sec.gov。'
       ]},
-      {sel:'#research .rec .v', zh:['28 页 · sec.gov ↗','2026-06-15 · Duke FinReg Blog ↗']},
-      {sel:'#research .meta', zh:'六篇论文中已有五篇发布于 SSRN；走廊图集仍在筹备中。作者的全部工作见 <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">SSRN</a>。每个登记册版本都会存档至 Zenodo 以获取 DOI；请引用你所使用的版本。'},
+      {sel:'#research .idx-meta', zh:['Duke FinReg Blog ↗','8 页 · PDF','3 页 · PDF','5 页 · PDF','7 页 · PDF','5 页 · PDF','5 页 · PDF','28 页 · sec.gov ↗']},
+      {sel:'#research .meta', zh:'工作论文发布于 SSRN，见<a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11463068" target="_blank" rel="noopener">作者页</a>。每个登记册版本都会存档至 Zenodo 以获取 DOI；请引用你所使用的版本。分析类短文以其所描述的记录之日期为准，事后不再修订。'},
 
       {sel:'#data .kick', zh:'为读取监管的软件而设'},
       {sel:'#data .body', zh:'登记册以单个 <code style="font-family:var(--mono);font-size:15px">dataset.json</code> 和一个 MCP server 的形式交付，后者通过约三十个类型化工具向 agent 开放：查询一个法域、比较一个维度、组合某个日期上的一条走廊，或直接拉取律师可引用子集。持续集成在每一次改动上运行校验、不变式与负向测试，因此一条非法记录、或一条与矩阵矛盾的走廊，都无法被合入。一个通用模型可以调用这些工具、基于登记册作答并附上引用，而不是靠猜。'},
@@ -712,26 +938,35 @@
       {sel:'#status .kick', zh:'状态 · 覆盖范围与版本'},
       {sel:'#status .body', zh:'登记册目前处于 v0.10.x：在十二个法域上深挖，而不是求广。其中 46 条满足完整的可引用标准（法律命题 · 官方文本已核 · 已生效）；其余已在制度状态层面确认，一手条文核验仍在推进，并以逐格工作清单的形式公开，而不是留作暗账。监管变动之快也要求这样做：台湾的制度就在本次构建当天下午三读通过。因此这个登记册是带版本、带日期的，每一条主张都标明它被读取的时点。它提供的不是对一切的覆盖，而是对它确实覆盖的那些走廊，给出一份经核验、可引用、机器可查询的说明。'},
 
-      {sel:'#pricing .kick', zh:'定价'},
-      {sel:'#pricing .lead', zh:'登记册本身是开放的。收费的是让它保持时效、为它背书，以及替你去读它。'},
-      {sel:'#pricing .use .ut', zh:[
-        '登记册 &nbsp;·&nbsp; 免费',
-        '托管接口 &nbsp;·&nbsp; $400 / 月',
-        '托管接口 + SLA &nbsp;·&nbsp; $1,500 / 月',
-        '走廊备忘录 &nbsp;·&nbsp; $6,000'
+      {sel:'#use .kick', zh:'怎么用'},
+      {sel:'#use .lead', zh:'开放数据、开放代码，不需要账号、不需要密钥，也没有价目表。四条入口，取决于是谁在读。'},
+      {sel:'#use .use .ut', zh:[
+        '人来读 &nbsp;·&nbsp; 上面那张地图',
+        '程序来读 &nbsp;·&nbsp; <span class="gk">dataset.json</span>',
+        'Agent 来读 &nbsp;·&nbsp; MCP server',
+        '引用它 &nbsp;·&nbsp; 版本 DOI'
       ]},
-      {sel:'#pricing .use .ud', zh:[
-        '全部记录，CC-BY-4.0。下载 <span class="gk">dataset.json</span>、自行运行 MCP server、引用版本 DOI。这份快照归你所有，可自由留存与 fork。',
-        '同样的类型化工具，指向当前的登记册，而不是一份你得自己重新拉取的快照。面向在其上构建的团队。尽力保证时效，公平使用限额。',
-        '可以写进依赖清单的可用性与时效承诺，一个支持邮箱，以及一个会回复它的人。适用于任何你会为之呼叫值班的场景。',
-        '你的走廊，读在今天以及每一个已排定的变更日上，每一行都锚定到一手法律。一页纸，两周交付。这是决策支持研究，不是法律意见。'
+      {sel:'#use .use .ud', zh:[
+        '选起点、选目的地、拖动日期，读结论以及它所依据的条文。无需安装。本页的一切都由同一份登记册计算得出。',
+        '一个文件：152 条溯源记录、兼容性矩阵、132 条有向通道、可引用子集。经 schema 校验，CC-BY-4.0。可 fork、可随代码一起留存、可与下一版做 diff。',
+        '约三十个类型化工具：查询一个法域、比较一个维度、在某个日期上组合一条通道、拉取律师可引用子集。Apache-2.0，自行部署。通用模型由此从一条引用出发作答，而不是从一段转述。',
+        '每个版本都归档到 Zenodo。请引用你实际读到的那一版，而不是「这个网站」。这份登记册在构造上就是带日期的，因此一条不写版本的引用，等于没有指向任何确定的东西。'
       ]},
-      {sel:'#pricing .meta', zh:'一家律所收取大致相同的价格，给你一份只回答一次的范围备忘录。这一份在你提问的那个日期上回答，并在法律变动时再回答一次。审计留痕所需的时点证明：可以谈。'},
-      {sel:'#pricing .btn.pri', zh:'获取 API 访问'},
+
+      {sel:'#commitment .kick', zh:'你可以依赖什么'},
+      {sel:'#commitment .body', zh:'这是一份<strong>带日期的快照，不是实时数据源</strong>——这个区别就是全部的约定。每个版本都带版本号、归档到 DOI，并且在它所标注的日期上为真。两次发布之间不承诺任何事：法律会动，而这份登记册在下一次构建之前不会跟着动。没有可用性承诺，没有支持队列，也不保证任何一条通道今天读到的结论仍与截止日当天一致——<strong>在依赖它之前，请回到一手法条核对</strong>。作为交换，被承诺的东西更窄、也更可检验：每一条主张都带着它所依据的条文和被读取的日期；可引用子集由构建流程强制，而不是在文字里声称；未核验的部分作为逐格工作清单公开，而不是留作暗账。请把它当作一份带日期的法律备忘录来对待——它本来就是。'},
+
+      {sel:'#sustain .kick', zh:'它靠什么维持'},
+      {sel:'#sustain .lead', zh:'一个人，没有资助，与它所描述的任何一方都没有商业关系。'},
+      {sel:'#sustain .body', zh:[
+        '这份登记册不向其中任何发行方、交易所或中介收取任何直接或附条件的报酬，也不存在与之相关的顾问、咨询或雇佣关系。正是这份独立性，才让它可以直说某条通道走不通。同样也正因如此，覆盖面是十二个法域而不是五十个，而那份核验积压是真实存在的：回到一手条文逐条核对，是这项工作里缓慢且不出彩的那一半，并且是手工完成的。',
+        '真正有用的贡献，按优先次序是：<strong>一处一手法条更正</strong>——某一格的条文原文与记录所写不一致，请附上条文出处；<strong>一位法域维护者</strong>——一个人读一套法律，把这套法域的格子看住；以及<strong>一个机构归属</strong>——某个大学中心、标准组织或公共利益资助方，认为一份经核验、机器可读的跨境数字资产法记录值得持续维护。更正请走 issue，其余事项请<a href="mailto:yunjiefan.research@gmail.com?subject=CBSR">发邮件</a>。'
+      ]},
+      {sel:'#sustain .cta .btn', zh:['提交一处更正','认领一个法域']},
 
       {sel:'#about .kick', zh:'由谁制作'},
-      {sel:'#about .who', zh:'上面那张地图今天就是可查询的：十二个法域、132 条有向走廊、一个你的 agent 可以调用的 MCP server，以及一个你可以引用的版本。把你的技术栈指向它。'},
-      {sel:'#about .sub', zh:'<b>Yunjie Fan</b>，一名研究跨法域数字资产监管的独立研究者。六篇论文，其中五篇已发布于 SSRN，一篇作为书面意见提交给美国证监会 Crypto Task Force。这个登记册、它的构建流水线、它的证据模型，以及上方那个工具，都是一个人的工作。同时欢迎就岗位、投资与收购洽谈：<a href="mailto:yunjiefan.research@gmail.com">邮件联系</a>。'},
+      {sel:'#about .who', zh:'上面那张地图今天就是可查询的：十二个法域、132 条有向走廊、一个你的 agent 可以调用的 MCP server，以及一个你可以引用的版本。它是免费的，并且会一直免费。'},
+      {sel:'#about .sub', zh:'<b>Yunjie Fan</b>，一名研究跨法域数字资产监管的独立研究者。六篇论文，其中五篇已发布于 SSRN，一篇作为书面意见提交给美国证监会 Crypto Task Force。这个登记册、它的构建流水线、它的证据模型，以及上方那个工具，都是一个人的工作，以开放数据与开放代码的形式发布，而不是作为一个产品。更正、合作，或为登记册寻找一个机构归属：<a href="mailto:yunjiefan.research@gmail.com">邮件联系</a>。'},
 
       {sel:'footer .wrap span:nth-child(1)', zh:'跨境稳定币登记册 · v0.10.1'},
       {sel:'footer .wrap span:nth-child(2)', zh:'数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">引用对应版本 DOI</a>'}
@@ -739,14 +974,25 @@
 
     var enCache = null, current = 'en', frame = null, openLink = null;
 
+    /* An entry may carry `attr`, in which case it translates that ATTRIBUTE rather than the
+       element's contents. Needed for the index filter, whose visible English lives in a
+       placeholder; writing innerHTML on an <input> sets nothing and silently loses the
+       translation. Cache and paint have to agree on which of the two is being read. */
+    function readEN(el, entry){
+      if (!el) return null;
+      return entry.attr ? el.getAttribute(entry.attr) : el.innerHTML;
+    }
+    function writeText(el, entry, value){
+      if (!el || value == null) return;
+      if (entry.attr) el.setAttribute(entry.attr, value); else el.innerHTML = value;
+    }
     function cacheEN(){
       enCache = ZH.map(function(entry){
         if (Array.isArray(entry.zh)) {
           var els = document.querySelectorAll(entry.sel);
-          return entry.zh.map(function(_,k){ return els[k] ? els[k].innerHTML : null; });
+          return entry.zh.map(function(_,k){ return readEN(els[k], entry); });
         }
-        var el = document.querySelector(entry.sel);
-        return el ? el.innerHTML : null;
+        return readEN(document.querySelector(entry.sel), entry);
       });
     }
     function paintText(lang){
@@ -755,11 +1001,10 @@
         if (Array.isArray(entry.zh)) {
           var els = document.querySelectorAll(entry.sel);
           entry.zh.forEach(function(zhv, k){
-            if (els[k]) els[k].innerHTML = (lang==='zh') ? zhv : enCache[i][k];
+            writeText(els[k], entry, (lang==='zh') ? zhv : enCache[i][k]);
           });
         } else {
-          var el = document.querySelector(entry.sel);
-          if (el) el.innerHTML = (lang==='zh') ? entry.zh : enCache[i];
+          writeText(document.querySelector(entry.sel), entry, (lang==='zh') ? entry.zh : enCache[i]);
         }
       });
       document.documentElement.lang = (lang==='zh') ? 'zh-Hans' : 'en';
@@ -916,7 +1161,7 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
     }
     function postToFrame(lang){
       try {
-        if(frame && frame.contentWindow) frame.contentWindow.postMessage({type:'cbsr-lang', lang:lang}, PIN_ORIGIN || '*');
+        if(frame && frame.contentWindow) frame.contentWindow.postMessage({type:'cbsr-lang', lang:lang}, (frame.hasAttribute('srcdoc') ? '*' : PIN_ORIGIN) || '*');
       } catch(e){}
     }
     function setLang(lang, opts){
@@ -930,11 +1175,48 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
       for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('on', btns[i].getAttribute('data-lang')===lang); }
       try { localStorage.setItem('cbsr-lang', lang); } catch(e){}
       if(openLink && MAPPER_URL) openLink.href = langUrl(lang);
+      /* The index filter renders its own count string ("6 of 8" / "6 / 8 篇"), which the
+         translation map cannot reach because the text is generated, not authored. Tell it
+         to re-render rather than leaving a stale English count under a Chinese page. */
+      try{ window.dispatchEvent(new Event('cbsr-lang-changed')); }catch(e){}
       if(opts.notifyFrame !== false) postToFrame(lang);
     }
 
     var tog = document.getElementById('langtog');
     if(tog){ tog.addEventListener('click', function(e){ var b=e.target.closest('button'); if(b) setLang(b.getAttribute('data-lang'), {notifyFrame:true}); }); }
+
+
+  /* ---- filter the analysis index ----------------------------------------------------
+     Client-side, over text already in the DOM: no request, no separate search index to
+     keep in sync with the list, and with scripting off the full list simply stays. The
+     haystack is the whole row — title, standfirst and date — so "MiCA", "Reves", "404"
+     and "May 2026" all work without a tagging vocabulary nobody would maintain. */
+  (function(){
+    var q = document.getElementById('idxq'), out = document.getElementById('idxn');
+    if(!q || !out) return;
+    var list = document.querySelector('.idx');
+    var items = [].slice.call(document.querySelectorAll('.idx .idx-item'));
+    var empty = document.createElement('li');
+    empty.className = 'idx-empty'; empty.hidden = true;
+    if(list) list.appendChild(empty);
+
+    /* The document advertises zh-Hans, not bare "zh" — match on the prefix. */
+    function zh(){ return /^zh/.test(document.documentElement.getAttribute('lang') || ''); }
+    function run(){
+      var term = q.value.trim().toLowerCase().replace(/\u00a7/g, '');
+      var n = 0;
+      items.forEach(function(li){
+        var hit = !term || li.textContent.toLowerCase().replace(/\u00a7/g,'').indexOf(term) > -1;
+        li.hidden = !hit; if(hit) n++;
+      });
+      empty.hidden = n !== 0;
+      empty.textContent = zh() ? '没有匹配的分析。' : 'No analysis matches that.';
+      out.textContent = zh() ? (n + ' / ' + items.length + ' 篇') : (n + ' of ' + items.length);
+    }
+    q.addEventListener('input', run);
+    window.addEventListener('cbsr-lang-changed', run);
+    run();
+  })();
 
     /* Messages from the mapper. Two kinds:
          cbsr-ready : the mapper has mounted and is listening. React registers its listener
@@ -945,7 +1227,12 @@ var TRANS=[["AE>US","2027-01-18","II"],["BR>US","2027-01-18","II"],["CH>US","202
                       that the embed is really alive, so it is what reveals the frame.
          cbsr-lang  : the visitor switched language inside the frame. Follow it. */
     window.addEventListener('message', function(e){
-      if(PIN_ORIGIN && e.origin !== PIN_ORIGIN) return;
+      /* A srcdoc frame — the single-file offline build — is same-document but reports an
+         OPAQUE origin ("null"), so pinning to this page's own origin would reject the frame we
+         embedded ourselves and the embed would never reveal. There is no third party to guard
+         against when the markup came out of this very file, so accept it. */
+      var selfEmbedded = e.origin === 'null' && frame && frame.hasAttribute('srcdoc');
+      if(PIN_ORIGIN && !selfEmbedded && e.origin !== PIN_ORIGIN) return;
       var d = e.data; if(!d) return;
       if(d.type === 'cbsr-ready'){ revealFrame(); postToFrame(current); return; }
       if(d.type === 'cbsr-lang' && (d.lang==='zh' || d.lang==='en')){

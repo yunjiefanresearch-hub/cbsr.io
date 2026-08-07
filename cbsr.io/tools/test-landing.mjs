@@ -1,5 +1,6 @@
 import { chromium } from "playwright";   // npx playwright install chromium
 import path from "node:path";
+import fs from "node:fs";
 
 const FILE = "file://" + path.resolve(process.argv[2] || "landing/cbsr-landing/index.html");
 const CJK = /[\u3400-\u9FFF\u3000-\u303F\uFF00-\uFFEF]/;
@@ -24,10 +25,24 @@ const placeholders = await p.evaluate(() =>
     .filter((v) => v.includes("__SITE_URL__")).length);
 check("no __SITE_URL__ placeholder survives", placeholders === 0, `${placeholders} left`);
 
-// 2 ── the embed must NOT be showing when the mapper is unreachable
-const embedHidden = await p.evaluate(() => document.getElementById("embed").hidden);
-const previewShown = await p.evaluate(() => !document.getElementById("preview").hidden);
-check("blank iframe never shown when mapper unreachable", embedHidden && previewShown);
+// 2 ── the real invariant is not "the embed is hidden" — that only holds where the mapper
+// is unreachable. It is that the visitor is NEVER shown an empty box: either the built-in
+// preview is up, or the embed is up AND the frame actually mounted. Asserting the narrower
+// version made the demo copy, where the mapper sits next to the page and correctly loads,
+// look like a regression.
+await p.waitForTimeout(1200);
+const shown = await p.evaluate(() => ({
+  embed: !document.getElementById("embed").hidden,
+  preview: !document.getElementById("preview").hidden,
+}));
+let frameLive = false;
+if (shown.embed) {
+  frameLive = await p.frameLocator("#mapframe").locator(".wrap").count()
+    .then((n) => n > 0).catch(() => false);
+}
+check("the map area is never an empty box",
+  (shown.preview && !shown.embed) || (shown.embed && frameLive),
+  `embed=${shown.embed} preview=${shown.preview} frameMounted=${frameLive}`);
 
 // 3 ── the built-in corridor picker computes from the register
 const verdictEN = await p.evaluate(() => {
@@ -68,6 +83,9 @@ const leftovers = await p.evaluate((cjkSrc) => {
     if (cjk.test(s)) continue;
     const el = n.parentElement;
     if (!el || el.closest("script,style")) continue;
+    // Publication titles stay in the original language by design — they are citation
+    // handles, and a translated title retrieves nothing from SSRN or sec.gov.
+    if (el.closest(".idx-t, .paper .t")) continue;
     if (el.offsetParent === null) continue; // not visible
     bad.push({ sec: (el.closest("section") || {}).id || "?", text: s.slice(0, 90) });
   }
@@ -100,6 +118,31 @@ check("no unexpected failed requests", noisy.length === 0, noisy.join(", "));
 // The remote mapper is unreachable in this sandbox; that 403 is the case the watchdog
 // above is designed for, not a page defect. Everything else must be silent.
 const realErrs = consoleErrs.filter((m) => !/status of 403|net::ERR/.test(m));
+// ── every hosted paper link must resolve to a file that exists ──────────────
+const pdfLinks = await p.evaluate(() =>
+  [...document.querySelectorAll('a[href$=".pdf"]')]
+    .map((a) => a.getAttribute("href"))
+    .filter((h) => !/^https?:/.test(h)));
+const missing = [];
+for (const rel of pdfLinks) {
+  const abs = path.resolve(path.dirname(FILE.replace("file://", "")), rel);
+  if (!fs.existsSync(abs)) missing.push(rel);
+}
+check("every hosted PDF link resolves", missing.length === 0, missing.join(", "));
+check("the analysis index is populated", pdfLinks.length >= 6, `${pdfLinks.length} hosted PDFs`);
+
+// ── the index must be in reverse-chronological order ───────────────────────
+const dates = await p.evaluate(() =>
+  [...document.querySelectorAll(".idx-date")].map((e) => Date.parse(e.textContent.trim())));
+const ordered = dates.every((d, i) => i === 0 || dates[i - 1] >= d);
+check("analysis index is reverse-chronological", ordered && dates.every((d) => !isNaN(d)));
+
+// ── nothing on the page may read as a submission ───────────────────────────
+const subs = /submitted for review|under review|manuscript|submission|anonymi[sz]ed|投稿|审稿/i;
+const pageText = await p.innerText("main, body");
+check("no submission language on the page", !subs.test(pageText), (pageText.match(subs) || [""])[0]);
+
+
 check("no console errors", realErrs.length === 0, realErrs.join(" | "));
 
 await b.close();
