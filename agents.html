@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-en="Agent access — MCP, the grounding contract, and the four failures it prevents | CBSR"
+      data-title-zh="Agent 接入 — MCP、接地契约，以及它防住的四种失败 | CBSR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent access — MCP, the grounding contract, and the four failures it prevents | CBSR</title>
+<meta name="description" content="An MCP server of roughly thirty typed tools over a schema-validated register, the field contract a grounded answer must carry, and the four failure modes that a general model cannot avoid on its own.">
+<meta name="author" content="Yunjie Fan">
+<meta name="theme-color" content="#EDEFEB">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Cross-Border Stablecoin Register">
+<meta property="og:title" content="Fluency is not evidence. The grounding contract for agents that act on financial regulation.">
+<meta property="og:description" content="Typed MCP tools over a schema-validated register, the fields a grounded answer must carry, and the four failure modes it prevents.">
+<meta property="og:url" content="__SITE_URL__agents.html">
+<meta property="og:image" content="__SITE_URL__og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cross-Border Stablecoin Register — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
+<meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="zh_CN">
+<link rel="canonical" href="__SITE_URL__agents.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fluency is not evidence. The grounding contract for agents that act on financial regulation.">
+<meta name="twitter:description" content="Typed MCP tools over a schema-validated register, the fields a grounded answer must carry, and the four failure modes it prevents.">
+<meta name="twitter:image" content="__SITE_URL__og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cbsr.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a href="index.html"><b>CBSR</b></a><span data-zh="跨境稳定币登记册 · agentic 金融的证据层">Cross-Border Stablecoin Register · the evidence layer for agentic finance</span></div>
+    <nav class="nav">
+      <a href="corridors.html" data-zh="通道">Corridors</a>
+      <a href="agents.html" data-zh="Agent 接入">Agents</a>
+      <a href="kya.html" data-zh="KYA">KYA</a>
+      <a href="method.html" data-zh="技术栈">Stack</a>
+      <a href="research.html" data-zh="研究">Research</a>
+      <a href="standards.html" data-zh="标准与目标">Standards</a>
+      <a href="maintain.html" data-zh="参与维护">Maintain</a>
+      <a href="about.html" data-zh="关于">About</a>
+      <span class="ver">v0.10.1</span>
+      <span class="langtog" id="langtog" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="zh">中文</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="masthead">
+    <p class="kick" data-zh="agent 接入 &nbsp;·&nbsp; 原生 MCP">agent access &nbsp;·&nbsp; MCP-native</p>
+    <h1 data-zh="流利不是证据。这是它底下要垫的那份记录。">Fluency is not evidence. This is the record that goes underneath it.</h1>
+    <p class="lede" data-zh="软件按领域分了家：一套做人力，一套做营销，一套做财务。AI 正在以同样的方式分家。凡是答错要付钱的地方，模型就需要一份它能引用的记录。监管是这道缝咬得最狠的地方——一个自信的错答案，代价是一张牌照。">Software split by domain: one tool for HR, one for marketing, one for finance. AI is splitting the same way. Anywhere a wrong answer costs money, the model will need a record it can cite. Regulation is where that bites hardest, because there a confident wrong answer costs a licence.</p>
+    <p class="mast-meta" data-zh="约 30 个类型化 MCP 工具 &nbsp;·&nbsp; 一个 schema 校验过的 <span class=&quot;gk&quot;>dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; 自行部署，无需账号或密钥">roughly 30 typed MCP tools &nbsp;·&nbsp; one schema-validated <span class="gk">dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; self-hosted, no account and no key</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- THE THESIS -->
+  <section id="thesis">
+    <p class="kick" data-zh="为什么通用模型在这里必然失手">why a general model must fail here</p>
+    <div class="thesis">
+      <p class="big" data-zh="语言模型在监管问题上失手，不是因为它推理得差，而是因为它没有可推理的对象。它转述的那段条文，可能在它训练之后就改了，而它无从知道。">A language model fails on a regulatory question not because it reasons badly but because it has nothing to reason over. The text it is paraphrasing may have moved since it was trained, and it has no way to know.</p>
+      <p class="sub" data-zh="这不是一个靠更大的模型能修好的问题，因为缺的不是能力，是<b>地面真值</b>：一份带日期、带出处、说得出自己什么时候会过期的记录。CBSR 就是那份记录，并且它是以 agent 能读的形式发布的，而不是以人能读的形式再指望 agent 去猜。">This is not a problem a larger model fixes, because what is missing is not capability but <b>ground truth</b>: a record that is dated, sourced, and able to say when it expires. CBSR is that record, published in the shape an agent reads rather than in the shape a person reads and an agent guesses at.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- THE ENVELOPE -->
+  <section id="envelope">
+    <p class="kick" data-zh="接地契约"></p>
+    <h2 class="h-sec" data-zh="一个接地的答案必须携带的字段">The fields a grounded answer has to carry</h2>
+    <p class="lead" data-zh="下面是 <code class=&quot;tok&quot;>compose()</code> 对一条通道返回的东西。值得看的不是结论，而是结论周围那一圈：结论旁边的每一个字段，都是为了让这个结论可以在以后被证明是错的。">Below is what <code class="tok">compose()</code> returns for one corridor. The thing to read is not the verdict but the ring around it: every field beside the verdict exists so that the verdict can be shown to have been wrong later.</p>
+
+    <pre class="env" aria-label="An example corridor response from the MCP server"><span class="c">// compose(origin="EU", destination="US", as_of="2026-06-30")</span>
+{
+  <span class="k">"corridor"</span>:      <span class="s">"EU&gt;US"</span>,
+  <span class="k">"class"</span>:         <span class="s">"T"</span>,                  <span class="c">// regime in transition</span>
+  <span class="k">"mechanism"</span>:     <span class="s">"commencement_pending"</span>,
+  <span class="k">"binding_at"</span>:    <span class="s">"destination_inbound_gate"</span>,
+  <span class="k">"provision"</span>:     <span class="s">"GENIUS Act §18"</span>,
+  <span class="k">"status"</span>:        <span class="s">"enacted_not_commenced"</span>,   <span class="r">// NOT citable as current law</span>
+  <span class="k">"resolves_on"</span>:   <span class="s">"2027-01-18"</span>,
+  <span class="k">"resolves_to"</span>:   <span class="s">"II"</span>,
+  <span class="k">"claim_class"</span>:   <span class="s">"tier1_legal"</span>,
+  <span class="k">"evidence_tier"</span>: <span class="s">"resolution_text"</span>,
+  <span class="k">"as_of"</span>:         <span class="s">"2026-06-30"</span>,
+  <span class="k">"register"</span>:      <span class="s">"v0.10.1"</span>,
+  <span class="k">"doi"</span>:           <span class="s">"10.5281/zenodo.20730358"</span>
+}</pre>
+    <p class="envcap" data-zh="字段名以登记册 schema 为准，此处为示意结构。<code class=&quot;tok&quot;>status</code> 是独立字段而非散文附注——正因如此，一部已通过尚未施行的法规，无法被当作现行有效法引用。">Field names follow the register schema; the shape above is illustrative. <code class="tok">status</code> is a separate field rather than a caveat in prose &mdash; which is exactly why a statute that is enacted and not commenced cannot be served as current law.</p>
+
+    <div class="uses">
+      <div class="use"><p class="ut" data-zh="没有 as_of，就没有过期">Without as_of, nothing expires</p><p class="ud" data-zh="一个没有日期的答案永远不会过期，也就永远不会被证明错了。这不是保守，这是不可证伪。">An answer with no date never goes stale and so never turns out to have been wrong. That is not caution. It is unfalsifiability.</p></div>
+      <div class="use"><p class="ut" data-zh="没有 provision，就无法反驳">Without a provision, nothing is arguable</p><p class="ud" data-zh="「依据 MiCA」不是引用，「MiCA 第 X 条」才是。精确定位是让对方能回到原文说你读错了的那个东西。">&ldquo;Under MiCA&rdquo; is not a citation. The article is. A pinpoint is what lets someone go back to the text and tell you that you read it wrong.</p></div>
+      <div class="use"><p class="ut" data-zh="没有 status，「尚未施行」会被读成「已经生效」">Without status, pending reads as in force</p><p class="ud" data-zh="这是通用模型最常犯的那一类错，而且它每次都答得很有把握。这里它是一个具名状态，不是一句语气词。">This is the single most common failure of an unaided model, and it makes it confidently. Here it is a named state, not a hedge.</p></div>
+      <div class="use"><p class="ut" data-zh="没有版本，事后无法复盘">Without a version, nothing can be audited</p><p class="ud" data-zh="登记册按构造带日期，所以省略版本的引用等于没引用。每个版本存档至 Zenodo，可以取回当时那一份。">The register is dated by construction, so a citation that omits the version cites nothing in particular. Every release is archived to Zenodo and can be fetched back.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- THE TOOLS -->
+  <section id="tools">
+    <p class="kick" data-zh="MCP 界面"></p>
+    <h2 class="h-sec" data-zh="约三十个类型化工具，覆盖同一份记录">Roughly thirty typed tools over one record</h2>
+    <p class="lead" data-zh="登记册以单一 <code class=&quot;gk&quot;>dataset.json</code> 发布，外加一个把它暴露给 agent 的 MCP server。工具是类型化的：参数受 schema 约束，返回值也是，所以模型拿到的是结构，而不是一段需要它再解析一次的散文。">The register ships as a single <code class="gk">dataset.json</code> and an MCP server that exposes it to agents. The tools are typed: arguments are constrained by the schema and so are returns, so what reaches the model is structure rather than prose it has to parse a second time.</p>
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th data-zh="工具族">Tool family</th>
+            <th data-zh="agent 用它做什么">What an agent does with it</th>
+            <th data-zh="返回的关键字段">Key fields returned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">compose()</td>
+            <td data-zh="就一条有向边求解：起点 → 目的地，读在给定日期上。这是最常被调用的那一个。">Resolve one directed edge: origin → destination, read at a given date. This is the one that gets called most.</td>
+            <td class="mono">class · mechanism · provision · as_of</td>
+          </tr>
+          <tr>
+            <td class="mono">compose(as_of=…)</td>
+            <td data-zh="同一条边，读在另一个日期上。已排期的施行会被施加，所以「今天不行、某天可以」是一个可计算的结论，不是一句预测。">The same edge at another date. Scheduled commencements are applied, so &ldquo;not today, but then&rdquo; is a computed verdict rather than a forecast.</td>
+            <td class="mono">resolves_on · resolves_to · trigger</td>
+          </tr>
+          <tr>
+            <td class="mono">citable_law()</td>
+            <td data-zh="只取那个可以作为现行有效约束性法律引用的子集。当答案要进备忘录、进意见书、进监管申报时调用它。">Take only the subset that may be cited as current binding law. Called when the answer is going into a memorandum, an opinion, or a filing.</td>
+            <td class="mono">46 records · claim_class · evidence_tier</td>
+          </tr>
+          <tr>
+            <td data-zh="法域查询" class="mono">jurisdiction</td>
+            <td data-zh="就单一法域取回全部维度：发行、赎回、储备、投资者门槛、反洗钱、跨境等。">Pull one jurisdiction across every dimension: issuance, redemption, reserves, investor gating, AML, cross-border, and the rest.</td>
+            <td class="mono">15 dimensions · per-record sourcing</td>
+          </tr>
+          <tr>
+            <td data-zh="维度比较" class="mono">dimension</td>
+            <td data-zh="就单一维度横切全部法域。这是「谁禁止付息、谁不禁止」这类问题的形状。">Cut one dimension across every jurisdiction. This is the shape of &ldquo;who prohibits yield and who does not&rdquo;.</td>
+            <td class="mono">12 jurisdictions · comparability notes</td>
+          </tr>
+          <tr>
+            <td data-zh="待核清单" class="mono">backlog</td>
+            <td data-zh="取回尚未通过完整可引用门槛的格子。缺口是可查询的数据，不是一句免责声明。">Fetch the cells that have not yet cleared the full citable bar. The gap is queryable data, not a disclaimer.</td>
+            <td class="mono">per-cell worklist · what is missing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-box">
+      <p class="nh" data-zh="工具清单以仓库为准">the tool list lives in the repository</p>
+      <p data-zh="上表按功能分族，不是签名清单。权威的工具名称、参数与返回结构在登记册仓库的 <span class=&quot;gk&quot;>MCP_SERVER.md</span> 里，并随版本更新。以那里为准，不要以本页为准。">The table groups by function; it is not a signature list. The authoritative names, arguments, and return shapes are in <span class="gk">MCP_SERVER.md</span> in the register repository, and they move with the version. Take that as canonical, not this page.</p>
+    </div>
+    <div class="cta">
+      <a class="btn pri" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md" target="_blank" rel="noopener" data-zh="MCP server 文档">MCP server documentation</a>
+      <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register" target="_blank" rel="noopener" data-zh="登记册源码">Register repository</a>
+      <a class="btn" href="https://doi.org/10.5281/zenodo.20730358" target="_blank" rel="noopener">Zenodo (DOI)</a>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- FOUR FAILURES -->
+  <section id="failures">
+    <p class="kick" data-zh="它防住的四种失败"></p>
+    <h2 class="h-sec" data-zh="四种失败，一个无接地的模型自己躲不开">Four failures an ungrounded model cannot avoid on its own</h2>
+    <p class="lead" data-zh="这四种不是「幻觉」的四个别名。它们是四种不同的机制，各自需要数据侧的一个不同装置去挡，而且每一种在无接地的情况下都读起来完全正常。">These are not four names for hallucination. They are four distinct mechanisms, each stopped by a different device on the data side, and each of which reads as perfectly normal output when ungrounded.</p>
+    <div class="layers">
+      <div class="layer"><div class="ix">01</div><div>
+        <h3 data-zh="把尚未施行的法律当作现行有效法">Citing law that has not commenced</h3>
+        <p data-zh="模型读到一部已通过的法规，据此描述一条今天并不存在的申请路径。挡它的装置：<code class=&quot;tok&quot;>status</code> 是独立字段，且构建流程拒绝把 <code class=&quot;tok&quot;>enacted_not_commenced</code> 的记录放进可引用子集。">The model reads an enacted statute and describes an application route that does not exist today. The device: <code class="tok">status</code> is a separate field, and the build refuses to admit an <code class="tok">enacted_not_commenced</code> record into the citable subset.</p></div></div>
+      <div class="layer"><div class="ix">02</div><div>
+        <h3 data-zh="把有向的问题答成无向的">Answering a directed question as if it were symmetric</h3>
+        <p data-zh="模型给出「欧盟与美国之间」的结论，而绑定规则其实在目的地那一侧。挡它的装置：数据集的基本单位是有向边，本登记册 66 组配对里有 56 组会因方向不同而读出不同结论。">The model gives a verdict &ldquo;between the EU and the US&rdquo; when the binding rule sits on the destination side. The device: the dataset's unit is the directed edge, and 56 of the 66 pairs here read differently by direction.</p></div></div>
+      <div class="layer"><div class="ix">03</div><div>
+        <h3 data-zh="把市场事实说成法律命题">Serving a market fact as a proposition of law</h3>
+        <p data-zh="「主要发行方通常这样做」被写成了「规则要求这样做」。挡它的装置：<code class=&quot;tok&quot;>claim_class</code> 把两者分开，而律师看到的那个界面里不允许出现市场事实。">&ldquo;Major issuers generally do this&rdquo; comes back as &ldquo;the rules require this&rdquo;. The device: <code class="tok">claim_class</code> separates the two, and a market fact cannot enter the instrument a lawyer is shown.</p></div></div>
+      <div class="layer"><div class="ix">04</div><div>
+        <h3 data-zh="给出一个不带日期、因而无法过期的答案">Producing an answer that cannot expire</h3>
+        <p data-zh="回答本身没有错，但它没有说自己读的是哪一天的法律，于是六个月后没人知道它还成不成立。挡它的装置：每条结论携带 <code class=&quot;tok&quot;>as_of</code> 与登记册版本，两者都进返回值。">The answer is not wrong, but it does not say which day's law it read, so six months later nobody can tell whether it still holds. The device: every verdict carries an <code class="tok">as_of</code> and a register version, both in the return value.</p></div></div>
+    </div>
+    <p class="body" style="margin-top:26px" data-zh="这四种里没有一种是靠提示词能修好的。它们全都要求模型手上有一份它没有的东西：一份带日期、说得出出处、并且承认自己有哪些格子还没核完的记录。">None of the four is fixed by prompting. Each requires the model to hold something it does not have: a record that is dated, that can point at where it came from, and that admits which of its cells are not yet verified.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- WIRING IT UP -->
+  <section id="wire">
+    <p class="kick" data-zh="怎么接上去">how to wire it up</p>
+    <p class="lead" data-zh="没有账号，没有密钥，没有速率表。代码 Apache-2.0，数据 CC-BY-4.0，自己跑自己的那一份。">No account, no key, no rate card. Code under Apache-2.0, data under CC-BY-4.0, run your own copy.</p>
+    <div class="layers">
+      <div class="layer"><div class="ix">01</div><div>
+        <h3 data-zh="固定一个版本">Pin a version</h3>
+        <p data-zh="从 Zenodo 取一个带 DOI 的版本，而不是跟着 main 走。你希望半年后还能复现出当时那个答案；跟着分支走做不到这一点。">Take a DOI'd release from Zenodo rather than following <code>main</code>. You will want to reproduce today's answer in six months, and a moving branch cannot do that.</p></div></div>
+      <div class="layer"><div class="ix">02</div><div>
+        <h3 data-zh="把 MCP server 挂进你的 agent">Mount the MCP server in your agent</h3>
+        <p data-zh="按 <span class=&quot;gk&quot;>MCP_SERVER.md</span> 里的配置接入。工具是类型化的，所以模型拿到的是结构化返回，不需要再从散文里抽字段。">Follow the configuration in <span class="gk">MCP_SERVER.md</span>. The tools are typed, so the model receives structure and does not have to scrape fields back out of prose.</p></div></div>
+      <div class="layer"><div class="ix">03</div><div>
+        <h3 data-zh="要求答案携带信封">Require the envelope in the answer</h3>
+        <p data-zh="在系统提示里规定：任何监管结论都必须带 <code class=&quot;tok&quot;>provision</code>、<code class=&quot;tok&quot;>status</code>、<code class=&quot;tok&quot;>as_of</code> 和版本；缺任何一项就退回工具调用，而不是补一句「据我所知」。">State it in the system prompt: any regulatory verdict must carry <code class="tok">provision</code>, <code class="tok">status</code>, <code class="tok">as_of</code>, and the version. If one is missing, go back to the tool rather than reaching for &ldquo;as far as I know&rdquo;.</p></div></div>
+      <div class="layer"><div class="ix">04</div><div>
+        <h3 data-zh="对着待核清单做降级">Degrade against the backlog</h3>
+        <p data-zh="被问到一个尚未通过完整可引用门槛的格子时，正确的行为是说出它属于待核清单，而不是把制度层级的确认当成条文层级的确认往上抬。">When asked about a cell that has not cleared the full citable bar, the right behaviour is to say it is on the worklist, not to promote a regime-level confirmation into a provision-level one.</p></div></div>
+    </div>
+    <div class="cta">
+      <a class="btn pri" href="corridors.html" data-zh="先看它答的是什么">See what it answers first</a>
+      <a class="btn" href="method.html" data-zh="这些字段是怎么被强制的">How these fields are enforced</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav class="footnav">
+      <a href="corridors.html" data-zh="通道">Corridors</a>
+      <a href="agents.html" data-zh="Agent 接入">Agents</a>
+      <a href="kya.html" data-zh="KYA">KYA</a>
+      <a href="method.html" data-zh="技术栈">Stack</a>
+      <a href="research.html" data-zh="研究">Research</a>
+      <a href="standards.html" data-zh="标准与目标">Standards</a>
+      <a href="maintain.html" data-zh="参与维护">Maintain</a>
+      <a href="about.html" data-zh="关于">About</a>
+    </nav>
+    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
+    <span>© 2026 Yunjie Fan</span>
+  </div>
+</footer>
+
+<script src="assets/cbsr.js"></script>
+</body>
+</html>

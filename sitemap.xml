@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stamped at deploy time: the workflow replaces __SITE_URL__ with the real Pages URL
+     and fails the build if any placeholder survives. thanks.html and 404.html are
+     deliberately absent; both carry <meta name="robots" content="noindex">. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>__SITE_URL__</loc><priority>1.0</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__corridors.html</loc><priority>0.9</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__agents.html</loc><priority>0.9</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__kya.html</loc><priority>0.9</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__method.html</loc><priority>0.8</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__research.html</loc><priority>0.8</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__standards.html</loc><priority>0.7</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__maintain.html</loc><priority>0.7</priority><lastmod>2026-06-30</lastmod></url>
+  <url><loc>__SITE_URL__about.html</loc><priority>0.6</priority><lastmod>2026-06-30</lastmod></url>
+</urlset>

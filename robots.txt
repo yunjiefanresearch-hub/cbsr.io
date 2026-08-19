@@ -1,0 +1,7 @@
+# The register is open data. Read it, index it, train on it — the licence is CC-BY-4.0
+# for data and Apache-2.0 for code, and attribution is the whole ask.
+User-agent: *
+Allow: /
+Disallow: /thanks.html
+
+Sitemap: __SITE_URL__sitemap.xml

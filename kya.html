@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-title-en="KYA — Know Your Agent: the four questions before an agent moves money | CBSR"
+      data-title-zh="KYA — Know Your Agent：agent 动钱之前必须回答的四个问题 | CBSR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KYA — Know Your Agent: the four questions before an agent moves money | CBSR</title>
+<meta name="description" content="A working framework, offered for comment rather than asserted as law: the four questions a financial system must be able to answer about an autonomous agent before it acts, and four assurance levels for answering them.">
+<meta name="author" content="Yunjie Fan">
+<meta name="theme-color" content="#EDEFEB">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Cross-Border Stablecoin Register">
+<meta property="og:title" content="KYC asks who the customer is. KYB asks who the business is. Nobody has settled who the agent is.">
+<meta property="og:description" content="Identity, authorization, capability, accountability — four questions, four assurance levels, and an explicit statement of what the framework does not yet claim.">
+<meta property="og:url" content="__SITE_URL__kya.html">
+<meta property="og:image" content="__SITE_URL__og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cross-Border Stablecoin Register — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
+<meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="zh_CN">
+<link rel="canonical" href="__SITE_URL__kya.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KYC asks who the customer is. KYB asks who the business is. Nobody has settled who the agent is.">
+<meta name="twitter:description" content="Identity, authorization, capability, accountability — four questions, four assurance levels, and an explicit statement of what the framework does not yet claim.">
+<meta name="twitter:image" content="__SITE_URL__og-card.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cbsr.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a href="index.html"><b>CBSR</b></a><span data-zh="跨境稳定币登记册 · agentic 金融的证据层">Cross-Border Stablecoin Register · the evidence layer for agentic finance</span></div>
+    <nav class="nav">
+      <a href="corridors.html" data-zh="通道">Corridors</a>
+      <a href="agents.html" data-zh="Agent 接入">Agents</a>
+      <a href="kya.html" data-zh="KYA">KYA</a>
+      <a href="method.html" data-zh="技术栈">Stack</a>
+      <a href="research.html" data-zh="研究">Research</a>
+      <a href="standards.html" data-zh="标准与目标">Standards</a>
+      <a href="maintain.html" data-zh="参与维护">Maintain</a>
+      <a href="about.html" data-zh="关于">About</a>
+      <span class="ver">v0.10.1</span>
+      <span class="langtog" id="langtog" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="zh">中文</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="masthead">
+    <p class="kick" data-zh="KYA · Know Your Agent &nbsp;·&nbsp; 工作框架 v0.1，公开征求意见">KYA · Know Your Agent &nbsp;·&nbsp; working framework v0.1, open for comment</p>
+    <h1 class="wide" data-zh="KYC 问客户是谁。KYB 问机构是谁。谁来问 agent 是谁。">KYC asks who the customer is. KYB asks who the business is. Nobody asks who the agent is.</h1>
+    <p class="lede" data-zh="当一个自主系统发起一笔支付，现有的义务体系会在它身上找一个人或一个法人来挂。多数时候找得到，但挂上去的那一刻，关于这个系统本身的一切——它被授权做什么、它的能力边界在哪、它当时读的是哪一版规则——全部被丢掉了。这些恰恰是事后唯一有用的信息。">When an autonomous system initiates a payment, the existing obligation framework looks for a person or a legal entity to attach it to. Usually one is found. But at the moment of attachment everything about the system itself &mdash; what it was authorized to do, where its capability ends, which version of which rule it was reading &mdash; is discarded. Those are precisely the facts that turn out to matter afterwards.</p>
+    <p class="mast-meta" data-zh="4 个问题 &nbsp;·&nbsp; 4 级保证 &nbsp;·&nbsp; <span class=&quot;gk&quot;>claim_class = proposed_framework</span> &nbsp;·&nbsp; 不属于可引用子集 &nbsp;·&nbsp; 意见请走 issue tracker">4 questions &nbsp;·&nbsp; 4 assurance levels &nbsp;·&nbsp; <span class="gk">claim_class = proposed_framework</span> &nbsp;·&nbsp; not part of the citable subset &nbsp;·&nbsp; comments to the issue tracker</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- STATUS FIRST -->
+  <section id="status" class="nopad-b">
+    <div class="note-box" style="margin-top:0">
+      <p class="nh" data-zh="先说这一页是什么">what this page is, before anything else</p>
+      <p data-zh="这不是法律，不是标准，也不是对任何现行制度的陈述。本站其余部分陈述的是<b>已经写在法条里的东西</b>，每一条都带条款定位并由构建流程强制。这一页不同：它是一份<b>提议</b>，说的是当规则追上来的时候，问题应该按什么形状提出来。">This is not law, not a standard, and not a statement about any regime in force. The rest of this site states <b>what is already written in the instruments</b>, each claim pinpointed and enforced by the build. This page is different. It is a <b>proposal</b> about the shape the questions should take when the rules do arrive.</p>
+      <p data-zh="它和站内其他内容用同一套纪律标注：<code class=&quot;tok&quot;>claim_class = proposed_framework</code>，因此 <code class=&quot;tok&quot;>citable_law()</code> 永远不会返回它。把它当作一份公开的工作稿来读，可以反驳，也应该被反驳。">It is labelled with the same discipline as everything else here: <code class="tok">claim_class = proposed_framework</code>, which means <code class="tok">citable_law()</code> will never return it. Read it as a working draft in the open. It can be argued with, and it should be.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- WHY -->
+  <section id="why">
+    <p class="kick" data-zh="为什么现有的问法不够用">why the existing questions do not reach</p>
+    <p class="lead" data-zh="KYC 和 KYB 之所以有效，是因为它们问的对象是稳定的。一个人的身份在两次交易之间不会变，一家公司的授权范围写在章程和牌照里。一个自主系统两样都不满足。">KYC and KYB work because the thing they ask about holds still. A person's identity does not change between two transactions, and a company's authority is written into its constitution and its licence. An autonomous system satisfies neither condition.</p>
+    <div class="split">
+      <div class="ans">
+        <div class="ans-h" data-zh="现有框架假设的">What the existing framework assumes</div>
+        <div class="ans-b">
+          <ul class="ans-flags">
+            <li><span class="m">01</span><span data-zh="行为主体是持久的，且在两次交互之间保持同一。">The actor is persistent, and is the same actor between two interactions.</span></li>
+            <li><span class="m">02</span><span data-zh="授权范围是事先写下来的，且变更有痕迹。">Authority is written down in advance, and changes to it leave a trace.</span></li>
+            <li><span class="m">03</span><span data-zh="能力边界由身份决定：一家支付机构不会突然开始做托管。">Capability follows from identity: a payments firm does not suddenly start providing custody.</span></li>
+            <li><span class="m">04</span><span data-zh="出问题时，可以问它当时在想什么，并得到一个可采信的回答。">When something goes wrong, the actor can be asked what it was working from, and the answer is admissible.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ans">
+        <div class="ans-h" data-zh="一个自主系统实际的样子">What an autonomous system is actually like</div>
+        <div class="ans-b">
+          <ul class="ans-flags">
+            <li><span class="m">01</span><span data-zh="它可能是一个每次调用都重新实例化的进程，权重版本还在动。">It may be a process re-instantiated on every call, over weights that are themselves still moving.</span></li>
+            <li><span class="m">02</span><span data-zh="它的实际授权范围往往写在一段提示词里，而提示词没有版本，也没有留痕。">Its actual authority often lives in a prompt, and a prompt has no version and leaves no trace.</span></li>
+            <li><span class="m">03</span><span data-zh="它的能力由当下挂载了哪些工具决定，可以在一次对话中间改变。">Its capability is set by whichever tools happen to be mounted, and can change mid-session.</span></li>
+            <li><span class="m">04</span><span data-zh="事后问它「你当时依据什么」，它会给出一个流利的重构，而那不是记录。">Asked afterwards what it was working from, it produces a fluent reconstruction, which is not a record.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="body" style="margin-top:26px" data-zh="所以 KYA 不是把 KYC 那套表格换个主语抄一遍。它要问的是四个在人和法人身上<b>不需要问</b>、在自主系统身上却每一次都要重新回答的问题。">So KYA is not the KYC form with the subject swapped. It asks four questions that <b>do not need asking</b> of a person or a company, and that have to be answered afresh every time of an autonomous system.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- FOUR QUESTIONS -->
+  <section id="questions">
+    <p class="kick" data-zh="四个问题"></p>
+    <h2 class="h-sec" data-zh="Agent 动钱之前必须能回答的四个问题">The four questions that must be answerable before an agent moves money</h2>
+    <p class="lead" data-zh="四个问题彼此正交，和登记册的三条证据轴是同一种设计：把它们压成一个「可信度」分数，会同时毁掉四个不同的判断。">The four are orthogonal to one another, on the same design as the register's three evidence axes: collapsing them into a single trustworthiness score destroys four different judgments at once.</p>
+    <div class="props">
+      <div class="prop">
+        <div class="pn">Q1</div>
+        <div>
+          <h3 data-zh="身份 —— 这是同一个 agent 吗">Identity &mdash; is this the same agent?</h3>
+          <p data-zh="不是「它叫什么」，而是「昨天做那笔交易的，和今天来做这笔的，是不是同一个东西」。人类身份天然持久，agent 的持久性必须被构造出来：一个稳定的标识符，绑定到具体的模型版本、工具集合与配置，并且改变时会留下痕迹。">Not what it is called, but whether the thing that made yesterday's transaction and the thing making today's are the same thing. Human identity is persistent by nature; an agent's persistence has to be constructed: a stable identifier bound to a specific model version, tool set, and configuration, which leaves a trace when any of them changes.</p>
+          <p data-zh="判断标准：能不能在事后指着一笔交易说出「执行它的是这一个配置」，并且这句话可以被第三方验证。">The test: can someone point at a transaction afterwards and name the configuration that executed it, in a form a third party can verify.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="pn">Q2</div>
+        <div>
+          <h3 data-zh="授权 —— 谁允许它做这件事，范围到哪里">Authorization &mdash; who permitted this, and how far does it go?</h3>
+          <p data-zh="授权链必须能回溯到一个承担责任的人或法人，并且中间每一跳都是显式的。今天绝大多数 agent 的实际授权范围写在一段自然语言提示里，这既不可版本化，也不可审计，还会被后续输入改写。">The chain of authority has to trace back to a person or a legal entity that carries the liability, with every hop explicit. Today most agents' real authority lives in a natural-language prompt, which cannot be versioned, cannot be audited, and can be rewritten by later input.</p>
+          <p data-zh="判断标准：授权是一份可以在执行前读取、执行后核对的结构化声明，而不是一段可以被覆盖的文字。上限、对手方、法域、时间窗都在其中。">The test: authority is a structured statement readable before execution and checkable after it &mdash; limits, counterparties, jurisdictions, time window &mdash; not text that a later message can overwrite.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="pn">Q3</div>
+        <div>
+          <h3 data-zh="能力 —— 它实际上能做什么，以及它<b>不能</b>做什么">Capability &mdash; what it can do, and what it cannot</h3>
+          <p data-zh="能力不等于授权。一个 agent 可能被授权做跨境支付，却挂载了一个能直接调用托管接口的工具；也可能被授权做很多事，而它接的那份监管数据只覆盖三个法域。后者尤其危险，因为它不会报错——它会在覆盖范围之外照样给出一个流利的答案。">Capability is not authority. An agent may be authorized to make cross-border payments while holding a tool that reaches a custody interface directly. Or it may be authorized broadly while the regulatory data it reads covers three jurisdictions. The second is the more dangerous, because it does not fail loudly: outside its coverage it produces a fluent answer anyway.</p>
+          <p data-zh="判断标准：能力边界是显式声明的，而且<b>越界时的行为是拒绝，不是外推</b>。这一条直接对应登记册公开待核清单的做法。">The test: the boundary is declared, and <b>the behaviour at the boundary is refusal rather than extrapolation</b>. This is the same commitment as the register publishing its verification backlog.</p>
+        </div>
+      </div>
+      <div class="prop">
+        <div class="pn">Q4</div>
+        <div>
+          <h3 data-zh="可归责 —— 事后能不能重建它当时读到的东西">Accountability &mdash; can what it read be reconstructed afterwards?</h3>
+          <p data-zh="这是四个问题里最难、也最被忽略的一个。监管调查发生在事发之后数月，那时模型已经更新，提示词已经改过，法规本身可能也已经变了。如果 agent 当时读的那份规则没有被固定住，那么「它当时读到的是什么」这个问题永远无法被回答。">The hardest of the four and the most often skipped. A supervisory enquiry happens months later, by which time the model has been updated, the prompt has been edited, and the regulation itself may have moved. If the rules the agent read were not pinned, the question of what it read can never be answered.</p>
+          <p data-zh="判断标准：每一次执行都记录了它所依据的规则来源、版本与 <code class=&quot;tok&quot;>as_of</code> 日期，并且那个版本可以被取回。这正是登记册给每个版本一个 DOI 的原因——不是为了学术引用的体面，而是为了让这一条成立。">The test: each execution records the source, the version, and the <code class="tok">as_of</code> date of the rules it relied on, and that version can be fetched back. This is why the register carries a DOI per release &mdash; not for scholarly manners, but so that this question has an answer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ASSURANCE LEVELS -->
+  <section id="levels">
+    <p class="kick" data-zh="四级保证"></p>
+    <h2 class="h-sec" data-zh="L1 – L4：同样的问题，答到什么程度">L1 – L4: the same questions, answered to what depth</h2>
+    <p class="lead" data-zh="级别不是「这个 agent 有多好」的评分。它说的是「关于这个 agent，有多少事情是可以被第三方验证的」。一个能力很强但只到 L1 的系统，不是更危险的 agent，而是一个无法被监督的 agent——这两件事不一样，混在一起谈会得出错误的结论。">The levels are not a score for how good an agent is. They state how much about an agent can be verified by a third party. A highly capable system that only reaches L1 is not a more dangerous agent; it is an unsupervisable one. Those are different claims, and conflating them leads somewhere wrong.</p>
+    <div class="lvls">
+      <div class="lvl">
+        <div class="lt">L1<span class="no" style="display:block;margin-top:5px" data-zh="自述">asserted</span></div>
+        <div>
+          <h3 data-zh="Agent 自己说自己是谁">The agent states what it is</h3>
+          <p data-zh="身份、授权和能力都以自我声明的形式存在，没有外部锚点。今天绝大多数生产环境中的金融 agent 处在这一级，包括很多自认为做得不错的。">Identity, authority and capability exist as self-declaration with no external anchor. Most financial agents in production today sit here, including many that believe otherwise.</p>
+          <p class="no" data-zh="能回答：Q1 部分。不能回答：Q2 的范围、Q3 的边界、Q4 的任何部分。">Answers: part of Q1. Does not answer: the extent of Q2, the boundary in Q3, any of Q4.</p>
+        </div>
+      </div>
+      <div class="lvl">
+        <div class="lt">L2<span class="no" style="display:block;margin-top:5px" data-zh="已绑定">bound</span></div>
+        <div>
+          <h3 data-zh="身份绑定到一个承担责任的主体">Identity is bound to a responsible party</h3>
+          <p data-zh="agent 的标识符可以回溯到一个具名的人或法人，授权以结构化形式表达而不是提示词。到这一级，出事之后至少知道该去问谁。">The agent's identifier traces to a named person or legal entity, and authority is expressed structurally rather than as a prompt. From here on, when something goes wrong there is at least someone to ask.</p>
+          <p class="no" data-zh="能回答：Q1、Q2。不能回答：Q3 越界时的行为、Q4 的重建。">Answers: Q1 and Q2. Does not answer: behaviour at the Q3 boundary, or the Q4 reconstruction.</p>
+        </div>
+      </div>
+      <div class="lvl">
+        <div class="lt">L3<span class="no" style="display:block;margin-top:5px" data-zh="有边界">bounded</span></div>
+        <div>
+          <h3 data-zh="能力边界显式，且越界即拒绝">The capability boundary is explicit, and refusal is the behaviour at it</h3>
+          <p data-zh="agent 知道自己的监管数据覆盖到哪里，并在覆盖之外拒绝作答而不是外推。这一级需要它读的那份数据本身能说出自己的缺口——这也是登记册把待核清单作为可查询数据发布、而不是写成免责声明的原因。">The agent knows where its regulatory data stops, and outside that it declines rather than extrapolates. This level requires the data it reads to be able to state its own gaps, which is why the register publishes its backlog as queryable data rather than as a disclaimer.</p>
+          <p class="no" data-zh="能回答：Q1、Q2、Q3。不能回答：数月之后的 Q4。">Answers: Q1, Q2, Q3. Does not answer: Q4, months later.</p>
+        </div>
+      </div>
+      <div class="lvl">
+        <div class="lt">L4<span class="no" style="display:block;margin-top:5px" data-zh="可重建">reconstructible</span></div>
+        <div>
+          <h3 data-zh="每一次执行所依据的规则可以被原样取回">The rules behind each execution can be fetched back unchanged</h3>
+          <p data-zh="执行记录携带规则来源、版本和 <code class=&quot;tok&quot;>as_of</code>，而那个版本被固定在一个不可变的存档里。监管者在十八个月后可以取回当时那一份，判断这个 agent 当时的行为是否合理，而不是判断它今天的说辞是否好听。">The execution record carries the source, the version and the <code class="tok">as_of</code> of the rules relied on, and that version is pinned in an immutable archive. Eighteen months later a supervisor can fetch exactly that copy and judge whether the agent's action was reasonable then, rather than whether its account of itself is persuasive now.</p>
+          <p class="no" data-zh="能回答：四个问题全部。这一级今天在技术上完全可行，缺的不是能力，是有人要求。">Answers: all four. This level is technically available today. What is missing is not capability but anyone requiring it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+      <p class="nh" data-zh="这份登记册在这套框架里的位置">where this register sits in the framework</p>
+      <p data-zh="CBSR 不是一个 agent，也不提供身份或授权。它只解决 L3 和 L4 各自的一半：它让 agent 有一份能说出自己覆盖边界的监管数据（L3），并让每一次读取都带版本和 DOI、可以被原样取回（L4）。Q1 和 Q2 完全在这个项目的范围之外，需要别的人来做。">CBSR is not an agent and does not supply identity or authority. It solves half of L3 and half of L4: it gives an agent regulatory data that can state its own coverage boundary (L3), and it makes every read carry a version and a DOI that can be fetched back unchanged (L4). Q1 and Q2 lie entirely outside this project and need someone else.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- NON-CLAIMS -->
+  <section id="nonclaims">
+    <p class="kick" data-zh="这份框架不主张什么">what this framework does not claim</p>
+    <p class="lead" data-zh="和站内的 SDG 映射一样，这一节是这一页最重要的一节。一份说不清自己边界的框架，本身就违反了它 Q3 里提出的要求。">As with the SDG mapping elsewhere on this site, this is the most important section on the page. A framework that cannot state its own boundary is in breach of the requirement it sets out in Q3.</p>
+    <div class="uses">
+      <div class="use"><p class="ut" data-zh="不主张是标准">Not a standard</p><p class="ud" data-zh="没有任何标准组织采纳它，也没有提交给任何标准组织。它是一份公开的工作稿，版本 0.1。">No standards body has adopted it and it has not been submitted to one. It is a working draft in the open, version 0.1.</p></div>
+      <div class="use"><p class="ut" data-zh="不主张有法律效力">Not a statement of law</p><p class="ud" data-zh="目前没有任何法域对自主系统提出过对应于 L1–L4 的要求。这一页描述的是缺口，不是义务。">No jurisdiction currently imposes anything corresponding to L1–L4 on autonomous systems. This page describes a gap, not an obligation.</p></div>
+      <div class="use"><p class="ut" data-zh="不主张有实现">Not an implementation</p><p class="ud" data-zh="这里没有 KYA 的参考实现、协议或 schema。有的只是四个问题和四个级别，以及为什么它们应该被分开处理的论证。">There is no reference implementation, protocol, or schema for KYA here. There are four questions, four levels, and an argument for why they should be kept apart.</p></div>
+      <div class="use"><p class="ut" data-zh="不主张四个问题是穷尽的">Not claimed to be exhaustive</p><p class="ud" data-zh="四个是目前站得住的最小集合。如果有第五个问题同样正交、同样在人和法人身上不需要问，那它应该被加进来。">Four is the smallest set that currently holds up. If a fifth question is equally orthogonal and equally unnecessary to ask of a person, it belongs here.</p></div>
+    </div>
+    <div class="cta">
+      <a class="btn pri" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/issues" target="_blank" rel="noopener" data-zh="对这份框架提意见">Comment on the framework</a>
+      <a class="btn" href="agents.html" data-zh="登记册怎么支撑 L3 与 L4">How the register supports L3 and L4</a>
+      <a class="btn" href="method.html" data-zh="同一套纪律，用在数据上">The same discipline, applied to the data</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav class="footnav">
+      <a href="corridors.html" data-zh="通道">Corridors</a>
+      <a href="agents.html" data-zh="Agent 接入">Agents</a>
+      <a href="kya.html" data-zh="KYA">KYA</a>
+      <a href="method.html" data-zh="技术栈">Stack</a>
+      <a href="research.html" data-zh="研究">Research</a>
+      <a href="standards.html" data-zh="标准与目标">Standards</a>
+      <a href="maintain.html" data-zh="参与维护">Maintain</a>
+      <a href="about.html" data-zh="关于">About</a>
+    </nav>
+    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
+    <span>© 2026 Yunjie Fan</span>
+  </div>
+</footer>
+
+<script src="assets/cbsr.js"></script>
+</body>
+</html>

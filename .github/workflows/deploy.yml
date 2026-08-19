@@ -1,4 +1,4 @@
-name: Deploy landing page to GitHub Pages
+name: Deploy CBSR site to GitHub Pages
 
 on:
   push:
@@ -27,55 +27,86 @@ jobs:
         uses: actions/configure-pages@v5
 
       # Social cards need ABSOLUTE URLs; crawlers do not run JavaScript, so the URL cannot
-      # be filled in at runtime. Stamping it here means og:url, canonical and og:image are
-      # always right, and there is nothing to remember to edit by hand.
-      - name: Stamp the canonical URL into the page
+      # be filled in at runtime. Since the site was split into function pages this has to
+      # run over every page, the sitemap, and robots.txt — and over the application form's
+      # redirect target, which the relay will not accept as a relative path.
+      - name: Stamp the canonical URL into every page
         run: |
           set -euo pipefail
           BASE="${{ steps.pages.outputs.base_url }}"
           case "$BASE" in */) ;; *) BASE="$BASE/" ;; esac
           echo "Stamping site URL: $BASE"
-          sed -i "s|__SITE_URL__|$BASE|g" index.html
+          find . -maxdepth 1 -name '*.html' -print0 | xargs -0 sed -i "s|__SITE_URL__|$BASE|g"
+          sed -i "s|__SITE_URL__|$BASE|g" sitemap.xml robots.txt
 
-      # A half-stamped page ships a broken canonical and a broken card image, which is worse
-      # than shipping none. Fail the build instead.
+      # A half-stamped page ships a broken canonical and a broken card image, which is
+      # worse than shipping none. Fail the build instead.
       - name: Fail if any placeholder survived
         run: |
           set -euo pipefail
-          if grep -q '__SITE_URL__' index.html; then
-            echo "::error::__SITE_URL__ placeholder was not replaced."
-            grep -n '__SITE_URL__' index.html
+          if grep -rl '__SITE_URL__' --include='*.html' --include='*.xml' --include='*.txt' . ; then
+            echo "::error::__SITE_URL__ placeholder was not replaced in the files above."
             exit 1
           fi
           echo "OK: no placeholders remain."
           grep -o 'property="og:url" content="[^"]*"' index.html
-          grep -o 'property="og:image" content="[^"]*"' index.html
+          grep -o 'name="_next" value="[^"]*"' maintain.html
 
-      # The card and the favicon must be reachable at the stamped URLs.
-      - name: Check the card and favicon are present
+      # Every page must ship the shared shell. A page that lost its stylesheet or its
+      # script link still renders — badly, in one language, with no navigation — which is
+      # the kind of failure nobody notices until a reader reports it.
+      - name: Check every page carries the shared shell
         run: |
           set -euo pipefail
-          test -f og-card.png || { echo "::error::og-card.png missing"; exit 1; }
-          test -f favicon.svg || { echo "::error::favicon.svg missing"; exit 1; }
-          echo "OK: og-card.png and favicon.svg present."
+          bad=0
+          for f in *.html; do
+            for needle in 'assets/cbsr.css' 'assets/cbsr.js' 'id="langtog"' '<footer>'; do
+              grep -q "$needle" "$f" || { echo "::error::$f is missing $needle"; bad=1; }
+            done
+          done
+          [ "$bad" -eq 0 ] || exit 1
+          echo "OK: all $(ls *.html | wc -l) pages carry the shell."
 
-      # The analysis index links to PDFs served from this repo. A missing file ships a
-      # dead link on the page that is meant to be the evidence, so the link set is checked
-      # against the filesystem here rather than discovered by a reader.
-      - name: Check every hosted paper the page links to exists
+      # Internal navigation is now a graph rather than a set of anchors, so a renamed file
+      # breaks links on pages nobody edited. Resolve every internal href against the disk.
+      - name: Check every internal link resolves
         run: |
           set -euo pipefail
           missing=0
-          for f in $(grep -o 'href="papers/[^"]*"' index.html | sed 's/href="//;s/"$//' | sort -u); do
-            if [ -f "$f" ]; then
-              echo "  ok   $f"
-            else
-              echo "::error::linked paper missing from the repo: $f"
-              missing=1
-            fi
+          for f in *.html; do
+            for h in $(grep -o 'href="[^"#?:]*\.\(html\|pdf\|svg\|png\|xml\|txt\)"' "$f" \
+                       | sed 's/href="//;s/"$//' | sort -u); do
+              [ -f "$h" ] || { echo "::error::$f links to missing file: $h"; missing=1; }
+            done
           done
-          if [ "$missing" -ne 0 ]; then exit 1; fi
-          echo "OK: every linked paper is present."
+          [ "$missing" -eq 0 ] || exit 1
+          echo "OK: every internal link resolves."
+
+      # The analysis index links to PDFs served from this repo. A dead link on the page
+      # that is meant to BE the evidence is worse than no link.
+      - name: Check the assets and the hosted papers are present
+        run: |
+          set -euo pipefail
+          for f in og-card.png favicon.svg assets/cbsr.css assets/cbsr.js .nojekyll; do
+            test -f "$f" || { echo "::error::$f missing"; exit 1; }
+          done
+          for f in $(grep -oh 'href="papers/[^"]*"' *.html | sed 's/href="//;s/"$//' | sort -u); do
+            test -f "$f" || { echo "::error::linked paper missing from the repo: $f"; exit 1; }
+            echo "  ok   $f"
+          done
+          echo "OK: assets and papers present."
+
+      # The application form is the only thing on this site that can silently stop working
+      # without changing how any page looks. Assert its contract at build time.
+      - name: Check the maintainer form still has its contract
+        run: |
+          set -euo pipefail
+          for needle in 'id="apply"' 'name="_honey"' 'name="_next"' \
+                        'yunjiefan.research@gmail.com' 'id="apply-mailto"'; do
+            grep -q "$needle" maintain.html || { echo "::error::maintain.html lost $needle"; exit 1; }
+          done
+          test -f thanks.html || { echo "::error::_next points at thanks.html, which is missing"; exit 1; }
+          echo "OK: form contract intact."
 
       - uses: actions/upload-pages-artifact@v3
         with:
