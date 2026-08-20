@@ -5,6 +5,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>Corridors — 132 directed edges, read at the destination's inbound gate | CBSR</title>
 <meta name="description" content="All 132 directed corridors across twelve jurisdictions, with the feasibility classes, the gating mechanism behind each, and the dated transitions that reclassify them. Computed from the register, not hard-coded.">
 <meta name="author" content="Yunjie Fan">
@@ -33,8 +35,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/cbsr.css">
+<script src="assets/cbsr-live.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap">
@@ -48,7 +52,7 @@
       <a href="standards.html" data-zh="标准与目标">Standards</a>
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
-      <span class="ver">v0.10.1</span>
+      <span class="ver" data-live="version" data-live-prefix="v">v0.11.0</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="zh">中文</button>
@@ -57,10 +61,10 @@
   </div>
 </header>
 
-<div class="wrap">
+<main id="main" class="wrap">
 
   <section class="masthead">
-    <p class="kick" data-zh="通道层 &nbsp;·&nbsp; v0.10.1">the corridor layer &nbsp;·&nbsp; v0.10.1</p>
+    <p class="kick" data-zh="通道层 &nbsp;·&nbsp; <span data-live=&quot;version&quot; data-live-prefix=&quot;v&quot;>v0.11.0</span>">the corridor layer &nbsp;·&nbsp; <span data-live="version" data-live-prefix="v">v0.11.0</span></p>
     <h1 data-zh="绑定规则在目的地。所以一条通道只能一次读一个方向。">The binding rule sits at the destination. So a corridor is read one direction at a time.</h1>
     <p class="lede" data-zh="一笔美元锚定的零售资金流，在不同地方遇到的是法律形态完全不同的工具：一处是交易额上限，一处是专业投资者门槛，第三处是彻底禁止。哪一个约束真正绑定某笔资金流，由目的地的入境关口决定，起点只提供一层拖拽。因此可行性是有向的，而且会随着制度施行而改变。">A dollar-referenced flow at retail scale meets legally different instruments in different places: a transaction cap in one, a professional-investor gate in another, an outright prohibition in a third. Which one binds a given flow is decided at the destination's inbound gate, with a drag from the origin. Feasibility is therefore directional, and it moves as regimes take effect.</p>
     <p class="mast-meta" data-zh="12 个法域 &nbsp;·&nbsp; 132 条有向边 &nbsp;·&nbsp; 6 个可行性类别 &nbsp;·&nbsp; 16 项已排期的重新分类 &nbsp;·&nbsp; 截止 2026 年 6 月 30 日">12 jurisdictions &nbsp;·&nbsp; 132 directed edges &nbsp;·&nbsp; 6 feasibility classes &nbsp;·&nbsp; 16 scheduled reclassifications &nbsp;·&nbsp; dateline 30 June 2026</p>
@@ -79,7 +83,7 @@
       </div>
       <iframe id="mapframe" title="CBSR interactive map" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
-    <p class="embed-cap" id="embed-cap" hidden data-zh="运行于 v0.10.1 快照，数据截至 2026 年 6 月 30 日。每一条通道都由登记册现算得出，没有一处写死。">Runs on the v0.10.1 snapshot, as of 30 June 2026. Every corridor is recomputed from the register.</p>
+    <p class="embed-cap" id="embed-cap" hidden data-zh="运行于 <span data-live=&quot;version&quot; data-live-prefix=&quot;v&quot;>v0.11.0</span> 快照，数据截至 <span data-live=&quot;as_of&quot; data-live-format=&quot;date&quot;>20 August 2026</span>。每一条通道都由登记册现算得出，没有一处写死。">Runs on the <span data-live="version" data-live-prefix="v">v0.11.0</span> snapshot, as of <span data-live="as_of" data-live-format="date">20 August 2026</span>. Every corridor is recomputed from the register.</p>
 
     <!-- The built-in picker stands until the mapper posts cbsr-ready. It reads the same
          corridor layer, so the worst case is a smaller demo, never an empty rectangle. -->
@@ -268,7 +272,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -282,9 +286,10 @@
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
     </nav>
-    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span>Cross-Border Stablecoin Register · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
     <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
+    <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>
   </div>
 </footer>
 

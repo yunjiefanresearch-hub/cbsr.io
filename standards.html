@@ -5,6 +5,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>Standards and development targets — rules as code, RegTech, and the SDG mapping | CBSR</title>
 <meta name="description" content="Where the register sits in the rules-as-code and RegTech traditions, and how its unit of work — the directed corridor — maps onto SDG Target 10.c and the wider open-data and institutional-transparency targets.">
 <meta name="author" content="Yunjie Fan">
@@ -33,8 +35,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/cbsr.css">
+<script src="assets/cbsr-live.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap">
@@ -48,7 +52,7 @@
       <a href="standards.html" data-zh="标准与目标">Standards</a>
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
-      <span class="ver">v0.10.1</span>
+      <span class="ver" data-live="version" data-live-prefix="v">v0.11.0</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="zh">中文</button>
@@ -57,7 +61,7 @@
   </div>
 </header>
 
-<div class="wrap">
+<main id="main" class="wrap">
 
   <section class="masthead">
     <p class="kick" data-zh="标准与发展目标 &nbsp;·&nbsp; 规则即代码 / 监管科技 / SDG 对标">standards and development targets &nbsp;·&nbsp; rules as code / RegTech / SDG</p>
@@ -144,7 +148,7 @@
             <b>Target.</b> Increase the availability of high-quality, timely and reliable data, disaggregated along relevant dimensions.</p>
           <p data-zh="<b>登记册里的机制</b>：数据 CC-BY-4.0，代码 Apache-2.0，schema 公开，每个版本存档至 Zenodo 并获 DOI，可按法域、维度与有向边分解。「及时」在这里有一个具体含义而不是形容词：每条记录携带它被读取的日期，而且构建流程拒绝把尚未施行的法规当作现行有效法。">
             <b>Mechanism in the register.</b> Data under CC-BY-4.0, code under Apache-2.0, a public schema, every release archived to Zenodo with a DOI, disaggregable by jurisdiction, dimension and directed edge. &ldquo;Timely&rdquo; here has a specific meaning rather than an adjectival one: every record carries the date it was read, and the build refuses to serve an uncommenced statute as current law.</p>
-          <p data-zh="<b>支撑记录</b>：全部 152 条记录及其 schema；可引用子集的 46 条；公开的逐格待办清单。">
+          <p data-zh="<b>支撑记录</b>：全部 <span data-live=&quot;records&quot;>152</span> 条记录及其 schema；<span data-live=&quot;structural_candidates&quot;>46</span> 条结构性候选中 <span data-live=&quot;decision_ready&quot;>0</span> 条可作决策依据；公开的逐格待办清单。">
             <b>Backing records.</b> All 152 records and their schema; the 46-record citable subset; the published per-cell worklist.</p>
           <p data-zh="<b>它不主张什么</b>：这不是官方统计，不是任何国家统计体系的一部分，也不适合用作 SDG 指标报送的数据源。它是一份第三方研究数据集，覆盖十二个法域，由一个人维护。">
             <b>What this does not claim.</b> This is not official statistics, not part of any national statistical system, and not fit for use as a reporting source for SDG indicators. It is a third-party research dataset covering twelve jurisdictions, maintained by one person.</p>
@@ -204,7 +208,7 @@
   <span class="k">"backing_records"</span>:         [<span class="s">"corridors/*"</span>, <span class="s">"transitions/*"</span>],
   <span class="k">"claim_class"</span>:             <span class="s">"subject_matter_alignment"</span>,
   <span class="k">"what_this_does_not_claim"</span>: <span class="s">"no measurement of remittance cost"</span>,
-  <span class="k">"as_of"</span>:                   <span class="s">"2026-06-30"</span>
+  <span class="k">"as_of"</span>:                   <span class="s">"2026-08-20"</span>
 }</pre>
     <p class="envcap" data-zh="<code class=&quot;tok&quot;>claim_class</code> 在这里的取值是 <code class=&quot;tok&quot;>subject_matter_alignment</code>，而不是 <code class=&quot;tok&quot;>tier1_legal</code>。这不是修辞：它意味着 <code class=&quot;tok&quot;>citable_law()</code> 永远不会返回这些行。对标层可以被读、被引用、被反驳，但它进不了那个律师看到的界面。"><code class="tok">claim_class</code> takes the value <code class="tok">subject_matter_alignment</code> here, not <code class="tok">tier1_legal</code>. That is not a rhetorical distinction: it means <code class="tok">citable_law()</code> will never return these rows. The mapping can be read, cited and argued with, and it cannot enter the instrument a lawyer is shown.</p>
     <div class="cta">
@@ -214,7 +218,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -228,9 +232,10 @@
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
     </nav>
-    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span>Cross-Border Stablecoin Register · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
     <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
+    <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>
   </div>
 </footer>
 

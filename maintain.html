@@ -5,6 +5,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>Maintain a jurisdiction — open call for maintainers | CBSR</title>
 <meta name="description" content="An open call for jurisdiction maintainers: one person who reads one legal system and keeps its cells honest. What the role is, what it is not, which jurisdictions are open, and the application.">
 <meta name="author" content="Yunjie Fan">
@@ -33,8 +35,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/cbsr.css">
+<script src="assets/cbsr-live.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap">
@@ -48,7 +52,7 @@
       <a href="standards.html" data-zh="标准与目标">Standards</a>
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
-      <span class="ver">v0.10.1</span>
+      <span class="ver" data-live="version" data-live-prefix="v">v0.11.0</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="zh">中文</button>
@@ -57,7 +61,7 @@
   </div>
 </header>
 
-<div class="wrap">
+<main id="main" class="wrap">
 
   <section class="masthead">
     <p class="kick" data-zh="公开招募 &nbsp;·&nbsp; 法域维护者">open call &nbsp;·&nbsp; jurisdiction maintainers</p>
@@ -139,6 +143,24 @@
   <hr class="rule">
 
   <!-- HOW APPLICATIONS ARE READ -->
+
+  <section id="worklist">
+    <p class="kick" data-zh="公开工作清单">the open worklist</p>
+    <h2 class="h-sec" data-zh="每一格都是一个有边界、可独立完成的任务。">Every cell is a bounded task one person can finish alone.</h2>
+    <p class="lead" data-zh="下面这张表直接读自登记册的 verification_worklist.json。它不是「有空来帮忙」，而是逐格列出：哪个法域、哪个维度、缺的是什么、需要什么语言能力。完成一格，你的名字带 ORCID 进入该记录，并出现在 CITATION.cff 的贡献者名单里。">The table below is read straight from the register's verification_worklist.json. It is not a call for general help: it names, cell by cell, the jurisdiction, the dimension, exactly what is missing, and the language needed. Complete one and your name enters that record with your ORCID, and appears in CITATION.cff.</p>
+
+    <div class="wl">
+      <div class="wl-h">
+        <span data-zh="待核验格位">cells awaiting verification</span>
+        <span class="wl-count" id="wl-count">—</span>
+      </div>
+      <ul class="wl-list" id="wl-list"></ul>
+      <p class="wl-state" id="wl-state" data-zh="正在从登记册读取…">Reading from the register…</p>
+    </div>
+
+    <p class="meta" data-zh="同一份清单也可以由 agent 通过 MCP 工具 verification_worklist() 读取。">The same list is readable by an agent through the MCP tool verification_worklist().</p>
+  </section>
+
   <section id="howread">
     <p class="kick" data-zh="申请怎么被读">how an application is read</p>
     <p class="lead" data-zh="资历有用，但不是决定性的。决定性的是表单里那一道具体题目：指出登记册里你认为写错或写得不完整的一格，并给出条款。">Credentials help and are not decisive. What is decisive is one specific question on the form: name a cell in the register you believe is wrong or incomplete, and give the provision.</p>
@@ -323,7 +345,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -337,9 +359,10 @@
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
     </nav>
-    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span>Cross-Border Stablecoin Register · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
     <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
+    <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>
   </div>
 </footer>
 

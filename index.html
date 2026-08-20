@@ -5,6 +5,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>CBSR — the evidence layer for agentic finance</title>
 <meta name="description" content="Open, versioned, machine-readable evidence that AI agents read through typed MCP tools before acting on cross-border financial regulation. Twelve jurisdictions, 132 directed corridors, every fact pinned to a provision of primary law. CC-BY-4.0.">
 <meta name="author" content="Yunjie Fan">
@@ -33,8 +35,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/cbsr.css">
+<script src="assets/cbsr-live.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap">
@@ -48,7 +52,7 @@
       <a href="standards.html" data-zh="标准与目标">Standards</a>
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
-      <span class="ver">v0.10.1</span>
+      <span class="ver" data-live="version" data-live-prefix="v">v0.11.0</span>
       <span class="langtog" id="langtog" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="zh">中文</button>
@@ -57,48 +61,111 @@
   </div>
 </header>
 
-<div class="wrap">
+<main id="main" class="wrap">
 
-  <!-- HERO -->
+  <!-- ============================================================ HERO ==== -->
   <section class="hero" id="top">
+
+    <!-- Masthead. The date is the design element, not decoration: a register
+         that does not say when it was true is not a register. -->
+    <p class="masthead">
+      <span class="mh-name">Cross-Border Stablecoin Register</span>
+      <span class="mh-sep">·</span>
+      <span class="mh-item" data-live="version" data-live-prefix="v">v0.11.0</span>
+      <span class="mh-sep">·</span>
+      <span class="mh-item" data-live="as_of" data-live-format="date">20 August 2026</span>
+      <span class="mh-sep">·</span>
+      <a class="mh-doi" href="https://doi.org/10.5281/zenodo.20730358">doi:10.5281/zenodo.20730358</a>
+    </p>
+
     <div class="hero-grid">
       <div class="hero-main">
-        <p class="kick" data-zh="agentic 金融的证据层 &nbsp;·&nbsp; 原生 MCP &nbsp;·&nbsp; 溯源至一手法律">the evidence layer for agentic finance &nbsp;·&nbsp; MCP-native &nbsp;·&nbsp; sourced to primary law</p>
-        <h1 data-zh="Agent 已经开始动钱了。而它们脚下没有任何一样东西是可以被引用的。">Agents are starting to move money. Nothing underneath them can be cited.</h1>
-        <p class="lede" data-zh="一个通用模型读法规读得很流利，却说不出它读的是哪一段、哪个版本、是否已经施行。当回答的人是人类顾问，这只是不严谨；当回答的人是一个会自己发起支付的系统，这是一个没有底的动作。CBSR 是那个底：一笔跨境资金流要穿过的每一道监管边界上，什么能通过、什么会断。每条事实锚定到一手法条，带日期、带版本、由构建流程校验，并以类型化工具向 agent 开放。律师可以引用它，软件也可以。">A general model reads regulation fluently and cannot tell you which text it read, which version, or whether that version is in force. When the reader is a human adviser, that is sloppiness. When the reader is a system that initiates the payment itself, it is an action with nothing under it. CBSR is what goes under it: what clears, and what breaks, at every regulatory border a cross-border flow has to cross. Each fact cites a provision of primary law, carries a date and a version, is checked by the build, and is exposed to agents through typed tools. Your counsel can cite it. So can your software.</p>
+        <h1 data-zh="它今天会拒绝回答 152 个问题里的 152 个。这才是它能被信任的原因。">It will refuse to answer 152 of 152 questions today. That is why it can be trusted.</h1>
+
+        <p class="lede" data-zh="每一个读法规的系统都会给你一个答案。CBSR 是唯一一个能证明自己什么时候不该给的。每条记录带六条正交的轴——主张类型、文书效力、出处强度、来源、时效、独立复核。六条全部通过，这条记录才可以作为现行法被引用。今天通过的有 0 条。这不是覆盖率失败，是 fail-closed 在正常工作：证据链没闭合的时候，正确的动作是停下，不是猜。">Every system that reads regulation will give you an answer. CBSR is the one that can prove when it should not. Each record carries six orthogonal axes &mdash; kind of claim, force of the instrument, strength of provenance, source, freshness, independent review. All six must pass before a record may be cited as current law. Today none do. That is not a coverage failure; it is fail-closed working correctly. When the evidence chain is not closed, the right move is to stop, not to guess.</p>
+
         <div class="cta">
-          <a class="btn pri" href="agents.html" data-zh="给 agent 接上证据">Ground an agent</a>
-          <a class="btn" href="corridors.html" data-zh="打开通道地图">Open the corridor map</a>
-          <a class="btn" href="kya.html" data-zh="KYA 框架">The KYA framework</a>
+          <a class="btn pri" href="agents.html" data-zh="评估一个动作">Evaluate an action</a>
+          <a class="btn" href="method.html" data-zh="六轴证据模型">The six-axis model</a>
+          <a class="btn" href="maintain.html" data-zh="成为署名评审人">Become a named reviewer</a>
         </div>
-        <p class="meta" data-zh="CC-BY-4.0（数据）/ Apache-2.0（代码） &nbsp;·&nbsp; 每个版本存档至 Zenodo 并获 DOI &nbsp;·&nbsp; 十二个法域 × 十五个维度 &nbsp;·&nbsp; v0.10.1">CC-BY-4.0 (data) / Apache-2.0 (code) &nbsp;·&nbsp; every release archived to Zenodo for a DOI &nbsp;·&nbsp; twelve jurisdictions × fifteen dimensions &nbsp;·&nbsp; v0.10.1</p>
+
+        <p class="meta" data-zh="CC-BY-4.0（数据）/ Apache-2.0（代码） &nbsp;·&nbsp; 每个版本存档至 Zenodo 并获 DOI &nbsp;·&nbsp; 十二个法域 × 十五个维度 &nbsp;·&nbsp; 独立维护，无商业赞助">CC-BY-4.0 (data) / Apache-2.0 (code) &nbsp;·&nbsp; every release archived to Zenodo for a DOI &nbsp;·&nbsp; twelve jurisdictions &times; fifteen dimensions &nbsp;·&nbsp; independently maintained, unsponsored</p>
       </div>
 
-      <aside class="hero-panel" aria-label="The register at a glance">
-        <div class="hp-head">
-          <span class="hp-title" data-zh="登记册概览">The register at a glance</span>
-          <span class="hp-ver">v0.10.1</span>
+      <!-- The evidence ledger. A count without a denominator is what produced
+           the v0.10.1 defect, so this panel structurally cannot render one. -->
+      <aside class="ledger" aria-label="Evidence state of the register">
+        <div class="lg-head">
+          <span class="lg-title" data-zh="证据状态">Evidence state</span>
+          <span class="lg-stamp" data-live-stamp>build-time snapshot</span>
         </div>
-        <dl class="hp-stats">
-          <div><dt data-zh="法域">Jurisdictions</dt><dd>12</dd></div>
-          <div><dt data-zh="有向通道">Directed corridors</dt><dd>132</dd></div>
-          <div><dt data-zh="溯源记录">Sourced records</dt><dd>152</dd></div>
-          <div><dt data-zh="可作为约束性法律引用">Citable as binding law</dt><dd>46</dd></div>
+
+        <div class="lg-fraction">
+          <span class="lg-num" data-live="decision_ready">0</span>
+          <span class="lg-slash">/</span>
+          <span class="lg-den" data-live="structural_candidates">46</span>
+          <span class="lg-slash">/</span>
+          <span class="lg-den lg-total" data-live="records">152</span>
+        </div>
+
+        <dl class="lg-legend">
+          <div>
+            <dt data-zh="可作决策依据">decision-ready</dt>
+            <dd data-zh="六轴全部通过。citable_law() 只暴露这一层。">all six axes pass. <span class="gk">citable_law()</span> exposes only this.</dd>
+          </div>
+          <div>
+            <dt data-zh="结构性候选">structural candidates</dt>
+            <dd data-zh="清单筛选。不是「可作为现行法引用」的陈述。">an inventory filter. Not a statement that a record may be cited as current law.</dd>
+          </div>
+          <div>
+            <dt data-zh="已记录命题">recorded propositions</dt>
+            <dd data-zh="每条一个（法域 × 工具 × 维度）。">one per (jurisdiction &times; instrument &times; dimension).</dd>
+          </div>
         </dl>
-        <div class="hp-bar" role="img" aria-label="Of 132 directed corridors: 32 clear, 24 conditional, 29 partnership-only, 25 in transition, 11 blocked, 11 pre-regime.">
-          <span class="hpb" style="flex:32" data-k="I"></span><span class="hpb" style="flex:24" data-k="II"></span><span class="hpb" style="flex:29" data-k="III"></span><span class="hpb" style="flex:25" data-k="T"></span><span class="hpb" style="flex:11" data-k="X"></span><span class="hpb" style="flex:11" data-k="P"></span>
-        </div>
-        <ul class="hp-key">
-          <li><i data-k="I"></i><span data-zh="32 通行">32 clear</span></li>
-          <li><i data-k="II"></i><span data-zh="24 有条件">24 conditional</span></li>
-          <li><i data-k="III"></i><span data-zh="29 需合作">29 partnership</span></li>
-          <li><i data-k="T"></i><span data-zh="25 过渡中">25 in transition</span></li>
-          <li><i data-k="X"></i><span data-zh="11 禁止">11 blocked</span></li>
-          <li><i data-k="P"></i><span data-zh="11 无制度">11 pre-regime</span></li>
-        </ul>
-        <p class="hp-foot" data-zh="截止 2026 年 6 月 30 日。以上每一个数字都由构建流程从 <span class=&quot;gk&quot;>dataset.json</span> 重新计算得出，没有一个是手写的。">Dateline 30 June 2026. Every figure is recomputed from <span class="gk">dataset.json</span> by the build; none is asserted by hand.</p>
+
+        <p class="lg-why" data-zh="为什么第一个数字是 0：<b data-live=&quot;official_source&quot;>103</b> 条有官方来源，<b data-live=&quot;primary_reviewed&quot;>41</b> 条有一名审阅人，<b data-live=&quot;reconciled&quot;>0</b> 条完成独立二审。第三个数字是当前的绑定约束，也是招募署名评审人要解决的那一个。">Why the first number is zero: <b data-live="official_source">103</b> records have an official source, <b data-live="primary_reviewed">41</b> have one reviewer, and <b data-live="reconciled">0</b> have a reconciled independent second review. The third number is the binding constraint, and it is the one the reviewer programme exists to move.</p>
       </aside>
     </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ========================================================== RECORD ==== -->
+  <!-- The artifact, first. Everything else on this page argues; this shows. -->
+  <section id="record">
+    <p class="kick" data-zh="制品 &nbsp;·&nbsp; 一条记录长什么样">the artifact &nbsp;·&nbsp; what one record looks like</p>
+
+    <h2 class="h-sec" data-zh="一个命题，六条轴，全部摊开。">One proposition. Six axes. All of them showing.</h2>
+    <p class="lead" data-zh="这是登记册中的一条真实记录。它是 152 条里出处最强的一类——已经过官方原文核对——而它今天仍然不可作为决策依据。下面标出的那一轴就是原因。把这一轴移动的方法不是写更多代码，是有第二个人读一遍原文。">This is a real record from the register. It is among the best-sourced of the 152 &mdash; confirmed against the official text &mdash; and it is still not decision-ready today. The marked axis below is the reason. Moving that axis does not take more code; it takes a second person reading the instrument.</p>
+
+    <article class="rec">
+      <header class="rec-h">
+        <code class="rec-id">hk-frs-permitted_activity_yield-001</code>
+        <span class="rec-jur">Hong Kong &nbsp;·&nbsp; HKMA</span>
+      </header>
+
+      <p class="rec-claim" data-zh="持牌人不得就已发行的稳定币支付任何利息。">The licensee must not pay any interest on issued stablecoins.</p>
+
+      <dl class="rec-src">
+        <div><dt data-zh="文书">Instrument</dt><dd>Stablecoins Ordinance (Cap. 656)</dd></div>
+        <div><dt data-zh="精确定位">Pinpoint</dt><dd>Schedule 2, s.15 &mdash; Non-interest bearing</dd></div>
+        <div><dt data-zh="官方原文">Official text</dt><dd><a href="https://www.elegislation.gov.hk/hk/cap656" rel="noreferrer">elegislation.gov.hk/hk/cap656</a></dd></div>
+      </dl>
+
+      <div class="axes" role="list" aria-label="Six evidence axes">
+        <div role="listitem" class="ax ok"><span class="ax-k" data-zh="主张类型">claim</span><span class="ax-v">tier1_legal</span></div>
+        <div role="listitem" class="ax ok"><span class="ax-k" data-zh="文书效力">instrument</span><span class="ax-v">in_force_enacted</span></div>
+        <div role="listitem" class="ax ok"><span class="ax-k" data-zh="出处强度">provenance</span><span class="ax-v">resolution_text</span></div>
+        <div role="listitem" class="ax ok"><span class="ax-k" data-zh="来源">source</span><span class="ax-v">official</span></div>
+        <div role="listitem" class="ax no binding"><span class="ax-k" data-zh="时效">freshness</span><span class="ax-v">unknown</span></div>
+        <div role="listitem" class="ax no"><span class="ax-k" data-zh="复核">review</span><span class="ax-v">unreviewed</span></div>
+      </div>
+
+      <p class="rec-verdict" data-zh="四条通过，两条没有。<b>freshness</b> 是绑定的那一轴：这条条文自身没有变，但没有人在 SLA 窗口内重新核对过来源，所以登记册拒绝把它作为现行法投射出去。这就是那个「不知道」，写成了字段。">Four axes pass, two do not. <b>freshness</b> is the binding one: the provision itself has not moved, but nobody has re-checked the source inside the SLA window, so the register declines to project it as current law. This is what &ldquo;I don't know&rdquo; looks like when it is written down as a field.</p>
+    </article>
+
+    <p class="rec-foot" data-zh="登记册里的每一条记录都是这个形状。没有隐藏的置信度分数，没有说不清出处的总结——只有六个可以被指着问「这一条为什么是这个值」的字段。">Every record in the register has this shape. No hidden confidence score, no summary whose provenance cannot be named &mdash; six fields, each of which can be pointed at and questioned.</p>
   </section>
 
   <hr class="rule">
@@ -339,7 +406,7 @@
         <ul>
           <li data-zh="12 个法域 × 15 个监管维度">12 jurisdictions × 15 regulatory dimensions</li>
           <li data-zh="132 条有向通道，6 个可行性类别">132 directed corridors, 6 feasibility classes</li>
-          <li data-zh="152 条溯源记录，46 条可作为约束性法律引用">152 sourced records, 46 citable as binding law</li>
+          <li data-zh="<span data-live=&quot;records&quot;>152</span> 条溯源记录 · <span data-live=&quot;structural_candidates&quot;>46</span> 条结构性候选 · <span data-live=&quot;decision_ready&quot;>0</span> 条可作决策依据"><span data-live="records">152</span> sourced records &middot; <span data-live="structural_candidates">46</span> structural candidates &middot; <span data-live="decision_ready">0</span> decision-ready</li>
           <li data-zh="16 项带日期的重新分类">16 dated reclassifications</li>
           <li data-zh="约 30 个类型化 MCP 工具">~30 typed MCP tools</li>
           <li data-zh="6 篇工作论文，1 份 SEC 意见栏归档">6 working papers, 1 SEC docket filing</li>
@@ -384,7 +451,7 @@
     <div class="band">
       <p class="kick" data-zh="公开招募 &nbsp;·&nbsp; 法域维护者">open call &nbsp;·&nbsp; jurisdiction maintainers</p>
       <h2 data-zh="十二个法域，一个读法条的人。">Twelve legal systems. One person reading them.</h2>
-      <p class="body" data-zh="一手条文核对是这项工作里慢的那一半，而且是手工做的。登记册对这个代价是诚实的：152 条溯源记录里，46 条通过完整的可引用门槛，其余的作为逐格待办清单公开，而不是含糊抹平。">Primary-source verification is the slow half of this work, and it is done by hand. The register is honest about what that costs: of 152 sourced records, 46 clear the full citable bar, and the rest are published as a per-cell worklist rather than smoothed over.</p>
+      <p class="body" data-zh="一手条文核对是这项工作里慢的那一半，而且是手工做的。登记册对这个代价是诚实的：<span data-live=&quot;records&quot;>152</span> 条溯源记录里，<span data-live=&quot;structural_candidates&quot;>46</span> 条通过结构性筛选，而今天有 <span data-live=&quot;decision_ready&quot;>0</span> 条通过六轴全部门槛、可作决策依据。其余作为逐格待办清单公开，而不是含糊抹平。">Primary-source verification is the slow half of this work, and it is done by hand. The register is honest about what that costs: of <span data-live="records">152</span> sourced records, <span data-live="structural_candidates">46</span> pass the structural filter and <span data-live="decision_ready">0</span> clear all six axes today. The rest are published as a per-cell worklist rather than smoothed over.</p>
       <p class="body" data-zh="法域维护者，就是一个读一套法律制度、并让它那几格保持诚实的人。这是唯一能让那个数字往上走的贡献。不需要全职，也不需要放弃本职工作；需要的是你已经在读一手法条，并且愿意把读到的东西写成带条款定位、可被反驳的记录。">A jurisdiction maintainer is one person who reads one legal system and keeps its cells honest. It is the single contribution that moves that number. It does not need to be full-time and it does not replace anyone's day job. It needs someone who already reads primary law in one of these systems and is willing to write down what they read, with a pinpoint, in a form that can be argued with.</p>
       <div class="cta">
         <a class="btn pri" href="maintain.html" data-zh="申请维护一个法域">Apply to maintain a jurisdiction</a>
@@ -410,7 +477,7 @@
   </section>
 
 
-</div>
+</main>
 
 <footer>
   <div class="wrap">
@@ -424,9 +491,10 @@
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
     </nav>
-    <span>Cross-Border Stablecoin Register · v0.10.1</span>
+    <span>Cross-Border Stablecoin Register · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
     <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
+    <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>
   </div>
 </footer>
 

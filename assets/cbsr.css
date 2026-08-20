@@ -485,3 +485,159 @@ html[lang^="zh"] .fs legend{letter-spacing:0.05em;text-transform:none;font-size:
 /* a masthead headline built from three parallel clauses needs a wider measure than
    the default 20ch, which otherwise stacks it into a column four lines deep */
 .masthead h1.wide{max-width:30ch}
+
+
+/* ==== appended by the v0.11.0 pass — see cbsr-additions.css ==== */
+/* ============================================================================
+   cbsr-additions.css — append to assets/cbsr.css.
+
+   Design direction, stated so later edits can be judged against it:
+
+     The page is a document, not a landing page. Serif carries argument, mono
+     carries anything the build computed, sans carries interface controls, and
+     none of the three does another's job. Colour is functional only: the one
+     accent is spent on evidence state, never on decoration. There is no hero
+     image, no gradient, and no transition — a register's authority comes from
+     being dated and still, and motion would read as a product.
+
+     The signature element is the fraction. Every figure the site publishes is
+     shown with its denominators, because the defect this redesign exists to
+     remove was a single number published without one.
+
+   Every value below reuses the tokens already declared in cbsr.css.
+   ========================================================================= */
+
+/* ------------------------------------------------------------- masthead -- */
+.masthead{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;
+  margin:0 0 26px;padding-bottom:10px;
+  border-bottom:2px solid var(--ink);
+  font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink-2);
+}
+.mh-name{color:var(--ink)}
+.mh-sep{color:var(--line-strong)}
+.mh-item{font-variant-numeric:tabular-nums}
+.mh-doi{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;
+  text-decoration-color:var(--line-strong)}
+.mh-doi:hover{color:var(--accent);text-decoration-color:var(--accent)}
+html[lang^="zh"] .masthead{letter-spacing:0}
+
+/* ---------------------------------------------------------- hero rework -- */
+.hero h1{
+  font-size:clamp(28px,4.4vw,46px);line-height:1.14;letter-spacing:-0.015em;
+  margin:0 0 18px;max-width:19ch;
+}
+html[lang^="zh"] .hero h1{max-width:24ch;line-height:1.28;letter-spacing:0}
+.hero .lede{max-width:60ch;font-family:var(--serif);font-size:17px;line-height:1.66}
+
+/* --------------------------------------------------------- the fraction --
+   The signature. Tabular numerals, hairline frame, no rounding: the figure is
+   read off an instrument, not presented on a card. */
+.ledger{border:1px solid var(--line-strong);background:var(--surface);padding:18px 20px 16px}
+.lg-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+.lg-title{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2)}
+.lg-stamp{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-align:right}
+.lg-stamp[data-live-state="offline"]{color:var(--gate)}
+
+.lg-fraction{display:flex;align-items:baseline;gap:10px;margin:18px 0 2px;
+  font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1}
+.lg-num{font-size:clamp(44px,7.2vw,66px);font-weight:500;color:var(--gate)}
+.lg-slash{font-size:26px;color:var(--line-strong)}
+.lg-den{font-size:26px;color:var(--ink-2)}
+.lg-den.lg-total{color:var(--muted)}
+
+.lg-legend{display:grid;gap:12px;margin:16px 0 0;padding:0}
+.lg-legend div{margin:0;display:grid;grid-template-columns:minmax(0,140px) 1fr;gap:10px;
+  padding-top:9px;border-top:1px solid var(--line)}
+.lg-legend dt{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink)}
+.lg-legend dd{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.lg-why{margin:16px 0 0;padding-top:12px;border-top:2px solid var(--ink);
+  font-size:12.5px;line-height:1.62;color:var(--ink-2)}
+.lg-why b{font-family:var(--mono);font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+@media(max-width:520px){.lg-legend div{grid-template-columns:1fr;gap:2px}}
+
+/* ------------------------------------------------------------- a record --
+   The artifact panel. Deliberately dense and squared off; this should read
+   like a docket entry, which is what it is. */
+.rec{border:1px solid var(--line-strong);background:var(--surface);padding:0;margin:26px 0 0}
+.rec-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:11px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.rec-id{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.rec-jur{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+.rec-claim{margin:0;padding:20px 16px 16px;font-family:var(--serif);
+  font-size:clamp(18px,2.4vw,23px);line-height:1.42;color:var(--ink);max-width:52ch}
+
+.rec-src{display:grid;gap:0;margin:0;padding:0 16px 16px}
+.rec-src div{display:grid;grid-template-columns:minmax(0,120px) 1fr;gap:12px;margin:0;
+  padding:7px 0;border-top:1px solid var(--line)}
+.rec-src dt{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted)}
+.rec-src dd{margin:0;font-size:13px;line-height:1.5;color:var(--ink-2);word-break:break-word}
+@media(max-width:520px){.rec-src div{grid-template-columns:1fr;gap:2px}}
+
+/* Six axes as one strip. The strip is the point: the axes are orthogonal, so
+   they are shown side by side and equally weighted rather than as a score. */
+.axes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;
+  background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ax{background:var(--surface);padding:10px 10px 9px;min-width:0}
+.ax-k{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted)}
+.ax-v{display:block;font-family:var(--mono);font-size:11px;margin-top:3px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
+.ax.ok .ax-v{color:var(--clear)}
+.ax.no .ax-v{color:var(--ink-2)}
+.ax.binding{box-shadow:inset 0 -3px 0 var(--gate)}
+.ax.binding .ax-v{color:var(--gate)}
+html[lang^="zh"] .ax-k{letter-spacing:.02em}
+@media(max-width:760px){.axes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:420px){.axes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.rec-verdict{margin:0;padding:16px;font-size:13.5px;line-height:1.62;color:var(--ink-2);
+  max-width:70ch}
+.rec-verdict b{font-family:var(--mono);font-weight:500;color:var(--gate)}
+.rec-foot{margin:16px 0 0;max-width:70ch;font-size:13px;line-height:1.6;color:var(--muted)}
+
+/* ------------------------------------------------------------ stillness --
+   No transitions anywhere in the new components, and reduced motion honoured
+   for anything inherited from the older stylesheet. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* --------------------------------------------------- accessibility ------
+   A skip link is the cheapest real accessibility win on a page with a nine-item
+   nav: without it a keyboard user tabs the whole masthead on every page. */
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
+  padding:10px 16px;font-family:var(--mono);font-size:13px}
+.skip:focus{left:0;color:#fff}
+
+/* The OpenSSF badge is an image of record, not decoration: it must stay legible
+   and must not be stretched by the footer's flex layout. */
+.badge-ossf{display:inline-flex;align-items:center;line-height:0;flex:none}
+.badge-ossf img{display:block;height:20px;width:auto}
+
+/* ----------------------------------------------------- the worklist -----
+   Rendered from the register at run time. Each row is one bounded task a new
+   contributor can finish alone — which is what OpenSSF `small_tasks` asks for
+   and, more importantly, what the reviewer programme actually needs. */
+.wl{border:1px solid var(--line-strong);background:var(--surface);margin:20px 0 0}
+.wl-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:11px 16px;border-bottom:1px solid var(--line);background:var(--surface-2);
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-2)}
+.wl-count{letter-spacing:0;text-transform:none;color:var(--muted)}
+.wl-list{list-style:none;margin:0;padding:0;max-height:420px;overflow:auto}
+.wl-list li{display:grid;grid-template-columns:minmax(0,90px) 1fr minmax(0,150px);gap:14px;
+  padding:9px 16px;border-top:1px solid var(--line);align-items:baseline}
+.wl-list li:first-child{border-top:0}
+.wl-cell{font-family:var(--mono);font-size:11px;color:var(--ink)}
+.wl-what{font-size:13px;line-height:1.5;color:var(--ink-2);min-width:0}
+.wl-need{font-family:var(--mono);font-size:10.5px;color:var(--gate);text-align:right}
+.wl-state{padding:14px 16px;margin:0;font-size:13px;color:var(--muted)}
+@media(max-width:640px){.wl-list li{grid-template-columns:1fr;gap:3px}
+  .wl-need{text-align:left}}

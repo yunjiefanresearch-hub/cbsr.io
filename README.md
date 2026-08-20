@@ -1,3 +1,5 @@
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14172/badge)](https://www.bestpractices.dev/projects/14172)
+
 # CBSR — cbsr.io
 
 The front door for the [Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
