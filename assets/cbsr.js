@@ -17,7 +17,7 @@
   'use strict';
 
   /* your deployed mapper. The corridor picker stands in until it answers. */
-  var MAPPER_URL = 'https://map.cbsr.site/';
+  var MAPPER_URL = 'https://yunjiefanresearch-hub.github.io/cbsr-mapper/';
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
