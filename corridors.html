@@ -67,7 +67,7 @@
     <p class="kick" data-zh="通道层 &nbsp;·&nbsp; <span data-live=&quot;version&quot; data-live-prefix=&quot;v&quot;>v0.11.0</span>">the corridor layer &nbsp;·&nbsp; <span data-live="version" data-live-prefix="v">v0.11.0</span></p>
     <h1 data-zh="绑定规则在目的地。所以一条通道只能一次读一个方向。">The binding rule sits at the destination. So a corridor is read one direction at a time.</h1>
     <p class="lede" data-zh="一笔美元锚定的零售资金流，在不同地方遇到的是法律形态完全不同的工具：一处是交易额上限，一处是专业投资者门槛，第三处是彻底禁止。哪一个约束真正绑定某笔资金流，由目的地的入境关口决定，起点只提供一层拖拽。因此可行性是有向的，而且会随着制度施行而改变。">A dollar-referenced flow at retail scale meets legally different instruments in different places: a transaction cap in one, a professional-investor gate in another, an outright prohibition in a third. Which one binds a given flow is decided at the destination's inbound gate, with a drag from the origin. Feasibility is therefore directional, and it moves as regimes take effect.</p>
-    <p class="mast-meta" data-zh="12 个法域 &nbsp;·&nbsp; 132 条有向边 &nbsp;·&nbsp; 6 个可行性类别 &nbsp;·&nbsp; 16 项已排期的重新分类 &nbsp;·&nbsp; 截止 2026 年 6 月 30 日">12 jurisdictions &nbsp;·&nbsp; 132 directed edges &nbsp;·&nbsp; 6 feasibility classes &nbsp;·&nbsp; 16 scheduled reclassifications &nbsp;·&nbsp; dateline 30 June 2026</p>
+    <p class="mast-meta" data-zh="<span data-live=&quot;jurisdictions&quot;>12</span> 个法域 &nbsp;·&nbsp; <span data-live=&quot;authored_corridors&quot;>132</span> 条有向边 &nbsp;·&nbsp; 6 个可行性类别 &nbsp;·&nbsp; 16 项已排期的重新分类 &nbsp;·&nbsp; 截止 <span data-live=&quot;as_of&quot; data-live-format=&quot;date&quot;>2026 年 8 月 20 日</span>"><span data-live="jurisdictions">12</span> jurisdictions &nbsp;·&nbsp; <span data-live="authored_corridors">132</span> directed edges &nbsp;·&nbsp; 6 feasibility classes &nbsp;·&nbsp; 16 scheduled reclassifications &nbsp;·&nbsp; dateline <span data-live="as_of" data-live-format="date">20 August 2026</span></p>
   </section>
 
   <hr class="rule">
@@ -75,6 +75,7 @@
   <!-- LIVE MAP + PICKER FALLBACK -->
   <section id="live">
     <p class="kick" data-zh="实时登记册 &nbsp;·&nbsp; 完整交互地图">the live register &nbsp;·&nbsp; the full interactive map</p>
+    <h2 class="h-sec" data-zh="完整的交互式地图">The full interactive map</h2>
 
     <div id="embed" class="embed" hidden>
       <div class="embed-bar">
@@ -150,6 +151,7 @@
   <!-- DIRECTIONALITY -->
   <section id="direction">
     <p class="kick" data-zh="为什么是有向的">why it is directional</p>
+    <h2 class="h-sec" data-zh="为什么一条通道一次只能读一个方向">Why a corridor is read one direction at a time</h2>
     <p class="lead" data-zh="一条通道的结论，主要由目的地写下的规则决定。起点能不能发出一枚可授权的代币，只是一层拖拽。这意味着同一道边界的两个方向，可以给出两个不同的答案，而且经常如此。">A corridor's verdict is decided mostly by what the destination has written down. Whether the origin can issue an authorizable token at all is a drag on top. Which means the two directions across one border can give two different answers, and usually do.</p>
     <p class="body" data-zh="在这份登记册的 66 组法域配对里，有 <b>56 组</b>会因资金流向不同而读出不同结论。一张扁平的合规表一格只能填一个答案。这是全部问题所在，也是这个数据集为什么以有向边而不是以法域为单位。"><b>56 of the 66 jurisdiction pairs</b> in this register read differently depending on which way the money moves. A flat compliance table has one cell per pair. That is the whole problem, and it is why this dataset's unit is the directed edge rather than the jurisdiction.</p>
     <p class="body" data-zh="今天 US → EU 可清算，而 EU → US 不行——不是因为被禁止，而是因为美国那套制度已经通过、尚未施行。这个区分在散文里很容易写丢，在数据里则必须是一个具名状态，否则读到它的软件就会把「尚未施行」当成「已经生效」。">Today US&nbsp;&rarr;&nbsp;EU clears and EU&nbsp;&rarr;&nbsp;US does not, though nothing bars it: the US regime is written and not yet in force. That distinction is easy to lose in prose. In data it has to be a named state, or the software reading it will treat &ldquo;not yet commenced&rdquo; as &ldquo;in force&rdquo;.</p>
@@ -257,6 +259,7 @@
   <!-- READING A VERDICT -->
   <section id="reading">
     <p class="kick" data-zh="如何读一条结论">how to read a verdict</p>
+    <h2 class="h-sec" data-zh="一个结论必须携带什么">What a verdict has to carry</h2>
     <p class="lead" data-zh="每条通道结论都带着让它可以被反驳的材料。少任何一项，剩下的就只是一个观点。">Every corridor verdict arrives with the material that makes it arguable. Without any one of these, what is left is an opinion.</p>
     <div class="uses">
       <div class="use"><p class="ut" data-zh="类别">The class</p><p class="ud" data-zh="六个具名状态之一。类别本身不是结论，它指向的是「什么在挡路」。">One of six named states. The class is not the conclusion; it names what is in the way.</p></div>

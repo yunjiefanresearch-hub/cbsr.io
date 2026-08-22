@@ -81,7 +81,7 @@
 
     <!-- Masthead. The date is the design element, not decoration: a register
          that does not say when it was true is not a register. -->
-    <p class="masthead">
+    <p class="dateline">
       <span class="mh-name">Cross-Border Stablecoin Register</span>
       <span class="mh-sep">·</span>
       <span class="mh-item" data-live="version" data-live-prefix="v">v0.11.0</span>
@@ -242,8 +242,8 @@
     </div>
 
     <div class="cta">
-      <a class="btn" href="agents.html" data-zh="接地契约与它防住的四种失败">The grounding contract, and the four failures it prevents</a>
       <a class="btn" href="method.html" data-zh="闸门与负向测试">The gates and the negative tests</a>
+      <a class="btn" href="agents.html" data-zh="约三十个类型化工具">The typed tools that carry it</a>
     </div>
   </section>
 
@@ -491,25 +491,16 @@
     <p class="kick" data-zh="动手 &nbsp;·&nbsp; 三条路，都在一分钟之内">use it &nbsp;·&nbsp; three doors, each about a minute</p>
     <h2 class="h-sec" data-zh="现在就能碰到它的三种方式">Three ways to touch it right now</h2>
     <p class="lead" data-zh="没有注册，没有 API key，没有等待名单。数据是 CC-BY-4.0，工具是 Apache-2.0，两者都在同一个仓库里。">No sign-up, no API key, no waiting list. The data is CC-BY-4.0, the tooling is Apache-2.0, and both are in the same repository.</p>
-    <div class="pillars three">
-      <a class="pil" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register" target="_blank" rel="noopener">
-        <span class="ix">01</span>
+    <div class="layers">
+      <div class="layer"><div class="ix">01</div><div>
         <h3 data-zh="直接读 JSON">Read the JSON</h3>
-        <p data-zh="静态 API 是自描述的：<span class=&quot;gk&quot;>api/index.json</span> 枚举全部端点，<span class=&quot;gk&quot;>api/meta.json</span> 是本页这些数字的来源，<span class=&quot;gk&quot;>api/verification-worklist.json</span> 是逐格待办清单。不需要装任何东西。">The static API is self-describing. <span class="gk">api/index.json</span> enumerates every endpoint, <span class="gk">api/meta.json</span> is where the figures on this page come from, and <span class="gk">api/verification-worklist.json</span> is the per-cell backlog. Nothing to install.</p>
-        <span class="go" data-zh="仓库与 api/ 目录 →">The repository and api/ &rarr;</span>
-      </a>
-      <a class="pil" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md" target="_blank" rel="noopener">
-        <span class="ix">02</span>
-        <h3 data-zh="把 MCP server 挂进你的智能体">Mount the MCP server</h3>
-        <p data-zh="每个工具的签名、返回形状和护栏都写在 <span class=&quot;gk&quot;>MCP_SERVER.md</span> 里；工具清单由同一份注册表生成到 <span class=&quot;gk&quot;>mcp.json</span>，所以文档不会和实现走散。客户端配置在 <span class=&quot;gk&quot;>docs/CONNECT_MCP.md</span>。">Every tool's signature, return shape and guardrails are in <span class="gk">MCP_SERVER.md</span>. The inventory is generated from one registry into <span class="gk">mcp.json</span>, so the document cannot drift from the implementation. Client configuration is in <span class="gk">docs/CONNECT_MCP.md</span>.</p>
-        <span class="go" data-zh="工具与返回契约 →">The tools and the return contract &rarr;</span>
-      </a>
-      <a class="pil" href="https://doi.org/10.5281/zenodo.20730358" target="_blank" rel="noopener">
-        <span class="ix">03</span>
+        <p data-zh="静态 API 自描述：<span class=&quot;gk&quot;>api/index.json</span> 枚举全部端点，<span class=&quot;gk&quot;>api/meta.json</span> 是本页这些数字的来源，<span class=&quot;gk&quot;>api/verification-worklist.json</span> 是逐格待办清单。不需要装任何东西。<a href=&quot;https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>打开仓库 →</a>">The static API is self-describing. <span class="gk">api/index.json</span> enumerates every endpoint, <span class="gk">api/meta.json</span> is where the figures on this page come from, and <span class="gk">api/verification-worklist.json</span> is the per-cell backlog. Nothing to install. <a href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register" target="_blank" rel="noopener">Open the repository &rarr;</a></p></div></div>
+      <div class="layer"><div class="ix">02</div><div>
+        <h3 data-zh="挂进你的智能体">Mount the server</h3>
+        <p data-zh="每个工具的签名、返回形状和护栏都在 <span class=&quot;gk&quot;>MCP_SERVER.md</span>；清单由同一份注册表生成到 <span class=&quot;gk&quot;>mcp.json</span>，文档不会和实现走散。客户端配置在 <span class=&quot;gk&quot;>docs/CONNECT_MCP.md</span>。<a href=&quot;https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>读返回契约 →</a>">Every tool's signature, return shape and guardrails are in <span class="gk">MCP_SERVER.md</span>. The inventory is generated from one registry into <span class="gk">mcp.json</span>, so the document cannot drift from the implementation. Client configuration is in <span class="gk">docs/CONNECT_MCP.md</span>. <a href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/main/MCP_SERVER.md" target="_blank" rel="noopener">Read the return contract &rarr;</a></p></div></div>
+      <div class="layer"><div class="ix">03</div><div>
         <h3 data-zh="固定一个版本并引用它">Pin a version and cite it</h3>
-        <p data-zh="每个打标签的版本都存档到 Zenodo 并获得 DOI，引用格式在 <span class=&quot;gk&quot;>CITATION.cff</span>。想自己复现这份构建，跑同一条正式闸门：<span class=&quot;gk&quot;>python -m tools.verify</span>。">Every tagged release is archived to Zenodo for a DOI, with the citation form in <span class="gk">CITATION.cff</span>. To reproduce the build yourself, run the same canonical gate the project runs: <span class="gk">python -m tools.verify</span>.</p>
-        <span class="go" data-zh="版本 DOI →">The version DOI &rarr;</span>
-      </a>
+        <p data-zh="每个打标签的版本都存档到 Zenodo 并获得 DOI，引用格式在 <span class=&quot;gk&quot;>CITATION.cff</span>。想自己复现这份构建，跑同一条正式闸门：<span class=&quot;gk&quot;>python -m tools.verify</span>。<a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>版本 DOI →</a>">Every tagged release is archived to Zenodo for a DOI, with the citation form in <span class="gk">CITATION.cff</span>. To reproduce the build yourself, run the same canonical gate the project runs: <span class="gk">python -m tools.verify</span>. <a href="https://doi.org/10.5281/zenodo.20730358" target="_blank" rel="noopener">The version DOI &rarr;</a></p></div></div>
     </div>
   </section>
 
@@ -573,8 +564,7 @@
     <div class="band">
       <p class="kick" data-zh="公开招募 &nbsp;·&nbsp; 法域维护者">open call &nbsp;·&nbsp; jurisdiction maintainers</p>
       <h2 data-zh="十二个法域，一个读法条的人。">Twelve legal systems. One person reading them.</h2>
-      <p class="body" data-zh="一手条文核对是这项工作里慢的那一半，而且是手工做的。登记册对这个代价是诚实的：<span data-live=&quot;records&quot;>152</span> 条溯源记录里，<span data-live=&quot;structural_candidates&quot;>46</span> 条通过结构性筛选，而今天有 <span data-live=&quot;decision_ready&quot;>0</span> 条通过六轴全部门槛、可作决策依据。其余作为逐格待办清单公开，而不是含糊抹平。">Primary-source verification is the slow half of this work, and it is done by hand. The register is honest about what that costs: of <span data-live="records">152</span> sourced records, <span data-live="structural_candidates">46</span> pass the structural filter and <span data-live="decision_ready">0</span> clear all six axes today. The rest are published as a per-cell worklist rather than smoothed over.</p>
-      <p class="body" data-zh="法域维护者，就是一个读一套法律制度、并让它那几格保持诚实的人。这是唯一能让那个数字往上走的贡献。不需要全职，也不需要放弃本职工作；需要的是你已经在读一手法条，并且愿意把读到的东西写成带条款定位、可被反驳的记录。">A jurisdiction maintainer is one person who reads one legal system and keeps its cells honest. It is the single contribution that moves that number. It does not need to be full-time and it does not replace anyone's day job. It needs someone who already reads primary law in one of these systems and is willing to write down what they read, with a pinpoint, in a form that can be argued with.</p>
+      <p class="body" data-zh="<span data-live=&quot;records&quot;>152</span> 条溯源记录里，<span data-live=&quot;structural_candidates&quot;>46</span> 条通过结构性筛选，今天有 <span data-live=&quot;decision_ready&quot;>0</span> 条通过六轴全部门槛。缺口在独立复核，而它只能一个法域一个法域地补：由一个已经在读那套法律制度的人，把读到的东西写成带条款定位、可被反驳的记录。不需要全职。">Of <span data-live="records">152</span> sourced records, <span data-live="structural_candidates">46</span> pass the structural filter and <span data-live="decision_ready">0</span> clear all six axes today. The gap is independent review, and it closes one legal system at a time: someone who already reads primary law in that system, writing down what they read with a pinpoint, in a form that can be argued with. It does not need to be full-time.</p>
       <div class="cta">
         <a class="btn pri" href="maintain.html" data-zh="申请维护一个法域">Apply to maintain a jurisdiction</a>
         <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/issues" target="_blank" rel="noopener" data-zh="提交一处更正">Report a correction</a>
@@ -589,13 +579,12 @@
     <p class="kick" data-zh="你可以依赖什么">what you may rely on</p>
     <h2 class="h-sec" data-zh="这份东西承诺什么，不承诺什么">What is promised here, and what is not</h2>
     <div class="status">
-      <p class="body" data-zh="这是一份<strong>带日期的快照，不是实时数据源</strong>，这个区分就是全部的契约。每个版本都有版本号、存档到 DOI，并且在它所载的日期上为真。版本之间不作任何承诺：法律在动，而这份登记册要到下一次构建才跟着动。没有可用性承诺，没有支持队列，也不保证任何一条通道今天读到的还是它在截止日读到的那个结论——<strong>在你依赖它之前，请回到一手来源核对</strong>。">This is a <strong>dated snapshot, not a live feed</strong>, and the distinction is the whole contract. Each release is versioned, archived to a DOI, and true as of the date it carries. Between releases nothing is promised: law moves, and this register does not move with it until the next build. There is no uptime commitment, no support queue, and no undertaking that any corridor still reads today what it read at the dateline &mdash; <strong>verify against the primary source before you rely on it</strong>.</p>
-      <p class="body" data-zh="承诺的是更窄、也更可核对的东西：每条主张都带着它依据的条款和读取日期，可引用子集由构建流程强制而非在散文里宣称，未核完的部分作为逐格待办清单公开，而政策引擎在任何情况下都不会返回执行授权。请把它当作一份带日期的法律备忘录来对待，因为它就是。">What is promised instead is narrower and checkable: every claim carries the provision it rests on and the date it was read, the citable subset is enforced by the build rather than asserted in prose, the unverified backlog is published as a per-cell worklist, and the policy engine returns no execution authority under any condition. Treat it the way you would treat a dated legal memorandum, because that is what it is.</p>
+      <p class="body" data-zh="契约只有一条，而且很窄：这是一份<strong>带日期的快照，不是实时数据源</strong>。法律动的时候它不动，要到下一次构建才跟着动。作为交换，每条主张都带着它依据的条款和被读取的那一天，可引用子集由构建流程强制而非在散文里宣称，未核完的部分作为逐格待办清单公开，政策引擎在任何情况下都不返回执行授权。<strong>在你依赖它之前，请回到一手来源核对。</strong>">One contract, and it is a narrow one: this is a <strong>dated snapshot, not a live feed</strong>. It does not move when the law moves, only when the next build runs. In exchange, every claim carries the provision it rests on and the day it was read, the citable subset is enforced by the build rather than asserted in prose, the unverified backlog is published as a per-cell worklist, and the policy engine returns no execution authority under any condition. <strong>Verify against the primary source before you rely on it.</strong></p>
     </div>
     <div class="cta">
+      <a class="btn" href="about.html" data-zh="完整的依赖声明与引用方式">The full reliance statement, and how to cite it</a>
       <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register" target="_blank" rel="noopener" data-zh="登记册源码">Register repository</a>
       <a class="btn" href="https://doi.org/10.5281/zenodo.20730358" target="_blank" rel="noopener">Zenodo (DOI)</a>
-      <a class="btn" href="method.html" data-zh="证据模型">The evidence model</a>
     </div>
   </section>
 

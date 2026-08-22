@@ -67,7 +67,7 @@
     <p class="kick" data-zh="智能栈 &nbsp;·&nbsp; 机构知识如何变成基础设施">the intelligence stack &nbsp;·&nbsp; how institutional knowledge becomes infrastructure</p>
     <h1 data-zh="五层。每一层只做一件事：把上一层丢掉的东西写下来。">Five layers. Each does one thing: write down what the layer below it would otherwise lose.</h1>
     <p class="lede" data-zh="一个细心的人类读者会在心里保留的那些判断——这条其实只是行业惯例、那条的法规还没施行、这一格我其实没看到官方原文——必须在这里被写下来，并且被强制。软件读到一个字段就当它是事实，它没有可以扬起的眉毛。写在散文里的纪律，软件读不到。">Every judgment a careful human reader keeps to themselves &mdash; this one is only industry practice, that statute has not commenced, this cell I never actually saw the official text for &mdash; has to be written down here, and enforced. Software reads a field and treats it as fact; it has no eyebrow to raise. Discipline that lives in prose is discipline software cannot read.</p>
-    <p class="mast-meta" data-zh="5 层架构 &nbsp;·&nbsp; 6 层构建管线 &nbsp;·&nbsp; 3 条正交的证据轴 &nbsp;·&nbsp; 152 条溯源记录，其中 46 条通过完整可引用门槛 &nbsp;·&nbsp; 每一道闸门都有一个证明它会咬人的负向测试">5 architectural layers &nbsp;·&nbsp; 6 build layers &nbsp;·&nbsp; 3 orthogonal evidence axes &nbsp;·&nbsp; 152 sourced records, 46 clearing the full citable bar &nbsp;·&nbsp; every gate carries a negative test proving it bites</p>
+    <p class="mast-meta" data-zh="5 层架构 &nbsp;·&nbsp; 6 层构建管线 &nbsp;·&nbsp; 3 条正交的证据轴 &nbsp;·&nbsp; <span data-live=&quot;records&quot;>152</span> 条溯源记录，<span data-live=&quot;structural_candidates&quot;>46</span> 条通过结构性筛选，<span data-live=&quot;decision_ready&quot;>0</span> 条可作决策依据 &nbsp;·&nbsp; 每一道闸门都有一个证明它会咬人的负向测试">5 architectural layers &nbsp;·&nbsp; 6 build layers &nbsp;·&nbsp; 3 orthogonal evidence axes &nbsp;·&nbsp; <span data-live="records">152</span> sourced records, <span data-live="structural_candidates">46</span> structural candidates, <span data-live="decision_ready">0</span> decision-ready &nbsp;·&nbsp; every gate carries a negative test proving it bites</p>
   </section>
 
   <hr class="rule">
@@ -105,10 +105,10 @@
   <!-- THE THREE AXES -->
   <section id="axes">
     <p class="kick" data-zh="三条正交的轴"></p>
-    <h2 class="h-sec" data-zh="哪些记录可以作为现行有效的约束性法律引用">Which records may be cited as current binding law</h2>
-    <p class="lead" data-zh="每条记录带三条互不替代的轴：这是<b>哪一类</b>主张（法律命题还是市场事实）、它被<b>溯源</b>到什么程度、以及那部法律文书<b>是否已施行</b>。三者的交集，就是律师或监管者可以作为现行有效法引用的那个子集。">Every record carries three axes that do not substitute for one another: what <b>kind</b> of claim it is (a proposition of law or a market fact), how well it is <b>sourced</b>, and whether the instrument is actually <b>in force</b>. Their intersection is the subset a lawyer or a supervisor can cite as current binding law.</p>
+    <h2 class="h-sec" data-zh="哪三条轴决定一条记录能不能进入结构性候选">The three axes that decide whether a record is even a candidate</h2>
+    <p class="lead" data-zh="每条记录带三条互不替代的轴：这是<b>哪一类</b>主张（法律命题还是市场事实）、它被<b>溯源</b>到什么程度、以及那部法律文书<b>是否已施行</b>。三者的交集给出<b>结构性候选</b>。它是必要条件，不是充分条件：时效与独立复核这两条轴还压在上面，六条全过，一条记录才可以作为现行有效法被引用。">Every record carries three axes that do not substitute for one another: what <b>kind</b> of claim it is (a proposition of law or a market fact), how well it is <b>sourced</b>, and whether the instrument is actually <b>in force</b>. Their intersection gives the <b>structural candidates</b>. That is a necessary condition, not a sufficient one: freshness and independent review sit on top of it, and all six axes must pass before a record may be cited as current binding law.</p>
 
-    <div class="formula"><span class="val">claim_class = tier1_legal</span> <span class="op">∧</span> <span class="val">status = in_force</span> <span class="op">∧</span> <span class="val">evidence_tier = resolution_text</span> &nbsp;<span class="op">→</span>&nbsp; <span class="res">46 citable records</span></div>
+    <div class="formula"><span class="val">claim_class = tier1_legal</span> <span class="op">∧</span> <span class="val">status = in_force</span> <span class="op">∧</span> <span class="val">evidence_tier = resolution_text</span> &nbsp;<span class="op">→</span>&nbsp; <span class="res"><span data-live="structural_candidates">46</span> structural candidates</span></div>
 
     <div class="tbl-scroll">
       <table class="tbl">
@@ -150,6 +150,7 @@
   <!-- THE LAYERS -->
   <section id="layers">
     <p class="kick" data-zh="实现 &nbsp;·&nbsp; 六层构建管线，每一层都由上一层推导而来">the implementation &nbsp;·&nbsp; six build layers, each derived from the one before it</p>
+    <h2 class="h-sec" data-zh="六层构建管线，各自重算什么">The six build layers, and what each one recomputes</h2>
     <p class="lead" data-zh="没有一层是手写的副本。上一层改了，下一层重算；如果重算的结果和写下的分析不一致，构建流程把它作为一条发现暴露出来，而不是悄悄改掉其中一边。">No layer is a hand-kept copy. Change one and the next is recomputed; where the recomputation disagrees with the authored analysis, the build surfaces it as a finding rather than quietly amending one side.</p>
     <div class="layers">
       <div class="layer"><div class="ix">01</div><div>
@@ -225,14 +226,15 @@
   <!-- THE BACKLOG -->
   <section id="backlog">
     <p class="kick" data-zh="没做完的那部分">the part that is not done</p>
+    <h2 class="h-sec" data-zh="闸门修不了的那部分">What the gates cannot fix</h2>
     <p class="lead" data-zh="闸门是防御，不是治疗。它们能拦住一条撑不住的主张被端出去，却不能把它变成撑得住的。只有一手条文核对能消掉那笔负债，而这件事从不作假。">The gates are defenses, not a cure. They stop a claim its evidence cannot carry from being served; they cannot turn it into one that can. Only primary-source verification retires that liability, and it is never faked.</p>
     <div class="figs">
       <div class="fig"><div class="n">152</div><div class="l" data-zh="条溯源记录">sourced records</div></div>
-      <div class="fig"><div class="n">46</div><div class="l" data-zh="通过完整可引用门槛">clear the full citable bar</div></div>
-      <div class="fig"><div class="n">106</div><div class="l" data-zh="仍在制度层级确认">confirmed at regime level</div></div>
+      <div class="fig"><div class="n" data-live="structural_candidates">46</div><div class="l" data-zh="条通过结构性筛选">pass the structural filter</div></div>
+      <div class="fig"><div class="n" data-live="decision_ready">0</div><div class="l" data-zh="条通过六轴、可作决策依据">clear all six axes</div></div>
       <div class="fig"><div class="n">12</div><div class="l" data-zh="个法域，深度优先">jurisdictions, depth-first</div></div>
     </div>
-    <p class="body" style="margin-top:30px" data-zh="登记册目前处于 v0.10.x：在十二个法域上做深，而不是铺广。四十六条通过完整门槛——法律命题、官方原文已核、已施行——其余在制度层级确认，一手核对仍在进行；那个队列作为逐格待办清单公开，而不是留作暗示。两百个国家意味着一次抓取，而<b>一次抓取说不出哪条规则真正起约束作用</b>。这里的价值在于数据里的判断。">The register is at v0.10.x: depth-first over twelve jurisdictions rather than broad. Forty-six records meet the full bar &mdash; proposition of law, official text checked, in force &mdash; and the rest are confirmed at regime-status level with primary-source verification continuing. That queue is published as a per-cell worklist rather than left implicit. Two hundred countries would mean a scrape, and <b>a scrape cannot tell you which rule binds</b>. The value here is the judgment in the data.</p>
+    <p class="body" style="margin-top:30px" data-zh="登记册在十二个法域上做深，而不是铺广。通过结构性筛选的那一批——法律命题、官方原文已核、已施行——仍要过时效与独立复核两关，今天还没有一条走完；其余在制度层级确认，一手核对仍在进行。那个队列作为逐格待办清单公开，而不是留作暗示。两百个国家意味着一次抓取，而<b>一次抓取说不出哪条规则真正起约束作用</b>。这里的价值在于数据里的判断。">The register is depth-first over twelve jurisdictions rather than broad. The records that pass the structural filter &mdash; proposition of law, official text checked, in force &mdash; still have freshness and independent review above them, and none has cleared both today. The rest are confirmed at regime-status level with primary-source verification continuing, and that queue is published as a per-cell worklist rather than left implicit. Two hundred countries would mean a scrape, and <b>a scrape cannot tell you which rule binds</b>. The value here is the judgment in the data.</p>
     <p class="body" data-zh="法规动得足够快，正好要求这种纪律：台湾的制度是在上一次构建当天下午三读通过的。所以登记册带版本、带日期，每条主张都携带它被读取的那一天。它提供的不是对一切的覆盖，而是对它所覆盖的那些通道，一份经核实、可引用、机器可查的说明。">Regulation moves fast enough to require exactly this discipline: Taiwan's regime passed at third reading on the afternoon of the last build. So the register is versioned and dated, and every claim carries the date it was read. What it offers is not coverage of everything, but a verified, citable, machine-queryable account of the corridors it does cover.</p>
     <div class="cta">
       <a class="btn pri" href="https://papers.ssrn.com/abstract=7055678" target="_blank" rel="noopener" data-zh="《Citable by Construction》（SSRN，18 页）">Citable by Construction (SSRN, 18pp)</a>

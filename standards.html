@@ -75,6 +75,7 @@
   <!-- WHERE IT SITS -->
   <section id="tradition">
     <p class="kick" data-zh="它落在哪一段传统里">the tradition it sits in</p>
+    <h2 class="h-sec" data-zh="这份工作站在哪条线上，不站在哪条线上">Where this work sits, and where it does not</h2>
     <p class="lead" data-zh="把法律做成机器可读的东西，不是一个新想法。它已经有了几条各自成型的路线，而这份登记册明确地站在其中一条上，也明确地不站在另外几条上。">Making law machine-readable is not a new idea. It has several established lines, and this register stands deliberately on one of them and deliberately not on the others.</p>
     <div class="tbl-scroll">
       <table class="tbl">
@@ -149,7 +150,7 @@
           <p data-zh="<b>登记册里的机制</b>：数据 CC-BY-4.0，代码 Apache-2.0，schema 公开，每个版本存档至 Zenodo 并获 DOI，可按法域、维度与有向边分解。「及时」在这里有一个具体含义而不是形容词：每条记录携带它被读取的日期，而且构建流程拒绝把尚未施行的法规当作现行有效法。">
             <b>Mechanism in the register.</b> Data under CC-BY-4.0, code under Apache-2.0, a public schema, every release archived to Zenodo with a DOI, disaggregable by jurisdiction, dimension and directed edge. &ldquo;Timely&rdquo; here has a specific meaning rather than an adjectival one: every record carries the date it was read, and the build refuses to serve an uncommenced statute as current law.</p>
           <p data-zh="<b>支撑记录</b>：全部 <span data-live=&quot;records&quot;>152</span> 条记录及其 schema；<span data-live=&quot;structural_candidates&quot;>46</span> 条结构性候选中 <span data-live=&quot;decision_ready&quot;>0</span> 条可作决策依据；公开的逐格待办清单。">
-            <b>Backing records.</b> All 152 records and their schema; the 46-record citable subset; the published per-cell worklist.</p>
+            <b>Backing records.</b> All <span data-live="records">152</span> records and their schema; <span data-live="decision_ready">0</span> of <span data-live="structural_candidates">46</span> structural candidates decision-ready; the published per-cell worklist.</p>
           <p data-zh="<b>它不主张什么</b>：这不是官方统计，不是任何国家统计体系的一部分，也不适合用作 SDG 指标报送的数据源。它是一份第三方研究数据集，覆盖十二个法域，由一个人维护。">
             <b>What this does not claim.</b> This is not official statistics, not part of any national statistical system, and not fit for use as a reporting source for SDG indicators. It is a third-party research dataset covering twelve jurisdictions, maintained by one person.</p>
         </div>
@@ -199,6 +200,7 @@
   <!-- MACHINE READABLE -->
   <section id="machine">
     <p class="kick" data-zh="对标层本身也是数据">the mapping is data too</p>
+    <h2 class="h-sec" data-zh="映射本身也是数据，不是一枚徽章">The mapping is data, not a badge</h2>
     <p class="lead" data-zh="如果这一层只是页面上的四段文字，它就和一个彩色徽章没有区别。所以它按登记册里其他记录的同一套结构写，并随下一个版本以同样的方式发布：可查询、可差分、可被反驳。">If this layer were only four paragraphs on a page it would be a coloured badge with more words. So it is written in the same structure as every other record, and ships in the next release the same way: queryable, diffable, arguable.</p>
     <pre class="env" aria-label="The row structure of the SDG mapping layer"><span class="c">// analysis/sdg_mapping.json — one row per mapped target</span>
 {
