@@ -641,3 +641,52 @@ html[lang^="zh"] .ax-k{letter-spacing:.02em}
 .wl-state{padding:14px 16px;margin:0;font-size:13px;color:var(--muted)}
 @media(max-width:640px){.wl-list li{grid-template-columns:1fr;gap:3px}
   .wl-need{text-align:left}}
+
+/* ================================================================ landing --
+   Added for the reworked index.html. Everything below is scoped to markup that
+   only the home page carries, so no existing page changes shape. */
+
+/* Hero: the plain-language sentence sits in .lede, the six-axis discipline in
+   .body underneath it. .body ships with margin:0, so the gap is set here
+   rather than with an inline style. */
+.hero .lede + .body{margin-top:18px;max-width:64ch;font-size:16.5px}
+
+/* A second .lg-why in the ledger would otherwise draw a second heavy rule. The
+   follow-on line is a qualification of the first, so it reads as one block. */
+.lg-why + .lg-why{margin-top:11px;padding-top:0;border-top:0;color:var(--muted)}
+
+/* The decision engine: call on the left, return on the right. Grid children
+   default to min-width:auto, which defeats .env's own overflow-x and lets a
+   long line push the column wider than the wrap. */
+.decide-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.decide-pair > div{min-width:0;display:flex;flex-direction:column}
+.decide-pair .env{margin:0;flex:1}
+@media(max-width:860px){.decide-pair{grid-template-columns:minmax(0,1fr)}}
+
+.env-h{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 8px}
+html[lang^="zh"] .env-h{letter-spacing:0.05em;text-transform:none;font-size:12px}
+
+/* The three figures under the engine carry a word ("false") as well as counts,
+   so the number cell has to tolerate a non-numeric value without clipping. */
+#decide .fig .n{font-size:24px;word-break:break-word}
+
+/* ------------------------------------------------------------------ print --
+   The page is a dated memorandum in substance, and people do print those. The
+   dark panels are the whole cost here: .env, .pcard and .ans.good invert to
+   near-black and drink a cartridge. Chrome and controls come out. */
+@media print{
+  .top,.langtog,.skip,.cta,.scrub,.footnav,.badge-ossf,.idx-filter{display:none!important}
+  html,body{background:#fff;color:#000}
+  a{color:#000;text-decoration:underline}
+  .wrap{max-width:none;padding:0}
+  .rule{background:#000}
+  .env,.pcard,.ans.good,.verdict{background:#fff!important;color:#000!important;
+    border:1px solid #999!important}
+  .env .k,.env .s,.env .n,.env .g,.env .r,.env .c,
+  .pcard .note,.pcard .stamp,.ans.good .ans-t,.ans.good .ans-q,
+  .ans.good .ans-h,.ans.good .ans-flags,.ans.good .ans-flags .m{color:#000!important}
+  .decide-pair,.split,.hero-grid,.pillars,.figs{grid-template-columns:minmax(0,1fr)}
+  section{break-inside:avoid-page}
+  h1,h2,h3{break-after:avoid-page}
+}
