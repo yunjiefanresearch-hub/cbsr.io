@@ -3,8 +3,8 @@
 
 There is no build step here: the .html files at the repository root are the source,
 and that is deliberate — anyone can open one and read exactly what ships. The cost of
-that choice is that the navigation appears ten times, so a new page or a renamed link
-has to be made ten times or the site quietly develops two different navigations.
+that choice is that the navigation appears eleven times, so a new page or a renamed link
+has to be made eleven times or the site quietly develops two different navigations.
 
 This script removes that cost without introducing a build. It takes the header and
 footer from index.html and writes them into every other page, touching nothing else.

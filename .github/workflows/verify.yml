@@ -1,0 +1,31 @@
+name: Verify public snapshot contract
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          path: site
+          persist-credentials: false
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          repository: yunjiefanresearch-hub/cross-border-stablecoin-register
+          ref: 270a002e8d66bb9971b3638dfcab52f3b2f6d2fd
+          path: cross-border-stablecoin-register
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - name: Check snapshot and rejected-response behavior
+        working-directory: site
+        run: |
+          node --check assets/cbsr-live.js
+          node tools/check-register-contract.mjs ../cross-border-stablecoin-register
+          node --test tools/live-contract.test.mjs

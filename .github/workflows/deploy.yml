@@ -112,6 +112,29 @@ jobs:
         with:
           path: .
 
+      # Package the site before this checkout so the Register clone can never
+      # leak into the Pages artifact. The deploy job still waits for this whole
+      # build job, so a contract failure blocks publication.
+      - name: Check out the pinned Register contract
+        uses: actions/checkout@v4
+        with:
+          repository: yunjiefanresearch-hub/cross-border-stablecoin-register
+          # Keep this immutable. Advance it to the Register repair commit in
+          # the same integration change as the offline website snapshot.
+          ref: 270a002e8d66bb9971b3638dfcab52f3b2f6d2fd
+          path: .contract/register
+          persist-credentials: false
+
+      - name: Use Node.js for the dependency-free contract check
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check website snapshot against Register meta, worklist, and MCP
+        run: |
+          node tools/check-register-contract.mjs .contract/register
+          CBSR_TEST_REGISTER=.contract/register node --test tools/live-contract.test.mjs
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

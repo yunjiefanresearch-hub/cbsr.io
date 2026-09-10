@@ -2,16 +2,17 @@
 
 # CBSR — cbsr.io
 
-The front door for the [Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
+The public front door for **CBSR**, backed by the
+[Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
 the corridor map, the agent-grounding contract, the KYA framework, the intelligence stack,
 the papers, the SDG mapping, and an open call for jurisdiction maintainers.
 
 The site is positioned as **the evidence layer for agentic finance** rather than as a
-stablecoin database. The name, the repository slug and the DOI do not change — they are
-citation handles and breaking them costs more than any repositioning gains. What changes is
-the order of the argument: agents that act come first, cross-border stablecoins are stated
-as the first vertical, and `index.html#scope` says plainly which adjacent domains the method
-would extend to and that none of them exists yet.
+stablecoin database. **CBSR is the product brand; Cross-Border Stablecoin Register remains
+the formal dataset title used in citations.** The dataset title, repository slug and DOI are
+citation handles and do not change. Agents that act come first, cross-border stablecoins are
+stated as the first vertical, and `index.html#scope` says plainly which adjacent domains the
+method would extend to and that none of them exists yet.
 
 A plain static site. No build step, no dependencies, no framework. The `.html` files at the
 root are the source — open one and you are reading exactly what ships.
@@ -29,8 +30,9 @@ thanks.html       where the form lands (noindex)
 about.html        who made it, how it is sustained, how to cite it
 404.html          the not-found page (noindex)
 
-assets/cbsr.css   one stylesheet for every page
-assets/cbsr.js    one script for every page; each block is guarded on its own markup
+assets/cbsr.css       one stylesheet for every page
+assets/cbsr.js        shared interaction script; each block is guarded on its own markup
+assets/cbsr-live.js   binds published figures and the review worklist to Register API files
 papers/           the short-form analysis PDFs the index links to
 og-card.png       social preview card (1200×630)
 favicon.svg       the site mark
@@ -42,12 +44,9 @@ tools/            test suite and the shell-sync helper — not deployed content
 
 ## Deploy
 
-1. Push this folder to a repo.
-   - For the shortest URL, name it **`yunjiefanresearch-hub.github.io`**; it then serves at
-     `https://yunjiefanresearch-hub.github.io/`.
-   - Any other name works: it serves at `https://yunjiefanresearch-hub.github.io/<repo>/`.
-2. In the repo: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-3. Push to `main`. The included workflow builds and publishes.
+1. In the `cbsr.io` repository, open **Settings → Pages → Build and deployment** and choose
+   **GitHub Actions** as the source.
+2. Push to `main`. The included workflow validates, builds, and publishes the site.
 
 Nothing needs configuring. The workflow reads the real Pages URL from
 `actions/configure-pages` and stamps it into `og:url`, `<link rel="canonical">`, the social
@@ -127,7 +126,7 @@ actually mounted. Until then — and forever, if the map is not deployed, is sta
 the page keeps its built-in corridor picker, which reads the same corridor layer. The worst
 case is a smaller demo, never an empty rectangle where the product should be.
 
-## Keeping the ten pages in step
+## Keeping the eleven pages in step
 
 The navigation appears on every page, which is the price of having no build step. Rather
 than pay it ten times by hand:
@@ -142,8 +141,21 @@ else.
 
 ## Tests
 
-`tools/` carries a browser suite that drives real Chromium. Playwright is not a dependency
-of this repo; install it when you want to run them.
+The dependency-free contract check compares the website snapshot with a local checkout of
+the exact Register revision used by deployment. It reads `api/meta.json`,
+`api/worklist.json`, and `mcp.json`; checks count semantics and worklist structure; and then
+checks that every published fallback and live binding agrees with those files.
+
+```bash
+node tools/check-register-contract.mjs ../cross-border-stablecoin-register
+```
+
+CI pins the Register checkout to an immutable commit. When that pin advances, update the
+`EXPECTED` snapshot in `tools/check-register-contract.mjs` and every affected HTML fallback
+in the same change. This preserves a coherent page even when the live API cannot be reached.
+
+`tools/` also carries a browser suite that drives real Chromium. Playwright is not a
+dependency of this repo; install it when you want to run it.
 
 ```bash
 npm i -D playwright && npx playwright install chromium

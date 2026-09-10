@@ -66,12 +66,35 @@
   /* Build the key -> value map from meta.json. Every derived key is a plain
      restatement of a published field; nothing is computed into a new claim. */
   function buildValues(meta) {
+    if (!meta || !meta.data || Array.isArray(meta.data)) throw new Error('invalid meta envelope');
     var d = (meta && meta.data) || {};
+    if (typeof meta.version !== 'string' || !meta.version || d.version !== meta.version) {
+      throw new Error('inconsistent meta version');
+    }
+    var date = meta.generated;
+    if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+        !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) {
+      throw new Error('invalid snapshot date');
+    }
+    ['record_count', 'citable_count', 'structural_citable_candidates', 'directed_corridors',
+      'authored_corridors', 'mcp_tool_count'].forEach(function (key) {
+      if (!Number.isSafeInteger(d[key]) || d[key] < 0) throw new Error('invalid counter: ' + key);
+    });
+    if (d.citable_count > d.structural_citable_candidates ||
+        d.structural_citable_candidates > d.record_count || d.authored_corridors > d.directed_corridors ||
+        !Array.isArray(d.jurisdictions) || !d.jurisdictions.length ||
+        !d.jurisdictions.every(function (j) { return typeof j === 'string' && /^[A-Z]{2}$/.test(j); }) ||
+        new Set(d.jurisdictions).size !== d.jurisdictions.length) {
+      throw new Error('inconsistent snapshot counters');
+    }
     var review = d.review_coverage || {};
-    var ready = d.citable_count != null ? d.citable_count : 0;
-    var structural = d.structural_candidate_count != null
-      ? d.structural_candidate_count
-      : (d.structural_citable_candidates != null ? d.structural_citable_candidates : 0);
+    ['official_source', 'primary_reviewer_present', 'second_reviewer_present', 'reconciled'].forEach(function (key) {
+      if (!Number.isSafeInteger(review[key]) || review[key] < 0 || review[key] > d.record_count) {
+        throw new Error('invalid review counter: ' + key);
+      }
+    });
+    var ready = d.citable_count;
+    var structural = d.structural_citable_candidates;
 
     return {
       version: d.version || meta.version,
@@ -89,7 +112,12 @@
       primary_reviewed: review.primary_reviewer_present,
       second_reviewed: review.second_reviewer_present,
       reconciled: review.reconciled,
-      authored_corridors: d.authored_corridors
+      /* Generated edge coverage and hand-authored exemplars are different
+         quantities. Never bind a "directed corridors" label to the authored
+         subset again. */
+      directed_corridors: d.directed_corridors,
+      authored_corridors: d.authored_corridors,
+      mcp_tool_count: d.mcp_tool_count
     };
   }
 
@@ -108,19 +136,27 @@
 
   function markOffline() {
     document.documentElement.setAttribute('data-cbsr-live', 'offline');
+    var lang = document.documentElement.getAttribute('lang') || 'en';
     $$('[data-live-stamp]').forEach(function (el) {
-      var lang = document.documentElement.getAttribute('lang') || 'en';
       el.textContent = lang.indexOf('zh') === 0
         ? '构建期快照 — 未能连上登记册，以下数字可能已过期'
         : 'build-time snapshot — the register could not be reached, figures may be stale';
       el.setAttribute('data-live-state', 'offline');
     });
+    var worklistState = document.getElementById('wl-state');
+    var worklistCount = document.getElementById('wl-count');
+    if (worklistState) {
+      worklistState.textContent = lang.indexOf('zh') === 0
+        ? '登记册元数据不可用；未载入工作清单快照。'
+        : 'Register metadata unavailable; the worklist snapshot was not loaded.';
+    }
+    if (worklistCount) worklistCount.textContent = '\u2014';
   }
 
   function markLive(values, lang) {
     document.documentElement.setAttribute('data-cbsr-live', 'live');
     $$('[data-live-stamp]').forEach(function (el) {
-      el.textContent = (lang.indexOf('zh') === 0 ? '实时读取自登记册 · ' : 'read live from the register · ')
+      el.textContent = (lang.indexOf('zh') === 0 ? '已读取登记册快照（非法律实时性证明）· ' : 'snapshot fetched (not legal-currentness evidence) · ')
         + 'v' + values.version + ' · ' + formatDate(values.as_of, lang);
       el.setAttribute('data-live-state', 'live');
     });
@@ -135,7 +171,7 @@
      This is also what OpenSSF `small_tasks` (Gold) asks for, but the reason it
      is here is that `review_stage.reconciled = 0` is the single constraint
      holding decision_ready at zero, and this list is how that number moves. */
-  function renderWorklist(lang) {
+  function renderWorklist(lang, identity) {
     var list = document.getElementById('wl-list');
     var state = document.getElementById('wl-state');
     var count = document.getElementById('wl-count');
@@ -143,16 +179,24 @@
 
     var zh = lang.indexOf('zh') === 0;
 
-    fetch(REGISTER_API.replace(/\/+$/, '') + '/verification-worklist.json', { cache: 'no-cache' })
+    fetch(REGISTER_API.replace(/\/+$/, '') + '/worklist.json', { cache: 'no-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error('worklist ' + r.status);
         return r.json();
       })
       .then(function (payload) {
-        var rows = (payload && (payload.data || payload)) || [];
-        if (rows.items) rows = rows.items;
-        if (rows.worklist) rows = rows.worklist;
-        if (!Array.isArray(rows) || !rows.length) throw new Error('worklist is empty');
+        if (!identity || !payload || payload.version !== identity.version || payload.generated !== identity.as_of ||
+            payload.endpoint !== 'verification_worklist' || !payload.data || !Array.isArray(payload.data.items)) {
+          throw new Error('invalid or inconsistent worklist snapshot');
+        }
+        var rows = payload.data.items;
+        if (!rows.every(function (row) {
+          return row && typeof row.id === 'string' && typeof row.instrument === 'string' &&
+            typeof row.jurisdiction === 'string' && typeof row.dimension === 'string' &&
+            row.missing_for && Array.isArray(row.missing_for.resolution_text);
+        }) || new Set(rows.map(function (row) { return row.id; })).size !== rows.length) {
+          throw new Error('invalid worklist items');
+        }
 
         list.textContent = '';
         rows.slice(0, 60).forEach(function (row) {
@@ -166,13 +210,18 @@
           var what = document.createElement('span');
           what.className = 'wl-what';
           what.textContent =
-            row.instrument_label_local || row.requirement_summary || row.id || '';
+            row.instrument_label_local || row.instrument || row.requirement_summary || row.id || '';
           li.appendChild(what);
 
           var need = document.createElement('span');
           need.className = 'wl-need';
-          need.textContent =
-            row.missing || row.needs || (row.url ? '' : (zh ? '缺官方来源 URL' : 'needs official URL'));
+          var resolution = row.missing_for && row.missing_for.resolution_text;
+          var boundedResolution = Array.isArray(resolution) ? resolution.slice(0, 2) : [];
+          if (Array.isArray(resolution) && resolution.length > boundedResolution.length) {
+            boundedResolution.push('+' + (resolution.length - boundedResolution.length) + (zh ? ' 项' : ' more'));
+          }
+          need.textContent = row.missing || row.needs || boundedResolution.join(' · ') ||
+            (row.has_url === false ? (zh ? '缺官方来源 URL' : 'needs official URL') : '');
           li.appendChild(need);
 
           list.appendChild(li);
@@ -180,13 +229,15 @@
 
         if (count) count.textContent = rows.length + (zh ? ' 格' : ' cells');
         state.textContent = zh
-          ? '直接读自登记册的 verification_worklist。认领一格请开 issue。'
-          : 'Read live from the register\u2019s verification worklist. Open an issue to claim a cell.';
+          ? '已读取登记册工作清单快照 · v' + identity.version + ' · ' + formatDate(identity.as_of, lang) +
+            '（非法律实时性证明）。认领一项请开 issue。'
+          : 'Worklist snapshot fetched · v' + identity.version + ' · ' + formatDate(identity.as_of, lang) +
+            ' (not legal-currentness evidence). Open an issue to claim one item.';
       })
       .catch(function () {
         state.textContent = zh
-          ? '暂时读不到工作清单。仓库里的 analysis/verification_worklist.json 是同一份数据。'
-          : 'The worklist could not be read just now. analysis/verification_worklist.json in the repository holds the same data.';
+          ? '暂时读不到工作清单。仓库里的 api/worklist.json 是同一份数据。'
+          : 'The worklist could not be read just now. api/worklist.json in the repository holds the same data.';
         if (count) count.textContent = '\u2014';
       });
   }
@@ -195,11 +246,6 @@
     var lang = document.documentElement.getAttribute('lang') || 'en';
 
     if (typeof fetch !== 'function') { markOffline(); return; }
-
-    renderWorklist(lang);
-    window.addEventListener('cbsr-lang', function (e) {
-      renderWorklist((e && e.detail) || document.documentElement.getAttribute('lang') || 'en');
-    });
 
     fetch(REGISTER_API.replace(/\/+$/, '') + '/meta.json', { cache: 'no-cache' })
       .then(function (r) {
@@ -211,6 +257,7 @@
         if (values.version == null) throw new Error('meta.json carries no version');
         apply(values, lang);
         markLive(values, lang);
+        renderWorklist(lang, values);
         /* Re-apply after a language switch. cbsr.js caches each [data-zh]
            element's original innerHTML at load and restores it on every toggle,
            so a bound figure would be reverted to its build-time fallback the
@@ -221,6 +268,7 @@
           var next = (e && e.detail) || document.documentElement.getAttribute('lang') || 'en';
           apply(values, next);
           markLive(values, next);
+          renderWorklist(next, values);
         });
       })
       .catch(function () { markOffline(); });
