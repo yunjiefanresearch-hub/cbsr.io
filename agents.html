@@ -8,13 +8,13 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>Agent access — MCP, the grounding contract, and the four failures it prevents | CBSR</title>
-<meta name="description" content="An MCP server of roughly thirty typed tools over a schema-validated register, the field contract a grounded answer must carry, and the four failure modes that a general model cannot avoid on its own.">
+<meta name="description" content="Forty typed MCP tools over a schema-validated register, the field contract a grounded answer must carry, and the four failure modes that a general model cannot avoid on its own.">
 <meta name="author" content="Yunjie Fan">
 <meta name="theme-color" content="#EDEFEB">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Cross-Border Stablecoin Register">
+<meta property="og:site_name" content="CBSR">
 <meta property="og:title" content="Fluency is not evidence. The grounding contract for agents that act on financial regulation.">
 <meta property="og:description" content="Typed MCP tools over a schema-validated register, the fields a grounded answer must carry, and the four failure modes it prevents.">
 <meta property="og:url" content="__SITE_URL__agents.html">
@@ -22,7 +22,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Cross-Border Stablecoin Register — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
+<meta property="og:image:alt" content="CBSR — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="zh_CN">
 <link rel="canonical" href="__SITE_URL__agents.html">
@@ -42,7 +42,7 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a href="index.html"><b>CBSR</b></a><span data-zh="跨境稳定币登记册 · agentic 金融的证据层">Cross-Border Stablecoin Register · the evidence layer for agentic finance</span></div>
+    <div class="brand"><a href="index.html"><b>CBSR</b></a><span data-zh="CBSR · agentic 金融的证据层">CBSR · the evidence layer for agentic finance</span></div>
     <nav class="nav">
       <a href="corridors.html" data-zh="通道">Corridors</a>
       <a href="agents.html" data-zh="Agent 接入">Agents</a>
@@ -67,7 +67,7 @@
     <p class="kick" data-zh="agent 接入 &nbsp;·&nbsp; 原生 MCP">agent access &nbsp;·&nbsp; MCP-native</p>
     <h1 data-zh="流利不是证据。这是它底下要垫的那份记录。">Fluency is not evidence. This is the record that goes underneath it.</h1>
     <p class="lede" data-zh="软件按领域分了家：一套做人力，一套做营销，一套做财务。AI 正在以同样的方式分家。凡是答错要付钱的地方，模型就需要一份它能引用的记录。监管是这道缝咬得最狠的地方——一个自信的错答案，代价是一张牌照。">Software split by domain: one tool for HR, one for marketing, one for finance. AI is splitting the same way. Anywhere a wrong answer costs money, the model will need a record it can cite. Regulation is where that bites hardest, because there a confident wrong answer costs a licence.</p>
-    <p class="mast-meta" data-zh="约 30 个类型化 MCP 工具 &nbsp;·&nbsp; 一个 schema 校验过的 <span class=&quot;gk&quot;>dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; 自行部署，无需账号或密钥">roughly 30 typed MCP tools &nbsp;·&nbsp; one schema-validated <span class="gk">dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; self-hosted, no account and no key</p>
+    <p class="mast-meta" data-zh="<span data-live=&quot;mcp_tool_count&quot;>40</span> 个类型化 MCP 工具 &nbsp;·&nbsp; 一个 schema 校验过的 <span class=&quot;gk&quot;>dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; 自行部署，无需账号或密钥"><span data-live="mcp_tool_count">40</span> typed MCP tools &nbsp;·&nbsp; one schema-validated <span class="gk">dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; self-hosted, no account and no key</p>
   </section>
 
   <hr class="rule">
@@ -120,7 +120,7 @@
   <!-- THE TOOLS -->
   <section id="tools">
     <p class="kick" data-zh="MCP 界面"></p>
-    <h2 class="h-sec" data-zh="约三十个类型化工具，覆盖同一份记录">Roughly thirty typed tools over one record</h2>
+    <h2 class="h-sec" data-zh="<span data-live=&quot;mcp_tool_count&quot;>40</span> 个类型化工具，覆盖同一份记录"><span data-live="mcp_tool_count">40</span> typed tools over one record</h2>
     <p class="lead" data-zh="登记册以单一 <code class=&quot;gk&quot;>dataset.json</code> 发布，外加一个把它暴露给 agent 的 MCP server。工具是类型化的：参数受 schema 约束，返回值也是，所以模型拿到的是结构，而不是一段需要它再解析一次的散文。">The register ships as a single <code class="gk">dataset.json</code> and an MCP server that exposes it to agents. The tools are typed: arguments are constrained by the schema and so are returns, so what reaches the model is structure rather than prose it has to parse a second time.</p>
     <div class="tbl-scroll">
       <table class="tbl">
@@ -144,8 +144,8 @@
           </tr>
           <tr>
             <td class="mono">citable_law()</td>
-            <td data-zh="只取那个可以作为现行有效约束性法律引用的子集。当答案要进备忘录、进意见书、进监管申报时调用它。">Take only the subset that may be cited as current binding law. Called when the answer is going into a memorandum, an opinion, or a filing.</td>
-            <td class="mono">46 records · claim_class · evidence_tier</td>
+            <td data-zh="只返回通过全部六轴门槛、可以作为现行有效约束性法律引用的严格子集。结构候选不会被混入返回值。">Return only the strict subset that clears all six gates and may be cited as current binding law. Structural candidates are not included.</td>
+            <td class="mono" data-zh="<span data-live=&quot;decision_ready&quot;>0</span> 条严格记录 · <span data-live=&quot;structural_candidates&quot;>46</span> 条结构候选"><span data-live="decision_ready">0</span> strict records · <span data-live="structural_candidates">46</span> structural candidates</td>
           </tr>
           <tr>
             <td data-zh="法域查询" class="mono">jurisdiction</td>
@@ -240,7 +240,7 @@
       <a href="maintain.html" data-zh="参与维护">Maintain</a>
       <a href="about.html" data-zh="关于">About</a>
     </nav>
-    <span>Cross-Border Stablecoin Register · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
+    <span>CBSR · <span data-live="version" data-live-prefix="v">v0.11.0</span></span>
     <span data-zh="数据 CC-BY-4.0 · 代码 Apache-2.0 · <a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>请引用版本 DOI</a> · 不作担保；请回到一手法条核对">data CC-BY-4.0 · code Apache-2.0 · <a href="https://doi.org/10.5281/zenodo.20730358">cite the version DOI</a> · no warranty; verify against primary law</span>
     <span>© 2026 Yunjie Fan</span>
     <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>

@@ -18,13 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
       # Reports the real Pages URL for this repo, whether it is a user site
       # (https://<user>.github.io/) or a project site (https://<user>.github.io/<repo>/).
       - name: Configure Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
 
       # Social cards need ABSOLUTE URLs; crawlers do not run JavaScript, so the URL cannot
       # be filled in at runtime. Since the site was split into function pages this has to
@@ -108,9 +108,32 @@ jobs:
           test -f thanks.html || { echo "::error::_next points at thanks.html, which is missing"; exit 1; }
           echo "OK: form contract intact."
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: .
+
+      # Package the site before this checkout so the Register clone can never
+      # leak into the Pages artifact. The deploy job still waits for this whole
+      # build job, so a contract failure blocks publication.
+      - name: Check out the pinned Register contract
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          repository: yunjiefanresearch-hub/cross-border-stablecoin-register
+          # Keep this immutable. Advance it to the Register repair commit in
+          # the same integration change as the offline website snapshot.
+          ref: 270a002e8d66bb9971b3638dfcab52f3b2f6d2fd
+          path: .contract/register
+          persist-credentials: false
+
+      - name: Use Node.js for the dependency-free contract check
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 20
+
+      - name: Check website snapshot against Register meta, worklist, and MCP
+        run: |
+          node tools/check-register-contract.mjs .contract/register
+          CBSR_TEST_REGISTER=.contract/register node --test tools/live-contract.test.mjs
 
   deploy:
     needs: build
@@ -120,4 +143,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
