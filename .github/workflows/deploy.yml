@@ -134,6 +134,7 @@ jobs:
         run: |
           node tools/check-register-contract.mjs .contract/register
           CBSR_TEST_REGISTER=.contract/register node --test tools/live-contract.test.mjs
+          node --test tools/policy-materials.test.mjs
 
   deploy:
     needs: build

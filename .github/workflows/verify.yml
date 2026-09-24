@@ -29,3 +29,4 @@ jobs:
           node --check assets/cbsr-live.js
           node tools/check-register-contract.mjs ../cross-border-stablecoin-register
           node --test tools/live-contract.test.mjs
+          node --test tools/policy-materials.test.mjs

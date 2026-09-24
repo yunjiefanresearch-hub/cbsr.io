@@ -73,11 +73,11 @@ check('formal dataset name is stable across Register surfaces',
   metaDocument.register === FORMAL_DATASET_NAME &&
   worklistDocument.register === FORMAL_DATASET_NAME &&
   mcpDocument.displayName === FORMAL_DATASET_NAME);
-check('version agrees across meta, worklist, and MCP',
+check('dataset version agrees across meta, worklist, and MCP (software may be a post-release)',
   metaDocument.version === EXPECTED.version &&
   meta.version === EXPECTED.version &&
   worklistDocument.version === EXPECTED.version &&
-  mcpDocument.version === EXPECTED.version);
+  (Object.hasOwn(mcpDocument, 'dataset_version') ? mcpDocument.dataset_version : mcpDocument.version) === EXPECTED.version);
 check('generated date matches the website snapshot', metaDocument.generated === EXPECTED.generated,
   `expected ${EXPECTED.generated}, got ${metaDocument.generated}`);
 check('record count matches the website snapshot', meta.record_count === EXPECTED.records,

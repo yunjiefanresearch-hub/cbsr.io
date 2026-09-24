@@ -80,6 +80,68 @@ for (const f of PAGES) {
   check(`${f}: html lang follows the toggle`, lang.startsWith("zh"), lang);
 }
 
+/* ── 3b ─ the landing-page policy records stay bounded and bilingual ─────── */
+await p.goto(url("index.html") + "?lang=en");
+await p.waitForTimeout(250);
+const policy = await p.evaluate((cjkSrc) => {
+  const CJK = new RegExp(cjkSrc);
+  const section = document.getElementById("policy-participation");
+  const cards = section ? [...section.querySelectorAll("[data-policy-card]")] : [];
+  const translated = cards.every((card) =>
+    ["[data-policy-title]", "[data-policy-summary]", "[data-policy-boundary]"].every((selector) => {
+      const el = card.querySelector(selector);
+      return el && CJK.test(el.getAttribute("data-zh") || "");
+    }));
+  const localPdfs = section ? [...section.querySelectorAll('a[href^="papers/"]')]
+    .map((a) => a.getAttribute("href")) : [];
+  const mica = section && section.querySelector('[data-policy-card="mica-review"]');
+  return {
+    cards: cards.map((card) => card.getAttribute("data-policy-card")),
+    translated,
+    localPdfs,
+    unsafeElements: section ? section.querySelectorAll("img,form,input,script").length : -1,
+    micaLocalPdfs: mica ? mica.querySelectorAll('a[href^="papers/"]').length : -1,
+    terms: !!(section && section.querySelector('[data-policy-terms]')),
+  };
+}, CJK.source);
+check("landing page carries exactly four policy-material cards",
+  policy.cards.join("|") === "treasury-part-1523|eleven-votes-short|mica-review|sec-section-404",
+  policy.cards.join(", "));
+check("policy card titles, summaries and boundaries have Chinese counterparts",
+  policy.translated, `translated=${policy.translated}`);
+check("only the two reviewed author PDFs are locally linked",
+  policy.localPdfs.join("|") === "papers/treasury-part1523-comment.pdf|papers/clarity-act-analysis-20260917.pdf",
+  policy.localPdfs.join(", "));
+check("private MiCA evidence is not embedded or locally linked",
+  policy.unsafeElements === 0 && policy.micaLocalPdfs === 0,
+  `unsafe=${policy.unsafeElements} micaPdfs=${policy.micaLocalPdfs}`);
+check("historical attachment terminology has a current-contract note", policy.terms,
+  `terms=${policy.terms}`);
+
+await p.click('#langtog button[data-lang="zh"]');
+await p.waitForTimeout(150);
+const policyChinese = await p.evaluate((cjkSrc) => {
+  const CJK = new RegExp(cjkSrc);
+  return [...document.querySelectorAll("[data-policy-card]")].every((card) =>
+    ["[data-policy-title]", "[data-policy-summary]", "[data-policy-boundary]"]
+      .every((selector) => CJK.test((card.querySelector(selector) || {}).textContent || "")));
+}, CJK.source);
+check("policy cards render Chinese after the language switch", policyChinese,
+  `rendered=${policyChinese}`);
+
+for (const width of [390, 1280]) {
+  await p.setViewportSize({ width, height: 844 });
+  const responsive = await p.evaluate(() => ({
+    fits: document.documentElement.scrollWidth <= innerWidth,
+    columns: getComputedStyle(document.querySelector(".policy-grid")).gridTemplateColumns.split(" ").length,
+    cardFits: [...document.querySelectorAll("[data-policy-card]")].every((card) => card.scrollWidth <= card.clientWidth),
+  }));
+  check(`policy cards fit ${width}px viewport`, responsive.fits && responsive.cardFits,
+    JSON.stringify(responsive));
+  check(`policy cards use ${width === 390 ? 1 : 2} columns at ${width}px`,
+    responsive.columns === (width === 390 ? 1 : 2), JSON.stringify(responsive));
+}
+
 /* ── 4 ─ the corridor engine computes rather than reciting a typed table ─────
  * Section 3 left the stored language on 中文, and localStorage survives navigation
  * inside one context. Ask for English explicitly rather than assert against whichever

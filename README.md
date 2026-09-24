@@ -5,7 +5,8 @@
 The public front door for **CBSR**, backed by the
 [Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
 the corridor map, the agent-grounding contract, the KYA framework, the intelligence stack,
-the papers, the SDG mapping, and an open call for jurisdiction maintainers.
+the papers, bounded policy-participation records, the SDG mapping, and an open call for
+jurisdiction maintainers.
 
 The site is positioned as **the evidence layer for agentic finance** rather than as a
 stablecoin database. **CBSR is the product brand; Cross-Border Stablecoin Register remains
@@ -18,12 +19,12 @@ A plain static site. No build step, no dependencies, no framework. The `.html` f
 root are the source — open one and you are reading exactly what ships.
 
 ```
-index.html        home — the argument, the pipeline, the proof, the six surfaces, scope
+index.html        home — the argument, policy participation, the proof, the six surfaces, scope
 corridors.html    the corridor layer: live map, six classes, the dated transitions
 agents.html       MCP, the grounding contract, the four failures it prevents
 kya.html          Know Your Agent — a working framework, published for comment
 method.html       the intelligence stack, the six build layers, the gates in CI
-research.html     six working papers and the dated analysis index
+research.html     policy-participation index, six working papers, dated analysis index
 standards.html    rules-as-code / RegTech placement, and the SDG mapping
 maintain.html     the maintainer role and the application form
 thanks.html       where the form lands (noindex)
@@ -33,7 +34,7 @@ about.html        who made it, how it is sustained, how to cite it
 assets/cbsr.css       one stylesheet for every page
 assets/cbsr.js        shared interaction script; each block is guarded on its own markup
 assets/cbsr-live.js   binds published figures and the review worklist to Register API files
-papers/           the short-form analysis PDFs the index links to
+papers/           reviewed author PDFs and the short-form analyses the indexes link to
 og-card.png       social preview card (1200×630)
 favicon.svg       the site mark
 sitemap.xml       stamped at deploy
@@ -41,6 +42,27 @@ robots.txt        stamped at deploy
 .nojekyll         tells Pages not to run Jekyll over a plain static site
 tools/            test suite and the shell-sync helper — not deployed content
 ```
+
+## Policy-participation materials
+
+`index.html#policy-participation` is the single maintained source for the four full cards
+and their evidence boundaries. `research.html#policy-participation-index` is deliberately a
+compact source index rather than a second copy of those summaries.
+
+Two reviewed author PDFs are hosted locally: the Treasury Part 1523 comment and *Eleven
+Votes Short*. Their SHA-256 digests are pinned in `tools/policy-materials.test.mjs`, which
+also checks the four-card count, dates, bilingual fields, public links, non-endorsement
+language, and the distinction between historical “structural citable” terminology and the
+current strict/decision-ready contract.
+
+The SEC written-input card links the SEC-hosted 28-page original and distinguishes its
+6 May 2026 author date from the 7 May listing date. Its summary describes the author's
+proposal, not SEC policy or the SEC page's unreviewed AI-generated key points.
+
+The MiCA response is not public. Do not add the private receipt, identifiers, editing URL,
+email screenshot, or the downloaded questionnaire copy to the site. The public card links
+only the European Commission consultation page and its public 45-page consultation
+document. A receipt records delivery; it is not Commission endorsement or adoption.
 
 ## Deploy
 
@@ -148,6 +170,8 @@ checks that every published fallback and live binding agrees with those files.
 
 ```bash
 node tools/check-register-contract.mjs ../cross-border-stablecoin-register
+node --test tools/live-contract.test.mjs
+node --test tools/policy-materials.test.mjs
 ```
 
 CI pins the Register checkout to an immutable commit. When that pin advances, update the
@@ -168,7 +192,8 @@ picker and the date control still compute from the register rather than a typed 
 reads Category I, EU→US reads Category T today and Category II once §18 has commenced), that
 the analysis index is reverse-chronological and its filter works, that the application form
 keeps its relay, its honeypot, its required fields and its email fallback, that no internal
-link points at a missing file, and that the map area is never an empty box.
+link points at a missing file, that the policy-material cards remain bilingual and do not
+embed private MiCA evidence, and that the map area is never an empty box.
 
 The suite runs against the **unstamped** files, because that is the state a contributor
 opens locally, and the runtime URL fallback has to hold there.

@@ -805,7 +805,7 @@ html[lang^="zh"] .hero-c h1{letter-spacing:0;line-height:1.14;max-width:20ch}
 .stat-l{display:block;margin-top:9px;font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
 .statband .zero .stat-n{color:var(--gate)}
 .statnote{margin:16px 0 0;font-size:14px;line-height:1.65;color:var(--ink-2);max-width:78ch}
-.stamp-i{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.stamp-i{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:normal;overflow-wrap:anywhere}
 @media(max-width:620px){.statband{grid-template-columns:repeat(2,minmax(0,1fr))}
   .statband > div:nth-child(3){border-left:0}
   .statband > div:nth-child(-n+2){border-bottom:1px solid var(--line-strong)}}
@@ -871,6 +871,42 @@ html[lang^="zh"] .bl{letter-spacing:.04em;text-transform:none;font-size:11.5px}
 @media(max-width:900px){.duty,.duty.six{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.duty,.duty.six{grid-template-columns:minmax(0,1fr)}}
 
+/* -- policy participation: four dated records, each with its own boundary -- */
+.policy-participation{scroll-margin-top:76px}
+.policy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
+  margin-top:28px;background:var(--line-strong);border:1px solid var(--line-strong)}
+.policy-card{display:flex;flex-direction:column;min-width:0;padding:24px 22px 22px;
+  background:var(--surface)}
+.policy-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-family:var(--mono);font-size:10.5px;line-height:1.45;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted)}
+html[lang^="zh"] .policy-head{font-size:11.5px;letter-spacing:.03em;text-transform:none}
+.policy-kind{color:var(--accent)}
+.policy-card h3{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.3;
+  color:var(--ink);margin:20px 0 0}
+.policy-status{font-family:var(--mono);font-size:11.5px;line-height:1.55;color:var(--muted);
+  margin:10px 0 0}
+.policy-summary{font-size:14.5px;line-height:1.64;color:var(--ink-2);margin:16px 0 0}
+.policy-links{display:flex;flex-wrap:wrap;gap:8px 14px;margin:auto 0 0;padding-top:20px}
+.policy-links a{font-family:var(--sans);font-weight:600;font-size:13px;line-height:1.45;
+  color:var(--accent);text-decoration:none}
+.policy-links a:hover,.policy-links a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.policy-boundary{margin:18px 0 0;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;line-height:1.58;color:var(--muted)}
+.policy-terms{margin:18px 0 0;padding:16px 18px;border-left:3px solid var(--line-strong);
+  background:var(--surface-2);font-size:13.5px;line-height:1.65;color:var(--ink-2)}
+.policy-terms b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+.policy-row .v{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px 12px}
+.policy-row .v a{color:var(--accent);text-decoration:none}
+.policy-row .v a:hover,.policy-row .v a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.policy-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+  .policy-grid{grid-template-columns:minmax(0,1fr)}
+  .policy-head{align-items:flex-start;flex-direction:column;gap:4px}
+  .paper.policy-row{grid-template-columns:minmax(0,1fr)}
+  .policy-row .v{justify-content:flex-start;white-space:normal}
+}
+
 /* -- institutional band -------------------------------------------------- */
 .inst{margin-top:82px;padding:64px 0 60px !important;background:var(--surface);
   border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
@@ -900,6 +936,8 @@ html[lang^="zh"] .workrow .wr-h{letter-spacing:.04em;text-transform:none;font-si
   .hero-c{text-align:left;padding-top:0}
   .statband,.inst{border-color:#000}
   .duty{grid-template-columns:minmax(0,1fr)}
+  .policy-grid{grid-template-columns:minmax(0,1fr);border-color:#000}
+  .policy-card{break-inside:avoid;background:#fff!important}
   .workrow{display:none}
   .boundary.un{background:#fff!important;border-color:#000!important}
 }
