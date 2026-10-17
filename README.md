@@ -2,6 +2,8 @@
 
 # CBSR — cbsr.io
 
+**Official website: [cbsr.site](https://cbsr.site/).**
+
 The public front door for **CBSR**, backed by the
 [Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
 the corridor map, the agent-grounding contract, the KYA framework, the intelligence stack,
@@ -15,8 +17,19 @@ citation handles and do not change. Agents that act come first, cross-border sta
 stated as the first vertical, and `index.html#scope` says plainly which adjacent domains the
 method would extend to and that none of them exists yet.
 
-A plain static site. No build step, no dependencies, no framework. The `.html` files at the
-root are the source — open one and you are reading exactly what ships.
+A static site with no browser framework or runtime package dependencies. Root `.html`
+files are the editable bilingual source. A Python-standard-library build materializes
+complete English and Chinese pages, evidence routes, canonical URLs, structured data,
+and the sitemap before publication. Only the allowlisted `_site/` output is deployed.
+
+```sh
+python3 tools/build_search_site.py --base-url https://cbsr.site/ --output _site
+python3 tools/search_site_test.py --site-dir _site --base-url https://cbsr.site/
+python3 -m http.server 8080 --directory _site
+```
+
+On Windows, use `python` in place of `python3`. The build does not need network access.
+See [DEPLOY.md](DEPLOY.md) and the [search operations guide](docs/SEO_GEO_OPERATIONS.md).
 
 ```
 index.html        home — the argument, policy participation, the proof, the six surfaces, scope
@@ -37,10 +50,12 @@ assets/cbsr-live.js   binds published figures and the review worklist to Registe
 papers/           reviewed author PDFs and the short-form analyses the indexes link to
 og-card.png       social preview card (1200×630)
 favicon.svg       the site mark
-sitemap.xml       stamped at deploy
-robots.txt        stamped at deploy
+sitemap.xml       legacy source; the publication build generates the current sitemap
+robots.txt        crawl policy template; the build fills the public sitemap URL
 .nojekyll         tells Pages not to run Jekyll over a plain static site
-tools/            test suite and the shell-sync helper — not deployed content
+tools/            standard-library builder, content renderer, tests, shell sync — not deployed
+content/search/   immutable public evidence snapshots and provenance — not deployed wholesale
+_site/            generated publication; includes /zh/, /data/, /jurisdictions/, /corridors/, /research/
 ```
 
 ## Policy-participation materials
@@ -70,18 +85,19 @@ document. A receipt records delivery; it is not Commission endorsement or adopti
    **GitHub Actions** as the source.
 2. Push to `main`. The included workflow validates, builds, and publishes the site.
 
-Nothing needs configuring. The workflow reads the real Pages URL from
-`actions/configure-pages` and stamps it into `og:url`, `<link rel="canonical">`, the social
-card, `sitemap.xml`, `robots.txt`, and the application form's redirect target. If the stamp
-fails, or an internal link points at a file that is not in the repo, or the form has lost
-one of its required fields, **the build fails rather than shipping a broken page**.
+The workflow reads the real Pages URL from `actions/configure-pages`, verifies the pinned
+Register contract and reviewed policy materials, builds `_site/`, validates the resulting
+links and metadata, and uploads only that directory. Canonical URLs, language alternates,
+social cards, sitemap and form redirects are resolved at build time. Existing English
+URLs remain available; `/zh/` is a separate, fully rendered language tree.
 
-Deploying somewhere other than GitHub Pages? Replace the placeholder by hand first, keeping
-the trailing slash:
+Other static hosts should serve the generated `_site/` directory after the same checks.
+Pass their actual public base URL to the builder; GitHub project paths are supported.
+Do not publish the repository root or use a bulk placeholder replacement as a build substitute.
 
-```bash
-sed -i 's|__SITE_URL__|https://your.url/|g' *.html sitemap.xml robots.txt
-```
+The evidence pages use a pinned, hashed snapshot, not an unsaved local Register checkout.
+Page modification dates do not refresh the legal evidence. Review and update that snapshot
+explicitly when advancing a release; keep the strict and structural candidate counts separate.
 
 ## The maintainer application form
 

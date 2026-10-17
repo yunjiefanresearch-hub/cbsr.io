@@ -3,3 +3,6 @@ Thumbs.db
 node_modules/
 package-lock.json
 test-results/
+_site*/
+__pycache__/
+*.pyc

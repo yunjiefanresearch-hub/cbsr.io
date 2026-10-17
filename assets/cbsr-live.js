@@ -71,6 +71,17 @@
     if (typeof meta.version !== 'string' || !meta.version || d.version !== meta.version) {
       throw new Error('inconsistent meta version');
     }
+    /* Static evidence pages and their published counters must describe one
+       snapshot. A newer remote API is not permission to relabel old prose. */
+    var root = document.documentElement;
+    if (root && root.getAttribute) {
+      var expectedVersion = root.getAttribute('data-snapshot-version');
+      var expectedDate = root.getAttribute('data-snapshot-date');
+      if ((expectedVersion && meta.version !== expectedVersion) ||
+          (expectedDate && meta.generated !== expectedDate)) {
+        throw new Error('remote metadata differs from the published evidence snapshot');
+      }
+    }
     var date = meta.generated;
     if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
         !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) {

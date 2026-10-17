@@ -19,108 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      # Reports the real Pages URL for this repo, whether it is a user site
-      # (https://<user>.github.io/) or a project site (https://<user>.github.io/<repo>/).
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
 
-      # Social cards need ABSOLUTE URLs; crawlers do not run JavaScript, so the URL cannot
-      # be filled in at runtime. Since the site was split into function pages this has to
-      # run over every page, the sitemap, and robots.txt — and over the application form's
-      # redirect target, which the relay will not accept as a relative path.
-      - name: Stamp the canonical URL into every page
-        run: |
-          set -euo pipefail
-          BASE="${{ steps.pages.outputs.base_url }}"
-          case "$BASE" in */) ;; *) BASE="$BASE/" ;; esac
-          echo "Stamping site URL: $BASE"
-          find . -maxdepth 1 -name '*.html' -print0 | xargs -0 sed -i "s|__SITE_URL__|$BASE|g"
-          sed -i "s|__SITE_URL__|$BASE|g" sitemap.xml robots.txt
-
-      # A half-stamped page ships a broken canonical and a broken card image, which is
-      # worse than shipping none. Fail the build instead.
-      - name: Fail if any placeholder survived
-        run: |
-          set -euo pipefail
-          if grep -rl '__SITE_URL__' --include='*.html' --include='*.xml' --include='*.txt' . ; then
-            echo "::error::__SITE_URL__ placeholder was not replaced in the files above."
-            exit 1
-          fi
-          echo "OK: no placeholders remain."
-          grep -o 'property="og:url" content="[^"]*"' index.html
-          grep -o 'name="_next" value="[^"]*"' maintain.html
-
-      # Every page must ship the shared shell. A page that lost its stylesheet or its
-      # script link still renders — badly, in one language, with no navigation — which is
-      # the kind of failure nobody notices until a reader reports it.
-      - name: Check every page carries the shared shell
-        run: |
-          set -euo pipefail
-          bad=0
-          for f in *.html; do
-            for needle in 'assets/cbsr.css' 'assets/cbsr.js' 'id="langtog"' '<footer>'; do
-              grep -q "$needle" "$f" || { echo "::error::$f is missing $needle"; bad=1; }
-            done
-          done
-          [ "$bad" -eq 0 ] || exit 1
-          echo "OK: all $(ls *.html | wc -l) pages carry the shell."
-
-      # Internal navigation is now a graph rather than a set of anchors, so a renamed file
-      # breaks links on pages nobody edited. Resolve every internal href against the disk.
-      - name: Check every internal link resolves
-        run: |
-          set -euo pipefail
-          missing=0
-          for f in *.html; do
-            for h in $(grep -o 'href="[^"#?:]*\.\(html\|pdf\|svg\|png\|xml\|txt\)"' "$f" \
-                       | sed 's/href="//;s/"$//' | sort -u); do
-              [ -f "$h" ] || { echo "::error::$f links to missing file: $h"; missing=1; }
-            done
-          done
-          [ "$missing" -eq 0 ] || exit 1
-          echo "OK: every internal link resolves."
-
-      # The analysis index links to PDFs served from this repo. A dead link on the page
-      # that is meant to BE the evidence is worse than no link.
-      - name: Check the assets and the hosted papers are present
-        run: |
-          set -euo pipefail
-          for f in og-card.png favicon.svg assets/cbsr.css assets/cbsr.js .nojekyll; do
-            test -f "$f" || { echo "::error::$f missing"; exit 1; }
-          done
-          for f in $(grep -oh 'href="papers/[^"]*"' *.html | sed 's/href="//;s/"$//' | sort -u); do
-            test -f "$f" || { echo "::error::linked paper missing from the repo: $f"; exit 1; }
-            echo "  ok   $f"
-          done
-          echo "OK: assets and papers present."
-
-      # The application form is the only thing on this site that can silently stop working
-      # without changing how any page looks. Assert its contract at build time.
-      - name: Check the maintainer form still has its contract
-        run: |
-          set -euo pipefail
-          for needle in 'id="apply"' 'name="_honey"' 'name="_next"' \
-                        'yunjiefan.research@gmail.com' 'id="apply-mailto"'; do
-            grep -q "$needle" maintain.html || { echo "::error::maintain.html lost $needle"; exit 1; }
-          done
-          test -f thanks.html || { echo "::error::_next points at thanks.html, which is missing"; exit 1; }
-          echo "OK: form contract intact."
-
-      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
-        with:
-          path: .
-
-      # Package the site before this checkout so the Register clone can never
-      # leak into the Pages artifact. The deploy job still waits for this whole
-      # build job, so a contract failure blocks publication.
+      # This checkout is a verification input only. The builder copies an explicit
+      # public-file allowlist, and only the verified _site directory is uploaded.
       - name: Check out the pinned Register contract
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           repository: yunjiefanresearch-hub/cross-border-stablecoin-register
-          # Keep this immutable. Advance it to the Register repair commit in
-          # the same integration change as the offline website snapshot.
           ref: 270a002e8d66bb9971b3638dfcab52f3b2f6d2fd
           path: .contract/register
           persist-credentials: false
@@ -130,11 +42,32 @@ jobs:
         with:
           node-version: 20
 
-      - name: Check website snapshot against Register meta, worklist, and MCP
+      - name: Check snapshot, live fallback, and public-policy contracts
         run: |
+          set -euo pipefail
+          node --check assets/cbsr.js
+          node --check assets/cbsr-live.js
           node tools/check-register-contract.mjs .contract/register
           CBSR_TEST_REGISTER=.contract/register node --test tools/live-contract.test.mjs
           node --test tools/policy-materials.test.mjs
+
+      - name: Build static bilingual search pages
+        env:
+          CBSR_PAGES_BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          set -euo pipefail
+          python3 tools/build_search_site.py --base-url "$CBSR_PAGES_BASE" --output _site
+
+      - name: Verify the actual public artifact before upload
+        env:
+          CBSR_PAGES_BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          set -euo pipefail
+          python3 tools/search_site_test.py --site-dir _site --base-url "$CBSR_PAGES_BASE"
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: _site
 
   deploy:
     needs: build

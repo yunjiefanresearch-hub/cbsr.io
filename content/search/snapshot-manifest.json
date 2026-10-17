@@ -1,0 +1,164 @@
+{
+  "schema": "cbsr-search-snapshot/v1",
+  "source_repository": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register",
+  "source_commit": "270a002e8d66bb9971b3638dfcab52f3b2f6d2fd",
+  "snapshot_as_of": "2026-08-20",
+  "html_content_created": "2026-10-17",
+  "extraction_method": "git show <pinned-commit>:<path>; exact committed bytes",
+  "data_license": "CC-BY-4.0",
+  "code_license": "Apache-2.0",
+  "author": {
+    "name": "Yunjie Fan",
+    "orcid": "https://orcid.org/0009-0005-6762-084X"
+  },
+  "citation_identifier_in_pinned_source": "https://doi.org/10.5281/zenodo.20730358",
+  "identifier_scope_note": "Identifier copied from CITATION.cff, not a claim that every tag has its own DOI or that this HTML snapshot is a separate DOI deposit.",
+  "date_scope_note": "2026-10-17 is HTML editorial creation only. Snapshot generation is 2026-08-20; individual legal analysis and source checks retain their own earlier dates.",
+  "record_review_promoted": false,
+  "files": [
+    {
+      "source_path": "dataset.json",
+      "local_path": "snapshots/dataset.json",
+      "sha256": "39a6e5e79c63b1ffa8c39fd6751ec44913f627f3dcc4cdbd61ec2e439bb435b3",
+      "bytes": 1807646,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/dataset.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/meta.json",
+      "local_path": "snapshots/meta.json",
+      "sha256": "fae8fc2cacf87f4796237e953dd9e727823d50e840d0faa5ad331c63bdb3dfd5",
+      "bytes": 960,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/meta.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "LICENSING.md",
+      "local_path": "snapshots/LICENSING.md",
+      "sha256": "e9c9002b8732d93d154d154605491a94648eac4970766ed5c9060d7f93149b86",
+      "bytes": 1457,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/LICENSING.md",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "LICENSE-DATA",
+      "local_path": "snapshots/LICENSE-DATA",
+      "sha256": "b1c8c01055eaef0b1048ed2859070b46eab8526ed15c5b1d4d54ad1cb0b177e0",
+      "bytes": 2103,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/LICENSE-DATA",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "CITATION.cff",
+      "local_path": "snapshots/CITATION.cff",
+      "sha256": "d01bd33b6a8872b23a98fecb06d9a00cecb9e7a6a56605b5d40682120c699784",
+      "bytes": 1641,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/CITATION.cff",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "docs/PAPER_ERRATA.md",
+      "local_path": "snapshots/PAPER_ERRATA.md",
+      "sha256": "3846f8bf690cd34b8e449db84ccf2cd17f6bec2973cbf5958fb2939f9a6b4838",
+      "bytes": 22792,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/docs/PAPER_ERRATA.md",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "RELEASE_MANIFEST.json",
+      "local_path": "snapshots/RELEASE_MANIFEST.json",
+      "sha256": "140eeb73bba7c332a0cf44aa70026bbad29ad8e48b7d85620407a80c8910ab64",
+      "bytes": 6131,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/RELEASE_MANIFEST.json",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "papers/Citable_by_Construction_Methodology_v0.1.0.md",
+      "local_path": "snapshots/papers/citable-by-construction.md",
+      "sha256": "26c7bb12d93031083a6ca2bc1b8372419f09d8c0059584300ce1ad8bc7a6797b",
+      "bytes": 52982,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/papers/Citable_by_Construction_Methodology_v0.1.0.md",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "papers/Cross-Border_Stablecoin_Feasibility_Over_Time_v0.1.0.md",
+      "local_path": "snapshots/papers/feasibility-over-time.md",
+      "sha256": "132bd99136bd368615ed853a654dcdf9130083ae218477a1053e863ebb77226b",
+      "bytes": 103560,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/papers/Cross-Border_Stablecoin_Feasibility_Over_Time_v0.1.0.md",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "docs/whitepaper/CBSR_AGENTICFI_POLICY_INFRASTRUCTURE.md",
+      "local_path": "snapshots/papers/agenticfi-policy-infrastructure.md",
+      "sha256": "9e237e94ed96a20ee204f92b977441a69e158f52eece52226c059897a488aee2",
+      "bytes": 50823,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/docs/whitepaper/CBSR_AGENTICFI_POLICY_INFRASTRUCTURE.md",
+      "license": "See source file and LICENSING.md; no new license inferred"
+    },
+    {
+      "source_path": "api/corridors_directed/SG-HK.json",
+      "local_path": "snapshots/corridors/SG-HK.json",
+      "sha256": "825958f00f5d4b8c8d0d96fbe7450ec0b816c0f4f349f19b1530fe9c2b9d8f92",
+      "bytes": 4504,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/SG-HK.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/US-EU.json",
+      "local_path": "snapshots/corridors/US-EU.json",
+      "sha256": "8a1fb2d506c5aea858b24e2cd5d1954c7dbcaa7ee5adcef2adc366e1ee7a2785",
+      "bytes": 4243,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/US-EU.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/EU-US.json",
+      "local_path": "snapshots/corridors/EU-US.json",
+      "sha256": "90f842b250410067ca2f878721b16299fdc399fb084c1335c6250b3d30c61c49",
+      "bytes": 6957,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/EU-US.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/US-HK.json",
+      "local_path": "snapshots/corridors/US-HK.json",
+      "sha256": "b0c7b9dc383a60fe10ab9a176a1b986501bdc9489ddb14fb733da0a19b90c885",
+      "bytes": 3960,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/US-HK.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/HK-US.json",
+      "local_path": "snapshots/corridors/HK-US.json",
+      "sha256": "579f76b3038edbd811d0a4e1aec73c1e08f0e78bdb28fd7245ee4c6362d16d71",
+      "bytes": 6129,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/HK-US.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/US-JP.json",
+      "local_path": "snapshots/corridors/US-JP.json",
+      "sha256": "1f86a3fe8855e8270962fdd5b7975e9a02b7751008985378dcc4d8ecd33ec2da",
+      "bytes": 4454,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/US-JP.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/JP-US.json",
+      "local_path": "snapshots/corridors/JP-US.json",
+      "sha256": "d618f8b98e643519ed5a50af9702bf9e9dc42f87d59044bdac021166b577e7fb",
+      "bytes": 6765,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/JP-US.json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "source_path": "api/corridors_directed/HK-CN.json",
+      "local_path": "snapshots/corridors/HK-CN.json",
+      "sha256": "782200a1f9650c7935d949d20d38341bd21b944117123717ee935dfe2d96fd80",
+      "bytes": 4579,
+      "source_url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/api/corridors_directed/HK-CN.json",
+      "license": "CC-BY-4.0"
+    }
+  ]
+}

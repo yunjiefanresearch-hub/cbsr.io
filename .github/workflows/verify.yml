@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           path: site
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -26,7 +27,19 @@ jobs:
       - name: Check snapshot and rejected-response behavior
         working-directory: site
         run: |
+          set -euo pipefail
+          node --check assets/cbsr.js
           node --check assets/cbsr-live.js
           node tools/check-register-contract.mjs ../cross-border-stablecoin-register
-          node --test tools/live-contract.test.mjs
+          CBSR_TEST_REGISTER=../cross-border-stablecoin-register node --test tools/live-contract.test.mjs
           node --test tools/policy-materials.test.mjs
+      - name: Build static bilingual search artifact
+        working-directory: site
+        run: |
+          set -euo pipefail
+          python3 tools/build_search_site.py --base-url https://cbsr.site/ --output _site
+      - name: Check search, citation, links, reproducibility, and project paths
+        working-directory: site
+        run: |
+          set -euo pipefail
+          python3 tools/search_site_test.py --site-dir _site --base-url https://cbsr.site/
