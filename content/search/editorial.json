@@ -1,0 +1,258 @@
+{
+  "editorial_date": "2026-10-17",
+  "scope": "Explanatory translations and reading guides for the exact pinned historical snapshot. They do not update underlying legal propositions or review dates.",
+  "jurisdictions": {
+    "US": {
+      "en": "Read issuer-layer propositions separately from the foreign-issuer admission gate. The register distinguishes the enacted GENIUS Act from the commencement condition governing its Section 18 inbound pathway. Yield analysis also separates issuer restrictions from the then-pending intermediary-level Section 404 debate.",
+      "zh": "应分别阅读发行人层面的命题与境外发行人准入门槛。登记册区分已制定的 GENIUS Act 与第 18 条境外准入路径的施行条件；收益分析也区分发行人限制与当时尚待决的中介层面 Section 404 讨论。",
+      "caution": {"en": "The record-level label in_force_enacted describes the Act in this snapshot. It must not be used to override the corridor signal made_not_commenced for Section 18. The committed errata and inbound-US corridor pages explain the Act-versus-section distinction; no current US access conclusion follows from the record label alone.", "zh": "快照记录层面的 in_force_enacted 描述法案；不能据此覆盖通道信号中第 18 条的 made_not_commenced。已提交勘误与入境美国通道页说明法案与具体条款的区别；单凭记录标签不能推出当前美国准入结论。"},
+      "record_zh": {
+        "issuer_pathway": "快照列出三类获准发行路径：受保存款机构子公司、OCC 认可的非银行发行人，以及在获认证可比州制度下经营的州发行人。此处转述历史记录，不确认某个具体主体已获许可。",
+        "reserve_backing": "记录区分法案中的 1:1 公允价值支持要求与当时尚未定稿的储备资产细则；不能把拟议资产清单当作已生效规则。",
+        "permitted_activity_yield": "历史记录围绕与持有、使用或保留稳定币相关的收益禁令，以及拟议反规避规则与中介层面 Section 404 展开；其中拟议内容必须继续保留拟议属性。",
+        "monetary_sovereignty": "记录把境外稳定币准入描述为可比性认定与登记机制。该记录对法案的标签与具体第 18 条门槛的施行状态有已声明差异，应结合上方提示及反向通道阅读。"
+      }
+    },
+    "EU": {
+      "en": "The EU dossier centres on MiCA e-money tokens: authorised issuer types, reserve composition, the holder-interest prohibition, and the non-Member-State-currency means-of-exchange mechanism. The reserve-percentage record expressly retains an unresolved Level-2 pinpoint; it is not a substitute for the relevant RTS text.",
+      "zh": "欧盟档案以 MiCA 电子货币代币为主，分别记录发行主体、储备构成、持有人利息禁令及非成员国货币的交易媒介机制。储备比例记录明确保留尚未完成的二级规则条款定位，不能替代相关 RTS 原文。",
+      "caution": {"en": "Known wording conflict: the historical monetary_sovereignty requirement_summary says 'or' between the numerical thresholds. The committed paper errata and directed US→EU class basis correct this to 'and' under Article 23(1), as applied by Article 58(3). The exact snapshot bytes are preserved for reproducibility, not endorsed as a corrected current-law statement.", "zh": "已知措辞冲突：历史 monetary_sovereignty 的 requirement_summary 在两个数值门槛之间使用 or。已提交论文勘误和美国→欧盟有向边分类依据将其更正为 and，依据为第 58(3) 条所适用的第 23(1) 条。保留原始快照字节是为了复现，不表示认可它是已更正的现行法表述。"},
+      "record_zh": {
+        "issuer_pathway": "记录将 EMT 发行路径限定于获授权的信贷机构或电子货币机构；这与某个境外代币在欧盟的实际分销状态是不同问题。",
+        "reserve_backing": "历史记录列出 EMT 与 ART 的银行存款储备比例，但同时注明具体比例的 RTS 逐行定位尚待完成；引用时必须保留这项缺口。",
+        "permitted_activity_yield": "该记录以 MiCA 第 50 条定位 EMT 持有人利息禁令；来源复核在快照时已逾期，HTML 创建日没有使其重新成为 current。",
+        "monetary_sovereignty": "记录讨论非成员国货币 EMT 的交易媒介门槛及适用范围。原摘要存在 or/and 冲突，应以上方勘误提示和已更正的有向边分析一起阅读，不能直接引用旧摘要的连接词。"
+      }
+    },
+    "UK": {
+      "en": "The UK evidence distinguishes a made-but-not-commenced perimeter from its policy descriptions. A recorded interpretive gap concerns whether a qualifying stablecoin's UK lifecycle connection requires any one limb or all three. Holder-yield treatment remains unmapped in the record despite later policy documents being identified as leads.",
+      "zh": "英国证据区分已制定未施行的监管范围与政策说明。其中一项解释分歧是：合格稳定币与英国的生命周期联系，究竟需要任一环节还是全部三个环节。记录虽然列出后续政策文件线索，持有人收益待遇仍未完成映射。",
+      "record_zh": {
+        "issuer_pathway": "快照保留 HMT 政策说明的任一环节表述与 SI 2026/102 第 9M(2) 条全部三个环节表述之间的解释问题，并未替读者选择结论。",
+        "reserve_backing": "记录把 1:1 支持、年度独立审查，以及储备资产的 CIS/AIF 排除单独列出；具体资产构成规则在该历史记录中仍属待完成事项。",
+        "permitted_activity_yield": "该记录没有把储备报酬推论为持有人收益许可。PS26/10 等材料被列为后续映射线索，实质结论尚未完成独立复核。",
+        "monetary_sovereignty": "记录描述境外代币入境待遇处于向系统性制度过渡的阶段；没有仅凭无总量上限就推导开放准入。"
+      }
+    },
+    "SG": {
+      "en": "Singapore's records distinguish the Payment Services Act and DTSP regime from the MAS single-currency stablecoin framework. The latter is labelled finalized_policy_pending in the pinned snapshot. The SCS label's SGD/G10 and Singapore-issued scope, the no-lending/staking activity boundary, and the origin-egress constraint are distinct issues.",
+      "zh": "新加坡记录区分 Payment Services Act、DTSP 制度与 MAS 单一货币稳定币框架；固定快照将后者标记为 finalized_policy_pending。SCS 标签的新元/G10 及新加坡发行范围、禁止借贷或质押的活动边界，以及来源地出境服务限制，属于不同问题。",
+      "record_zh": {
+        "issuer_pathway": "记录将 SCS 框架范围限定为在新加坡发行、锚定新元或 G10 货币的代币，并区分银行及非银行 MPI 路径。该条来源链接未取得，时效为 unknown。",
+        "reserve_backing": "原摘要要求同币种、100% 的现金或低风险短期资产支持，资产隔离与定期鉴证；但效力仍保留 finalized_policy_pending，不能将框架政策升级为已施行法条。",
+        "permitted_activity_yield": "记录将收益相邻约束表述为发行人不得借贷或质押，而非直接利息禁令；该命题属于历史 SCS 框架阅读，复核已逾期。",
+        "monetary_sovereignty": "记录区分 MAS-regulated stablecoin 标签与一般 DPT 待遇。没有总量上限不等于所有境外或非框架代币都可使用该标签。"
+      }
+    },
+    "HK": {
+      "en": "Hong Kong's dossier separates the Stablecoins Ordinance licensing perimeter, HKD-referencing offshore issuance, offering restrictions, reserve safeguards and the non-interest-bearing condition. Licence-cohort observations are operational facts and do not replace the legal test for a different issuer or product.",
+      "zh": "香港档案分别记录《稳定币条例》的牌照范围、境外港元参考发行、要约限制、储备保障与不计息条件。首批牌照等观察属于运营事实，不能替代对其他发行人或产品的法律测试。",
+      "record_zh": {
+        "issuer_pathway": "记录将本地发行、境外港元参考发行与向香港公众积极营销列入牌照讨论；关于当时牌照批次的描述仅是有日期的历史观察。",
+        "reserve_backing": "快照摘要记录全额支持、短期限低风险资产、隔离与信托安排；应结合已记录的来源定位与逾期复核状态核对，而非依此直接批准储备安排。",
+        "permitted_activity_yield": "来源定位为《稳定币条例》附表 2 第 15 条不计息条件；原记录讨论持牌人向稳定币持有人直接支付利息的禁止。",
+        "monetary_sovereignty": "记录区分港元参考代币的境外牌照范围与非港元代币的分销限制，不把香港描述成 MiCA 式数量上限制度。"
+      }
+    },
+    "CN": {
+      "en": "The Mainland China dossier records a prohibition framework rather than an issuer-licensing menu. It separates domestic virtual-currency activity, unauthorised overseas RMB-pegged issuance, PRC-controlled offshore entities, and the additional data and capital-flow constraints relevant to cross-border analysis. A Hong Kong licence does not erase the destination prohibition.",
+      "zh": "中国内地档案记录的是禁止框架，而非发行牌照清单；分别讨论境内虚拟货币活动、未经许可的境外人民币稳定币发行、境内控制的境外主体，以及跨境分析涉及的数据和资本流动约束。香港牌照不能消除目的地禁止。",
+      "record_zh": {
+        "issuer_pathway": "历史记录未列境内稳定币发行路径，并将银发〔2026〕42号与 2017 年公告作为来源。关于香港申请行为的叙述属于不同层面的历史运营观察。",
+        "reserve_backing": "记录把境内发行的储备问题标为禁止背景下不适用；对于间接香港路径，相关储备要求作用于香港持牌实体，不能据此创设内地发行许可。",
+        "permitted_activity_yield": "在记录所述境内发行禁止背景下，不存在可适用收益规则的获准境内发行人；此项没有取得可用来源链接，时效继续为 unknown。",
+        "monetary_sovereignty": "该记录引用银发〔2026〕42号，涉及未经许可境外发行人民币参考稳定币、境内控制实体境外发行虚拟货币及 RWA 代币化限制。来源检查日期未记录，不宣称已完成现行法复核。"
+      }
+    },
+    "BR": {
+      "en": "Brazil's records use a virtual-asset-service and foreign-exchange frame rather than assuming a standalone stablecoin charter. SPSAV modalities, asset-curation rules, cross-border FX classification and eFX settlement-channel restrictions are separate controls. The snapshot also preserves an unsettled yield record and an explicitly unresolved market-share citation.",
+      "zh": "巴西记录采用虚拟资产服务与外汇框架，而非假定存在独立稳定币牌照。SPSAV 业务类别、资产筛选规则、跨境外汇归类与 eFX 结算渠道限制是分别记录的控制。快照也保留收益问题未定及市场份额引文未锁定的缺口。",
+      "record_zh": {
+        "issuer_pathway": "记录讨论 BCB 对虚拟资产服务商的授权及中介、托管、经纪三种 SPSAV 业务类别，并列有过渡安排；相关日期均为历史快照内容。",
+        "reserve_backing": "摘要以 Res BCB 520 第 2 条第 III 项及第 64 条以后为定位，记录法币参考资产定义、储备证明及算法控制限制。该条来源复核在快照日已逾期。",
+        "permitted_activity_yield": "原摘要继续把收益传递列为未定问题，即使其他实施规则已在快照中出现，也没有因此自动提升本条结论或复核状态。",
+        "monetary_sovereignty": "记录强调跨境虚拟资产支付的外汇归类、单笔限制和 eFX 对外结算环节限制，并明确市场份额数值尚待锁定单一日期来源；该比例不应作为已验证事实引用。"
+      }
+    },
+    "CH": {
+      "en": "Switzerland's dossier distinguishes licensed issuance from the bank-default-guarantee pathway. The guarantee, holder identification and possible collective-investment characterisation matter more here than a fixed reserve-asset schedule. The record's treatment of interest is a structural guarantee question, not an assertion that every yield arrangement is authorised.",
+      "zh": "瑞士档案区分持牌机构发行与银行违约担保路径。担保、持有人识别及潜在集合投资属性，比固定储备资产清单更关键。记录对利息的讨论是结构性担保问题，不表示一切收益安排均获授权。",
+      "record_zh": {
+        "issuer_pathway": "原记录列出银行或 FinTech 牌照，以及《银行条例》第 5(3)(f) 条银行违约担保排除路径；本条复核时效未知。",
+        "reserve_backing": "摘要未列统一法定资产比例表，而是讨论担保覆盖本金与利息，并保留持有人账户资产可能涉及 CISA 集合投资属性的问题。",
+        "permitted_activity_yield": "记录没有描述一项一概利息禁令，而强调担保路径下利息也须被担保覆盖。此历史研究命题不能代替对具体安排的当前审查。",
+        "monetary_sovereignty": "记录未列数量或渠道型货币主权上限，同时指出担保与 AML 持有人识别才是实际结构约束；无用量上限不等于无监管要求。"
+      }
+    },
+    "AE": {
+      "en": "The UAE dossier must be read by perimeter: CBUAE onshore payment-token rules differ from VARA, ADGM-FSRA and DIFC-DFSA arrangements. The key contrast is a general-payments channel reserved in the snapshot to licensed Dirham payment tokens, with foreign payment tokens treated differently. A free-zone reference cannot silently replace the onshore rule.",
+      "zh": "阿联酋档案必须按监管范围阅读：CBUAE 在岸支付代币规则，与 VARA、ADGM-FSRA、DIFC-DFSA 安排不同。关键区别是快照把一般支付渠道留给获许可迪拉姆支付代币，并对外国支付代币另作处理；自贸区规则不能自动替代在岸规则。",
+      "record_zh": {
+        "issuer_pathway": "记录区分 CBUAE 许可的迪拉姆支付代币、登记境外发行人的外国支付代币、银行子公司与自贸区路径；AED 发行范围不能混同。",
+        "reserve_backing": "摘要分别描述在岸 100% 隔离储备、银行子公司资产构成，以及各自贸区要求；不能将其中一个范围的比例套用到全部阿联酋安排。",
+        "permitted_activity_yield": "历史记录区分在岸发行人付息禁止与 ADGM 对投资或储蓄宣传的边界，避免把赚取储备收入与向持有人付息混为一谈。",
+        "monetary_sovereignty": "记录将限制描述为使用渠道限制：一般商品服务支付与虚拟资产或衍生品购买分开处理，而不是总量上限。"
+      }
+    },
+    "TW": {
+      "en": "Taiwan's snapshot records an enacted-but-not-commenced stablecoin framework and separates it from the existing AML-registration layer. Subsidiary rules, commencement and the NTD-versus-USD peg question remain explicit dependencies. The snapshot's enactment wording and dates are historical source fields, not a new 17 October verification.",
+      "zh": "台湾快照记录已制定未施行的稳定币框架，并与既有 AML 登记层区分。子法、施行及新台币或美元锚定问题仍是明确依赖。快照中的制定措辞与日期是历史来源字段，不是 10 月 17 日重新核验后的结论。",
+      "record_zh": {
+        "issuer_pathway": "快照将发行许可列为已制定但未施行框架内容，并保留公司形式、初期银行参与及子法依赖；不能从框架存在推导某发行人已经获牌。",
+        "reserve_backing": "记录把全额、境内金融机构持有及资产隔离列为未施行框架内容；既有 AML 登记并不自动产生这些储备规则。",
+        "permitted_activity_yield": "记录中的利息或其他收益禁止以框架施行为前提，在本快照中仍标为 made_not_commenced。",
+        "monetary_sovereignty": "记录保留锚定新台币还是美元的待定问题，并未列出已施行的稳定币专门货币主权上限。"
+      }
+    },
+    "JP": {
+      "en": "Japan's evidence separates the closed set of Electronic Payment Instrument issuer types from the registered EPIESP distribution channel. A foreign token's inbound route and its local-reserve and non-solicitation conditions are not automatic mutual recognition. Trust-type backing amendments and intermediary-level yield questions retain their own unresolved detail.",
+      "zh": "日本证据区分电子支付手段发行人的封闭类别与登记 EPIESP 分销渠道。外国代币的境内准入路径、本地储备及不直接招揽条件，不等于自动互认。信托型支持资产修订及中介层面收益问题仍保留各自未完成的细节。",
+      "record_zh": {
+        "issuer_pathway": "记录列出银行、资金移转服务商与信托公司或信托银行三类发行人，并将 EPIESP 登记与发行资格分开。",
+        "reserve_backing": "摘要以全额支持为基础，另述 Act No. 66 of 2025 的信托型低风险短期资产安排；该记录保留具体标准当时尚待完成的限制。",
+        "permitted_activity_yield": "记录区分发行人层面的支付工具安排，与 EPIESP 中介层面借贷服务是否构成不同产品的开放问题，不将开放问题写成已获许可。",
+        "monetary_sovereignty": "记录未列总量上限，而是讨论外国代币经登记 EPIESP、相应日本储备及境外发行人不直接发行赎回招揽的渠道条件。"
+      }
+    },
+    "KR": {
+      "en": "South Korea's stablecoin-specific issuer, reserve, yield and cross-border proposals are marked pending_proposal in this snapshot. Competing bank-led and fintech-inclusive designs are draft-policy positions. They must not be reported as an operative licensing, reserve or interest regime merely because a draft has an official legislative URL.",
+      "zh": "韩国的稳定币专门发行、储备、收益与跨境方案在快照中标为 pending_proposal。银行主导与更包容金融科技的模式属于竞争中的草案立场；不能因为草案有官方立法网页，就把它描述为已施行的牌照、储备或利息制度。",
+      "record_zh": {
+        "issuer_pathway": "记录没有列出已获稳定币牌照的发行人。BOK 的银行主导与 FSC 的金融科技参与方案仍属草案争议，最低资本报道差异也保留为暂定信息。",
+        "reserve_backing": "超过 100%、安全资产、银行或托管机构持有及隔离，均作为草案内容记录，尚非该快照所确认的已施行储备制度。",
+        "permitted_activity_yield": "利息或折扣禁止属于草案轨道，在制定施行前不能描述为已操作的收益禁令。",
+        "monetary_sovereignty": "跨境韩元稳定币作为外汇支付手段的归类，以及央行批准问题，都保留为草案与资本流动管理讨论，不是当前已施行结论。"
+      }
+    }
+  },
+  "corridors": {
+    "SG-HK": {"en": "The authored SG→HK example is class I in the snapshot, with an HKMA authorisation gate and a separately recorded MAS origin-egress constraint. Institutional cooperation does not remove either issuer's authorisation obligations; formal infrastructure-membership attribution remains a verification-backlog item.", "zh": "快照把新加坡→香港例子列为 I 类，同时记录 HKMA 许可门槛与 MAS 来源地出境服务约束。机构合作并未消除两端发行人的准入义务；正式基础设施成员身份仍有待核验。"},
+    "US-EU": {"en": "The US→EU example is class I with a MiCA authorisation and scale mechanism. Its committed class basis uses the corrected conjunctive Article 23 thresholds: both one million daily transactions and EUR 200 million, measured as specified in the source. This differs from the uncorrected 'or' wording retained in one historical record summary.", "zh": "美国→欧盟例子为 I 类，涉及 MiCA 许可与规模机制。已提交分类依据使用更正后的第 23 条并列门槛：每日一百万笔且二亿欧元，并按来源规则衡量；这与一条历史记录摘要保留的 or 措辞不同。"},
+    "EU-US": {"en": "The reverse EU→US direction is class T in the historical model. MiCA authorisation does not itself open the US Section 18 pathway. The source conditions a later class II state on commencement; its outer-cap date and final-rules-plus-120-days alternative are conditional historical inputs, not a forecast.", "zh": "反向欧盟→美国在历史模型中为 T 类。MiCA 许可并不自动打开美国第 18 条路径。来源把后续 II 类状态附条件于施行；最迟日期与最终规则后 120 天的替代条件是历史条件输入，不是预测。"},
+    "US-HK": {"en": "The US→HK example is class I but still requires the Hong Kong authorisation route. The narrative distinguishes a legal gate from the first licence cohort's then-observed composition; a cohort observation is not a promise of a future licence or general recognition of a foreign dollar token.", "zh": "美国→香港例子为 I 类，但仍需香港准入路径。分析区分法律门槛与当时首批牌照的组成；牌照批次观察既非未来发牌承诺，也非外国美元代币获得普遍认可。"},
+    "HK-US": {"en": "The HK→US direction is class T because the US destination gate, rather than Hong Kong's offshore HKD perimeter, drives this edge. The underlying Act-level record and Section 18 commencement signal have a declared difference which must remain visible in any citation.", "zh": "香港→美国方向为 T 类，主导的是美国目的地门槛，而非香港的境外港元参考发行范围。底层法案记录与第 18 条施行信号存在已声明差异，引用时必须保留。"},
+    "US-JP": {"en": "The US→Japan edge is class II: a registered EPIESP channel, local reserve and foreign-issuer conduct conditions rather than automatic dual authorisation. The class basis also records a foreign trust-type instrument recognition condition; it does not turn recognition into blanket market access.", "zh": "美国→日本为 II 类，涉及登记 EPIESP 渠道、本地储备及境外发行人行为条件，而非自动双重许可。分类依据还记录境外信托型工具的认可条件，不能把认可概括成全面市场准入。"},
+    "JP-US": {"en": "Japan→US is the class T mirror of the class II US→Japan channel. Japan's issuer categories do not satisfy the US comparability and registration gate by themselves. The source's prospective class II is explicitly conditioned on the US gate commencing.", "zh": "日本→美国是美国→日本 II 类渠道的 T 类反向例子。日本发行主体资格本身不满足美国的可比性与登记门槛；来源中的后续 II 类明确以美国门槛施行为条件。"},
+    "HK-CN": {"en": "The HK→Mainland China edge is blocked at destination in the snapshot. A Hong Kong-issued instrument or a shared infrastructure experiment does not remove the recorded mainland prohibition, and data or capital-flow analysis is a separate question from lawful stablecoin payment circulation.", "zh": "香港→中国内地方向在快照中被目的地禁止阻断。香港发行工具或共同基础设施试验不能消除已记录的内地禁止；数据或资本流动分析与稳定币可否合法作为支付工具流通属于不同问题。"}
+  },
+  "papers": [
+    {
+      "slug": "citable-by-construction",
+      "title": "Citable by Construction",
+      "dateline": "June 2026 · v0.1.0; register integration updated August 2026",
+      "schema_status": "Working paper",
+      "summary": {"en": "A methodology for machine-readable comparative law: separate claim kind, provenance and legal force; enforce structural citation gates; publish disagreements and verification debt.", "zh": "面向机器可读比较法的方法：分离命题种类、来源强度与法律效力，强制结构性引用门槛，并公开分歧与核验欠账。"},
+      "status": {"en": "First pre-release working-paper draft. Methodology rather than a current legal opinion. Its historical structural-citability discussion must be read alongside the v0.11 currentness and independent-review gate: 46 structural candidates, 0 decision-ready records.", "zh": "首个预发布工作论文草稿，讨论方法而非现行法律意见。原文对结构性可引用性的讨论，必须结合 v0.11 的时效与独立复核门槛阅读：46 条结构性候选，0 条 decision-ready。"},
+      "sections": [
+        {"heading": {"en": "Research question", "zh": "研究问题"}, "body": {"en": "The paper asks how a regulatory knowledge base can stop software from treating a market observation as law, a draft as operative, or an unverified transcription as confirmed. It makes claim_class, evidence_tier and binding_status orthogonal rather than compressing them into one confidence score.", "zh": "论文研究监管知识库如何防止软件把市场观察当法律、把草案当已施行文件、把未经验证的转录当确认事实。它将 claim_class、evidence_tier、binding_status 设为独立轴，而非压成单一置信分。"}},
+        {"heading": {"en": "Method and contribution", "zh": "方法与贡献"}, "body": {"en": "Build gates check source locators, claim purity, legal force and signal provenance. Computed conclusions are compared with authored analysis; disagreement is published as a finding. The portable contribution is the evidence discipline, while dimensions and the stablecoin signal table remain domain-specific.", "zh": "构建门槛检查来源定位、命题纯度、法律效力与信号溯源；计算结论与作者分析逐项比较，分歧作为发现公开。可迁移的是证据纪律，监管维度和稳定币信号表仍属具体领域。"}},
+        {"heading": {"en": "What it does not establish", "zh": "它不能证明什么"}, "body": {"en": "The enforcement gates detect certain errors; they cannot replace primary-source legal review. A structural subset does not establish source freshness, independent reconciliation or permission to execute. The public verification backlog is part of the method's output, not an exception to it.", "zh": "强制门槛可以发现某些错误，不能替代一手来源法律复核。结构性子集不证明来源新鲜、独立调和完成或具有执行许可。公开核验欠账本身就是方法输出，而非例外。"}}
+      ],
+      "sources": [
+        {"url": "https://papers.ssrn.com/abstract=7055678", "label": {"en": "SSRN record for the working paper", "zh": "工作论文 SSRN 记录"}},
+        {"url": "/assets/search/snapshots/papers/citable-by-construction.md", "label": {"en": "Exact committed methodology manuscript", "zh": "已提交方法论文原文"}},
+        {"url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/papers/Citable_by_Construction_Methodology_v0.1.0.md", "label": {"en": "Manuscript provenance at the pinned commit", "zh": "固定提交的论文溯源"}}
+      ]
+    },
+    {
+      "slug": "stablecoin-feasibility-over-time",
+      "title": "Cross-Border Stablecoin Feasibility Over Time",
+      "dateline": "June 2026 · v0.1.0; integration updated August 2026; original base 2026-06-30",
+      "schema_status": "Working paper",
+      "summary": {"en": "A trigger-conditioned forward map that links dated changes in law to directed corridor classes while separating scheduled, contingent and intra-regime changes.", "zh": "以法律事件为条件的前瞻地图：将带日期的法律变化连接到有向通道类别，并区分已排期、附条件及制度内部变化。"},
+      "status": {"en": "Historical working paper. Its forward map conditions on specified changes; it does not predict enactment or certify present market access. The manuscript explicitly preserves its June reading and records later integration and errata.", "zh": "历史工作论文。前瞻地图以特定变化为条件，不预测立法，也不证明当前市场准入。原文明确保留六月阅读，并记录后续整合与勘误。"},
+      "sections": [
+        {"heading": {"en": "Research question", "zh": "研究问题"}, "body": {"en": "A static corridor map is a dated photograph. The paper asks which legal event could change a directed edge, which records support that event, and what kind of date certainty it carries. A product launch or licence-cohort announcement is not allowed to flip a legal class by itself.", "zh": "静态通道地图是一张带日期的照片。论文追问哪些法律事件可能改变有向边、依据哪些记录、日期确定性属于哪一种。产品上线或牌照批次公告不能自行改变法律类别。"}},
+        {"heading": {"en": "Method and worked distinctions", "zh": "方法与实例区别"}, "body": {"en": "The source distinguishes scheduled commencement, contingent enactment, an outer-cap date that can be preceded by final rules, and intra-regime changes that alter access without changing the class. US inbound examples illustrate why enactment of an Act and operation of a particular gate must be separated.", "zh": "来源区分已排定施行、附条件立法、可能被最终规则提前的最迟日期，以及改变准入但不改变类别的制度内部变化。入境美国实例说明，法案制定与具体门槛开始运作必须分开。"}},
+        {"heading": {"en": "Corrections and limits", "zh": "更正与局限"}, "body": {"en": "The manuscript discloses corrections to inbound-US timing, the conjunctive MiCA thresholds and the destination-first class rule. Its later geopolitical interpretation uses softer evidence, explicitly labelled. Neither future conditions nor infrastructure-pilot membership prove a corridor is operational today.", "zh": "论文披露对入境美国时间、MiCA 并列门槛及目的地优先分类规则的更正；后部地缘结构解释使用较软证据并明确标注。未来条件与基础设施试验成员身份都不能证明通道今日可运营。"}}
+      ],
+      "sources": [
+        {"url": "https://papers.ssrn.com/abstract=7055759", "label": {"en": "SSRN record for the working paper", "zh": "工作论文 SSRN 记录"}},
+        {"url": "/assets/search/snapshots/papers/feasibility-over-time.md", "label": {"en": "Exact committed manuscript", "zh": "已提交论文原文"}},
+        {"url": "/assets/search/snapshots/PAPER_ERRATA.md", "label": {"en": "Committed paper errata", "zh": "已提交论文勘误"}}
+      ]
+    },
+    {
+      "slug": "agenticfi-policy-infrastructure",
+      "title": "CBSR AgenticFi Policy Infrastructure",
+      "dateline": "2026-08-20 · version 0.11.0 · research release candidate",
+      "schema_status": "Research release candidate; external peer review not completed",
+      "summary": {"en": "The institutional technical whitepaper on versioned, citable and time-aware policy evidence for autonomous finance, with explicit human responsibility and execution boundaries.", "zh": "关于自主金融中版本化、可引用、具时间意识的政策证据的技术白皮书，明确人类责任与执行边界。"},
+      "status": {"en": "Research release candidate. The source states that external peer review and independent legal review are not completed. It is the claims-traceable whitepaper; the older technical working draft is explicitly superseded and is not presented here as a second current paper.", "zh": "研究发布候选版。原文明确外部同行评审与独立法律审查尚未完成。本篇为可追溯主张的白皮书；旧技术草稿已明确被替代，本页不把旧稿当作另一篇现行论文。"},
+      "sections": [
+        {"heading": {"en": "Problem and evidence model", "zh": "问题与证据模型"}, "body": {"en": "Financial agents can combine an action and machine-readable rules quickly, but speed does not transfer responsibility to a dataset. The paper separates legal force, provenance, freshness, uncertainty, human review and execution authority. In the release snapshot, 152 records span twelve jurisdictions and none meets the complete decision-ready gate.", "zh": "金融智能体可以快速组合行动请求与机器可读规则，但速度不能把责任转移给数据集。论文分离法律效力、来源、时效、不确定性、人类复核与执行权限。该发布快照覆盖十二法域、152 条记录，没有记录通过完整 decision-ready 门槛。"}},
+        {"heading": {"en": "Control architecture", "zh": "控制架构"}, "body": {"en": "The described architecture combines a versioned mandate, explicit evidence, deterministic evaluation and receipts containing rule IDs and freshness. Outcomes distinguish allow, conditional allow, review required, prohibited and insufficient evidence. Every CBSR result retains execution_authorized=false; a human-approval condition is not an approval event.", "zh": "架构组合版本化授权、显式证据、确定性评估，以及包含规则 ID 与时效的回执；区分允许、附条件允许、需复核、禁止和证据不足。CBSR 输出始终保留 execution_authorized=false；要求人类批准不等于已经批准。"}},
+        {"heading": {"en": "Empirical results and limits", "zh": "经验结果与局限"}, "body": {"en": "The paper reports a census of one committed snapshot: 103 official-source and 49 unavailable-source records; freshness is 38 stale and 114 unknown. These counts do not measure legal-compliance rates or causal impact. Unsigned receipt hashes expose mutation but authenticate no signer; independent second review, security review and deployment-specific controls remain separate work.", "zh": "论文报告的是一个已提交快照的全量统计：103 条官方来源、49 条来源未取得，时效为 38 条逾期及 114 条未知。这些比例不衡量法律合规率或因果效果。未签名回执哈希可显示篡改，但不认证签署人；独立复核、安全审查与部署控制仍需分别完成。"}}
+      ],
+      "sources": [
+        {"url": "/assets/search/snapshots/papers/agenticfi-policy-infrastructure.md", "label": {"en": "Exact committed institutional whitepaper", "zh": "已提交白皮书原文"}},
+        {"url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/docs/whitepaper/CBSR_AGENTICFI_POLICY_INFRASTRUCTURE.pdf", "label": {"en": "Source repository whitepaper PDF", "zh": "来源仓库白皮书 PDF"}},
+        {"url": "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/blob/270a002e8d66bb9971b3638dfcab52f3b2f6d2fd/docs/delivery/CLAIMS_LEDGER.md", "label": {"en": "Claims ledger and evidence boundaries", "zh": "主张清单与证据边界"}}
+      ]
+    },
+    {
+      "slug": "narrowing-section-404",
+      "title": "Narrowing the Section 404 Prohibition",
+      "dateline": "2026-05-06 · independent policy brief · 28 pages",
+      "schema_status": "Independent policy brief",
+      "summary": {"en": "A dated policy proposal for distinguishing user-initiated stablecoin routing into registered investment products from disguised passive yield.", "zh": "一份带日期的政策建议，讨论如何区分用户主动将稳定币路由至注册投资产品与伪装的被动收益。"},
+      "status": {"en": "Independent author proposal, hosted as written input on sec.gov. Hosting does not establish SEC agreement, an adopted rule or a current safe harbour. The summary preserves the brief's 6 May 2026 perspective.", "zh": "作者独立提案，以书面意见形式刊载于 sec.gov。刊载不证明 SEC 同意、规则已采用或存在当前安全港。摘要保留 2026 年 5 月 6 日的研究视角。"},
+      "sections": [
+        {"heading": {"en": "Proposal and method", "zh": "建议与方法"}, "body": {"en": "The author proposes a NAV-based principal-risk threshold and four audit metrics: authorisation density, disclosure granularity, user control and activity coupling. The argument asks who authorises each transaction and who bears investment losses. These are proposed analytical tests, not regulator-approved compliance criteria.", "zh": "作者建议采用基于净值的本金风险门槛，以及授权密度、披露颗粒度、用户控制与活动耦合四个审计指标，追问交易由谁授权、投资损失由谁承担。这些是分析建议，非监管批准的合规标准。"}},
+        {"heading": {"en": "Source locator", "zh": "原文定位"}, "body": {"en": "Read the executive summary and recommendations on PDF pages 2–3, then the principal-risk and metrics discussion in Sections IV–VI. Later legislative or rulemaking developments require separate review.", "zh": "先读 PDF 第 2–3 页执行摘要与建议，再读第四至六节本金风险及指标分析。后续立法或规则制定变化需另行复核。"}}
+      ],
+      "sources": [
+        {"url": "https://www.sec.gov/files/ctf-written-input-fan-050726.pdf", "label": {"en": "Original independent brief hosted by SEC", "zh": "SEC 网站刊载的独立简报原文"}},
+        {"url": "https://www.sec.gov/featured-topics/crypto-task-force/crypto-task-force-written-input", "label": {"en": "SEC written-input index and notice", "zh": "SEC 书面意见索引与声明"}},
+        {"url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6724920", "label": {"en": "SSRN record", "zh": "SSRN 记录"}}
+      ]
+    }
+  ],
+  "guides": [
+    {
+      "slug": "what-is-cbsr",
+      "title": {"en": "What is CBSR? Agentic finance evidence and the Stablecoin Register", "zh": "CBSR 是什么？金融智能体证据与稳定币登记册"},
+      "description": {"en": "Understand the CBSR product, its first stablecoin regulatory domain, the author, the evidence chain and how to cite a specific version.", "zh": "理解 CBSR 产品、首个稳定币监管垂类、作者、证据链及具体版本的引用方式。"},
+      "sections": [
+        {"heading": {"en": "A product and its first regulatory domain", "zh": "一个产品与首个监管垂类"}, "body": {"en": "CBSR is evidence infrastructure for agentic finance: rules, mandates and traceable decision support can be consumed by software while retaining their source and time boundaries. Cross-Border Stablecoin Register is the cited name of its first regulatory dataset. Use that full name when referring to the data and CBSR when identifying the broader product.", "zh": "CBSR 是面向金融智能体的证据基础设施：软件可以使用规则、授权与可追溯决策支持，同时保留来源及时间边界。Cross-Border Stablecoin Register 是首个监管数据集的正式引用名称；指数据时使用全称，识别更广产品时使用 CBSR。"}},
+        {"heading": {"en": "Who is responsible for the research?", "zh": "谁负责研究？"}, "body": {"en": "The register and companion research identify Yunjie Fan as author and maintainer, with ORCID 0009-0005-6762-084X. Repository governance, correction routes and original papers make the work inspectable. Institutional hosting of an author's submission does not transfer authorship or imply endorsement.", "zh": "登记册与相关研究将 Yunjie Fan 列为作者及维护者，ORCID 为 0009-0005-6762-084X。仓库治理、更正路径与论文原文使工作可核查；机构刊载作者提交材料不会转移作者身份，也不表示认可。"}},
+        {"heading": {"en": "How should an answer cite CBSR?", "zh": "回答应如何引用 CBSR？"}, "body": {"en": "Identify the dataset version and snapshot date, link the specific record or corridor, preserve the official source locator, and state legal force and review freshness separately. A page publication date is not a source-check date. In this pinned snapshot, 46 structural candidates and zero decision-ready records are different measures.", "zh": "注明数据集版本与快照日，链接具体记录或通道，保留官方来源定位，分别陈述法律效力与复核时效。网页发布日期不是来源检查日。本固定快照中的 46 条结构性候选与零条 decision-ready 是不同指标。"}}
+      ],
+      "sources": [
+        {"url": "/data/", "label": {"en": "Dataset, license and citation", "zh": "数据集、许可与引用"}},
+        {"url": "/research/agenticfi-policy-infrastructure/", "label": {"en": "AgenticFi policy-infrastructure whitepaper summary", "zh": "金融智能体政策基础设施白皮书摘要"}},
+        {"url": "https://orcid.org/0009-0005-6762-084X", "label": {"en": "Author ORCID", "zh": "作者 ORCID"}}
+      ]
+    },
+    {
+      "slug": "evidence-status",
+      "title": {"en": "CBSR evidence status glossary: legal force, freshness and review", "zh": "CBSR 证据状态词汇：法律效力、时效与复核"},
+      "description": {"en": "Read claim class, evidence tier, binding status, source-check dates and decision readiness without turning unknown or historical evidence into approval.", "zh": "正确阅读命题、证据层级、法律效力、来源检查日与决策可用性，避免把未知或历史证据变为批准。"},
+      "sections": [
+        {"heading": {"en": "Independent questions require independent fields", "zh": "独立问题需要独立字段"}, "body": {"en": "An official URL can identify a source without proving that the provision is in force or has been reviewed recently. An enacted Act may contain a section whose commencement is still pending. A historical legal proposition can remain traceable while failing the current decision-use gate. CBSR preserves those distinctions in separate fields.", "zh": "官方 URL 可以标明来源，却不证明具体条款已施行或最近已复核。已制定法案也可能含待施行条款。历史法律命题可以继续可追溯，同时无法通过当前决策使用门槛。CBSR 用独立字段保留这些区别。"}},
+        {"heading": {"en": "Read the dates literally", "zh": "逐项理解日期"}, "body": {"en": "Snapshot generation, legal effective dates, source_last_checked, next_review_due, editorial history and HTML creation are different dates. Missing source checks stay unknown. The 17 October 2026 HTML creation date does not alter the 20 August 2026 dataset or its June legal-analysis base.", "zh": "快照生成、法律生效、source_last_checked、next_review_due、编辑历史与 HTML 创建是不同日期。缺少来源检查日继续表示 unknown。2026 年 10 月 17 日的 HTML 创建，不改变 8 月 20 日数据及其六月法律分析基准。"}},
+        {"heading": {"en": "Why zero decision-ready records matters", "zh": "为什么零条 decision-ready 重要"}, "body": {"en": "The snapshot counts 46 structural candidates, but currentness and reconciled independent second review are incomplete. Therefore the complete decision-ready count remains zero. Better search visibility and richer schema do not close the legal-review backlog or change the policy evaluator's execution boundary.", "zh": "快照有 46 条结构性候选，但时效和调和后的独立第二复核未完成，因此完整 decision-ready 数量仍为零。搜索可见性提高、结构化标记丰富，都不会消除法律复核欠账或改变评估器的执行边界。"}}
+      ],
+      "sources": [
+        {"url": "/assets/search/snapshots/meta.json", "label": {"en": "Exact committed API metadata", "zh": "已提交 API 元数据原文"}},
+        {"url": "/research/citable-by-construction/", "label": {"en": "Citable by Construction methodology", "zh": "Citable by Construction 方法"}},
+        {"url": "/assets/search/snapshots/RELEASE_MANIFEST.json", "label": {"en": "Original release manifest and open independent-review gates", "zh": "原发布清单与未完成独立审查门槛"}}
+      ]
+    },
+    {
+      "slug": "agent-evidence-chain",
+      "title": {"en": "How CBSR connects agent actions to evidence and receipts", "zh": "CBSR 如何连接智能体行动、证据与回执"},
+      "description": {"en": "Follow an action through mandate scope, explicit rule evidence, deterministic policy evaluation and unsigned audit receipts without confusing support with execution authority.", "zh": "沿行动请求查看授权范围、显式规则证据、确定性政策评估与未签名审计回执，分清决策支持和执行权限。"},
+      "sections": [
+        {"heading": {"en": "Start with the action and mandate", "zh": "从行动与授权开始"}, "body": {"en": "The v0.11 model accepts an action and a time-bounded mandate that identifies scope such as assets, jurisdictions, counterparties, amounts and human-review conditions. Evidence cannot extend a revoked mandate or authorise a jurisdiction outside its scope. The named principal and agent identity remain assertions unless authenticated by the surrounding system.", "zh": "v0.11 模型接受行动和限时授权，范围可含资产、法域、交易对手、金额与人工复核条件。证据不能延长已撤销授权，也不能许可范围外法域。委托人与智能体身份若未由外围系统认证，仍只是身份声明。"}},
+        {"heading": {"en": "Carry exact evidence into the decision", "zh": "把确切证据带入决策"}, "body": {"en": "An evaluation identifies applicable records, source locators, binding status, effective windows, freshness and uncertainty. Missing evidence can return insufficient_evidence; stale, unknown, proposed, transitional or conflicting evidence can require review. The packaged watch capability inspects snapshot change and review state, not a live regulator feed.", "zh": "评估明确适用记录、来源定位、效力、生效窗口、时效与不确定性。缺证据可返回 insufficient_evidence；逾期、未知、拟议、过渡或冲突证据可要求复核。打包的 watch 能力检查快照变化及复核状态，不是实时监管数据流。"}},
+        {"heading": {"en": "Audit the result without inventing approval", "zh": "审计结果，不虚构批准"}, "body": {"en": "The receipt retains action, decision, rule IDs, versioned engine context and digests. Canonical hashes can reveal mutation, but an unsigned receipt does not prove who signed or approved anything. CBSR retains execution_authorized=false. Authentication, actual human approvals, payment execution and production accountability require their own evidence and controls.", "zh": "回执保留行动、结论、规则 ID、版本化引擎上下文与摘要。规范哈希可以显示篡改，但未签名回执不证明谁签署或批准。CBSR 始终保留 execution_authorized=false。身份认证、实际人工批准、支付执行与生产责任各需独立证据和控制。"}}
+      ],
+      "sources": [
+        {"url": "/research/agenticfi-policy-infrastructure/", "label": {"en": "Whitepaper summary and original source", "zh": "白皮书摘要与原文"}},
+        {"url": "/agents.html", "label": {"en": "CBSR agent interface", "zh": "CBSR 智能体接口"}},
+        {"url": "/kya.html", "label": {"en": "Know-your-agent boundary", "zh": "Know-your-agent 边界"}}
+      ]
+    }
+  ]
+}

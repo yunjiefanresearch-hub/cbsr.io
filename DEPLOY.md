@@ -1,43 +1,68 @@
-# Deploying cbsr.io
+# Building and publishing cbsr.site
 
-Static site. No build step, no dependencies, no bundler.
+The browser receives static HTML. Python 3.10+ builds the publication with standard-library
+modules only; Node.js runs the existing Register and policy-material checks. No production
+package installation or browser framework is required.
 
-## Local
+## Local build and preview
 
-    cd cbsr.io
-    python3 -m http.server 8080
-    # open http://localhost:8080
+```sh
+python3 tools/build_search_site.py --base-url https://cbsr.site/ --output _site
+python3 tools/search_site_test.py --site-dir _site --base-url https://cbsr.site/
+python3 -m http.server 8080 --directory _site
+```
 
-`file://` will not work: `assets/cbsr-live.js` fetches the register over
-`fetch()`, and the Content-Security-Policy meta tag needs an http origin.
+Use `python` on Windows if that is the installed interpreter command. Open
+`http://localhost:8080/`, `/zh/`, `/data/` and `/zh/jurisdictions/`. Serve the generated
+directory over HTTP; source files do not preview the published routes.
 
-## Pointing at a register
+For a project-path deployment, pass the full base URL, for example
+`https://example.github.io/cbsr.io/`. All public metadata and local resource links use that
+prefix. Serve the output under the same prefix when testing in a browser.
 
-Figures on every page are bound at run time from the register's `api/meta.json`.
-By default the binder reads:
+## Sources and evidence dates
 
-    https://yunjiefanresearch-hub.github.io/cross-border-stablecoin-register/api
+- Root `.html` files are the editorial source. Their `data-zh` translations are rendered
+  into separate Chinese pages during the build. Published language selection uses links.
+- `tools/search_pages.py` renders the dataset, jurisdiction, corridor and research pages.
+- `content/search/` contains the public snapshot and its provenance manifest.
+  Only explicitly selected public downloads are copied to `assets/search/` in the output.
+- Root source, tools, tests, private receipts, Git metadata, and internal documentation
+  are excluded from the publication.
+- A page modification date is not the dataset snapshot date or a legal review date.
 
-To point somewhere else, add this before the `cbsr-live.js` tag on each page:
+After changing shared navigation, run `python3 tools/sync-shell.py`. After changing source
+content, rebuild; do not edit `_site/` directly.
 
-    <script>window.__CBSR_REGISTER_API__ = "https://.../api";</script>
+## Runtime metadata
 
-If you change the origin, also update `connect-src` in the CSP meta tag,
-otherwise the browser will block the fetch and every page will fall back to its
-build-time figures (labelled as such — see below).
+The existing binder reads the public Register API for matching metadata and review tasks:
 
-## What happens when the register is unreachable
+`https://yunjiefanresearch-hub.github.io/cross-border-stablecoin-register/api`
 
-The page marks itself `data-cbsr-live="offline"` and every `[data-live-stamp]`
-element says "build-time snapshot — figures may be stale". The figures in the
-markup are the fallback. A stale figure that says it is stale is acceptable; an
-unlabelled wrong one is not, and that distinction is the reason this file exists.
+Published pages declare their snapshot version and date. If the API is unavailable,
+incomplete, or describes a different release, the page retains its build-time figures and
+states that the metadata is unavailable. It does not silently relabel historical evidence
+with a newer version. Updating the legal dataset requires an explicit snapshot update.
 
-## Verifying before you publish
+Do not add inline configuration scripts: the site has a restrictive Content-Security-Policy.
+If an API origin changes, update the reviewed script and CSP together.
 
-    node tools/test-site.mjs
+## GitHub Pages
 
-## Publishing
+Choose **Settings > Pages > Build and deployment > GitHub Actions**. The workflow:
 
-`.github/workflows/deploy.yml` publishes to GitHub Pages on push. `sync-shell.py`
-propagates the shared header and footer across pages; run it after editing either.
+1. Checks the website against the immutable Register revision and policy-material tests.
+2. Builds English, Chinese and evidence pages for the configured Pages URL.
+3. Validates canonical/language metadata, structured data, sitemap and internal links.
+4. Uploads only `_site/` and deploys that artifact.
+
+A pull request runs the same build checks without publishing. Watch the actual Pages
+deployment result after merging; a local build alone does not confirm deployment.
+
+## Search account actions
+
+Search Console ownership, Bing verification, sitemap submission, AI inclusion controls,
+and third-party profile fields require the corresponding account access. Follow
+[SEO_GEO_OPERATIONS.md](docs/SEO_GEO_OPERATIONS.md); a successful deployment is not a
+search-index or AI-citation guarantee.

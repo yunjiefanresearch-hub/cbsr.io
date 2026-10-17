@@ -21,11 +21,11 @@ function element(attributes = {}, text = 'fallback') {
   };
 }
 
-async function render(payload, tasks = worklist) {
+async function render(payload, tasks = worklist, published = {}) {
   const records = element({ 'data-live': 'records' });
   const strict = element({ 'data-live': 'decision_ready' });
   const stamp = element();
-  const html = element({ lang: 'en' });
+  const html = element({ lang: 'en', ...published });
   const nodes = Object.fromEntries(['wl-list', 'wl-count', 'wl-state'].map(id => [id, element()]));
   const document = {
     readyState: 'complete', documentElement: html,
@@ -89,3 +89,27 @@ test('mixed-version worklist is rejected without rendering its rows', async () =
   assert.equal(page.nodes['wl-list'].children.length, 0);
   assert.match(page.nodes['wl-state'].textContent, /could not be read/);
 });
+
+test('published evidence snapshot accepts only matching remote metadata', async () => {
+  const page = await render(structuredClone(meta), worklist, {
+    'data-snapshot-version': meta.version,
+    'data-snapshot-date': meta.generated,
+  });
+  assert.equal(page.html.attributes['data-cbsr-live'], 'live');
+  assert.equal(page.records.textContent, String(meta.data.record_count));
+});
+
+for (const field of ['version', 'generated']) {
+  test(`a newer remote ${field} cannot relabel published evidence`, async () => {
+    const payload = structuredClone(meta);
+    if (field === 'version') payload.version = payload.data.version = '0.12.0';
+    else payload.generated = '2026-08-21';
+    const page = await render(payload, worklist, {
+      'data-snapshot-version': meta.version,
+      'data-snapshot-date': meta.generated,
+    });
+    assert.equal(page.html.attributes['data-cbsr-live'], 'offline');
+    assert.equal(page.records.textContent, 'fallback');
+    assert.equal(page.nodes['wl-list'].children.length, 0);
+  });
+}

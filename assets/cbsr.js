@@ -1,6 +1,6 @@
 /* ============================================================================
    CBSR — shared site script
-   No framework, no build step, no dependencies. Every block below is guarded on
+   No browser framework or runtime dependencies. Every block below is guarded on
    the presence of the element it drives, so one file serves every page and does
    nothing on the pages that do not carry that feature.
 
@@ -21,6 +21,8 @@
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var staticLocale = document.documentElement.getAttribute('data-static-locale');
+  if (staticLocale !== 'en' && staticLocale !== 'zh') staticLocale = null;
 
   /* ---- 0 ── an unstamped copy must never be seen holding a placeholder ---- */
   try {
@@ -91,6 +93,15 @@
 
   function setLang(l, opts) {
     opts = opts || {};
+    /* Published language pages already contain their complete localized HTML.
+       Repainting them from a cache would treat Chinese as the English original.
+       Navigation links, rather than browser storage, select a published locale. */
+    if (staticLocale) {
+      lang = staticLocale;
+      try { window.dispatchEvent(new CustomEvent('cbsr-lang', { detail: lang })); } catch (e) {}
+      if (opts.notifyFrame !== false) postToFrame(lang);
+      return;
+    }
     lang = (l === 'zh') ? 'zh' : 'en';
     paint(lang);
     $$('#langtog button').forEach(function (b) {
@@ -131,10 +142,10 @@
 
   var HZ = [null, '2027-01-18', '2027-10-25'];
   var STOPS = {
-    en: [{ t: 'today', s: '30 Jun 2026 snapshot' },
+    en: [{ t: 'snapshot', s: '20 Aug 2026 snapshot' },
          { t: '18 Jan 2027', s: 'GENIUS Act §18 commences · outer cap' },
          { t: '25 Oct 2027', s: 'UK regime operative' }],
-    zh: [{ t: '今天', s: '2026-06-30 快照' },
+    zh: [{ t: '快照时点', s: '2026-08-20 快照' },
          { t: '2027-01-18', s: 'GENIUS 法案第 18 条生效 · 外层兜底' },
          { t: '2027-10-25', s: '英国制度生效' }]
   };
@@ -415,13 +426,41 @@
 
   /* ======================================================================= */
   function boot() {
-    cache();
+    if (!staticLocale) cache();
+
+    /* Preserve old shared ?lang= links while giving each language its own URL. */
+    if (staticLocale) {
+      try {
+        var legacyParams = new URLSearchParams(window.location.search);
+        var requestedLocale = legacyParams.get('lang');
+        if (requestedLocale === 'en' || requestedLocale === 'zh') {
+          legacyParams.delete('lang');
+          var languageLink = $('#langtog a[data-lang="' + requestedLocale + '"]');
+          if (requestedLocale !== staticLocale && languageLink) {
+            var languageTarget = new URL(languageLink.href, window.location.href);
+            languageTarget.search = legacyParams.toString();
+            languageTarget.hash = window.location.hash;
+            window.location.replace(languageTarget.href);
+            return;
+          }
+          if (window.history && window.history.replaceState) {
+            var cleanQuery = legacyParams.toString();
+            window.history.replaceState(null, '', window.location.pathname + (cleanQuery ? '?' + cleanQuery : '') + window.location.hash);
+          }
+        }
+      } catch (e) {}
+    }
 
     /* mark the current page in the nav */
-    var file = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    var currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
     $$('.nav a[href]').forEach(function (a) {
-      var h = (a.getAttribute('href') || '').split(/[?#]/)[0].toLowerCase();
-      if (h && h === file) a.classList.add('on');
+      try {
+        var target = new URL(a.getAttribute('href'), window.location.href);
+        if (target.origin === window.location.origin && target.pathname.replace(/\/index\.html$/, '/') === currentPath) {
+          a.classList.add('on');
+          a.setAttribute('aria-current', 'page');
+        }
+      } catch (e) {}
     });
 
     var tog = $('#langtog');
@@ -445,12 +484,12 @@
     frame = document.getElementById('mapframe');
     openLink = document.getElementById('embed-open');
 
-    var initial = 'en';
-    try {
+    var initial = staticLocale || 'en';
+    try { if (!staticLocale) {
       var q = new URLSearchParams(window.location.search).get('lang');
       if (q === 'zh' || q === 'en') initial = q;
       else { var s = localStorage.getItem('cbsr-lang'); if (s === 'zh' || s === 'en') initial = s; }
-    } catch (e) {}
+    } } catch (e) {}
 
     if (frame && MAPPER_URL) {
       frame.src = langUrl(initial);

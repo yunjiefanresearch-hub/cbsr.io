@@ -1,0 +1,5 @@
+# Evidence downloads are exact bytes from the pinned Register commit.
+# Do not convert their line endings on Windows checkout or commit.
+content/search/snapshots/** -text
+content/search/snapshot-manifest.json text eol=lf
+tools/*.py text eol=lf
