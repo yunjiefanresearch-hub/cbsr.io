@@ -13,6 +13,8 @@
 
 `robots.txt` 与 `llms.txt` 仅提供访问和阅读提示。`llms.txt` 不是收录凭据、排名开关或模型推荐保证。本站没有虚构 IndexNow 验证 key，也未代为完成站长账户设置。
 
+站名首选仍为 `CBSR`；现有唯一 `WebSite` 节点通过 `alternateName: ["cbsr.site"]` 提供备用名，首页中英文首段同步明确品牌与域名的对应关系。这遵循 [Google 站名指南](https://developers.google.com/search/docs/appearance/site-names)，仅表达站名偏好，不保证 Google 采用该名称、停止查询拼写纠正或提高排名，也不改变正式数据集引用名。
+
 ## 2. 构建和发布
 
 部署只能上传 `_site/`，不要再把仓库根目录直接作为 GitHub Pages 产物。GitHub Pages 的发布工作流会读取实际 Pages base URL，先运行原有 Register 快照、live fallback 和公开政策材料检查，再生成并验收产物；失败即停止上传。PR 检查同时验证自定义域名与项目子路径部署。

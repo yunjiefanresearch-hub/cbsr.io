@@ -361,7 +361,7 @@ def add_schema(head, base_url, route, language, title, description, modified, lo
     locale = "zh-Hans" if language == "zh" else "en"
     graph = [
         {"@type": "Person", "@id": base_url + "#person", "name": "Yunjie Fan", "identifier": ORCID, "sameAs": [ORCID], "url": page_url(base_url, "about.html", language)},
-        {"@type": "WebSite", "@id": base_url + "#website", "url": base_url, "name": "CBSR", "inLanguage": ["en", "zh-Hans"], "publisher": {"@id": base_url + "#person"}},
+        {"@type": "WebSite", "@id": base_url + "#website", "url": base_url, "name": "CBSR", "alternateName": ["cbsr.site"], "inLanguage": ["en", "zh-Hans"], "publisher": {"@id": base_url + "#person"}},
         {"@type": "WebPage", "@id": canonical + "#webpage", "url": canonical, "name": title, "description": description, "inLanguage": locale, "dateModified": modified, "isPartOf": {"@id": base_url + "#website"}, "author": {"@id": base_url + "#person"}, "breadcrumb": {"@id": canonical + "#breadcrumb"}},
         {"@type": "BreadcrumbList", "@id": canonical + "#breadcrumb", "itemListElement": make_breadcrumbs(base_url, route, language, title, lookup)},
     ]
