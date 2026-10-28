@@ -575,14 +575,14 @@ def write_discovery(output, base_url, manifest):
     path = urlsplit(base_url).path
     robots = "# CBSR public evidence: data CC-BY-4.0; code Apache-2.0.\nUser-agent: *\nAllow: " + path + "\n\nSitemap: " + base_url + "sitemap.xml\n"
     (output / "robots.txt").write_text(robots, encoding="utf-8")
-    lines = ["# CBSR", "", "> Evidence infrastructure for agentic finance. Its current published dataset is the Cross-Border Stablecoin Register.", "", "CBSR is maintained by Yunjie Fan (" + ORCID + "). Public records are dated research evidence, not legal advice or authority to execute transactions.", "", "The pinned register snapshot is v0.11.0, dated 2026-08-20: 152 sourced records, 46 structural candidates, and 0 decision-ready records. A structural candidate does not establish current applicable law.", "", "## Source and citation", "", "- [Source register](" + REGISTER_URL + ")", "- [Dataset concept DOI](https://doi.org/10.5281/zenodo.20730358)", "- [Sitemap](" + base_url + "sitemap.xml)", "", "## English pages", ""]
+    lines = ["# CBSR", "", "> Evidence infrastructure for agentic finance. Its first regulatory dataset is the Cross-Border Stablecoin Register.", "", "CBSR is maintained by Yunjie Fan (" + ORCID + "). Research connects regulatory provisions to dated records, corridor analysis and reproducible data.", "", "The pinned register snapshot is v0.11.0, dated 2026-08-20: 152 records across 12 jurisdictions. Each record preserves source references, legal status, evidence dates and review history. The dataset and evidence-status guide explain the fields and citation method.", "", "## Source and citation", "", "- [Source register](" + REGISTER_URL + ")", "- [Dataset concept DOI](https://doi.org/10.5281/zenodo.20730358)", "- [Sitemap](" + base_url + "sitemap.xml)", "", "## English pages", ""]
     for language, heading in (("en", None), ("zh", "## 中文页面")):
         if heading:
             lines.extend(["", heading, ""])
         for page in manifest:
             if page["indexable"] and page["language"] == language:
                 lines.append("- [" + page["title"].replace("[", "(").replace("]", ")") + "](" + page["canonical"] + "): " + page["description"])
-    lines.extend(["", "Cite the page URL, dataset version, source provision, evidence date, and stated uncertainty. Review underlying primary law before relying on a record. This file is a discovery aid; it grants no additional authority or endorsement.", ""])
+    lines.extend(["", "Cite the page URL, dataset version, source provision, evidence date and review status. The linked records and original texts document the scope of each research finding.", ""])
     (output / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
 

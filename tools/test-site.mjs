@@ -42,10 +42,10 @@ for (const f of PAGES) {
     title: document.title,
   }));
   check(`${f}: shell present`,
-    state.nav === 8 && state.foot === 8 && state.tog && state.css,
+    state.nav === 5 && state.foot === 8 && state.tog && state.css,
     `nav=${state.nav} foot=${state.foot} tog=${state.tog}`);
-  /* index, thanks and 404 are not nav entries, so no link is marked there */
-  const expectMark = !["index.html", "thanks.html", "404.html"].includes(f);
+  /* The primary nav covers the four main destinations; the footer exposes the library. */
+  const expectMark = ["corridors.html", "research.html", "agents.html", "about.html"].includes(f);
   check(`${f}: current page marked in nav`, expectMark ? state.on === 1 : state.on === 0,
     `marked=${state.on}`);
   check(`${f}: has a title`, state.title.length > 5, state.title);

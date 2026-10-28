@@ -150,16 +150,19 @@ check('formal dataset citation name remains discoverable',
   (html['research.html'] || '').includes(`<i>${FORMAL_DATASET_NAME}</i>`));
 
 check('site binds complete directed corridors, never authored exemplars, to 132 labels',
-  index.includes('data-live="directed_corridors">132</span>') &&
+  /data-live="directed_corridors">132<\/(?:b|span)>/.test(index) &&
   corridors.includes('data-live="directed_corridors">132</span>') &&
   !allHtml.includes('data-live="authored_corridors"') &&
   !allHtml.includes('data-live=&quot;authored_corridors&quot;'));
-check('agent page fallback exposes strict and structural counts separately',
-  agents.includes(`data-live="decision_ready">${EXPECTED.strictCitable}</span> strict records`) &&
-  agents.includes(`data-live="structural_candidates">${EXPECTED.structuralCandidates}</span> structural candidates`));
+check('review status stays in the evidence contract rather than promotional metrics',
+  !allHtml.includes('data-live="decision_ready"') &&
+  (html['method.html'] || '').includes('freshness and independent-review requirements') &&
+  (html['method.html'] || '').includes(`data-live="structural_candidates">${EXPECTED.structuralCandidates}</span>`) &&
+  meta.citable_count === EXPECTED.strictCitable &&
+  meta.structural_citable_candidates === EXPECTED.structuralCandidates);
 check('MCP tool fallback is generated from the same snapshot',
   agents.includes(`data-live="mcp_tool_count">${EXPECTED.mcpTools}</span> typed MCP tools`) &&
-  index.includes(`data-live="mcp_tool_count">${EXPECTED.mcpTools}</span> typed tools`));
+  (html['method.html'] || '').includes(`data-live="mcp_tool_count">${EXPECTED.mcpTools}</div>`));
 check('old citable and tool-count claims are absent from served pages',
   !/roughly\s+(?:30|thirty)|~30|46\s+records\s*[·&]/i.test(allHtml));
 check('live binder maps all three independent generated counters',

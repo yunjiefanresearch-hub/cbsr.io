@@ -10,12 +10,17 @@ the corridor map, the agent-grounding contract, the KYA framework, the intellige
 the papers, bounded policy-participation records, the SDG mapping, and an open call for
 jurisdiction maintainers.
 
-The site is positioned as **the evidence layer for agentic finance** rather than as a
-stablecoin database. **CBSR is the product brand; Cross-Border Stablecoin Register remains
-the formal dataset title used in citations.** The dataset title, repository slug and DOI are
-citation handles and do not change. Agents that act come first, cross-border stablecoins are
-stated as the first vertical, and `index.html#scope` says plainly which adjacent domains the
-method would extend to and that none of them exists yet.
+The site introduces CBSR as **the evidence layer for agentic finance**, starting with
+cross-border stablecoins. **CBSR is the product brand; Cross-Border Stablecoin Register
+remains the formal dataset title used in citations.** The homepage presents the platform,
+jurisdiction coverage, policy research, methods, and collaboration routes. Detailed source
+and review information lives in the evidence library and methodology pages.
+
+The visual identity uses a charcoal ground, silver type, restrained lavender accents,
+and a local particle sculpture. `assets/cbsr-brand.css` extends the shared stylesheet on
+every page; `assets/cbsr-field.js` runs only when its canvas is present. The animation
+honors reduced motion and pauses offscreen. Fonts use local system stacks. No remote
+video, font, canvas library, or animation dependency is required.
 
 A static site with no browser framework or runtime package dependencies. Root `.html`
 files are the editable bilingual source. A Python-standard-library build materializes
@@ -32,7 +37,7 @@ On Windows, use `python` in place of `python3`. The build does not need network 
 See [DEPLOY.md](DEPLOY.md) and the [search operations guide](docs/SEO_GEO_OPERATIONS.md).
 
 ```
-index.html        home — the argument, policy participation, the proof, the six surfaces, scope
+index.html        home — platform, coverage, policy research, methods, collaboration
 corridors.html    the corridor layer: live map, six classes, the dated transitions
 agents.html       MCP, the grounding contract, the four failures it prevents
 kya.html          Know Your Agent — a working framework, published for comment
@@ -44,7 +49,9 @@ thanks.html       where the form lands (noindex)
 about.html        who made it, how it is sustained, how to cite it
 404.html          the not-found page (noindex)
 
-assets/cbsr.css       one stylesheet for every page
+assets/cbsr.css       shared evidence components
+assets/cbsr-brand.css shared dark identity and responsive homepage
+assets/cbsr-field.js  local interactive particle sculpture
 assets/cbsr.js        shared interaction script; each block is guarded on its own markup
 assets/cbsr-live.js   binds published figures and the review worklist to Register API files
 papers/           reviewed author PDFs and the short-form analyses the indexes link to
@@ -66,9 +73,9 @@ compact source index rather than a second copy of those summaries.
 
 Two reviewed author PDFs are hosted locally: the Treasury Part 1523 comment and *Eleven
 Votes Short*. Their SHA-256 digests are pinned in `tools/policy-materials.test.mjs`, which
-also checks the four-card count, dates, bilingual fields, public links, non-endorsement
-language, and the distinction between historical “structural citable” terminology and the
-current strict/decision-ready contract.
+also checks the four-card count, dates, bilingual fields, public links, authorship
+boundaries, original attachment terminology, and the absence of internal review metrics
+from promotional copy. The snapshot contract separately verifies the underlying counts.
 
 The SEC written-input card links the SEC-hosted 28-page original and distinguishes its
 6 May 2026 author date from the 7 May listing date. Its summary describes the author's

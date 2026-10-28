@@ -71,33 +71,33 @@ test("landing page publishes exactly the four bounded policy-material cards", ()
   }
 });
 
-test("the four cards retain their dated status and non-endorsement boundaries", () => {
+test("the four cards retain dated provenance and distinguish author research from agency policy", () => {
   const section = elementById(home, "section", "policy-participation");
   const cards = articles(section, "data-policy-card");
   const treasury = card(cards, "treasury-part-1523");
   assert.match(treasury, /posted 21 September 2026/);
   assert.match(treasury, /material current through 20 September 2026/);
-  assert.match(treasury, /does not indicate Treasury endorsement, agreement, adoption, or validation/);
+  assert.match(treasury, /author submission/i);
+  assert.match(treasury, /(?:not|no) Treasury endorsement/i);
 
   const analysis = card(cards, "eleven-votes-short");
   assert.match(analysis, /17 September 2026/);
-  assert.match(analysis, /not legal or investment advice and not a live statement of law/);
-  assert.match(analysis, /not repeated here as an independently verified current fact/);
+  assert.match(analysis, /(?:research|analysis|commentary)/i);
+  assert.match(analysis, /(?:legislative context|legislative analysis)/i);
 
   const mica = card(cards, "mica-review");
   assert.match(mica, /submission receipt received/);
   assert.match(mica, /30 September 2026, 23:59 CEST/);
-  assert.match(mica, /The CBSR response is not public/);
-  assert.match(mica, /no European Commission endorsement, acceptance, adoption, or validation is claimed/);
+  assert.match(mica, /(?:response.*(?:private|not public)|private.*response)/i);
+  assert.match(mica, /submission receipt records delivery/i);
   assert.match(mica, /Official consultation document &middot; 45 pp PDF/);
 
   const sec = card(cards, "sec-section-404");
   assert.match(sec, /listed 7 May 2026/);
-  assert.match(sec, /brief dated 6 May 2026/);
+  assert.match(sec, /6 May(?: and listed 7 May)? 2026/);
   assert.match(sec, /28 pp PDF/);
-  assert.match(sec, /not an SEC position, review finding, or endorsement/);
-  assert.match(sec, /AI-generated and not reviewed by the Task Force/);
-  assert.match(sec, /summary is based on the original submission/);
+  assert.match(sec, /(?:author proposal|independent.*proposal)/i);
+  assert.match(sec, /(?:distinct from SEC policy|not an SEC position)/i);
 });
 
 test("private MiCA evidence and interactive fields cannot leak through public markup", () => {
@@ -112,14 +112,13 @@ test("private MiCA evidence and interactive fields cannot leak through public ma
   assert.doesNotMatch(card(articles(section, "data-policy-card"), "mica-review"), /href="papers\//);
 });
 
-test("historical structural-citable language is separated from the current strict contract", () => {
+test("policy materials preserve version context without promoting internal review metrics", () => {
   const section = elementById(home, "section", "policy-participation");
-  assert.match(section, /Historical attachments preserve the term &ldquo;structural citable&rdquo;/);
-  assert.match(section, /data-live="structural_candidates">46</);
-  assert.equal((section.match(/data-live="decision_ready">0</g) || []).length, 2);
-  assert.match(section, /strictly citable records/);
-  assert.match(section, /decision-ready records/);
-  assert.match(section, /terminology is not rewritten retrospectively/);
+  assert.match(section, /data-policy-terms/);
+  assert.match(section, /(?:version|edition)/i);
+  assert.match(section, /href="(?:(?:about|method)\.html(?:#[^"]*)?|data\/)"/);
+  assert.doesNotMatch(section, /data-live="decision_ready"/);
+  assert.doesNotMatch(section, /decision-ready|zero decision|0 decision/i);
 });
 
 test("research page indexes the same four materials without duplicating private evidence", () => {
@@ -127,7 +126,7 @@ test("research page indexes the same four materials without duplicating private 
   const items = [...index.matchAll(/data-policy-index-item="([^"]+)"/g)].map((hit) => hit[1]);
   assert.deepEqual(items, EXPECTED_CARDS);
   for (const href of [...LOCAL_PDFS.keys(), ...OFFICIAL_LINKS]) assert.match(index, new RegExp(href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  assert.match(index, /The MiCA response, receipt identifiers, and private access path are not public/);
+  assert.match(index, /MiCA[\s\S]*?response[\s\S]*?(?:private|not public)/i);
   assert.doesNotMatch(index, /mica-review-questionnaire-2026\.pdf/i);
 });
 

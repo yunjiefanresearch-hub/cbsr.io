@@ -152,9 +152,9 @@ def _header(title, description, lang, kick=None):
 
 
 def _notice(lang):
-    return '<aside class="evidence-note"><strong>' + choose(lang, "Historical snapshot, not a current-law review.", "历史快照，并非现行法复核。") + '</strong><p>' + choose(lang,
-        'The dataset was generated on 20 August 2026. Some underlying legal readings are dated June 2026. This HTML page was created on 17 October 2026; that editorial date does not refresh sources, commence a law, complete independent review, or authorize a transaction. The snapshot has 46 structural candidates and 0 decision-ready records.',
-        '数据生成于 2026 年 8 月 20 日，部分底层法律分析以 2026 年 6 月为基准。本 HTML 页面创建于 2026 年 10 月 17 日；编辑日期不表示来源重新复核、法律已经施行、独立复核完成或交易获得授权。该快照含 46 条结构性候选记录，0 条 decision-ready 记录。') + '</p></aside>'
+    return '<aside class="evidence-note"><strong>' + choose(lang, "Dataset edition · 20 August 2026", "数据版本 · 2026 年 8 月 20 日") + '</strong><p>' + choose(lang,
+        'This edition preserves the dated regulatory analysis, source checks and review status of each record. Some legal analysis dates to June 2026. The HTML edition was prepared on 17 October 2026; record dates identify the evidence period.',
+        '本版本保留各条记录的监管分析日期、来源检查日与复核状态；部分法律分析以 2026 年 6 月为基准。HTML 版编制于 2026 年 10 月 17 日，证据适用的时间范围以记录日期为准。') + '</p></aside>'
 
 
 def _section(title, body):
@@ -180,7 +180,7 @@ def _related(lang, extra=()):
                ("/guides/evidence-status/", choose(lang, "Evidence and review status glossary", "证据与复核状态词汇")),
                ("/method.html", choose(lang, "Methodology", "方法")),
                ("/about.html", choose(lang, "Author and accountability", "作者与责任"))]
-    return '<nav aria-label="' + choose(lang, 'Related evidence', '相关证据') + '"><h2>' + choose(lang, 'Continue with the evidence', '继续核对证据') + '</h2><ul>' + ''.join(f'<li>{link(href, label)}</li>' for href, label in entries) + '</ul></nav></article>'
+    return '<nav aria-label="' + choose(lang, 'Related evidence', '相关证据') + '"><h2>' + choose(lang, 'Related resources', '相关资源') + '</h2><ul>' + ''.join(f'<li>{link(href, label)}</li>' for href, label in entries) + '</ul></nav></article>'
 
 
 def _page(route, title, description, body, kind, structured_data=None):
@@ -197,21 +197,19 @@ def _distribution(records, field, lang):
 
 def _dataset_page(dataset, meta):
     titles = {"en": "Cross-Border Stablecoin Register dataset | CBSR evidence infrastructure", "zh": "Cross-Border Stablecoin Register 数据集 | CBSR 证据基础设施"}
-    descriptions = {"en": "Explore the versioned CBSR stablecoin-regulation dataset: 152 records, 12 jurisdictions, source provenance, review gaps and reproducible downloads as of 20 August 2026.", "zh": "了解 CBSR 稳定币监管数据集：2026 年 8 月 20 日快照中的 152 条记录、12 个法域、来源溯源、复核缺口与可复现下载。"}
+    descriptions = {"en": "Explore 152 stablecoin regulatory records across 12 jurisdictions, with source provisions, legal status, review dates and versioned downloads. CBSR edition: 20 August 2026.", "zh": "查阅涵盖 12 个法域的 152 条稳定币监管记录，追溯来源条款、法律状态与复核日期，下载版本化数据。CBSR 数据版本：2026 年 8 月 20 日。"}
     bodies = {}
     for lang in ("en", "zh"):
         body = _header(titles[lang], descriptions[lang], lang) + _notice(lang)
         body += _section(choose(lang, "What CBSR and this dataset mean", "CBSR 与本数据集的关系"), _p(choose(lang,
-            "CBSR is evidence infrastructure for agentic finance. Cross-Border Stablecoin Register is its first regulatory domain: a versioned collection of jurisdiction–instrument–dimension propositions, with separate source, legal-force, temporal and review fields. The product identity is broader than the stablecoin dataset; this page identifies the specific dataset being cited.",
-            "CBSR 是面向金融智能体的证据基础设施。Cross-Border Stablecoin Register 是它的首个监管垂类：以法域—工具—监管维度为单位记录命题，并分别保留来源、法律效力、时间与复核字段。产品品牌的范围大于稳定币数据集；本页明确被引用的具体数据集。")))
+            "CBSR develops evidence infrastructure for agentic finance. Its first regulatory dataset, Cross-Border Stablecoin Register, organises stablecoin rules by jurisdiction, instrument and regulatory dimension. Each record connects a regulatory proposition to its source, legal force, dates and review history.",
+            "CBSR 构建面向金融智能体的证据基础设施。首个监管数据集 Cross-Border Stablecoin Register 按法域、工具与监管维度组织稳定币规则，每条记录连接监管命题、来源条款、法律效力、日期与复核历史。")))
         body += _section(choose(lang, "What is in the pinned snapshot", "固定快照包含什么"), _dl([
             (choose(lang, "Version / dataset generation", "版本 / 数据生成日"), "v0.11.0 / 2026-08-20"),
             (choose(lang, "Records / jurisdictions / dimensions", "记录 / 法域 / 维度"), f"{dataset['record_count']} / 12 / {len({r['dimension'] for r in dataset['records']})}"),
             (choose(lang, "Directed edges / authored corridor narratives", "有向边 / 已编写通道分析"), f"{meta['directed_corridors']} / {meta['authored_corridors']}"),
-            (choose(lang, "Structural candidates / decision-ready", "结构性候选 / decision-ready"), "46 / 0"),
             (choose(lang, "Source disposition", "来源取得情况"), e(_distribution(dataset["records"], "source_disposition", lang))),
             (choose(lang, "Freshness at snapshot date", "在快照日期的复核时效"), e(_distribution(dataset["records"], "review_status", lang))),
-            (choose(lang, "Independent second reviewers recorded", "已记录独立第二复核人"), "0 / 152"),
         ]))
         rows = []
         for code, names in NAMES.items():
@@ -273,7 +271,7 @@ def _jurisdiction_pages(dataset, editorial):
             body += _section(choose(lang, "Read this jurisdiction in context", "本法域应如何阅读"), _p(info[lang]))
             if info.get("caution"):
                 body += '<aside class="evidence-note">' + _p(info["caution"][lang]) + '<p>' + link("/assets/search/snapshots/PAPER_ERRATA.md", choose(lang, "Read committed errata", "阅读已提交勘误")) + '</p></aside>'
-            body += _section(choose(lang, "Coverage and unresolved review work", "覆盖与未完成复核"), _dl([
+            body += _section(choose(lang, "Regulatory coverage", "监管覆盖"), _dl([
                 (choose(lang, "Records", "记录"), str(len(records))),
                 (choose(lang, "Binding status", "效力状态"), e(_distribution(records, "binding_status", lang))),
                 (choose(lang, "Evidence tier", "证据层级"), e(_distribution(records, "evidence_tier", lang))),
@@ -299,7 +297,7 @@ def _jurisdiction_pages(dataset, editorial):
             bodies[lang] = body + _related(lang, related)
         pages.append(_page(f"jurisdictions/{names[2]}/index.html", titles, descriptions, bodies, "jurisdiction"))
     titles = {"en": "Stablecoin regulation by jurisdiction | CBSR evidence directory", "zh": "按法域浏览稳定币监管 | CBSR 证据目录"}
-    descriptions = {"en": "Browse twelve source-bound stablecoin regulatory dossiers, with legal-force distinctions, review gaps and links to exact committed records.", "zh": "浏览十二个法域的稳定币监管证据档案，区分法律效力、标记复核缺口，并追溯已提交记录原件。"}
+    descriptions = {"en": "Compare stablecoin regulation across twelve jurisdictions. Explore issuer pathways, reserves, yield rules and market-access requirements with links to source records.", "zh": "比较十二个法域的稳定币监管，查阅发行准入、储备、收益规则与市场准入要求，追溯各项分析的来源记录。"}
     bodies = {}
     for lang in ("en", "zh"):
         body = _header(titles[lang], descriptions[lang], lang) + _notice(lang)
@@ -318,7 +316,7 @@ def _corridor_pages(dataset, editorial):
         basis = record["class_basis"]
         reference = next((r for r in dataset["records"] if r["id"] == basis.get("record_ref")), None)
         titles = {"en": f"{cname(pair, 'en')} stablecoin corridor evidence | CBSR", "zh": f"{cname(pair, 'zh')}稳定币通道证据 | CBSR"}
-        descriptions = {"en": f"Read the directed {cname(pair, 'en')} corridor, destination gate, class {record['class_code']}, source basis and review limitations from the historical CBSR snapshot.", "zh": f"核对{cname(pair, 'zh')}有向通道的目的地门槛、{record['class_code']} 类快照结论、来源依据与复核局限。"}
+        descriptions = {"en": f"Explore the {cname(pair, 'en')} stablecoin corridor: destination requirements, class {record['class_code']}, regulatory sources and dated analysis in the CBSR register.", "zh": f"查阅{cname(pair, 'zh')}稳定币通道：目的地准入要求、{record['class_code']} 类分析、监管来源与 CBSR 记录日期。"}
         bodies = {}
         for lang in ("en", "zh"):
             body = _header(titles[lang], descriptions[lang], lang) + _notice(lang)
@@ -355,7 +353,7 @@ def _corridor_pages(dataset, editorial):
             bodies[lang] = body + _related(lang, extra)
         pages.append(_page(f"corridors/{pair.lower()}/index.html", titles, descriptions, bodies, "corridor"))
     titles = {"en": "Directed stablecoin corridor evidence | CBSR source library", "zh": "有向稳定币通道证据 | CBSR 来源资料库"}
-    descriptions = {"en": "Compare eight authored corridor examples with direction-specific gates, committed source dependencies and explicit historical review limits.", "zh": "比较八个已有分析的方向通道，核对各方向的准入门槛、已提交来源依赖与历史复核局限。"}
+    descriptions = {"en": "Compare eight directed stablecoin corridors, their destination requirements and regulatory sources. Trace how a change in direction changes the market-access analysis.", "zh": "比较八条有向稳定币通道的目的地准入要求与监管来源，理解方向变化如何影响市场准入分析。"}
     bodies = {}
     for lang in ("en", "zh"):
         body = _header(titles[lang], descriptions[lang], lang) + _notice(lang)
@@ -373,14 +371,14 @@ def _research_pages(editorial):
         descriptions = {lang: paper["summary"][lang] for lang in ("en", "zh")}
         bodies = {}
         for lang in ("en", "zh"):
-            body = _header(titles[lang], descriptions[lang], lang, choose(lang, "CBSR · research with explicit boundaries", "CBSR · 保留边界的研究"))
+            body = _header(titles[lang], descriptions[lang], lang, choose(lang, "CBSR · research", "CBSR · 研究"))
             body += '<aside class="evidence-note">' + _p(paper["status"][lang]) + '</aside>'
             body += _dl([(choose(lang, "Author", "作者"), link("https://orcid.org/0009-0005-6762-084X", "Yunjie Fan · ORCID 0009-0005-6762-084X")),
                          (choose(lang, "Original dateline / version", "原文日期 / 版本"), e(paper["dateline"])),
                          (choose(lang, "HTML summary creation", "HTML 摘要创建日"), MODIFIED)])
             for section in paper["sections"]:
                 body += _section(section["heading"][lang], _p(section["body"][lang]))
-            body += _section(choose(lang, "Read and cite the original", "阅读并引用原文"), '<ul>' + ''.join('<li>' + link(item["url"], item["label"][lang]) + '</li>' for item in paper["sources"]) + '</ul>' + _p(choose(lang, "Cite the exact version you read. This explanatory HTML is not a new edition of the paper, an independent review, or a claim that later legal developments validate the original argument.", "请引用实际读过的版本。本解释性 HTML 不是论文的新版本、独立审查，也不表示后续法律发展验证了原论点。")))
+            body += _section(choose(lang, "Read and cite the original", "阅读并引用原文"), '<ul>' + ''.join('<li>' + link(item["url"], item["label"][lang]) + '</li>' for item in paper["sources"]) + '</ul>' + _p(choose(lang, "Cite the original text with its version and publication date. This HTML summary provides a reading guide to that edition; the linked manuscript records the full argument and research context.", "引用原文时，请注明版本与发布日期。本 HTML 摘要提供相应版本的阅读指引；完整论证与研究背景请见所链接的论文原文。")))
             bodies[lang] = body + _related(lang, [("/research/", choose(lang, "Research summary library", "研究摘要目录")), ("/research.html", choose(lang, "Full research and policy index", "完整研究与政策索引"))])
         schema = {"@type": "ScholarlyArticle", "headline": paper["title"], "url": "{{BASE_URL}}/research/" + paper["slug"] + "/", "author": {"@type": "Person", "name": "Yunjie Fan", "identifier": "https://orcid.org/0009-0005-6762-084X"}, "isBasedOn": [s["url"] for s in paper["sources"]], "creativeWorkStatus": paper["schema_status"], "description": paper["summary"]["en"]}
         pages.append(_page(f'research/{paper["slug"]}/index.html', titles, descriptions, bodies, "research", schema))
@@ -389,7 +387,7 @@ def _research_pages(editorial):
     bodies = {}
     for lang in ("en", "zh"):
         body = _header(titles[lang], descriptions[lang], lang)
-        body += _p(choose(lang, "Each entry identifies its own dateline, argument, source and limits. Working papers and independent policy submissions are research contributions. Hosting a submission on a regulator's website does not make it an agency position or endorsement.", "每项材料分别注明日期、论点、来源与局限。工作论文和独立政策意见属于研究贡献。监管机构网站刊载意见材料，不表示它成为机构立场或获得认可。"))
+        body += _p(choose(lang, "Explore CBSR's methodology, corridor analysis and policy research. Each entry includes the research question, principal contribution, publication date and original text. Policy submissions represent the author's proposals.", "查阅 CBSR 的方法论文、通道分析与政策研究。每项材料列明研究问题、主要贡献、发布日期与原文链接；政策提交材料代表作者的研究建议。"))
         body += '<div class="evidence-grid">' + ''.join('<section class="evidence-card"><h2>' + link(f'/research/{paper["slug"]}/', paper["title"]) + '</h2>' + _p(paper["summary"][lang]) + '</section>' for paper in editorial["papers"]) + '</div>'
         bodies[lang] = body + _related(lang, [("/research.html", choose(lang, "Full research and policy index", "完整研究与政策索引"))])
     pages.insert(0, _page("research/index.html", titles, descriptions, bodies, "index"))
@@ -412,8 +410,8 @@ def _guide_pages(editorial):
                     ("source_last_checked", "Date of an evidenced source check. A page edit date is not a substitute.", "有证据的来源检查日期，不能用网页编辑日代替。"),
                     ("review_status", "Freshness relative to the explicit as-of date, not an independent legal opinion.", "相对于明确截止日的复核时效，不是独立法律意见。"),
                     ("review_stage", "Primary and independent second review are separate, recorded events.", "初审与独立第二复核是分别记录的事件。"),
-                    ("structural_candidate", "A structural inventory filter; 46 candidates in this snapshot.", "结构性清单筛选，本快照为 46 条候选。"),
-                    ("decision_ready", "A stricter gate including currentness and reconciled independent review; 0 in this snapshot.", "还要求时效与独立调和复核的更严格门槛，本快照为 0。"),
+                    ("structural_candidate", "An inventory filter for records that meet the structural evidence requirements.", "按结构性证据要求筛选记录的清单字段。"),
+                    ("decision_ready", "A review gate that combines evidence structure, currentness and reconciled independent review.", "综合证据结构、时效与独立调和复核的审查字段。"),
                     ("execution_authorized", "Always false at the CBSR decision-support boundary.", "CBSR 决策支持边界始终为 false。"),
                 ]]
                 body += _table([choose(lang, "Field or concept", "字段或概念"), choose(lang, "Meaning", "含义")], rows)

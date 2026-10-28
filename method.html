@@ -8,15 +8,15 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
 <title>Regulatory Evidence Method &amp; Review States | CBSR</title>
-<meta name="description" content="Learn how CBSR connects primary legal sources, claim types, legal-force states, freshness, and independent review in stablecoin regulatory research." data-zh-content="了解 CBSR 如何在稳定币监管研究中连接一手法源、主张类型、法律效力、时效与独立复核，并保留未知项。">
+<meta name="description" content="Explore CBSR’s research architecture, from primary legal sources to structured records, corridor analysis and typed MCP tools." data-zh-content="了解 CBSR 的研究架构：从一手法律来源到结构化记录、通道分析与类型化 MCP 工具。">
 <meta name="author" content="Yunjie Fan">
-<meta name="theme-color" content="#EDEFEB">
+<meta name="theme-color" content="#080909">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="CBSR">
 <meta property="og:title" content="Regulatory Evidence Method &amp; Review States | CBSR" data-zh-content="监管证据方法、来源与复核状态｜CBSR">
-<meta property="og:description" content="Learn how CBSR connects primary legal sources, claim types, legal-force states, freshness, and independent review in stablecoin regulatory research." data-zh-content="了解 CBSR 如何在稳定币监管研究中连接一手法源、主张类型、法律效力、时效与独立复核，并保留未知项。">
+<meta property="og:description" content="Explore CBSR’s research architecture, from primary legal sources to structured records, corridor analysis and typed MCP tools." data-zh-content="了解 CBSR 的研究架构：从一手法律来源到结构化记录、通道分析与类型化 MCP 工具。">
 <meta property="og:url" content="__SITE_URL__method.html">
 <meta property="og:image" content="__SITE_URL__og-card.png">
 <meta property="og:image:type" content="image/png">
@@ -28,13 +28,11 @@
 <link rel="canonical" href="__SITE_URL__method.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Regulatory Evidence Method &amp; Review States | CBSR" data-zh-content="监管证据方法、来源与复核状态｜CBSR">
-<meta name="twitter:description" content="Learn how CBSR connects primary legal sources, claim types, legal-force states, freshness, and independent review in stablecoin regulatory research." data-zh-content="了解 CBSR 如何在稳定币监管研究中连接一手法源、主张类型、法律效力、时效与独立复核，并保留未知项。">
+<meta name="twitter:description" content="Explore CBSR’s research architecture, from primary legal sources to structured records, corridor analysis and typed MCP tools." data-zh-content="了解 CBSR 的研究架构：从一手法律来源到结构化记录、通道分析与类型化 MCP 工具。">
 <meta name="twitter:image" content="__SITE_URL__og-card.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/cbsr.css">
+<link rel="stylesheet" href="assets/cbsr-brand.css">
 <script src="assets/cbsr-live.js" defer></script>
 </head>
 <body>
@@ -42,22 +40,14 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a href="index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="智能体金融的证据基础设施">Evidence infrastructure for agentic finance</span></div>
-    <nav class="nav">
-      <a href="corridors.html" data-zh="通道">Corridors</a>
-      <a href="agents.html" data-zh="接入">Access</a>
-      <a href="kya.html" data-zh="KYA">KYA</a>
-      <a href="method.html" data-zh="技术栈">Stack</a>
-      <a href="research.html" data-zh="研究">Research</a>
-      <a href="standards.html" data-zh="标准与目标">Standards</a>
-      <a href="maintain.html" data-zh="参与维护">Maintain</a>
+    <div class="brand"><a href="index.html" aria-label="CBSR home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="金融智能体的证据基础设施">Evidence infrastructure for agentic finance</span></div>
+    <nav class="nav" aria-label="Main navigation" data-zh-aria-label="主导航">
+      <a href="corridors.html" data-zh="通道研究">Corridors</a>
+      <a href="research.html" data-zh="研究与政策">Research</a>
+      <a href="agents.html" data-zh="智能体接入">Agent access</a>
       <a href="about.html" data-zh="关于">About</a>
-      <span class="ver" data-live="version" data-live-prefix="v">v0.11.0</span>
-      <a class="openreg" href="data/" data-zh="数据与证据">Open data</a>
-      <span class="langtog" id="langtog" role="group" aria-label="Language">
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="zh">中文</button>
-      </span>
+      <span class="langtog" id="langtog" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></span>
+      <a class="openreg" href="data/" data-zh="开放数据 ↗">Open data ↗</a>
     </nav>
   </div>
 </header>
@@ -65,10 +55,10 @@
 <main id="main" class="wrap">
 
   <section class="masthead">
-    <p class="kick" data-zh="智能栈 &nbsp;·&nbsp; 机构知识如何变成基础设施">the intelligence stack &nbsp;·&nbsp; how institutional knowledge becomes infrastructure</p>
-    <h1 data-zh="五层。每一层只做一件事：把上一层丢掉的东西写下来。">Five layers. Each does one thing: write down what the layer below it would otherwise lose.</h1>
-    <p class="lede" data-zh="一个细心的人类读者会在心里保留的那些判断——这条其实只是行业惯例、那条的法规还没施行、这一格我其实没看到官方原文——必须在这里被写下来，并且被强制。软件读到一个字段就当它是事实，它没有可以扬起的眉毛。写在散文里的纪律，软件读不到。">Every judgment a careful human reader keeps to themselves &mdash; this one is only industry practice, that statute has not commenced, this cell I never actually saw the official text for &mdash; has to be written down here, and enforced. Software reads a field and treats it as fact; it has no eyebrow to raise. Discipline that lives in prose is discipline software cannot read.</p>
-    <p class="mast-meta" data-zh="5 层架构 &nbsp;·&nbsp; 6 层构建管线 &nbsp;·&nbsp; 3 条正交的证据轴 &nbsp;·&nbsp; <span data-live=&quot;records&quot;>152</span> 条溯源记录，<span data-live=&quot;structural_candidates&quot;>46</span> 条通过结构性筛选，<span data-live=&quot;decision_ready&quot;>0</span> 条可作决策依据 &nbsp;·&nbsp; 每一道闸门都有一个证明它会咬人的负向测试">5 architectural layers &nbsp;·&nbsp; 6 build layers &nbsp;·&nbsp; 3 orthogonal evidence axes &nbsp;·&nbsp; <span data-live="records">152</span> sourced records, <span data-live="structural_candidates">46</span> structural candidates, <span data-live="decision_ready">0</span> decision-ready &nbsp;·&nbsp; every gate carries a negative test proving it bites</p>
+    <p class="kick" data-zh="研究方法 &amp;nbsp;·&amp;nbsp; 从一手法律到结构化研究">methodology &nbsp;·&nbsp; from primary law to structured research</p>
+    <h1 data-zh="从来源到系统，层层有据。">A clear path from source to system.</h1>
+    <p class="lede" data-zh="CBSR 连接一手法律来源、结构化命题、通道分析与类型化工具。其架构保留研究判断所需的关键信息：主张类别、来源质量、法律效力、日期和复核状态。">CBSR connects primary legal sources, structured propositions, corridor analysis and typed tools. Its architecture preserves the distinctions researchers need to assess a record: claim type, source quality, legal effect, date and review status.</p>
+    <p class="mast-meta" data-zh="5 层架构 &amp;nbsp;·&amp;nbsp; 6 层构建流程 &amp;nbsp;·&amp;nbsp; 3 项证据维度 &amp;nbsp;·&amp;nbsp; schema 校验与对账检查">5 architectural layers &nbsp;·&nbsp; 6 build layers &nbsp;·&nbsp; 3 evidence axes &nbsp;·&nbsp; schema validation and reconciliation checks</p>
   </section>
 
   <hr class="rule">
@@ -76,28 +66,28 @@
   <!-- THE STACK -->
   <section id="stack">
     <p class="kick" data-zh="五层架构"></p>
-    <h2 class="h-sec" data-zh="从一手法律到 agent 的一个动作">From a primary instrument to an action an agent takes</h2>
-    <p class="lead" data-zh="下面五层是架构，不是流程图。区别在于：流程图描述数据怎么流动，架构规定<b>每一层欠上一层什么</b>。任何一层向上交付了它自己撑不住的东西，上面所有层都跟着不成立，而且不会有任何征兆。">The five layers below are an architecture, not a flow diagram. The difference is that a flow diagram describes how data moves, while an architecture states <b>what each layer owes the one above it</b>. Where any layer hands upward something it cannot itself support, every layer above stops holding &mdash; with no symptom.</p>
+    <h2 class="h-sec" data-zh="研究架构">The research architecture</h2>
+    <p class="lead" data-zh="各层承担明确职责：从保留一手来源溯源信息，到在下游工作流中记录数据集版本。">Each layer carries a defined responsibility, from preserving primary-source provenance to retaining the dataset version in downstream workflows.</p>
     <div class="layers">
       <div class="layer"><div class="ix">L1</div><div>
         <h3 data-zh="证据层 · Evidence">Evidence layer</h3>
-        <p data-zh="一手法律文书、官方公报、监管规则、生效令。这一层欠上层的是<b>出处与日期</b>：读的是原文还是转述，精确定位在哪里，哪一天读的。少了这三样，上面全部四层都只是观点。">Primary instruments, official gazettes, supervisory rules, commencement orders. What this layer owes upward is <b>provenance and a date</b>: whether the text was official or paraphrased, the pinpoint, and the day it was read. Without those three, the four layers above are opinion.</p></div></div>
+        <p data-zh="一手文书、官方公报、监管规则与施行命令。本层保留&lt;b&gt;来源、精确定位与查阅日期&lt;/b&gt;。">Primary instruments, official gazettes, supervisory rules and commencement orders. This layer preserves the <b>source, pinpoint and reading date</b>.</p></div></div>
       <div class="layer"><div class="ix">L2</div><div>
         <h3 data-zh="知识层 · Knowledge">Knowledge layer</h3>
-        <p data-zh="结构化命题：法域、工具、维度、义务、主体、关系。这一层欠上层的是<b>类型</b>——这是一条法律命题，还是一条关于市场实践的观察。两者混在一起，上层就会把惯例当成要求。">Structured propositions: jurisdictions, instruments, dimensions, obligations, entities, relations. What this layer owes upward is <b>type</b> &mdash; whether a row is a proposition of law or an observation about market practice. Where the two mix, the layers above serve practice as requirement.</p></div></div>
+        <p data-zh="覆盖法域、文书、维度、义务、实体与关系的结构化命题。&lt;b&gt;主张类别&lt;/b&gt;区分法律命题与市场观察。">Structured propositions covering jurisdictions, instruments, dimensions, obligations, entities and relations. <b>Claim type</b> distinguishes legal propositions from market observations.</p></div></div>
       <div class="layer"><div class="ix">L3</div><div>
         <h3 data-zh="推理层 · Reasoning">Reasoning layer</h3>
-        <p data-zh="约束、交互集、兼容性、时间逻辑、法域复合。这一层欠上层的是<b>可反驳性</b>：每一个推导出的结论都要说得出它经过了哪些规则，以及在哪一天成立。一个不带日期的结论永远不会过期，也就永远不会被证明错了。">Constraints, interaction sets, compatibility, temporal logic, jurisdictional composition. What this layer owes upward is <b>arguability</b>: every derived verdict must name the rules it passed through and the date on which it holds. A verdict with no date never goes stale and so never turns out to have been wrong.</p></div></div>
+        <p data-zh="约束、交互集、兼容性与时间逻辑共同构成法域分析。推导结果保留&lt;b&gt;支撑规则与评估日期&lt;/b&gt;。">Constraints, interaction sets, compatibility and temporal logic combine into jurisdictional analysis. Derived results retain the <b>supporting rules and evaluation date</b>.</p></div></div>
       <div class="layer"><div class="ix">L4</div><div>
         <h3 data-zh="Agent 层 · Agent">Agent layer</h3>
-        <p data-zh="类型化 MCP 工具、schema 校验的返回、可引用子集。这一层欠上层的是<b>边界</b>：在覆盖范围之外必须拒绝，而不是外推。这正是 KYA 里 L3 那一级要求的东西。">Typed MCP tools, schema-validated returns, the citable subset. What this layer owes upward is <b>a boundary</b>: outside its coverage it must decline rather than extrapolate. This is precisely what level L3 of the KYA framework asks for.</p></div></div>
+        <p data-zh="类型化 MCP 工具提供经 schema 校验的返回，并支持查询严格可引用子集。覆盖范围与复核状态伴随智能体使用的记录。">Typed MCP tools provide schema-validated responses and access to the citable subset. Coverage and review status accompany the records used by an agent.</p></div></div>
       <div class="layer"><div class="ix">L5</div><div>
         <h3 data-zh="行动层 · Action">Action layer</h3>
-        <p data-zh="路由、结算、头寸、申报、监督。这一层不属于本项目——它属于用这份数据的机构。它欠下面四层的只有一件事：<b>把版本号留在记录里</b>。没有版本号，下面四层做的全部工作在事发之后一分钱都不值。">Routing, settlement, treasury, filing, supervision. This layer is not part of this project; it belongs to the institution using the data. It owes the four below it exactly one thing: <b>keep the version number in the record</b>. Without it, everything the four layers below did is worth nothing after the fact.</p></div></div>
+        <p data-zh="机构可在路由、结算、资金管理、申报或监管工作流中使用研究。相关系统负责执行，并应在记录中保留&lt;b&gt;数据集版本&lt;/b&gt;。">Institutions apply the research in routing, settlement, treasury, filing or supervision workflows. Those systems retain responsibility for execution and should preserve the <b>dataset version</b> in their records.</p></div></div>
     </div>
     <div class="note-box">
       <p class="nh" data-zh="这五层和下面六层构建管线的关系">how these five relate to the six build layers below</p>
-      <p data-zh="五层是<b>说明它是什么</b>，六层是<b>说明它怎么被造出来的</b>。L1–L2 由构建管线的 01–02 实现，L3 由 03–06 实现，L4 是 MCP server，L5 不在本仓库内。之所以两套都写出来，是因为只讲架构听起来像 PPT，只讲管线读起来像 changelog。">The five state <b>what it is</b>; the six below state <b>how it is made</b>. L1–L2 are implemented by build layers 01–02, L3 by 03–06, L4 is the MCP server, and L5 is outside this repository. Both are written out because architecture alone reads like a slide and a pipeline alone reads like a changelog.</p>
+      <p data-zh="架构定义职责，下方六层构建流程说明实现方式。L1–L2 对应构建层 01–02，L3 对应 03–06，L4 对应 MCP server；L5 由使用机构提供。">The architecture describes responsibilities; the six build layers below describe implementation. L1–L2 map to build layers 01–02, L3 to 03–06, and L4 to the MCP server. Institutions provide L5.</p>
     </div>
   </section>
 
@@ -106,8 +96,8 @@
   <!-- THE THREE AXES -->
   <section id="axes">
     <p class="kick" data-zh="三条正交的轴"></p>
-    <h2 class="h-sec" data-zh="哪三条轴决定一条记录能不能进入结构性候选">The three axes that decide whether a record is even a candidate</h2>
-    <p class="lead" data-zh="每条记录带三条互不替代的轴：这是<b>哪一类</b>主张（法律命题还是市场事实）、它被<b>溯源</b>到什么程度、以及那部法律文书<b>是否已施行</b>。三者的交集给出<b>结构性候选</b>。它是必要条件，不是充分条件：时效与独立复核这两条轴还压在上面，六条全过，一条记录才可以作为现行有效法被引用。">Every record carries three axes that do not substitute for one another: what <b>kind</b> of claim it is (a proposition of law or a market fact), how well it is <b>sourced</b>, and whether the instrument is actually <b>in force</b>. Their intersection gives the <b>structural candidates</b>. That is a necessary condition, not a sufficient one: freshness and independent review sit on top of it, and all six axes must pass before a record may be cited as current binding law.</p>
+    <h2 class="h-sec" data-zh="三项独立证据维度">Three independent evidence axes</h2>
+    <p class="lead" data-zh="每条记录标识&lt;b&gt;主张类别&lt;/b&gt;、&lt;b&gt;来源层级&lt;/b&gt;与&lt;b&gt;法律状态&lt;/b&gt;，三者交集定义结构候选集。严格可引用子集还受时效与独立复核要求约束；使用时应核对具体记录字段。">Every record identifies its <b>claim type</b>, <b>source tier</b> and <b>legal status</b>. Their intersection defines the structural-candidate set. Additional freshness and independent-review requirements govern inclusion in the strict citable subset; inspect those fields at record level.</p>
 
     <div class="formula"><span class="val">claim_class = tier1_legal</span> <span class="op">∧</span> <span class="val">status = in_force</span> <span class="op">∧</span> <span class="val">evidence_tier = resolution_text</span> &nbsp;<span class="op">→</span>&nbsp; <span class="res"><span data-live="structural_candidates">46</span> structural candidates</span></div>
 
@@ -117,24 +107,24 @@
           <tr>
             <th data-zh="轴">Axis</th>
             <th data-zh="它回答的问题">The question it answers</th>
-            <th data-zh="不这么做会发生什么">What happens without it</th>
+            <th data-zh="保留的区分">Distinction preserved</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="mono">claim_class</td>
             <td data-zh="这是一条法律命题，还是一条关于市场怎么做的观察？">Is this a proposition of law, or an observation about what the market does?</td>
-            <td data-zh="「主要发行方通常持有短期国债」会被当成「规则要求持有短期国债」端出去，而且读起来毫无破绽。">&ldquo;Major issuers generally hold short-dated bills&rdquo; is served as &ldquo;the rules require short-dated bills&rdquo;, and it reads impeccably.</td>
+            <td data-zh="市场惯例与约束性法律要求分别记录。">Market practice and binding legal requirements remain separate.</td>
           </tr>
           <tr>
             <td class="mono">evidence_tier</td>
             <td data-zh="这条依据的是官方条文原文，还是一份转述、一则新闻、一次监管者的口头表态？">Does this rest on official text, or on a paraphrase, a news report, or a supervisor's remark?</td>
-            <td data-zh="制度层级的确认会被悄悄抬升成条文层级的确认，而抬升的那一刻没有任何痕迹。">A regime-level confirmation gets quietly promoted to a provision-level one, and the promotion leaves no trace.</td>
+            <td data-zh="制度层面确认与条款层面核验分别记录。">Regime-level confirmation and provision-level verification remain distinct.</td>
           </tr>
           <tr>
             <td class="mono">status</td>
             <td data-zh="这部法律文书今天是否已经施行？">Is this instrument in force today?</td>
-            <td data-zh="一部已通过、尚未施行的法规被当作现行有效法引用。这是无接地模型最常犯的那一类错。">A statute that is enacted and not commenced is cited as current law. This is the most common failure of an ungrounded model.</td>
+            <td data-zh="法律通过与法律施行分别记录。">Enactment and commencement are recorded separately.</td>
           </tr>
         </tbody>
       </table>
@@ -142,7 +132,7 @@
 
     <div class="note-box">
       <p class="nh" data-zh="为什么是三条轴，而不是一个评分">why three axes rather than one score</p>
-      <p data-zh="把它们压成一个「置信度 0.87」会同时毁掉三件事：一条溯源极好的市场事实，和一条溯源很差的法律命题，会得到相近的分数，而它们的用途完全不同；「尚未施行」会被算成一种不确定性，而它其实是一个确定的事实。可引用与否是一个布尔判断，不是一个阈值。">Collapsing them into a single &ldquo;confidence 0.87&rdquo; destroys three things at once. An impeccably sourced market fact and a poorly sourced proposition of law land on similar numbers, though they are used for entirely different purposes. And &ldquo;not yet commenced&rdquo; gets scored as uncertainty when it is in fact a certainty. Citability is a boolean, not a threshold.</p>
+      <p data-zh="独立字段保留各维度所回答的不同问题。来源质量、主张类别与法律效力分别评估；构建流程依据明确规则确定严格可引用子集。">Separate fields preserve the different questions each axis answers. Source quality, claim type and legal effect are evaluated on their own terms; the build applies explicit inclusion rules to the citable subset.</p>
     </div>
   </section>
 
@@ -152,7 +142,7 @@
   <section id="layers">
     <p class="kick" data-zh="实现 &nbsp;·&nbsp; 六层构建管线，每一层都由上一层推导而来">the implementation &nbsp;·&nbsp; six build layers, each derived from the one before it</p>
     <h2 class="h-sec" data-zh="六层构建管线，各自重算什么">The six build layers, and what each one recomputes</h2>
-    <p class="lead" data-zh="没有一层是手写的副本。上一层改了，下一层重算；如果重算的结果和写下的分析不一致，构建流程把它作为一条发现暴露出来，而不是悄悄改掉其中一边。">No layer is a hand-kept copy. Change one and the next is recomputed; where the recomputation disagrees with the authored analysis, the build surfaces it as a finding rather than quietly amending one side.</p>
+    <p class="lead" data-zh="各构建层由前序数据推导。系统将重算结果与作者分析比较，并提交差异以供复核。">Each build layer derives from the preceding data. Recomputed results are compared with authored analysis, with discrepancies surfaced for review.</p>
     <div class="layers">
       <div class="layer"><div class="ix">01</div><div>
         <h3 data-zh="义务记录">Obligation records</h3>
@@ -165,13 +155,13 @@
         <p data-zh="有向的 起点 → 目的地 边，每条读自入境关口，携带可行性类别与真正起约束作用的机制。">Directed origin → destination edges, each read at the inbound gate, carrying its feasibility class and the mechanism that gates it.</p></div></div>
       <div class="layer"><div class="ix">04</div><div>
         <h3 data-zh="计算层">Computed layer</h3>
-        <p data-zh="<code>compose()</code> 从一张按法域的信号表重新推导每条通道的类别，再与写下的分析做差分。不一致会被作为发现列出，而不是被静默修正。"><code>compose()</code> re-derives each corridor's class from a per-jurisdiction signal table and diffs it against the authored analysis. Disagreements are surfaced as findings, not silently fixed.</p></div></div>
+        <p data-zh="&lt;code&gt;compose()&lt;/code&gt; 根据各法域信号表推导通道类别，并与作者分析比较，提交差异以供复核。"><code>compose()</code> derives corridor classes from the per-jurisdiction signal table and compares them with authored analysis. Differences are reported for review.</p></div></div>
       <div class="layer"><div class="ix">05</div><div>
         <h3 data-zh="时间引擎">Time engine</h3>
-        <p data-zh="<code>compose(as_of=…)</code> 施加每一项已排期的法律变更，所以同一条通道今天读到一个类别，制度施行之后读到另一个。US → UK 在 2027 年 10 月 25 日翻为干净的类别 I。"><code>compose(as_of=…)</code> applies every scheduled change in law, so a corridor reads one class today and another once a regime is operative. US → UK flips to a clean Category I on 25 Oct 2027.</p></div></div>
+        <p data-zh="&lt;code&gt;compose(as_of=…)&lt;/code&gt; 在选定日期应用数据集中的法律变化安排。例如，记录中的英国施行日期将在 2027 年 10 月 25 日改变模型中的 US → UK 分类。"><code>compose(as_of=…)</code> applies the dataset’s scheduled legal changes at a selected date. The recorded UK commencement, for example, changes the modeled US → UK classification on 25 Oct 2027.</p></div></div>
       <div class="layer"><div class="ix">06</div><div>
         <h3 data-zh="约束基底">Constraint substrate</h3>
-        <p data-zh="最深的一层：一条通道的类别，由两端法域各自对八项约束（C1–C8）的立场，经交互集规则复合而成，而不是只看一道入境关口。">The deepest layer: a corridor's class composed from each jurisdiction's stance on eight constraints (C1–C8), through the interaction-set rules rather than a single inbound gate.</p></div></div>
+        <p data-zh="依据约束交互规则，将各法域对八项约束（C1–C8）的立场组合为通道类别。">Corridor classes are composed from each jurisdiction’s stance on eight constraints (C1–C8), using the constraint-interaction rules.</p></div></div>
     </div>
   </section>
 
@@ -180,8 +170,8 @@
   <!-- THE GATES -->
   <section id="gates">
     <p class="kick" data-zh="CI 里的闸门"></p>
-    <h2 class="h-sec" data-zh="构建流程会拒绝的东西">What the build refuses</h2>
-    <p class="lead" data-zh="纪律写在 CI 里才算数。下面每一条都是一次会让构建失败的拒绝，而且每一条都配一个负向测试——一条故意违规的记录，如果它<b>通过</b>了，测试就失败。这一步是必要的：一道从来没有咬过人的闸门，和一道不存在的闸门，在日志里长得一模一样。">Discipline counts only where it runs in CI. Each line below is a refusal that fails the build, and each carries a negative test &mdash; a deliberately non-compliant record whose <b>passing</b> fails the suite. That step is not decorative: a gate that has never bitten and a gate that does not exist look identical in a log.</p>
+    <h2 class="h-sec" data-zh="校验与对账">Validation and reconciliation</h2>
+    <p class="lead" data-zh="自动化检查覆盖来源、主张分类、施行状态、对账与 schema 有效性。反例测试验证系统能够拒绝无效记录。">Automated checks cover sourcing, claim classification, commencement, reconciliation and schema validity. Negative test cases verify that invalid records are rejected.</p>
     <div class="tbl-scroll">
       <table class="tbl">
         <thead>
@@ -226,50 +216,33 @@
 
   <!-- THE BACKLOG -->
   <section id="backlog">
-    <p class="kick" data-zh="没做完的那部分">the part that is not done</p>
-    <h2 class="h-sec" data-zh="闸门修不了的那部分">What the gates cannot fix</h2>
-    <p class="lead" data-zh="闸门是防御，不是治疗。它们能拦住一条撑不住的主张被端出去，却不能把它变成撑得住的。只有一手条文核对能消掉那笔负债，而这件事从不作假。">The gates are defenses, not a cure. They stop a claim its evidence cannot carry from being served; they cannot turn it into one that can. Only primary-source verification retires that liability, and it is never faked.</p>
+    <p class="kick" data-zh="逐条复核">record-level review</p>
+    <h2 class="h-sec" data-zh="公开的复核流程">A published review process</h2>
+    <p class="lead" data-zh="自动校验与一手来源复核相互配合。公开工作清单列出具体研究任务，记录字段则保留完整的来源与复核上下文。">Automated validation and primary-source review serve complementary roles. The published worklist identifies bounded research tasks, while record-level fields retain the full sourcing and review context.</p>
     <div class="figs">
       <div class="fig"><div class="n">152</div><div class="l" data-zh="条溯源记录">sourced records</div></div>
-      <div class="fig"><div class="n" data-live="structural_candidates">46</div><div class="l" data-zh="条通过结构性筛选">pass the structural filter</div></div>
-      <div class="fig"><div class="n" data-live="decision_ready">0</div><div class="l" data-zh="条通过六轴、可作决策依据">clear all six axes</div></div>
+      <div class="fig"><div class="n" data-live="dimensions">15</div><div class="l" data-zh="监管维度">regulatory dimensions</div></div>
+      <div class="fig"><div class="n" data-live="mcp_tool_count">40</div><div class="l" data-zh="类型化 MCP 工具">typed MCP tools</div></div>
       <div class="fig"><div class="n">12</div><div class="l" data-zh="个法域，深度优先">jurisdictions, depth-first</div></div>
     </div>
-    <p class="body" style="margin-top:30px" data-zh="登记册在十二个法域上做深，而不是铺广。通过结构性筛选的那一批——法律命题、官方原文已核、已施行——仍要过时效与独立复核两关，今天还没有一条走完；其余在制度层级确认，一手核对仍在进行。那个队列作为逐格待办清单公开，而不是留作暗示。两百个国家意味着一次抓取，而<b>一次抓取说不出哪条规则真正起约束作用</b>。这里的价值在于数据里的判断。">The register is depth-first over twelve jurisdictions rather than broad. The records that pass the structural filter &mdash; proposition of law, official text checked, in force &mdash; still have freshness and independent review above them, and none has cleared both today. The rest are confirmed at regime-status level with primary-source verification continuing, and that queue is published as a per-cell worklist rather than left implicit. Two hundred countries would mean a scrape, and <b>a scrape cannot tell you which rule binds</b>. The value here is the judgment in the data.</p>
-    <p class="body" data-zh="法规动得足够快，正好要求这种纪律：台湾的制度是在上一次构建当天下午三读通过的。所以登记册带版本、带日期，每条主张都携带它被读取的那一天。它提供的不是对一切的覆盖，而是对它所覆盖的那些通道，一份带来源和日期、机器可查并明确标示复核边界的研究说明。">Regulation moves fast enough to require exactly this discipline: Taiwan's regime passed at third reading on the afternoon of the last build. So the register is versioned and dated, and every claim carries the date it was read. What it offers is not coverage of everything, but a source-linked, dated, machine-queryable research account with explicit review limits of the corridors it does cover.</p>
+    <p class="body" style="margin-top:30px" data-zh="研究深入覆盖十二个法域。结构候选记录符合主张类别、来源与法律状态要求；时效和独立复核分别评估。适用复核状态以数据集说明与具体记录字段为准。">Research covers twelve jurisdictions in depth. Structural candidates meet the claim-type, source and legal-status criteria; freshness and independent review are assessed separately. Consult the dataset guide and each record’s fields for the applicable review status.</p>
+    <p class="body" data-zh="带日期的版本发布随法律环境发展保留研究记录。来源链接与明确的复核字段支持读者评估材料，并提出具体更正。">Dated, versioned releases preserve the research as the legal landscape develops. Source links and explicit review fields let readers assess the material and contribute targeted corrections.</p>
     <div class="cta">
       <a class="btn pri" href="https://papers.ssrn.com/abstract=7055678" target="_blank" rel="noopener" data-zh="《Citable by Construction》（SSRN，18 页）">Citable by Construction (SSRN, 18pp)</a>
-      <a class="btn" href="maintain.html" data-zh="帮忙消掉这笔负债">Help retire the backlog</a>
+      <a class="btn" href="maintain.html" data-zh="参与研究维护">Contribute to the research</a>
       <a class="btn" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/issues" target="_blank" rel="noopener" data-zh="提交一处更正">Report a correction</a>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <nav class="footnav">
-      <a href="corridors.html" data-zh="通道">Corridors</a>
-      <a href="agents.html" data-zh="接入">Access</a>
-      <a href="kya.html" data-zh="KYA">KYA</a>
-      <a href="method.html" data-zh="技术栈">Stack</a>
-      <a href="research.html" data-zh="研究">Research</a>
-      <a href="standards.html" data-zh="标准与目标">Standards</a>
-      <a href="maintain.html" data-zh="参与维护">Maintain</a>
-      <a href="about.html" data-zh="关于">About</a>
-    </nav>
-    <nav class="evidence-nav" aria-label="Evidence directories" data-zh-aria-label="证据目录">
-      <a href="data/" data-zh="开放数据">Open data</a>
-      <a href="jurisdictions/" data-zh="法域证据">Jurisdiction evidence</a>
-      <a href="corridors/" data-zh="通道研究">Corridor research</a>
-      <a href="research/" data-zh="论文摘要">Paper summaries</a>
-    </nav>
-    <span data-zh="CBSR · <span data-live=&quot;version&quot; data-live-prefix=&quot;v&quot;>v0.11.0</span> · 截止 <span data-live=&quot;as_of&quot; data-live-format=&quot;date&quot;>2026 年 8 月 20 日</span> · 数据 CC-BY-4.0 · 代码 Apache-2.0">CBSR · <span data-live="version" data-live-prefix="v">v0.11.0</span> · dateline <span data-live="as_of" data-live-format="date">20 August 2026</span> · data CC-BY-4.0 · code Apache-2.0</span>
-    <span data-zh="带日期的快照，不是实时数据源 · 不授予执行权限 · 不构成法律意见 · 请回到一手法条核对 · 数据集正式引用名为 <i>Cross-Border Stablecoin Register</i>，请引用<a href=&quot;https://doi.org/10.5281/zenodo.20730358&quot;>概念级 DOI</a>">Dated snapshot, not a live feed · no execution authority · not legal advice · verify primary law · cite the dataset under its formal title, <i>Cross-Border Stablecoin Register</i>, using the <a href="https://doi.org/10.5281/zenodo.20730358">concept DOI</a></span>
-    <span>© 2026 Yunjie Fan</span>
-    <a class="badge-ossf" href="https://www.bestpractices.dev/projects/14172" target="_blank" rel="noreferrer"><img src="https://www.bestpractices.dev/projects/14172/badge" alt="OpenSSF Best Practices badge status for CBSR" width="200" height="20" loading="lazy" decoding="async"></a>
-  </div>
-</footer>
+<footer><div class="wrap">
+  <div class="footer-top"><a class="footer-wordmark" href="index.html">CBSR<span aria-hidden="true">↗</span></a><p data-zh="金融智能体的<br>证据基础设施。">Evidence infrastructure<br>for agentic finance.</p></div>
+  <nav class="footnav" aria-label="Explore CBSR" data-zh-aria-label="探索 CBSR"><a href="corridors.html" data-zh="通道研究">Corridors</a><a href="agents.html" data-zh="智能体接入">Agent access</a><a href="research.html" data-zh="研究与政策">Research</a><a href="method.html" data-zh="研究方法">Method</a><a href="kya.html">KYA</a><a href="standards.html" data-zh="标准">Standards</a><a href="maintain.html" data-zh="参与维护">Maintain</a><a href="about.html" data-zh="关于 CBSR">About</a></nav>
+  <nav class="evidence-nav" aria-label="Evidence directories" data-zh-aria-label="证据目录"><a href="data/" data-zh="开放数据">Open data</a><a href="jurisdictions/" data-zh="法域证据">Jurisdictions</a><a href="corridors/" data-zh="通道档案">Corridor dossiers</a><a href="research/" data-zh="论文资料">Paper library</a><a href="https://github.com/yunjiefanresearch-hub/cbsr.io">GitHub ↗</a><a href="mailto:yunjiefan.research@gmail.com" data-zh="联系">Contact ↗</a></nav>
+  <div class="footer-meta"><span>© 2026 Yunjie Fan</span><span data-zh="数据 CC BY 4.0 / 代码 Apache 2.0">Data CC BY 4.0 / Code Apache 2.0</span><a href="https://doi.org/10.5281/zenodo.20730358" data-zh="数据集 DOI ↗">Dataset DOI ↗</a></div>
+  <p class="footer-note" data-zh="CBSR（cbsr.site）由 Yunjie Fan 维护。Cross-Border Stablecoin Register 为数据集正式引用名。研究资料保留其发布日期、来源与复核状态；具体使用请参阅<a href=&quot;/about.html#reliance&quot;>使用说明</a>。">CBSR (cbsr.site) is maintained by Yunjie Fan. Cite the dataset as Cross-Border Stablecoin Register. Research carries its publication date, sources, and review status; see the <a href="about.html#reliance">use and citation notes</a>.</p>
+</div></footer>
 
 <script src="assets/cbsr.js"></script>
 </body>
