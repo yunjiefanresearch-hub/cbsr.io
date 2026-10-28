@@ -30,6 +30,7 @@ jobs:
           set -euo pipefail
           node --check assets/cbsr.js
           node --check assets/cbsr-live.js
+          node --check assets/cbsr-field.js
           node tools/check-register-contract.mjs ../cross-border-stablecoin-register
           CBSR_TEST_REGISTER=../cross-border-stablecoin-register node --test tools/live-contract.test.mjs
           node --test tools/policy-materials.test.mjs

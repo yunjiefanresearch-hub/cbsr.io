@@ -290,15 +290,18 @@ def validate_site(directory: Path, base: str):
             require(target_rel in file_names, f"{rel}: missing internal link/resource {href} (resolved {local})")
             if resolved.fragment and target_rel.endswith(".html"):
                 require(unquote(resolved.fragment) in docs[target_rel].ids, f"{rel}: missing fragment target {href}")
+    published_meta = json.loads((directory / "assets/search/snapshots/meta.json").read_text(encoding="utf-8"))["data"]
+    coverage = published_meta["review_coverage"]
+    require(published_meta["record_count"] == 152 and published_meta["structural_citable_candidates"] == 46, "published snapshot inventory drift")
+    require(coverage["decision_ready"] == 0 and coverage["official_source"] == 103 and coverage["primary_reviewer_present"] == 41 and coverage["reconciled"] == 0, "published snapshot review facts drift")
     for rel in ("index.html", "zh/index.html"):
         doc = docs[rel]
         body = " ".join(doc.text)
         require("CBSR" in body and "Cross-Border Stablecoin Register" in body, f"{rel}: product/dataset identity missing")
         require(re.search(r"agentic finance|金融智能体|智能体金融", body, re.I), f"{rel}: product purpose missing")
-        require("0" in doc.live.get("decision_ready", []), f"{rel}: strict count must remain zero in static body")
-        require("46" in doc.live.get("structural_candidates", []), f"{rel}: structural candidates must remain 46")
+        require("decision_ready" not in doc.live, f"{rel}: internal review gate must not be a homepage metric")
+        require(not re.search(r"decision[-_ ]ready|zero decision|0 decision", body, re.I), f"{rel}: internal review gate must not appear as promotional copy")
         require("152" in doc.live.get("records", []), f"{rel}: snapshot record count drift")
-        require("103" in doc.live.get("official_source", []) and "41" in doc.live.get("primary_reviewed", []) and "0" in doc.live.get("reconciled", []), f"{rel}: review/source boundary lost")
     require("46 records" not in "\n".join(all_sources), "structural candidates promoted to strict records")
     for rel in ("maintain.html", "zh/maintain.html"):
         require(rel in docs, f"{rel}: maintainer application page is missing")
