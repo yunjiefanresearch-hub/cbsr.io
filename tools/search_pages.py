@@ -20,6 +20,7 @@ COMMIT = "270a002e8d66bb9971b3638dfcab52f3b2f6d2fd"
 REPO = "https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register"
 RAW = "https://raw.githubusercontent.com/yunjiefanresearch-hub/cross-border-stablecoin-register/" + COMMIT
 AS_OF = "2026-08-20"
+VERSION_DOI = "https://doi.org/10.5281/zenodo.22021736"
 MODIFIED = "2026-10-17"
 PAIRS = ("SG-HK", "US-EU", "EU-US", "US-HK", "HK-US", "US-JP", "JP-US", "HK-CN")
 NAMES = {
@@ -217,19 +218,20 @@ def _dataset_page(dataset, meta):
             rows.append([link(jpath(code), names[1 if lang == "zh" else 0]), str(len(records)), e(_distribution(records, "binding_status", lang))])
         body += _section(choose(lang, "Browse evidence by jurisdiction", "按法域浏览证据"), _table([choose(lang, "Jurisdiction", "法域"), choose(lang, "Records", "记录"), choose(lang, "Binding-status distribution", "效力状态分布")], rows))
         body += _section(choose(lang, "Citation, license and reproducibility", "引用、许可与复现"),
-            _p(choose(lang, "Attribute the data to Yunjie Fan, Cross-Border Stablecoin Register v0.11.0, snapshot generated 20 August 2026. Preserve the record ID, source locator, source-check date and pinned commit in evidence-based use. Data is CC-BY-4.0; code is Apache-2.0. The identifier below is the one in the pinned CITATION.cff; it does not establish a separate DOI for this HTML page or every repository tag.", "数据署名应包含 Yunjie Fan、Cross-Border Stablecoin Register v0.11.0、2026 年 8 月 20 日生成的快照。基于证据使用时，保留记录 ID、来源定位、来源检查日与固定提交。数据许可为 CC-BY-4.0，代码为 Apache-2.0。以下标识来自固定版本的 CITATION.cff，不表示本 HTML 页面或每个仓库标签均有独立 DOI。")) +
+            _p(choose(lang, "Attribute the data to Yunjie Fan, Cross-Border Stablecoin Register v0.11.0, snapshot generated 20 August 2026. Preserve the record ID, source locator, source-check date and pinned commit in evidence-based use. Data is CC-BY-4.0; code is Apache-2.0. Use the Zenodo version DOI below when citing v0.11.0.", "数据署名应包含 Yunjie Fan、Cross-Border Stablecoin Register v0.11.0、2026 年 8 月 20 日生成的快照。基于证据使用时，保留记录 ID、来源定位、来源检查日与固定提交。数据许可为 CC-BY-4.0，代码为 Apache-2.0。引用 v0.11.0 时，请使用下方的 Zenodo 版本 DOI。")) +
             '<ul>' + ''.join(f'<li>{link(href, label)}</li>' for href, label in [
                 ("/assets/search/snapshots/dataset.json", choose(lang, "Download exact committed dataset JSON", "下载已提交数据集 JSON 原始字节")),
                 ("/assets/search/snapshot-manifest.json", choose(lang, "Snapshot manifest with SHA-256 hashes", "含 SHA-256 的快照清单")),
                 ("/assets/search/snapshots/CITATION.cff", "CITATION.cff"),
-                ("https://doi.org/10.5281/zenodo.20730358", choose(lang, "Citation identifier recorded by source", "来源记录的引用标识")),
+                (VERSION_DOI, choose(lang, "Zenodo version DOI", "Zenodo 版本 DOI")),
+                ("https://doi.org/10.5281/zenodo.20730358", choose(lang, "Zenodo concept DOI", "Zenodo 概念 DOI")),
                 (f"{REPO}/tree/{COMMIT}", choose(lang, "Pinned source commit", "固定来源提交")),
                 (f"{REPO}/blob/{COMMIT}/LICENSING.md", choose(lang, "Data and code license map", "数据与代码许可说明")),
             ]) + '</ul>')
         bodies[lang] = body + _related(lang)
     schema = {"@type": "Dataset", "@id": "{{BASE_URL}}/data/#dataset", "name": "Cross-Border Stablecoin Register", "alternateName": "CBSR stablecoin regulatory dataset", "description": descriptions["en"], "url": "{{BASE_URL}}/data/", "version": "0.11.0", "dateModified": AS_OF, "temporalCoverage": AS_OF,
               "license": "https://creativecommons.org/licenses/by/4.0/", "publisher": {"@id": "{{BASE_URL}}/#person"}, "inLanguage": ["en", "zh-Hans"], "creator": {"@type": "Person", "name": "Yunjie Fan", "identifier": "https://orcid.org/0009-0005-6762-084X"},
-              "isBasedOn": f"{REPO}/tree/{COMMIT}", "identifier": "https://doi.org/10.5281/zenodo.20730358",
+              "isBasedOn": f"{REPO}/tree/{COMMIT}", "identifier": VERSION_DOI,
               "distribution": {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "{{BASE_URL}}/assets/search/snapshots/dataset.json"}}
     return _page("data/index.html", titles, descriptions, bodies, "dataset", schema)
 
