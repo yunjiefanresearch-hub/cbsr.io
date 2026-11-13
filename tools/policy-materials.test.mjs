@@ -86,7 +86,7 @@ test("the four cards retain dated provenance and distinguish author research fro
   assert.match(analysis, /(?:legislative context|legislative analysis)/i);
 
   const mica = card(cards, "mica-review");
-  assert.match(mica, /submission receipt received/);
+  assert.match(mica, /response submitted September 2026/);
   assert.match(mica, /30 September 2026, 23:59 CEST/);
   assert.match(mica, /(?:response.*(?:private|not public)|private.*response)/i);
   assert.match(mica, /submission receipt records delivery/i);
