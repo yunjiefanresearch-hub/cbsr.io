@@ -221,7 +221,9 @@ def validate_site(directory: Path, base: str):
         require("".join(doc.title).strip(), f"{rel}: missing title")
         require(not doc.duplicate_ids, f"{rel}: duplicate ids {doc.duplicate_ids}")
         require(doc.og.get("og:url") == own, f"{rel}: og:url disagrees with canonical")
-        require(doc.og.get("og:site_name") == "CBSR", f"{rel}: product brand must be CBSR")
+        require(doc.og.get("og:site_name") == "CBSR", f"{rel}: Open Graph site name must be CBSR")
+        og_alt = "CBSR：十二个法域稳定币规则的开放登记册" if rel.startswith("zh/") else "CBSR: an open register of stablecoin rules in twelve jurisdictions"
+        require(doc.og.get("og:image:alt") == og_alt, f"{rel}: social card alt text drift")
         image = doc.og.get("og:image", "")
         require(image == urljoin(base, "og-card.png"), f"{rel}: social image ignores base URL")
         if rel.split("/")[-1] in {"404.html", "thanks.html"}:
@@ -298,11 +300,14 @@ def validate_site(directory: Path, base: str):
         doc = docs[rel]
         body = " ".join(doc.text)
         require("CBSR" in body and "Cross-Border Stablecoin Register" in body, f"{rel}: product/dataset identity missing")
-        require(re.search(r"agentic finance|金融智能体|智能体金融", body, re.I), f"{rel}: product purpose missing")
+        home_title = "十二个法域稳定币规则的开放登记册" if rel.startswith("zh/") else "An open register of stablecoin rules in twelve jurisdictions"
+        require(home_title in body, f"{rel}: register purpose missing")
+        require("snapshot-review" in doc.ids, f"{rel}: snapshot review note missing")
         require("decision_ready" not in doc.live, f"{rel}: internal review gate must not be a homepage metric")
-        require(not re.search(r"decision[-_ ]ready|zero decision|0 decision", body, re.I), f"{rel}: internal review gate must not appear as promotional copy")
+        require(("可据以决策的记录为 0 条" if rel.startswith("zh/") else "decision-ready subset contains 0 records") in body, f"{rel}: strict review status missing")
         require("152" in doc.live.get("records", []), f"{rel}: snapshot record count drift")
-    require("46 records" not in "\n".join(all_sources), "structural candidates promoted to strict records")
+    disallowed = r"46 (?:decision-ready|strictly citable) records|46 records (?:are decision-ready|are citable as current law)"
+    require(not re.search(disallowed, "\n".join(all_sources), re.I), "structural candidates promoted to strict records")
     for rel in ("maintain.html", "zh/maintain.html"):
         require(rel in docs, f"{rel}: maintainer application page is missing")
         doc = docs[rel]

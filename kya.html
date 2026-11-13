@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en"
-      data-title-en="Know Your Agent (KYA) Framework for Financial AI Agents | CBSR"
-      data-title-zh="Know Your Agent（KYA）金融智能体研究框架｜CBSR">
+      data-title-en="Know Your Agent (KYA): working framework v0.1 | CBSR"
+      data-title-zh="Know Your Agent（KYA）：工作框架 v0.1 | CBSR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
-<title>Know Your Agent (KYA) Framework for Financial AI Agents | CBSR</title>
-<meta name="description" content="Explore the CBSR Know Your Agent working framework: identity, authorization, capability and accountability for financial agents." data-zh-content="了解 CBSR 的 Know Your Agent 工作框架：金融智能体的身份、授权、能力与问责。">
+<title>Know Your Agent (KYA): working framework v0.1 | CBSR</title>
+<meta name="description" content="Yunjie Fan's Know Your Agent working draft, version 0.1, covers identity, authorization, capability and accountability for financial agents." data-zh-content="Yunjie Fan 的 Know Your Agent 工作草案 0.1 版，涵盖金融智能体的身份、授权、能力与问责。">
 <meta name="author" content="Yunjie Fan">
 <meta name="theme-color" content="#080909">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="CBSR">
-<meta property="og:title" content="Know Your Agent (KYA) Framework for Financial AI Agents | CBSR" data-zh-content="Know Your Agent（KYA）金融智能体研究框架｜CBSR">
-<meta property="og:description" content="Explore the CBSR Know Your Agent working framework: identity, authorization, capability and accountability for financial agents." data-zh-content="了解 CBSR 的 Know Your Agent 工作框架：金融智能体的身份、授权、能力与问责。">
+<meta property="og:title" content="Know Your Agent (KYA): working framework v0.1 | CBSR" data-zh-content="Know Your Agent（KYA）：工作框架 v0.1 | CBSR">
+<meta property="og:description" content="Yunjie Fan's Know Your Agent working draft, version 0.1, covers identity, authorization, capability and accountability for financial agents." data-zh-content="Yunjie Fan 的 Know Your Agent 工作草案 0.1 版，涵盖金融智能体的身份、授权、能力与问责。">
 <meta property="og:url" content="__SITE_URL__kya.html">
 <meta property="og:image" content="__SITE_URL__og-card.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CBSR — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
+<meta property="og:image:alt" content="CBSR: an open register of stablecoin rules in twelve jurisdictions" data-zh-content="CBSR：十二个法域稳定币规则的开放登记册">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="zh_CN">
 <link rel="canonical" href="__SITE_URL__kya.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Know Your Agent (KYA) Framework for Financial AI Agents | CBSR" data-zh-content="Know Your Agent（KYA）金融智能体研究框架｜CBSR">
-<meta name="twitter:description" content="Explore the CBSR Know Your Agent working framework: identity, authorization, capability and accountability for financial agents." data-zh-content="了解 CBSR 的 Know Your Agent 工作框架：金融智能体的身份、授权、能力与问责。">
+<meta name="twitter:title" content="Know Your Agent (KYA): working framework v0.1 | CBSR" data-zh-content="Know Your Agent（KYA）：工作框架 v0.1 | CBSR">
+<meta name="twitter:description" content="Yunjie Fan's Know Your Agent working draft, version 0.1, covers identity, authorization, capability and accountability for financial agents." data-zh-content="Yunjie Fan 的 Know Your Agent 工作草案 0.1 版，涵盖金融智能体的身份、授权、能力与问责。">
 <meta name="twitter:image" content="__SITE_URL__og-card.png">
 
 <link rel="stylesheet" href="assets/cbsr.css">
@@ -40,11 +40,11 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a href="index.html" aria-label="CBSR home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="金融智能体的证据基础设施">Evidence infrastructure for agentic finance</span></div>
+    <div class="brand"><a href="index.html" aria-label="CBSR home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="跨境稳定币登记册">Cross-Border Stablecoin Register</span></div>
     <nav class="nav" aria-label="Main navigation" data-zh-aria-label="主导航">
       <a href="corridors.html" data-zh="通道研究">Corridors</a>
       <a href="research.html" data-zh="研究与政策">Research</a>
-      <a href="agents.html" data-zh="智能体接入">Agent access</a>
+      <a href="agents.html" data-zh="软件查询">Software access</a>
       <a href="about.html" data-zh="关于">About</a>
       <span class="langtog" id="langtog" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></span>
       <a class="openreg" href="data/" data-zh="开放数据 ↗">Open data ↗</a>
@@ -55,19 +55,11 @@
 <main id="main" class="wrap">
 
   <section class="masthead">
-    <p class="kick" data-zh="KYA · Know Your Agent &nbsp;·&nbsp; 工作框架 v0.1，公开征求意见">KYA · Know Your Agent &nbsp;·&nbsp; working framework v0.1, open for comment</p>
-    <h1 class="wide" data-zh="了解行动背后的智能体。">Know the agent behind the action.</h1>
+    <h1 class="wide" data-zh="Know Your Agent（KYA）：工作框架 0.1 版">Know Your Agent (KYA): a working framework, version 0.1</h1>
     <p class="lede" data-zh="金融智能体为身份识别与尽职调查带来新的运营问题。KYA 工作框架将其整理为四个方面：身份、授权、能力与问责。">Financial agents bring a new set of operational questions to identity and due diligence. The KYA working framework organizes them into four areas: identity, authorization, capability and accountability.</p>
-    <p class="mast-meta" data-zh="4 个问题 &amp;nbsp;·&amp;nbsp; 4 个保证等级 &amp;nbsp;·&amp;nbsp; 工作框架 v0.1 &amp;nbsp;·&amp;nbsp; 开放征求意见">4 questions &nbsp;·&nbsp; 4 assurance levels &nbsp;·&nbsp; working framework v0.1 &nbsp;·&nbsp; open for comment</p>
-  </section>
-
-  <hr class="rule">
-
-  <!-- STATUS FIRST -->
-  <section id="status" class="nopad-b">
-    <div class="note-box" style="margin-top:0">
+    <div class="note-box" id="status">
       <p class="nh" data-zh="框架状态">framework status</p>
-      <p data-zh="KYA 是一项&lt;b&gt;独立研究提案&lt;/b&gt;，以工作草案形式公开讨论，尚未成为法律或获标准机构采纳。">KYA is an <b>independent research proposal</b>, published as a working draft for discussion. It has not been adopted as law or by a standards body.</p>
+      <p data-zh="这是 "></p>
       <p data-zh="数据集以 &lt;code class=&quot;tok&quot;&gt;claim_class = proposed_framework&lt;/code&gt; 标识该材料，并与法律证据子集分别处理。">The dataset labels this material <code class="tok">claim_class = proposed_framework</code> and keeps it separate from the legal-evidence subset.</p>
     </div>
   </section>
@@ -209,16 +201,16 @@
     </div>
     <div class="cta">
       <a class="btn pri" href="https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register/issues" target="_blank" rel="noopener" data-zh="对这份框架提意见">Comment on the framework</a>
-      <a class="btn" href="agents.html" data-zh="登记册怎么支撑 L3 与 L4">How the register supports L3 and L4</a>
-      <a class="btn" href="method.html" data-zh="同一套纪律，用在数据上">The same discipline, applied to the data</a>
+      <a class="btn" href="agents.html" data-zh="用软件查询登记册">Query the register from software</a>
+      <a class="btn" href="method.html" data-zh="登记册方法">Register method</a>
     </div>
   </section>
 
 </main>
 
 <footer><div class="wrap">
-  <div class="footer-top"><a class="footer-wordmark" href="index.html">CBSR<span aria-hidden="true">↗</span></a><p data-zh="金融智能体的<br>证据基础设施。">Evidence infrastructure<br>for agentic finance.</p></div>
-  <nav class="footnav" aria-label="Explore CBSR" data-zh-aria-label="探索 CBSR"><a href="corridors.html" data-zh="通道研究">Corridors</a><a href="agents.html" data-zh="智能体接入">Agent access</a><a href="research.html" data-zh="研究与政策">Research</a><a href="method.html" data-zh="研究方法">Method</a><a href="kya.html">KYA</a><a href="standards.html" data-zh="标准">Standards</a><a href="maintain.html" data-zh="参与维护">Maintain</a><a href="about.html" data-zh="关于 CBSR">About</a></nav>
+  <div class="footer-top"><a class="footer-wordmark" href="index.html">CBSR<span aria-hidden="true">↗</span></a><p data-zh="十二个法域稳定币规则的开放登记册。Yunjie Fan 的独立研究。">An open register of stablecoin rules in twelve jurisdictions. Independent research by Yunjie Fan.</p></div>
+  <nav class="footnav" aria-label="Explore CBSR" data-zh-aria-label="探索 CBSR"><a href="corridors.html" data-zh="通道研究">Corridors</a><a href="agents.html" data-zh="软件查询">Software access</a><a href="research.html" data-zh="研究与政策">Research</a><a href="method.html" data-zh="研究方法">Method</a><a href="kya.html">KYA</a><a href="standards.html" data-zh="相关领域">Related fields</a><a href="maintain.html" data-zh="参与维护">Maintain</a><a href="about.html" data-zh="关于 CBSR">About</a></nav>
   <nav class="evidence-nav" aria-label="Evidence directories" data-zh-aria-label="证据目录"><a href="data/" data-zh="开放数据">Open data</a><a href="jurisdictions/" data-zh="法域证据">Jurisdictions</a><a href="corridors/" data-zh="通道档案">Corridor dossiers</a><a href="research/" data-zh="论文资料">Paper library</a><a href="https://github.com/yunjiefanresearch-hub/cbsr.io">GitHub ↗</a><a href="mailto:yunjiefan.research@gmail.com" data-zh="联系">Contact ↗</a></nav>
   <div class="footer-meta"><span>© 2026 Yunjie Fan</span><span data-zh="数据 CC BY 4.0 / 代码 Apache 2.0">Data CC BY 4.0 / Code Apache 2.0</span><a href="https://doi.org/10.5281/zenodo.20730358" data-zh="数据集 DOI ↗">Dataset DOI ↗</a></div>
   <p class="footer-note" data-zh="CBSR（cbsr.site）由 Yunjie Fan 维护。Cross-Border Stablecoin Register 为数据集正式引用名。研究资料保留其发布日期、来源与复核状态；具体使用请参阅<a href=&quot;/about.html#reliance&quot;>使用说明</a>。">CBSR (cbsr.site) is maintained by Yunjie Fan. Cite the dataset as Cross-Border Stablecoin Register. Research carries its publication date, sources, and review status; see the <a href="about.html#reliance">use and citation notes</a>.</p>

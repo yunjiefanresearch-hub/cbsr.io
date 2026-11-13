@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en"
-      data-title-en="Stablecoin Regulation MCP Tools &amp; Agent Evidence | CBSR"
-      data-title-zh="稳定币监管 MCP 工具与智能体证据接入｜CBSR">
+      data-title-en="Querying the register from software (MCP) | CBSR"
+      data-title-zh="用软件查询登记册（MCP）| CBSR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.bestpractices.dev; connect-src 'self' https://yunjiefanresearch-hub.github.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'none'">
-<title>Stablecoin Regulation MCP Tools &amp; Agent Evidence | CBSR</title>
-<meta name="description" content="Connect CBSR regulatory research to your agent through typed MCP tools. Query jurisdictions, compare obligations and explore source-linked cross-border corridors." data-zh-content="通过类型化 MCP 工具将 CBSR 监管研究接入智能体，查询法域、比较义务，探索带来源的跨境通道。">
+<title>Querying the register from software (MCP) | CBSR</title>
+<meta name="description" content="Query the Cross-Border Stablecoin Register through 40 typed MCP tools backed by one schema-validated dataset. The register keeps source, date and review status in separate fields." data-zh-content="通过基于同一个经模式校验的数据集的 40 个带类型 MCP 工具查询跨境稳定币登记册。登记册将来源、日期和审核状态分字段记录。">
 <meta name="author" content="Yunjie Fan">
 <meta name="theme-color" content="#080909">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="CBSR">
-<meta property="og:title" content="Stablecoin Regulation MCP Tools &amp; Agent Evidence | CBSR" data-zh-content="稳定币监管 MCP 工具与智能体证据接入｜CBSR">
-<meta property="og:description" content="Connect CBSR regulatory research to your agent through typed MCP tools. Query jurisdictions, compare obligations and explore source-linked cross-border corridors." data-zh-content="通过类型化 MCP 工具将 CBSR 监管研究接入智能体，查询法域、比较义务，探索带来源的跨境通道。">
+<meta property="og:title" content="Querying the register from software (MCP) | CBSR" data-zh-content="用软件查询登记册（MCP）| CBSR">
+<meta property="og:description" content="Query the Cross-Border Stablecoin Register through 40 typed MCP tools backed by one schema-validated dataset. The register keeps source, date and review status in separate fields." data-zh-content="通过基于同一个经模式校验的数据集的 40 个带类型 MCP 工具查询跨境稳定币登记册。登记册将来源、日期和审核状态分字段记录。">
 <meta property="og:url" content="__SITE_URL__agents.html">
 <meta property="og:image" content="__SITE_URL__og-card.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CBSR — corridor feasibility read at the destination's inbound gate, sourced to primary law.">
+<meta property="og:image:alt" content="CBSR: an open register of stablecoin rules in twelve jurisdictions" data-zh-content="CBSR：十二个法域稳定币规则的开放登记册">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="zh_CN">
 <link rel="canonical" href="__SITE_URL__agents.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stablecoin Regulation MCP Tools &amp; Agent Evidence | CBSR" data-zh-content="稳定币监管 MCP 工具与智能体证据接入｜CBSR">
-<meta name="twitter:description" content="Connect CBSR regulatory research to your agent through typed MCP tools. Query jurisdictions, compare obligations and explore source-linked cross-border corridors." data-zh-content="通过类型化 MCP 工具将 CBSR 监管研究接入智能体，查询法域、比较义务，探索带来源的跨境通道。">
+<meta name="twitter:title" content="Querying the register from software (MCP) | CBSR" data-zh-content="用软件查询登记册（MCP）| CBSR">
+<meta name="twitter:description" content="Query the Cross-Border Stablecoin Register through 40 typed MCP tools backed by one schema-validated dataset. The register keeps source, date and review status in separate fields." data-zh-content="通过基于同一个经模式校验的数据集的 40 个带类型 MCP 工具查询跨境稳定币登记册。登记册将来源、日期和审核状态分字段记录。">
 <meta name="twitter:image" content="__SITE_URL__og-card.png">
 
 <link rel="stylesheet" href="assets/cbsr.css">
@@ -40,11 +40,11 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a href="index.html" aria-label="CBSR home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="金融智能体的证据基础设施">Evidence infrastructure for agentic finance</span></div>
+    <div class="brand"><a href="index.html" aria-label="CBSR home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 93.88"><path fill="currentColor" fill-rule="evenodd" d="M75.51 1.02 L69.39 1.53 L69.39 2.55 L64.29 3.06 L64.29 4.08 L61.22 5.1 L58.16 7.14 L55.61 8.16 L52.55 11.22 L50 12.24 L46.94 16.33 L45.92 16.33 L43.88 20.41 L42.86 20.41 L40.82 25.51 L39.8 25.51 L39.29 30.61 L38.27 30.61 L38.27 39.29 L1.02 39.29 L1.02 53.06 L38.27 53.06 L38.27 62.24 L39.29 62.24 L39.8 67.35 L40.82 67.35 L42.86 72.45 L43.88 72.45 L45.92 76.53 L46.94 76.53 L50 80.61 L52.55 81.63 L55.61 84.69 L58.16 85.71 L61.22 87.76 L64.29 88.78 L64.29 89.8 L69.39 90.31 L69.39 91.33 L75.51 91.84 L98.98 91.84 L98.98 1.02 Z M75.51 20.41 L79.59 21.43 L82.65 24.49 L83.67 28.57 L83.67 64.29 L82.65 68.37 L79.59 71.43 L75.51 72.45 L58.16 72.45 L54.08 71.43 L51.02 68.37 L50 64.29 L50 28.57 L51.02 24.49 L54.08 21.43 L58.16 20.41 Z"/></svg></span><b>CBSR</b></a><span data-zh="跨境稳定币登记册">Cross-Border Stablecoin Register</span></div>
     <nav class="nav" aria-label="Main navigation" data-zh-aria-label="主导航">
       <a href="corridors.html" data-zh="通道研究">Corridors</a>
       <a href="research.html" data-zh="研究与政策">Research</a>
-      <a href="agents.html" data-zh="智能体接入">Agent access</a>
+      <a href="agents.html" data-zh="软件查询">Software access</a>
       <a href="about.html" data-zh="关于">About</a>
       <span class="langtog" id="langtog" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="zh">中文</button></span>
       <a class="openreg" href="data/" data-zh="开放数据 ↗">Open data ↗</a>
@@ -55,9 +55,8 @@
 <main id="main" class="wrap">
 
   <section class="masthead">
-    <p class="kick" data-zh="agent 接入 &nbsp;·&nbsp; 原生 MCP">agent access &nbsp;·&nbsp; MCP-native</p>
-    <h1 data-zh="让智能体接入监管研究。">Regulatory research, connected to your agent.</h1>
-    <p class="lede" data-zh="通过类型化 MCP 工具，将带来源的监管记录接入研究与金融工作流。查询法域、比较义务、分析有向通道，并同步获取条款、法律状态、日期和数据集版本。">Connect source-linked regulatory records to research and financial workflows through typed MCP tools. Query jurisdictions, compare obligations and explore directed corridors with the provision, legal status, date and dataset version attached.</p>
+    <h1 data-zh="用软件查询登记册">Querying the register from software</h1>
+    <p class="lede" data-zh="软件可以通过带类型的 MCP 工具读取登记册。查询结果中的记录保留条文、法律状态和分析日期等字段。结合所用的数据集版本，读者可以据此追溯来源。">Software can read the register through typed MCP tools. Returned records retain fields for the provision, legal status and date analysed. Together with the dataset version in use, these fields let readers trace the records to their sources.</p>
     <p class="mast-meta" data-zh="<span data-live=&quot;mcp_tool_count&quot;>40</span> 个类型化 MCP 工具 &nbsp;·&nbsp; 一个 schema 校验过的 <span class=&quot;gk&quot;>dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; 自行部署，无需账号或密钥"><span data-live="mcp_tool_count">40</span> typed MCP tools &nbsp;·&nbsp; one schema-validated <span class="gk">dataset.json</span> &nbsp;·&nbsp; Apache-2.0 &nbsp;·&nbsp; self-hosted, no account and no key</p>
   </section>
 
@@ -68,7 +67,7 @@
     <p class="kick" data-zh="面向监管研究">built for regulatory research</p>
     <div class="thesis">
       <p class="big" data-zh="监管研究取决于具体文书、适用日期与跨境流向。CBSR 将这些信息整理为结构化记录。">Regulatory research depends on the exact instrument, the relevant date and the direction of a cross-border flow. CBSR makes those details available as structured records.</p>
-      <p class="sub" data-zh="每次返回都连接分析、来源与版本。研究者可以查阅底层材料，开发者可以在应用中保留同样的上下文。">Each response connects the analysis to its source and release. Researchers can inspect the underlying material; developers can preserve the same context in their applications.</p>
+      <p class="sub" data-zh="读到记录的人可以对照所引条文核对。">Whoever reads the record can check it against the cited provision.</p>
     </div>
   </section>
 
@@ -76,30 +75,28 @@
 
   <!-- THE ENVELOPE -->
   <section id="envelope">
-    <p class="kick" data-zh="接地契约"></p>
-    <h2 class="h-sec" data-zh="每次返回背后的记录">The record behind each response</h2>
-    <p class="lead" data-zh="以下 &lt;code class=&quot;tok&quot;&gt;compose()&lt;/code&gt; 示例展示通道分类如何与支撑条款、施行状态及版本标识一同返回。">This illustrative <code class="tok">compose()</code> response shows how a corridor classification travels with its supporting provision, commencement status and release identifiers.</p>
+    <h2 class="h-sec" data-zh="通道查询示例">Example corridor lookup</h2>
+    <p class="lead" data-zh="以下摘录自 v0.11.0 的 &lt;code class=&quot;tok&quot;&gt;corridor_directed()&lt;/code&gt; 返回结果，展示通道分类及其依据、施行状态和分析日期。">This excerpt from <code class="tok">corridor_directed()</code> in v0.11.0 shows a corridor classification, the basis for it, its commencement status and the date analysed.</p>
 
-    <pre class="env" aria-label="An example corridor response from the MCP server"><span class="c">// compose(origin="EU", destination="US", as_of="2026-08-20")</span>
+    <pre class="env" aria-label="An example corridor response from the MCP server"><span class="c">// corridor_directed(origin="EU", destination="US")</span>
 {
-  <span class="k">"corridor"</span>:      <span class="s">"EU&gt;US"</span>,
-  <span class="k">"class"</span>:         <span class="s">"T"</span>,                  <span class="c">// regime in transition</span>
-  <span class="k">"mechanism"</span>:     <span class="s">"commencement_pending"</span>,
-  <span class="k">"binding_at"</span>:    <span class="s">"destination_inbound_gate"</span>,
-  <span class="k">"provision"</span>:     <span class="s">"GENIUS Act §18"</span>,
-  <span class="k">"status"</span>:        <span class="s">"enacted_not_commenced"</span>,   <span class="r">// NOT citable as current law</span>
-  <span class="k">"resolves_on"</span>:   <span class="s">"2027-01-18"</span>,
-  <span class="k">"resolves_to"</span>:   <span class="s">"II"</span>,
-  <span class="k">"claim_class"</span>:   <span class="s">"tier1_legal"</span>,
-  <span class="k">"evidence_tier"</span>: <span class="s">"resolution_text"</span>,
-  <span class="k">"as_of"</span>:         <span class="s">"2026-08-20"</span>,
-  <span class="k">"register"</span>:      <span class="s">"v0.11.0"</span>,
-  <span class="k">"doi"</span>:           <span class="s">"10.5281/zenodo.20730358"</span>
+  <span class="k">"edge"</span>: <span class="s">"EU-&gt;US"</span>,
+  <span class="k">"class_code"</span>: <span class="s">"T"</span>,
+  <span class="k">"class_basis"</span>: {
+    <span class="k">"rule"</span>: <span class="s">"destination_in_transition"</span>,
+    <span class="k">"binding_status"</span>: <span class="s">"made_not_commenced"</span>,
+    <span class="k">"evidence_tier"</span>: <span class="s">"mixed"</span>,
+    <span class="k">"record_ref"</span>: <span class="s">"us-pss-monetary_sovereignty-001"</span>
+  },
+  <span class="k">"as_of_timeline"</span>: {
+    <span class="k">"today_class"</span>: <span class="s">"T"</span>,
+    <span class="k">"as_of_base"</span>: <span class="s">"2026-06-30"</span>
+  }
 }</pre>
-    <p class="envcap" data-zh="此处为结构示例，字段定义以登记册 schema 为准。&lt;code class=&quot;tok&quot;&gt;status&lt;/code&gt; 区分已通过的法律与已经施行的条款。">The example is illustrative; consult the register schema for field definitions. <code class="tok">status</code> distinguishes enacted legislation from provisions already in force.</p>
+    <p class="envcap" data-zh="部分字段已省略。&lt;code class=&quot;tok&quot;&gt;made_not_commenced&lt;/code&gt; 表示相关规定已经制定，尚未施行。">Some fields are omitted. <code class="tok">made_not_commenced</code> means the provision has been made and is awaiting commencement.</p>
 
     <div class="uses">
-      <div class="use"><p class="ut" data-zh="分析日期">Date of analysis</p><p class="ud" data-zh="&lt;code class=&quot;tok&quot;&gt;as_of&lt;/code&gt; 标识评估记录及其法律状态所采用的日期。"><code class="tok">as_of</code> identifies the date used to evaluate the record and its applicable legal status.</p></div>
+      <div class="use"><p class="ut" data-zh="分析日期">Date of analysis</p><p class="ud" data-zh="&lt;code class=&quot;tok&quot;&gt;as_of_base&lt;/code&gt; 标识通道时间线所采用的基准日期。"><code class="tok">as_of_base</code> identifies the base date of the corridor timeline.</p></div>
       <div class="use"><p class="ut" data-zh="精确来源">Precise source</p><p class="ud" data-zh="法律文书与具体条款提供核对一手原文的直接路径。">The instrument and article provide a direct route to the primary text for checking the analysis.</p></div>
       <div class="use"><p class="ut" data-zh="施行状态">Commencement status</p><p class="ud" data-zh="独立字段记录文书已经生效、等待施行或处于其他阶段。">A named field records whether the instrument is in force, pending commencement or at another stage.</p></div>
       <div class="use"><p class="ut" data-zh="可复现的引用">Reproducible reference</p><p class="ud" data-zh="数据集版本标识所使用的记录；相应存档标识符见仓库。">The dataset version identifies the record used. Check the repository for the corresponding archive identifier.</p></div>
@@ -111,50 +108,54 @@
   <!-- THE TOOLS -->
   <section id="tools">
     <p class="kick" data-zh="MCP 界面"></p>
-    <h2 class="h-sec" data-zh="<span data-live=&quot;mcp_tool_count&quot;>40</span> 个类型化工具，覆盖同一份记录"><span data-live="mcp_tool_count">40</span> typed tools over one record</h2>
-    <p class="lead" data-zh="登记册以通过 schema 校验的 &lt;code class=&quot;gk&quot;&gt;dataset.json&lt;/code&gt; 与 MCP server 发布。类型化参数和返回结构支持研究工具的一致接入。">The register ships as a schema-validated <code class="gk">dataset.json</code> with an MCP server for agent access. Typed arguments and returns support consistent integration across research tools.</p>
+    <h2 class="h-sec" data-zh="基于同一个数据集的 <span data-live=&quot;mcp_tool_count&quot;>40</span> 个带类型工具"><span data-live="mcp_tool_count">40</span> typed tools over one dataset</h2>
+    <p class="lead" data-zh="MCP 服务器从通过模式校验的 &lt;code class=&quot;gk&quot;&gt;dataset.json&lt;/code&gt; 读取数据。下表列出常用工具。">The MCP server reads from a schema-validated <code class="gk">dataset.json</code>. The table shows selected tools.</p>
     <div class="tbl-scroll">
       <table class="tbl">
         <thead>
           <tr>
             <th data-zh="工具族">Tool family</th>
-            <th data-zh="agent 用它做什么">What an agent does with it</th>
+            <th data-zh="用途">Purpose</th>
             <th data-zh="返回的关键字段">Key fields returned</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="mono">compose()</td>
-            <td data-zh="按指定日期评估起点 → 目的地通道。">Evaluate an origin → destination corridor at a specified date.</td>
-            <td class="mono">class · mechanism · provision · as_of</td>
+            <td class="mono">corridor_directed()</td>
+            <td data-zh="查阅起点至目的地通道的已发布分类及时间线。">Read the published classification and timeline for an origin-to-destination corridor.</td>
+            <td class="mono">class_code · class_basis · as_of_timeline</td>
           </tr>
           <tr>
-            <td class="mono">compose(as_of=…)</td>
-            <td data-zh="按另一日期评估同一通道，并应用数据集中记录的法律施行安排。">Evaluate the same corridor at another date, applying the scheduled legal commencements recorded in the dataset.</td>
-            <td class="mono">resolves_on · resolves_to · trigger</td>
+            <td class="mono">compose_corridor(as_of=…)</td>
+            <td data-zh="应用数据集记录的法律施行安排，计算指定日期的通道分类。">Compute a corridor classification for a specified date using the dataset's scheduled commencements.</td>
+            <td class="mono">computed_class · rule · as_of</td>
           </tr>
           <tr>
             <td class="mono">citable_law()</td>
-            <td data-zh="只返回通过全部六轴门槛、可以作为现行有效约束性法律引用的严格子集。结构候选不会被混入返回值。">Return only the strict subset that clears all six gates and may be cited as current binding law. Structural candidates are not included.</td>
-            <td class="mono" data-zh="主张类别 · 来源层级 · 复核状态">claim class · source tier · review status</td>
+            <td data-zh="返回通过全部六项核查、可作为现行约束性法律引用的记录。">Return records that clear all six gates for citation as current binding law.</td>
+            <td class="mono">records · count · structural_candidate_count</td>
           </tr>
           <tr>
-            <td data-zh="法域查询" class="mono">jurisdiction</td>
-            <td data-zh="就单一法域取回全部维度：发行、赎回、储备、投资者门槛、反洗钱、跨境等。">Pull one jurisdiction across every dimension: issuance, redemption, reserves, investor gating, AML, cross-border, and the rest.</td>
-            <td class="mono">15 dimensions · per-record sourcing</td>
+            <td class="mono">jurisdiction_profile()</td>
+            <td data-zh="按监管维度查阅一个法域的全部记录。">Read all records for one jurisdiction, ordered by regulatory dimension.</td>
+            <td class="mono">jurisdiction · record_count · records</td>
           </tr>
           <tr>
-            <td data-zh="维度比较" class="mono">dimension</td>
-            <td data-zh="就单一维度横切全部法域。这是「谁禁止付息、谁不禁止」这类问题的形状。">Cut one dimension across every jurisdiction. This is the shape of &ldquo;who prohibits yield and who does not&rdquo;.</td>
-            <td class="mono">12 jurisdictions · comparability notes</td>
+            <td class="mono">compare_dimension()</td>
+            <td data-zh="对照各法域在同一个监管维度下的记录。">Compare records in one regulatory dimension across jurisdictions.</td>
+            <td class="mono">dimension · jurisdiction_count · records</td>
           </tr>
           <tr>
-            <td data-zh="待核清单" class="mono">backlog</td>
+            <td class="mono">verification_worklist()</td>
             <td data-zh="获取逐条复核任务及完成复核所需的支撑信息。">Retrieve record-level review tasks and the supporting information needed to resolve them.</td>
-            <td class="mono">per-cell worklist · what is missing</td>
+            <td class="mono">items · count · tier_requirements</td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="note-box">
+      <p class="nh" data-zh="v0.11.0 的审核状态">Review status in v0.11.0</p>
+      <p data-zh="还没有记录经过独立的第二次审核。可据以决策的子集为空，&lt;code class=&quot;tok&quot;&gt;citable_law()&lt;/code&gt; 返回的记录列表为空。">No record has yet had an independent second review. The decision-ready subset is empty, so <code class="tok">citable_law()</code> returns an empty list of records.</p>
     </div>
     <div class="note-box">
       <p class="nh" data-zh="工具清单以仓库为准">the tool list lives in the repository</p>
@@ -171,13 +172,12 @@
 
   <!-- FOUR FAILURES -->
   <section id="failures">
-    <p class="kick" data-zh="它防住的四种失败"></p>
-    <h2 class="h-sec" data-zh="稳健接入的四项控制">Four controls for reliable integration</h2>
-    <p class="lead" data-zh="数据模型保留监管工作流中的四项关键区分：法律效力、方向、主张类型与时间。">The data model preserves four distinctions that matter in regulatory workflows: legal effect, direction, claim type and time.</p>
+    <h2 class="h-sec" data-zh="数据保留的四个区分">Four distinctions the data keeps</h2>
+    <p class="lead" data-zh="数据模型保留适用规则时要紧的四个区分：法律效力、方向、主张类型和时间。">The data model keeps four distinctions that matter when a rule is applied. These are legal effect, direction, kind of claim and time.</p>
     <div class="layers">
       <div class="layer"><div class="ix">01</div><div>
         <h3 data-zh="记录法律效力">Track legal effect</h3>
-        <p data-zh="&lt;code class=&quot;tok&quot;&gt;status&lt;/code&gt; 单独记录施行状态。严格可引用子集排除标记为 &lt;code class=&quot;tok&quot;&gt;enacted_not_commenced&lt;/code&gt; 的记录。"><code class="tok">status</code> records commencement separately. The citable subset excludes records marked <code class="tok">enacted_not_commenced</code>.</p></div></div>
+        <p data-zh="&lt;code class=&quot;tok&quot;&gt;binding_status&lt;/code&gt; 记录所引文书的约束状态。施行是进入严格可引用子集的条件之一。"><code class="tok">binding_status</code> records the binding status of the cited instrument. Commencement is one condition for entry into the strict citable subset.</p></div></div>
       <div class="layer"><div class="ix">02</div><div>
         <h3 data-zh="保留通道方向">Preserve direction</h3>
         <p data-zh="数据集分别评估起点 → 目的地的有向边。在此快照中，66 组法域配对有 56 组因方向不同而得出不同结果。">The dataset evaluates origin → destination edges separately. In this snapshot, 56 of the 66 jurisdiction pairs differ by direction.</p></div></div>
@@ -186,7 +186,7 @@
         <p data-zh="&lt;code class=&quot;tok&quot;&gt;claim_class&lt;/code&gt; 区分法律命题与市场观察，保留每条记录的用途和证据基础。"><code class="tok">claim_class</code> distinguishes legal propositions from market observations, preserving the purpose and evidential basis of each record.</p></div></div>
       <div class="layer"><div class="ix">04</div><div>
         <h3 data-zh="保留日期与版本">Keep the date and version</h3>
-        <p data-zh="每次通道返回均携带 &lt;code class=&quot;tok&quot;&gt;as_of&lt;/code&gt; 与登记册版本，供后续复核者识别当时使用的材料。">Every corridor response carries <code class="tok">as_of</code> and the register version so later reviewers can identify the material used.</p></div></div>
+        <p data-zh="保留工具返回的评估日期和所用登记册版本，便于后续复核者定位当时使用的材料。">Keep the evaluation date returned by the tool and the register version in use so later reviewers can identify the material used.</p></div></div>
     </div>
     <p class="body" style="margin-top:26px" data-zh="在下游输出中保留这些字段，让来源上下文贯穿整个工作流。">Keep these fields in downstream outputs so the source context remains available throughout the workflow.</p>
   </section>
@@ -195,24 +195,24 @@
 
   <!-- WIRING IT UP -->
   <section id="wire">
-    <p class="kick" data-zh="接入流程">integration</p>
+    <h2 class="h-sec" data-zh="自行部署">Running it yourself</h2>
     <p class="lead" data-zh="自行部署 MCP server。代码采用 Apache-2.0，数据采用 CC-BY-4.0。">Self-host the MCP server. Code is available under Apache-2.0 and data under CC-BY-4.0.</p>
     <div class="layers">
       <div class="layer"><div class="ix">01</div><div>
         <h3 data-zh="固定一个版本">Pin a version</h3>
         <p data-zh="固定一个版本并保留存档标识符，便于长期识别应用所使用的材料。">Pin a release and retain its archive identifier. This keeps the material used by your application identifiable over time.</p></div></div>
       <div class="layer"><div class="ix">02</div><div>
-        <h3 data-zh="把 MCP server 挂进你的 agent">Mount the MCP server in your agent</h3>
-        <p data-zh="依照 &lt;span class=&quot;gk&quot;&gt;MCP_SERVER.md&lt;/span&gt; 中的配置与工具定义，将 server 接入智能体。">Use the configuration and tool definitions in <span class="gk">MCP_SERVER.md</span> to connect the server to your agent.</p></div></div>
+        <h3 data-zh="连接 MCP 服务器">Connect the MCP server</h3>
+        <p data-zh="依照 &lt;span class=&quot;gk&quot;&gt;MCP_SERVER.md&lt;/span&gt; 中的配置，将服务器连接到 MCP 客户端。">Use the configuration in <span class="gk">MCP_SERVER.md</span> to connect the server to an MCP client.</p></div></div>
       <div class="layer"><div class="ix">03</div><div>
-        <h3 data-zh="要求答案携带信封">Require the envelope in the answer</h3>
-        <p data-zh="在监管返回中包含条款、状态、&lt;code class=&quot;tok&quot;&gt;as_of&lt;/code&gt; 与版本。展示结论前，通过工具补齐所缺字段。">Include provision, status, <code class="tok">as_of</code> and version in regulatory responses. Retrieve missing fields from the tool before presenting a conclusion.</p></div></div>
+        <h3 data-zh="在输出中保留来源字段">Keep the source fields in any output</h3>
+        <p data-zh="凡依据某条记录作答，都保留条文、状态、&lt;code class=&quot;tok&quot;&gt;as_of&lt;/code&gt; 和版本。">Keep provision, status, <code class="tok">as_of</code> and version in any answer that relies on a record.</p></div></div>
       <div class="layer"><div class="ix">04</div><div>
         <h3 data-zh="遵循复核状态">Respect review status</h3>
         <p data-zh="依据记录的来源与复核状态决定材料的呈现方式。待解决问题可参照公开复核工作清单与一手来源。">Use record-level sourcing and review status to determine how material can be presented. Refer unresolved questions to the published review worklist and primary sources.</p></div></div>
     </div>
     <div class="cta">
-      <a class="btn pri" href="corridors.html" data-zh="先看它答的是什么">See what it answers first</a>
+      <a class="btn pri" href="corridors.html" data-zh="查看通道">See the corridors</a>
       <a class="btn" href="method.html" data-zh="这些字段是怎么被强制的">How these fields are enforced</a>
     </div>
   </section>
@@ -220,8 +220,8 @@
 </main>
 
 <footer><div class="wrap">
-  <div class="footer-top"><a class="footer-wordmark" href="index.html">CBSR<span aria-hidden="true">↗</span></a><p data-zh="金融智能体的<br>证据基础设施。">Evidence infrastructure<br>for agentic finance.</p></div>
-  <nav class="footnav" aria-label="Explore CBSR" data-zh-aria-label="探索 CBSR"><a href="corridors.html" data-zh="通道研究">Corridors</a><a href="agents.html" data-zh="智能体接入">Agent access</a><a href="research.html" data-zh="研究与政策">Research</a><a href="method.html" data-zh="研究方法">Method</a><a href="kya.html">KYA</a><a href="standards.html" data-zh="标准">Standards</a><a href="maintain.html" data-zh="参与维护">Maintain</a><a href="about.html" data-zh="关于 CBSR">About</a></nav>
+  <div class="footer-top"><a class="footer-wordmark" href="index.html">CBSR<span aria-hidden="true">↗</span></a><p data-zh="十二个法域稳定币规则的开放登记册。Yunjie Fan 的独立研究。">An open register of stablecoin rules in twelve jurisdictions. Independent research by Yunjie Fan.</p></div>
+  <nav class="footnav" aria-label="Explore CBSR" data-zh-aria-label="探索 CBSR"><a href="corridors.html" data-zh="通道研究">Corridors</a><a href="agents.html" data-zh="软件查询">Software access</a><a href="research.html" data-zh="研究与政策">Research</a><a href="method.html" data-zh="研究方法">Method</a><a href="kya.html">KYA</a><a href="standards.html" data-zh="相关领域">Related fields</a><a href="maintain.html" data-zh="参与维护">Maintain</a><a href="about.html" data-zh="关于 CBSR">About</a></nav>
   <nav class="evidence-nav" aria-label="Evidence directories" data-zh-aria-label="证据目录"><a href="data/" data-zh="开放数据">Open data</a><a href="jurisdictions/" data-zh="法域证据">Jurisdictions</a><a href="corridors/" data-zh="通道档案">Corridor dossiers</a><a href="research/" data-zh="论文资料">Paper library</a><a href="https://github.com/yunjiefanresearch-hub/cbsr.io">GitHub ↗</a><a href="mailto:yunjiefan.research@gmail.com" data-zh="联系">Contact ↗</a></nav>
   <div class="footer-meta"><span>© 2026 Yunjie Fan</span><span data-zh="数据 CC BY 4.0 / 代码 Apache 2.0">Data CC BY 4.0 / Code Apache 2.0</span><a href="https://doi.org/10.5281/zenodo.20730358" data-zh="数据集 DOI ↗">Dataset DOI ↗</a></div>
   <p class="footer-note" data-zh="CBSR（cbsr.site）由 Yunjie Fan 维护。Cross-Border Stablecoin Register 为数据集正式引用名。研究资料保留其发布日期、来源与复核状态；具体使用请参阅<a href=&quot;/about.html#reliance&quot;>使用说明</a>。">CBSR (cbsr.site) is maintained by Yunjie Fan. Cite the dataset as Cross-Border Stablecoin Register. Research carries its publication date, sources, and review status; see the <a href="about.html#reliance">use and citation notes</a>.</p>

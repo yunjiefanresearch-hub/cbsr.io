@@ -6,15 +6,13 @@
 
 The public front door for **CBSR**, backed by the
 [Cross-Border Stablecoin Register](https://github.com/yunjiefanresearch-hub/cross-border-stablecoin-register):
-the corridor map, the agent-grounding contract, the KYA framework, the intelligence stack,
-the papers, bounded policy-participation records, the SDG mapping, and an open call for
-jurisdiction maintainers.
+the corridor map, software access, the KYA working framework, research and policy submissions,
+and the work of jurisdiction maintainers.
 
-The site introduces CBSR as **the evidence layer for agentic finance**, starting with
-cross-border stablecoins. **CBSR is the product brand; Cross-Border Stablecoin Register
-remains the formal dataset title used in citations.** The homepage presents the platform,
-jurisdiction coverage, policy research, methods, and collaboration routes. Detailed source
-and review information lives in the evidence library and methodology pages.
+CBSR is an open, versioned register of stablecoin rules in twelve jurisdictions. Yunjie Fan
+maintains it as independent research. The website presents the dataset's scope, research,
+methodology and routes for contributing corrections. The evidence library gives details on
+sources and review status.
 
 The visual identity uses a charcoal ground, silver type, restrained lavender accents,
 and a local particle sculpture. `assets/cbsr-brand.css` extends the shared stylesheet on
@@ -43,7 +41,7 @@ agents.html       MCP, the grounding contract, the four failures it prevents
 kya.html          Know Your Agent — a working framework, published for comment
 method.html       the intelligence stack, the six build layers, the gates in CI
 research.html     policy-participation index, six working papers, dated analysis index
-standards.html    rules-as-code / RegTech placement, and the SDG mapping
+standards.html    rules-as-code / RegTech placement, and related research fields
 maintain.html     the maintainer role and the application form
 thanks.html       where the form lands (noindex)
 about.html        who made it, how it is sustained, how to cite it
@@ -67,7 +65,7 @@ _site/            generated publication; includes /zh/, /data/, /jurisdictions/,
 
 ## Policy-participation materials
 
-`index.html#policy-participation` is the single maintained source for the four full cards
+`index.html#policy-participation` is the single maintained source for the four cards
 and their evidence boundaries. `research.html#policy-participation-index` is deliberately a
 compact source index rather than a second copy of those summaries.
 
