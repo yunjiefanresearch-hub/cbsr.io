@@ -196,14 +196,14 @@ def _distribution(records, field, lang):
 
 
 def _dataset_page(dataset, meta):
-    titles = {"en": "Cross-Border Stablecoin Register dataset | CBSR evidence infrastructure", "zh": "Cross-Border Stablecoin Register 数据集 | CBSR 证据基础设施"}
+    titles = {"en": "Cross-Border Stablecoin Register dataset | CBSR", "zh": "跨境稳定币登记册数据集 | CBSR"}
     descriptions = {"en": "Explore 152 stablecoin regulatory records across 12 jurisdictions, with source provisions, legal status, review dates and versioned downloads. CBSR edition: 20 August 2026.", "zh": "查阅涵盖 12 个法域的 152 条稳定币监管记录，追溯来源条款、法律状态与复核日期，下载版本化数据。CBSR 数据版本：2026 年 8 月 20 日。"}
     bodies = {}
     for lang in ("en", "zh"):
         body = _header(titles[lang], descriptions[lang], lang) + _notice(lang)
-        body += _section(choose(lang, "What CBSR and this dataset mean", "CBSR 与本数据集的关系"), _p(choose(lang,
-            "CBSR develops evidence infrastructure for agentic finance. Its first regulatory dataset, Cross-Border Stablecoin Register, organises stablecoin rules by jurisdiction, instrument and regulatory dimension. Each record connects a regulatory proposition to its source, legal force, dates and review history.",
-            "CBSR 构建面向金融智能体的证据基础设施。首个监管数据集 Cross-Border Stablecoin Register 按法域、工具与监管维度组织稳定币规则，每条记录连接监管命题、来源条款、法律效力、日期与复核历史。")))
+        body += _section(choose(lang, "What the register records", "登记册记录什么"), _p(choose(lang,
+            "The Cross-Border Stablecoin Register organises stablecoin rules by jurisdiction, instrument and regulatory dimension. Each record has separate fields for the source, legal status, date and review history.",
+            "跨境稳定币登记册按法域、工具和监管维度整理稳定币规则。每条记录分字段记录来源、法律状态、日期和复核历史。")))
         body += _section(choose(lang, "What is in the pinned snapshot", "固定快照包含什么"), _dl([
             (choose(lang, "Version / dataset generation", "版本 / 数据生成日"), "v0.11.0 / 2026-08-20"),
             (choose(lang, "Records / jurisdictions / dimensions", "记录 / 法域 / 维度"), f"{dataset['record_count']} / 12 / {len({r['dimension'] for r in dataset['records']})}"),

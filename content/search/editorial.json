@@ -211,10 +211,10 @@
   "guides": [
     {
       "slug": "what-is-cbsr",
-      "title": {"en": "What is CBSR? Agentic finance evidence and the Stablecoin Register", "zh": "CBSR 是什么？金融智能体证据与稳定币登记册"},
-      "description": {"en": "Understand the CBSR product, its first stablecoin regulatory domain, the author, the evidence chain and how to cite a specific version.", "zh": "理解 CBSR 产品、首个稳定币监管垂类、作者、证据链及具体版本的引用方式。"},
+      "title": {"en": "What is the Cross-Border Stablecoin Register?", "zh": "什么是跨境稳定币登记册？"},
+      "description": {"en": "Learn what the register covers, who maintains it and how to cite a specific version.", "zh": "了解登记册的范围、维护者和具体版本的引用方式。"},
       "sections": [
-        {"heading": {"en": "A product and its first regulatory domain", "zh": "一个产品与首个监管垂类"}, "body": {"en": "CBSR is evidence infrastructure for agentic finance: rules, mandates and traceable decision support can be consumed by software while retaining their source and time boundaries. Cross-Border Stablecoin Register is the cited name of its first regulatory dataset. Use that full name when referring to the data and CBSR when identifying the broader product.", "zh": "CBSR 是面向金融智能体的证据基础设施：软件可以使用规则、授权与可追溯决策支持，同时保留来源及时间边界。Cross-Border Stablecoin Register 是首个监管数据集的正式引用名称；指数据时使用全称，识别更广产品时使用 CBSR。"}},
+        {"heading": {"en": "What the register covers", "zh": "登记册的范围"}, "body": {"en": "CBSR is the Cross-Border Stablecoin Register, an independent research project covering twelve jurisdictions. Records have separate fields for source, date and review status. Use the full name when citing the dataset.", "zh": "跨境稳定币登记册（CBSR）是一项涵盖十二个法域的独立研究。每条记录分字段记录来源、日期和审核状态。引用数据集时请使用全称。"}},
         {"heading": {"en": "Who is responsible for the research?", "zh": "谁负责研究？"}, "body": {"en": "The register and companion research identify Yunjie Fan as author and maintainer, with ORCID 0009-0005-6762-084X. Repository governance, correction routes and original papers make the work inspectable. Institutional hosting of an author's submission does not transfer authorship or imply endorsement.", "zh": "登记册与相关研究将 Yunjie Fan 列为作者及维护者，ORCID 为 0009-0005-6762-084X。仓库治理、更正路径与论文原文使工作可核查；机构刊载作者提交材料不会转移作者身份，也不表示认可。"}},
         {"heading": {"en": "How should research cite CBSR?", "zh": "研究应如何引用 CBSR？"}, "body": {"en": "Cite the dataset version and snapshot date, link the specific record or corridor, and include the official source locator. Record legal force and source-check dates separately so readers can reconstruct the evidence used in the analysis.", "zh": "注明数据集版本与快照日，链接具体记录或通道，并保留官方来源定位。分别列明法律效力和来源检查日期，便于读者重建分析所依据的证据。"}}
       ],

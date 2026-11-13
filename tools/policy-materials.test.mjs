@@ -105,7 +105,8 @@ test("private MiCA evidence and interactive fields cannot leak through public ma
   const index = elementById(research, "section", "policy-participation-index");
   const publicMarkup = section + index;
   assert.doesNotMatch(publicMarkup, /mica-review-questionnaire-2026\.pdf/i);
-  const withoutPublicDocumentUrl = publicMarkup.split(OFFICIAL_LINKS[2]).join("");
+  const publicDocumentUrl = OFFICIAL_LINKS.find((url) => url.includes('mica-review-targeted-consultation-document_en.pdf'));
+  const withoutPublicDocumentUrl = publicMarkup.replaceAll(publicDocumentUrl, "");
   assert.doesNotMatch(withoutPublicDocumentUrl, /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i);
   assert.doesNotMatch(publicMarkup, /csrf(?:token)?=|session[_-]?token=|receipt[_-]?id=|\/edit(?:\/|\?|$)/i);
   assert.doesNotMatch(publicMarkup, /<(?:img|form|input|script)\b/i);
